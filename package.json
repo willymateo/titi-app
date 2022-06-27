@@ -1,5 +1,6 @@
 {
   "name": "cathot-app",
+  "private": true,
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
@@ -7,7 +8,10 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "prepare": "husky install",
+    "prettier:check": "prettier --check .",
+    "prettier:write": "prettier --write . --ignore-unknown"
   },
   "dependencies": {
     "expo": "~45.0.0",
@@ -18,7 +22,13 @@
     "react-native-web": "0.17.7"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
-  },
-  "private": true
+    "@babel/core": "^7.12.9",
+    "eslint": "^8.18.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-react": "^7.30.1",
+    "husky": "^8.0.1",
+    "lint-staged": "^13.0.3",
+    "prettier": "2.7.1"
+  }
 }
