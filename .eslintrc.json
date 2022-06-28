@@ -18,6 +18,7 @@
   },
   "plugins": ["react"],
   "rules": {
+    "require-jsdoc": "off",
     "semi": ["error", "always"],
     "quotes": [
       "warn",
