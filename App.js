@@ -1,11 +1,11 @@
-import { Provider as PaperProvider } from "react-native-paper";
-import { Main } from "./components/Main";
-import { theme } from "./theme/theme";
+import { Provider as ReduxProvider } from "react-redux";
+import { storeConfiguration } from "./src/redux/store";
+import { Main } from "./src/Main";
 
 export default function App() {
   return (
-    <PaperProvider theme={theme}>
+    <ReduxProvider store={storeConfiguration}>
       <Main />
-    </PaperProvider>
+    </ReduxProvider>
   );
 }
