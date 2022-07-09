@@ -1,10 +1,10 @@
 import { StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
 
-function Profile() {
+function Login() {
   return (
     <View style={viewStyle.container}>
-      <Text>Profile screen</Text>
+      <Text>Login screen</Text>
     </View>
   );
 }
@@ -17,4 +17,4 @@ const viewStyle = StyleSheet.create({
   },
 });
 
-export { Profile };
+export { Login };

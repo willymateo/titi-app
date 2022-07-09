@@ -1,14 +1,13 @@
 import { useFonts, Pacifico_400Regular as Pacifico400Regular } from "@expo-google-fonts/pacifico";
 import { setColorMode } from "../redux/states/colorMode";
 import { useSelector, useDispatch } from "react-redux";
-import * as SplashScreen from "expo-splash-screen";
 import { Text, Switch } from "react-native-paper";
-import { useEffect } from "react";
+import { StyleSheet, View } from "react-native";
 
 function Home() {
   const { isDark } = useSelector(state => state.colorMode);
   const dispatch = useDispatch();
-  let [fontsLoaded] = useFonts({
+  const [fontsLoaded] = useFonts({
     Pacifico400Regular,
   });
 
@@ -21,23 +20,24 @@ function Home() {
     );
   };
 
-  // useEffect(() => {
-  // const prepare = async () => {
-  // await SplashScreen.preventAutoHideAsync();
-  // };
-  // prepare();
-  // });
-
   return (
-    <>
+    <View style={viewStyle.container}>
       {fontsLoaded ? (
         <Text style={{ fontFamily: "Pacifico400Regular" }}>{isDark ? "Dark" : "Light"} mode</Text>
       ) : (
         <Text>{isDark ? "Dark" : "Light"} mode without google font</Text>
       )}
       <Switch value={isDark} onValueChange={switchHandler}></Switch>
-    </>
+    </View>
   );
 }
+
+const viewStyle = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
 
 export { Home };

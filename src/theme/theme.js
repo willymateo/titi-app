@@ -4,11 +4,6 @@ import {
   DarkTheme as NavigationDarkTheme,
 } from "@react-navigation/native";
 
-// const theme = {
-// ...DefaultTheme,
-// mode: "adaptive",
-// };
-
 const CombinedDefaultTheme = {
   ...PaperDefaultTheme,
   ...NavigationDefaultTheme,
@@ -16,6 +11,7 @@ const CombinedDefaultTheme = {
     ...PaperDefaultTheme.colors,
     ...NavigationDefaultTheme.colors,
   },
+  mode: "adaptive",
 };
 
 const CombinedDarkTheme = {
@@ -25,6 +21,7 @@ const CombinedDarkTheme = {
     ...PaperDarkTheme.colors,
     ...NavigationDarkTheme.colors,
   },
+  mode: "adaptive",
 };
 
 export { CombinedDarkTheme, CombinedDefaultTheme };
