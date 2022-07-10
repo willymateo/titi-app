@@ -3,8 +3,10 @@ import { CombinedDarkTheme, CombinedDefaultTheme } from "./theme/theme";
 import { BottomTabsNavigator } from "./components/BottomTabsNavigator";
 import { Provider as PaperProvider } from "react-native-paper";
 import { NavigationContainer } from "@react-navigation/native";
+import { AccountRecovery } from "./screens/AccountRecovery";
 import { StatusBar } from "expo-status-bar";
 import { useSelector } from "react-redux";
+import { SignUp } from "./screens/SignUp";
 import { Login } from "./screens/Login";
 
 const Stack = createNativeStackNavigator();
@@ -20,8 +22,29 @@ function Main() {
         {userId ? (
           <BottomTabsNavigator />
         ) : (
-          <Stack.Navigator>
-            <Stack.Screen name="Login" component={Login} />
+          <Stack.Navigator initialRouteName="Login">
+            <Stack.Screen
+              name="Login"
+              component={Login}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="SignUp"
+              component={SignUp}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="AccountRecovery"
+              component={AccountRecovery}
+              options={{
+                headerShown: true,
+                headerBackButtonMenuEnabled: false,
+              }}
+            />
           </Stack.Navigator>
         )}
       </NavigationContainer>

@@ -17,7 +17,7 @@ function Home() {
   };
 
   return (
-    <View style={viewStyle.container}>
+    <View style={styles.container}>
       <Text variant="displayLarge">Home Screen</Text>
       <Text>{isDark ? "Dark" : "Light"} mode</Text>
       <Switch value={isDark} onValueChange={switchHandler}></Switch>
@@ -25,9 +25,11 @@ function Home() {
   );
 }
 
-const viewStyle = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: "column",
+    flexWrap: "nowrap",
     alignItems: "center",
     justifyContent: "center",
   },

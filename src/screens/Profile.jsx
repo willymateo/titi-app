@@ -3,15 +3,17 @@ import { Text } from "react-native-paper";
 
 function Profile() {
   return (
-    <View style={viewStyle.container}>
+    <View style={styles.container}>
       <Text>Profile screen</Text>
     </View>
   );
 }
 
-const viewStyle = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
+    flexDirection: "column",
+    flexWrap: "nowrap",
     alignItems: "center",
     justifyContent: "center",
   },

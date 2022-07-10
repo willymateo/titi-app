@@ -2,13 +2,13 @@ import { LoginFooter } from "../components/LoginFooter";
 import { StyleSheet, View } from "react-native";
 import { Text } from "react-native-paper";
 
-function SignUp({ navigation }) {
+function AccountRecovery({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text>Sign Up Screen</Text>
+      <Text>Account Recovery Screen</Text>
       <LoginFooter
         onPressLogin={() => navigation.popToTop()}
-        onPressAccountRecovery={() => navigation.navigate("AccountRecovery")}
+        onPressSignUp={() => navigation.navigate("SignUp")}
       />
     </View>
   );
@@ -24,4 +24,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export { SignUp };
+export { AccountRecovery };

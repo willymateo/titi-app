@@ -1,9 +1,10 @@
 import { useFonts, Pacifico_400Regular as Pacifico400Regular } from "@expo-google-fonts/pacifico";
-import { Button, Divider, Text, TextInput } from "react-native-paper";
 import { EyeEmpty, KeyAltBack, User } from "iconoir-react-native";
+import { Button, Text, TextInput } from "react-native-paper";
+import { LoginFooter } from "../components/LoginFooter";
 import { StyleSheet, View } from "react-native";
 
-function Login() {
+function Login({ navigation }) {
   const [fontsLoaded] = useFonts({
     Pacifico400Regular,
   });
@@ -18,38 +19,30 @@ function Login() {
         }>
         CatHot
       </Text>
-      <TextInput label="Username" left={<User {...styles.iconoir} />} />
+      <TextInput label="Username" left={<User {...styles.iconoir} color="#FF0000" />} />
       <TextInput
         label="Password"
         secureTextEntry
-        left={<KeyAltBack {...styles.iconoir} />}
-        right={<EyeEmpty {...styles.iconoir} />}
+        left={<KeyAltBack {...styles.iconoir} color="#FF0000" />}
+        right={<EyeEmpty {...styles.iconoir} color="#FF0000" />}
       />
       <Button mode="contained" uppercase={false} onPress={() => console.log("Loging in...")}>
         Log in
       </Button>
-      <View style={styles.flexRow}>
-        <Text>Forgot your password?</Text>
-        <Button mode="text" uppercase={false} onPress={() => console.log("Recovering account...")}>
-          Recover account
-        </Button>
-      </View>
-      <Divider />
-      <View style={styles.flexRow}>
-        <Text>Don't have an account?</Text>
-        <Button mode="Text" uppercase={false} onPress={() => console.log("Siging up...")}>
-          Sign up
-        </Button>
-      </View>
+      <LoginFooter
+        onPressSignUp={() => navigation.navigate("SignUp")}
+        onPressAccountRecovery={() => navigation.navigate("AccountRecovery")}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    display: "flex",
+    flex: 1,
     flexDirection: "column",
     flexWrap: "nowrap",
+    justifyContent: "center",
   },
   appTitle: {
     textAlign: "center",
@@ -57,13 +50,6 @@ const styles = StyleSheet.create({
   iconoir: {
     height: 25,
     width: 25,
-  },
-  flexRow: {
-    display: "flex",
-    flexDirection: "row",
-    flexWrap: "wrap",
-    justifyContent: "center",
-    alignItems: "center",
   },
 });
 
