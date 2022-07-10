@@ -1,22 +1,21 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const colorModoEmptyState = {
+const emptyState = {
   theme: "light",
   isDark: false,
 };
 
 const ColorModeSlice = createSlice({
   name: "colorMode",
-  initialState: colorModoEmptyState,
+  initialState: emptyState,
   reducers: {
-    createColorMode: (state, action) => action.payload,
+    createColorMode: ({ action }) => action.payload,
     setColorMode: (state, action) => ({ ...state, ...action.payload }),
-    resetColorMode: () => colorModoEmptyState,
+    resetColorMode: () => emptyState,
   },
 });
 
 const { createColorMode, setColorMode, resetColorMode } = ColorModeSlice.actions;
-
 const ColorModeReducer = ColorModeSlice.reducer;
 
 export { ColorModeReducer, createColorMode, setColorMode, resetColorMode };
