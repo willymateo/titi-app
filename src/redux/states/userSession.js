@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const emptyState = {
-  userId: null,
+  token: null,
 };
 
 const UserSessionSlice = createSlice({

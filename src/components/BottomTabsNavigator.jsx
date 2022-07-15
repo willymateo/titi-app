@@ -1,5 +1,7 @@
+import { BellNotification, HomeSimple, IosSettings, UserCircleAlt } from "iconoir-react-native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import { HomeSimple, UserCircleAlt } from "iconoir-react-native";
+import { Notifications } from "../screens/Notifications";
+import { Settings } from "../screens/Settings";
 import { Profile } from "../screens/Profile";
 import { StyleSheet } from "react-native";
 import { Home } from "../screens/Home";
@@ -14,6 +16,20 @@ function BottomTabsNavigator() {
         component={Home}
         options={{
           tabBarIcon: props => <HomeSimple {...props} {...styles.iconoir} />,
+        }}
+      />
+      <Tab.Screen
+        name="Notifications"
+        component={Notifications}
+        options={{
+          tabBarIcon: props => <BellNotification {...props} {...styles.iconoir} />,
+        }}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={Settings}
+        options={{
+          tabBarIcon: props => <IosSettings {...props} {...styles.iconoir} />,
         }}
       />
       <Tab.Screen
