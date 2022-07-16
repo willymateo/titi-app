@@ -1,18 +1,48 @@
 import { TextInputHookForm } from "../components/TextInputHookForm";
-import { EyeEmpty, KeyAltBack, User } from "iconoir-react-native";
 import { LoginFooter } from "../components/LoginFooter";
 import { Button, TextInput } from "react-native-paper";
+import { EMAIL_REGEX } from "../utilities/environment";
 import { StyleSheet, View } from "react-native";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
+import {
+  Mail,
+  User,
+  EyeClose,
+  EyeEmpty,
+  KeyAltBack,
+  PeopleRounded,
+  SmartphoneDevice,
+} from "iconoir-react-native";
 
 function SignUp({ navigation }) {
-  const { control, handleSubmit } = useForm();
+  const [isPasswordHidden, setIsPasswordHidden] = useState(true);
+  const { control, handleSubmit, watch } = useForm();
+  const password = watch("password");
   const onPressSignUp = data => {
     console.log(data);
   };
 
   return (
     <View style={styles.container}>
+      <TextInputHookForm
+        rules={{
+          required: "First names are required",
+        }}
+        label="First names"
+        control={control}
+        controllerName="firstNames"
+        left={<TextInput.Icon name={props => <PeopleRounded {...props} {...styles.iconoir} />} />}
+      />
+      <TextInputHookForm
+        rules={{
+          required: "Last names are required",
+        }}
+        label="Last names"
+        control={control}
+        controllerName="lastNames"
+        left={<TextInput.Icon name={props => <PeopleRounded {...props} {...styles.iconoir} />} />}
+      />
       <TextInputHookForm
         rules={{
           required: "Username is required",
@@ -37,14 +67,60 @@ The only allowed special characters are '_' and '.'`,
       />
       <TextInputHookForm
         rules={{
+          required: "Phone number is required",
+        }}
+        label="Phone number"
+        control={control}
+        controllerName="phoneNumber"
+        left={
+          <TextInput.Icon name={props => <SmartphoneDevice {...props} {...styles.iconoir} />} />
+        }
+      />
+      <TextInputHookForm
+        rules={{
+          required: "Email is required",
+          pattern: {
+            value: EMAIL_REGEX,
+            message: "Email is invalid",
+          },
+        }}
+        label="Email"
+        control={control}
+        controllerName="email"
+        left={<TextInput.Icon name={props => <Mail {...props} {...styles.iconoir} />} />}
+      />
+      <TextInputHookForm
+        rules={{
           required: "Password is required",
         }}
-        secureTextEntry
+        secureTextEntry={isPasswordHidden}
         label="Password"
         control={control}
         controllerName="password"
         left={<TextInput.Icon name={props => <KeyAltBack {...props} {...styles.iconoir} />} />}
-        right={<TextInput.Icon name={props => <EyeEmpty {...props} {...styles.iconoir} />} />}
+        right={
+          <TextInput.Icon
+            name={props => {
+              return isPasswordHidden ? (
+                <EyeEmpty {...props} {...styles.iconoir} />
+              ) : (
+                <EyeClose {...props} {...styles.iconoir} />
+              );
+            }}
+            onPress={() => setIsPasswordHidden(!isPasswordHidden)}
+          />
+        }
+      />
+      <TextInputHookForm
+        rules={{
+          required: "Password is required",
+          validate: value => value === password || "Password do not match",
+        }}
+        secureTextEntry
+        label="Repeat password"
+        control={control}
+        controllerName="repeatPassword"
+        left={<TextInput.Icon name={props => <KeyAltBack {...props} {...styles.iconoir} />} />}
       />
 
       <Button mode="contained" uppercase={false} onPress={handleSubmit(onPressSignUp)}>

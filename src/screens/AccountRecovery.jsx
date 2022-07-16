@@ -1,5 +1,6 @@
 import { TextInputHookForm } from "../components/TextInputHookForm";
 import { LoginFooter } from "../components/LoginFooter";
+import { EMAIL_REGEX } from "../utilities/environment";
 import { Button, TextInput } from "react-native-paper";
 import { StyleSheet, View } from "react-native";
 import { Mail } from "iconoir-react-native";
@@ -16,6 +17,10 @@ function AccountRecovery({ navigation }) {
       <TextInputHookForm
         rules={{
           required: "Enter the email of the account you wanna recover",
+          pattern: {
+            value: EMAIL_REGEX,
+            message: "Email is invalid",
+          },
         }}
         label="Email"
         control={control}

@@ -1,12 +1,14 @@
 import { useFonts, Pacifico_400Regular as Pacifico400Regular } from "@expo-google-fonts/pacifico";
+import { EyeClose, EyeEmpty, KeyAltBack, User } from "iconoir-react-native";
 import { TextInputHookForm } from "../components/TextInputHookForm";
-import { EyeEmpty, KeyAltBack, User } from "iconoir-react-native";
 import { Button, Text, TextInput } from "react-native-paper";
 import { LoginFooter } from "../components/LoginFooter";
 import { StyleSheet, View } from "react-native";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 function Login({ navigation }) {
+  const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   const { control, handleSubmit } = useForm();
   const [fontsLoaded] = useFonts({
     Pacifico400Regular,
@@ -39,12 +41,23 @@ function Login({ navigation }) {
         rules={{
           required: "Password is required",
         }}
-        secureTextEntry
+        secureTextEntry={isPasswordHidden}
         label="Password"
         control={control}
         controllerName="password"
         left={<TextInput.Icon name={props => <KeyAltBack {...props} {...styles.iconoir} />} />}
-        right={<TextInput.Icon name={props => <EyeEmpty {...props} {...styles.iconoir} />} />}
+        right={
+          <TextInput.Icon
+            name={props => {
+              return isPasswordHidden ? (
+                <EyeEmpty {...props} {...styles.iconoir} />
+              ) : (
+                <EyeClose {...props} {...styles.iconoir} />
+              );
+            }}
+            onPress={() => setIsPasswordHidden(!isPasswordHidden)}
+          />
+        }
       />
 
       <Button mode="contained" uppercase={false} onPress={handleSubmit(onPressLogin)}>
