@@ -34,6 +34,7 @@ function SignUp({ navigation }) {
       contentContainerStyle={styles.container}>
       <View>
         <TextInputHookForm
+          style={styles.inputText}
           rules={{
             required: "First names are required",
           }}
@@ -43,6 +44,7 @@ function SignUp({ navigation }) {
           left={<TextInput.Icon name={props => <PeopleRounded {...props} {...styles.iconoir} />} />}
         />
         <TextInputHookForm
+          style={styles.inputText}
           rules={{
             required: "Last names are required",
           }}
@@ -52,6 +54,7 @@ function SignUp({ navigation }) {
           left={<TextInput.Icon name={props => <PeopleRounded {...props} {...styles.iconoir} />} />}
         />
         <TextInputHookForm
+          style={styles.inputText}
           rules={{
             required: "Username is required",
             minLength: {
@@ -74,6 +77,7 @@ The only allowed special characters are '_' and '.'`,
           left={<TextInput.Icon name={props => <User {...props} {...styles.iconoir} />} />}
         />
         <TextInputHookForm
+          style={styles.inputText}
           rules={{
             required: "Phone number is required",
           }}
@@ -85,6 +89,7 @@ The only allowed special characters are '_' and '.'`,
           }
         />
         <TextInputHookForm
+          style={styles.inputText}
           rules={{
             required: "Email is required",
             pattern: {
@@ -98,6 +103,7 @@ The only allowed special characters are '_' and '.'`,
           left={<TextInput.Icon name={props => <Mail {...props} {...styles.iconoir} />} />}
         />
         <TextInputHookForm
+          style={styles.inputText}
           rules={{
             required: "Password is required",
           }}
@@ -120,50 +126,7 @@ The only allowed special characters are '_' and '.'`,
           }
         />
         <TextInputHookForm
-          rules={{
-            required: "Password is required",
-            validate: value => value === password || "Password do not match",
-          }}
-          secureTextEntry
-          label="Repeat password"
-          control={control}
-          controllerName="repeatPassword"
-          left={<TextInput.Icon name={props => <KeyAltBack {...props} {...styles.iconoir} />} />}
-        />
-        <TextInputHookForm
-          rules={{
-            required: "Password is required",
-            validate: value => value === password || "Password do not match",
-          }}
-          secureTextEntry
-          label="Repeat password"
-          control={control}
-          controllerName="repeatPassword"
-          left={<TextInput.Icon name={props => <KeyAltBack {...props} {...styles.iconoir} />} />}
-        />
-        <TextInputHookForm
-          rules={{
-            required: "Password is required",
-            validate: value => value === password || "Password do not match",
-          }}
-          secureTextEntry
-          label="Repeat password"
-          control={control}
-          controllerName="repeatPassword"
-          left={<TextInput.Icon name={props => <KeyAltBack {...props} {...styles.iconoir} />} />}
-        />
-        <TextInputHookForm
-          rules={{
-            required: "Password is required",
-            validate: value => value === password || "Password do not match",
-          }}
-          secureTextEntry
-          label="Repeat password"
-          control={control}
-          controllerName="repeatPassword"
-          left={<TextInput.Icon name={props => <KeyAltBack {...props} {...styles.iconoir} />} />}
-        />
-        <TextInputHookForm
+          style={styles.inputText}
           rules={{
             required: "Password is required",
             validate: value => value === password || "Password do not match",
@@ -194,6 +157,9 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     justifyContent: "center",
+  },
+  inputText: {
+    marginVertical: 5,
   },
   iconoir: {
     height: 25,

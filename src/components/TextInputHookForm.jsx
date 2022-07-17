@@ -5,6 +5,7 @@ function TextInputHookForm({
   left,
   label,
   right,
+  style,
   control,
   rules = {},
   placeholder,
@@ -19,6 +20,7 @@ function TextInputHookForm({
       render={({ field: { value, onChange, onBlur }, fieldState: { error } }) => (
         <>
           <TextInput
+            style={style}
             error={error}
             label={label}
             value={value}

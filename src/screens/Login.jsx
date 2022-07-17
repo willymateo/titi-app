@@ -19,7 +19,7 @@ function Login({ navigation }) {
 
   return (
     <KeyboardAvoidingView
-      style={styles.scrollView}
+      style={styles.root}
       behavior={Platform.OS === "ios" ? "padding" : "height"}>
       <View style={{ ...styles.container }}>
         <Text
@@ -30,38 +30,41 @@ function Login({ navigation }) {
           }>
           CatHot
         </Text>
-
-        <TextInputHookForm
-          rules={{
-            required: "Username is required",
-          }}
-          label="Username"
-          control={control}
-          controllerName="username"
-          left={<TextInput.Icon name={props => <User {...props} {...styles.iconoir} />} />}
-        />
-        <TextInputHookForm
-          rules={{
-            required: "Password is required",
-          }}
-          secureTextEntry={isPasswordHidden}
-          label="Password"
-          control={control}
-          controllerName="password"
-          left={<TextInput.Icon name={props => <KeyAltBack {...props} {...styles.iconoir} />} />}
-          right={
-            <TextInput.Icon
-              name={props => {
-                return isPasswordHidden ? (
-                  <EyeEmpty {...props} {...styles.iconoir} />
-                ) : (
-                  <EyeClose {...props} {...styles.iconoir} />
-                );
-              }}
-              onPress={() => setIsPasswordHidden(!isPasswordHidden)}
-            />
-          }
-        />
+        <View>
+          <TextInputHookForm
+            style={styles.inputText}
+            rules={{
+              required: "Username is required",
+            }}
+            label="Username"
+            control={control}
+            controllerName="username"
+            left={<TextInput.Icon name={props => <User {...props} {...styles.iconoir} />} />}
+          />
+          <TextInputHookForm
+            style={styles.inputText}
+            rules={{
+              required: "Password is required",
+            }}
+            secureTextEntry={isPasswordHidden}
+            label="Password"
+            control={control}
+            controllerName="password"
+            left={<TextInput.Icon name={props => <KeyAltBack {...props} {...styles.iconoir} />} />}
+            right={
+              <TextInput.Icon
+                name={props => {
+                  return isPasswordHidden ? (
+                    <EyeEmpty {...props} {...styles.iconoir} />
+                  ) : (
+                    <EyeClose {...props} {...styles.iconoir} />
+                  );
+                }}
+                onPress={() => setIsPasswordHidden(!isPasswordHidden)}
+              />
+            }
+          />
+        </View>
 
         <Button mode="contained" uppercase={false} onPress={handleSubmit(onPressLogin)}>
           Log in
@@ -76,12 +79,15 @@ function Login({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  scrollView: {
+  root: {
     flex: 1,
   },
   container: {
     flex: 1,
     justifyContent: "center",
+  },
+  inputText: {
+    marginVertical: 5,
   },
   appTitle: {
     textAlign: "center",

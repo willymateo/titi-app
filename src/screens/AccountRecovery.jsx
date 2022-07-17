@@ -14,10 +14,11 @@ function AccountRecovery({ navigation }) {
 
   return (
     <KeyboardAvoidingView
-      style={styles.scrollView}
+      style={styles.root}
       behavior={Platform.OS === "ios" ? "padding" : "height"}>
       <View style={styles.container}>
         <TextInputHookForm
+          style={styles.inputText}
           rules={{
             required: "Enter the email of the account you wanna recover",
             pattern: {
@@ -45,12 +46,15 @@ function AccountRecovery({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  scrollView: {
+  root: {
     flex: 1,
   },
   container: {
     flex: 1,
     justifyContent: "center",
+  },
+  inputText: {
+    marginVertical: 5,
   },
   iconoir: {
     height: 25,

@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native";
 
 function LoginFooter({ onPressLogin, onPressSignUp, onPressAccountRecovery }) {
   return (
-    <>
+    <View style={styles.container}>
       {onPressLogin && (
         <>
           <View style={styles.flexRow}>
@@ -36,17 +36,19 @@ function LoginFooter({ onPressLogin, onPressSignUp, onPressAccountRecovery }) {
           </Button>
         </View>
       )}
-    </>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    gap: 10,
+  },
   flexRow: {
-    display: "flex",
-    flexDirection: "row",
     flexWrap: "wrap",
-    justifyContent: "center",
     alignItems: "center",
+    flexDirection: "row",
+    justifyContent: "center",
   },
 });
 
