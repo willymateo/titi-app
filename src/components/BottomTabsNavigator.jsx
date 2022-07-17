@@ -10,7 +10,13 @@ const Tab = createMaterialBottomTabNavigator();
 
 function BottomTabsNavigator() {
   return (
-    <Tab.Navigator initialRouteName="Home">
+    <Tab.Navigator
+      initialRouteName="Home"
+      screenOptions={{
+        contentStyle: {
+          paddingHorizontal: 20,
+        },
+      }}>
       <Tab.Screen
         name="Home"
         component={Home}

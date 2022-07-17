@@ -7,7 +7,13 @@ const Stack = createNativeStackNavigator();
 
 function InitialStackNavigator() {
   return (
-    <Stack.Navigator initialRouteName="Login">
+    <Stack.Navigator
+      initialRouteName="Login"
+      screenOptions={{
+        contentStyle: {
+          paddingHorizontal: 20,
+        },
+      }}>
       <Stack.Screen
         name="Login"
         component={Login}

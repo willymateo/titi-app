@@ -1,9 +1,10 @@
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { TextInputHookForm } from "../components/TextInputHookForm";
-import { ScrollView, StyleSheet, View } from "react-native";
 import { LoginFooter } from "../components/LoginFooter";
 import { Button, TextInput } from "react-native-paper";
 import { EMAIL_REGEX } from "../utilities/environment";
 import { catHotAPI } from "../services/catHotAPI";
+import { StyleSheet, View } from "react-native";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import {
@@ -27,8 +28,11 @@ function SignUp({ navigation }) {
   };
 
   return (
-    <View style={styles.container}>
-      <ScrollView showsVerticalScrollIndicator={false}>
+    <KeyboardAwareScrollView
+      style={styles.scrollView}
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={styles.container}>
+      <View>
         <TextInputHookForm
           rules={{
             required: "First names are required",
@@ -148,6 +152,28 @@ The only allowed special characters are '_' and '.'`,
           controllerName="repeatPassword"
           left={<TextInput.Icon name={props => <KeyAltBack {...props} {...styles.iconoir} />} />}
         />
+        <TextInputHookForm
+          rules={{
+            required: "Password is required",
+            validate: value => value === password || "Password do not match",
+          }}
+          secureTextEntry
+          label="Repeat password"
+          control={control}
+          controllerName="repeatPassword"
+          left={<TextInput.Icon name={props => <KeyAltBack {...props} {...styles.iconoir} />} />}
+        />
+        <TextInputHookForm
+          rules={{
+            required: "Password is required",
+            validate: value => value === password || "Password do not match",
+          }}
+          secureTextEntry
+          label="Repeat password"
+          control={control}
+          controllerName="repeatPassword"
+          left={<TextInput.Icon name={props => <KeyAltBack {...props} {...styles.iconoir} />} />}
+        />
 
         <Button mode="contained" uppercase={false} onPress={handleSubmit(onPressSignUp)}>
           Sign Up
@@ -156,16 +182,17 @@ The only allowed special characters are '_' and '.'`,
           onPressLogin={() => navigation.popToTop()}
           onPressAccountRecovery={() => navigation.navigate("AccountRecovery")}
         />
-      </ScrollView>
-    </View>
+      </View>
+    </KeyboardAwareScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  scrollView: {
     flex: 1,
-    flexDirection: "column",
-    flexWrap: "nowrap",
+  },
+  container: {
+    flexGrow: 1,
     justifyContent: "center",
   },
   iconoir: {
