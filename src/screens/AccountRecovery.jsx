@@ -1,10 +1,10 @@
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
 import { TextInputHookForm } from "../components/TextInputHookForm";
 import { LoginFooter } from "../components/LoginFooter";
-import { EMAIL_REGEX } from "../utilities/environment";
 import { Button, TextInput } from "react-native-paper";
 import { Mail } from "iconoir-react-native";
 import { useForm } from "react-hook-form";
+import { EMAIL_REGEX } from "../config";
 
 function AccountRecovery({ navigation }) {
   const { control, handleSubmit } = useForm();
@@ -37,7 +37,7 @@ function AccountRecovery({ navigation }) {
           Send recovery email
         </Button>
         <LoginFooter
-          onPressLogin={() => navigation.popToTop()}
+          onPressLogin={() => navigation.navigate("Login")}
           onPressSignUp={() => navigation.navigate("SignUp")}
         />
       </View>

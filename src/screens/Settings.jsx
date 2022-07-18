@@ -1,10 +1,18 @@
 import { StyleSheet, View } from "react-native";
-import { Text } from "react-native-paper";
+import { Palette } from "iconoir-react-native";
+import { List } from "react-native-paper";
 
-function Settings() {
+function Settings({ navigation }) {
   return (
     <View style={styles.container}>
-      <Text>Settings screen</Text>
+      <List.Section>
+        <List.Subheader>Preferences</List.Subheader>
+        <List.Item
+          title="Theme"
+          onPress={() => navigation.navigate("ThemeSettings")}
+          left={() => <List.Icon icon={props => <Palette {...props} {...styles.iconoir} />} />}
+        />
+      </List.Section>
     </View>
   );
 }
@@ -12,10 +20,10 @@ function Settings() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column",
-    flexWrap: "nowrap",
-    alignItems: "center",
-    justifyContent: "center",
+  },
+  iconoir: {
+    height: 25,
+    width: 25,
   },
 });
 

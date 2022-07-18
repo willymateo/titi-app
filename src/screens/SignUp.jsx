@@ -2,10 +2,10 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { TextInputHookForm } from "../components/TextInputHookForm";
 import { LoginFooter } from "../components/LoginFooter";
 import { Button, TextInput } from "react-native-paper";
-import { EMAIL_REGEX } from "../utilities/environment";
 import { catHotAPI } from "../services/catHotAPI";
 import { StyleSheet, View } from "react-native";
 import { useForm } from "react-hook-form";
+import { EMAIL_REGEX } from "../config";
 import { useState } from "react";
 import {
   Mail,
@@ -142,7 +142,7 @@ The only allowed special characters are '_' and '.'`,
           Sign Up
         </Button>
         <LoginFooter
-          onPressLogin={() => navigation.popToTop()}
+          onPressLogin={() => navigation.navigate("Login")}
           onPressAccountRecovery={() => navigation.navigate("AccountRecovery")}
         />
       </View>

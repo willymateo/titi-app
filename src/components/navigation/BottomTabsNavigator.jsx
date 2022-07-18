@@ -1,10 +1,10 @@
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { Bell, HomeSimple, IosSettings, UserCircleAlt } from "iconoir-react-native";
-import { Notifications } from "../screens/Notifications";
-import { Settings } from "../screens/Settings";
-import { Profile } from "../screens/Profile";
+import { SettingsStackNavigator } from "./SettingsStackNavigator";
+import { Notifications } from "../../screens/Notifications";
+import { Profile } from "../../screens/Profile";
 import { StyleSheet } from "react-native";
-import { Home } from "../screens/Home";
+import { Home } from "../../screens/Home";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -39,10 +39,11 @@ function BottomTabsNavigator() {
         }}
       />
       <Tab.Screen
-        name="Settings"
-        component={Settings}
+        name="SettingsTab"
+        component={SettingsStackNavigator}
         options={{
           tabBarIcon: props => <IosSettings {...props} {...styles.iconoir} />,
+          tabBarLabel: "Settings",
         }}
       />
     </Tab.Navigator>

@@ -1,6 +1,6 @@
-import { InitialStackNavigator } from "./components/InitialStackNavigator";
+import { InitialStackNavigator } from "./components/navigation/InitialStackNavigator";
+import { BottomTabsNavigator } from "./components/navigation/BottomTabsNavigator";
 import { CombinedDarkTheme, CombinedDefaultTheme } from "./theme/theme";
-import { BottomTabsNavigator } from "./components/BottomTabsNavigator";
 import { Provider as PaperProvider } from "react-native-paper";
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";

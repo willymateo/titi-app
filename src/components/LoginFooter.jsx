@@ -6,35 +6,38 @@ function LoginFooter({ onPressLogin, onPressSignUp, onPressAccountRecovery }) {
     <View style={styles.container}>
       {onPressLogin && (
         <>
+          <Divider />
           <View style={styles.flexRow}>
             <Text>Already have an account?</Text>
             <Button mode="Text" uppercase={false} onPress={onPressLogin}>
               Login
             </Button>
           </View>
-          <Divider />
         </>
       )}
 
       {onPressAccountRecovery && (
         <>
+          <Divider />
           <View style={styles.flexRow}>
             <Text>Forgot your password?</Text>
             <Button mode="text" uppercase={false} onPress={onPressAccountRecovery}>
               Recover account
             </Button>
           </View>
-          <Divider />
         </>
       )}
 
       {onPressSignUp && (
-        <View style={styles.flexRow}>
-          <Text>Don't have an account?</Text>
-          <Button mode="Text" uppercase={false} onPress={onPressSignUp}>
-            Sign up
-          </Button>
-        </View>
+        <>
+          <Divider />
+          <View style={styles.flexRow}>
+            <Text>Don't have an account?</Text>
+            <Button mode="Text" uppercase={false} onPress={onPressSignUp}>
+              Sign up
+            </Button>
+          </View>
+        </>
       )}
     </View>
   );

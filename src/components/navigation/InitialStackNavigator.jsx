@@ -1,16 +1,17 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { AccountRecovery } from "../screens/AccountRecovery";
+import { AccountRecovery } from "../../screens/AccountRecovery";
+import { Welcome } from "../../screens/Welcome";
+import { SignUp } from "../../screens/SignUp";
+import { Login } from "../../screens/Login";
 import { Appbar } from "react-native-paper";
-import { SignUp } from "../screens/SignUp";
 import { StyleSheet } from "react-native";
-import { Login } from "../screens/Login";
 
 const Stack = createNativeStackNavigator();
 
 function InitialStackNavigator() {
   return (
     <Stack.Navigator
-      initialRouteName="Login"
+      initialRouteName="Welcome"
       screenOptions={{
         contentStyle: {
           paddingHorizontal: 20,
@@ -21,6 +22,13 @@ function InitialStackNavigator() {
           </Appbar.Header>
         ),
       }}>
+      <Stack.Screen
+        name="Welcome"
+        component={Welcome}
+        options={{
+          headerShown: false,
+        }}
+      />
       <Stack.Screen
         name="Login"
         component={Login}
