@@ -1,9 +1,9 @@
 import { Button, Divider, Text } from "react-native-paper";
 import { StyleSheet, View } from "react-native";
 
-function LoginFooter({ onPressLogin, onPressSignUp, onPressAccountRecovery }) {
+function LoginFooter({ onPressLogin, onPressSignUp, onPressAccountRecovery, style }) {
   return (
-    <View style={styles.container}>
+    <View style={style}>
       {onPressLogin && (
         <>
           <Divider />
@@ -44,9 +44,6 @@ function LoginFooter({ onPressLogin, onPressSignUp, onPressAccountRecovery }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    gap: 10,
-  },
   flexRow: {
     flexWrap: "wrap",
     alignItems: "center",

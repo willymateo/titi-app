@@ -12,8 +12,6 @@ function Profile() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column",
-    flexWrap: "nowrap",
     alignItems: "center",
     justifyContent: "center",
   },
