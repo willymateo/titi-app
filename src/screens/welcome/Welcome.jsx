@@ -1,6 +1,6 @@
-import { LoginFooter } from "../components/LoginFooter";
-import LightLogo from "../../assets/lightLogo.svg";
-import DarkLogo from "../../assets/darkLogo.svg";
+import { LoginFooter } from "../../components/LoginFooter";
+import LightLogo from "../../../assets/lightLogo.svg";
+import DarkLogo from "../../../assets/darkLogo.svg";
 import { StyleSheet, View } from "react-native";
 import { Button } from "react-native-paper";
 import { useSelector } from "react-redux";

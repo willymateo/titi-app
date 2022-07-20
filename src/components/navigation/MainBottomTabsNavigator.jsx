@@ -1,14 +1,14 @@
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { Bell, HomeSimple, IosSettings, UserCircleAlt } from "iconoir-react-native";
+import { Notifications } from "../../screens/mainTabs/Notifications";
 import { SettingsStackNavigator } from "./SettingsStackNavigator";
-import { Notifications } from "../../screens/Notifications";
-import { Profile } from "../../screens/Profile";
+import { Profile } from "../../screens/mainTabs/Profile";
+import { Home } from "../../screens/mainTabs/Home";
 import { StyleSheet } from "react-native";
-import { Home } from "../../screens/Home";
 
 const Tab = createMaterialBottomTabNavigator();
 
-function BottomTabsNavigator() {
+function MainBottomTabsNavigator() {
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -57,4 +57,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export { BottomTabsNavigator };
+export { MainBottomTabsNavigator };

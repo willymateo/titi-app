@@ -1,6 +1,6 @@
+import { ThemeSettings } from "../../screens/mainTabs/settings/ThemeSettings";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { ThemeSettings } from "../settings/ThemeSettings";
-import { Settings } from "../../screens/Settings";
+import { Settings } from "../../screens/mainTabs/settings/Settings";
 import { Appbar } from "react-native-paper";
 
 const Stack = createNativeStackNavigator();

@@ -1,5 +1,5 @@
-import { InitialStackNavigator } from "./components/navigation/InitialStackNavigator";
-import { BottomTabsNavigator } from "./components/navigation/BottomTabsNavigator";
+import { MainBottomTabsNavigator } from "./components/navigation/MainBottomTabsNavigator";
+import { WelcomeStackNavigator } from "./components/navigation/WelcomeStackNavigator";
 import { CombinedDarkTheme, CombinedDefaultTheme } from "./theme/theme";
 import { Provider as PaperProvider } from "react-native-paper";
 import { NavigationContainer } from "@react-navigation/native";
@@ -14,7 +14,7 @@ function Main() {
     <PaperProvider theme={isDark ? CombinedDarkTheme : CombinedDefaultTheme}>
       <NavigationContainer theme={isDark ? CombinedDarkTheme : CombinedDefaultTheme}>
         <StatusBar style={isDark ? "light" : "dark"} />
-        {token ? <BottomTabsNavigator /> : <InitialStackNavigator />}
+        {token ? <MainBottomTabsNavigator /> : <WelcomeStackNavigator />}
       </NavigationContainer>
     </PaperProvider>
   );

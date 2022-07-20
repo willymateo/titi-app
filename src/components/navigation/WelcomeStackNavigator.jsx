@@ -1,14 +1,14 @@
+import { AccountRecovery } from "../../screens/welcome/accountRecovery/AccountRecovery";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { AccountRecovery } from "../../screens/AccountRecovery";
-import { Welcome } from "../../screens/Welcome";
-import { SignUp } from "../../screens/SignUp";
-import { Login } from "../../screens/Login";
+import { Welcome } from "../../screens/welcome/Welcome";
+import { SignUp } from "../../screens/welcome/SignUp";
+import { Login } from "../../screens/welcome/Login";
 import { Appbar } from "react-native-paper";
 import { StyleSheet } from "react-native";
 
 const Stack = createNativeStackNavigator();
 
-function InitialStackNavigator() {
+function WelcomeStackNavigator() {
   return (
     <Stack.Navigator
       initialRouteName="Welcome"
@@ -62,4 +62,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export { InitialStackNavigator };
+export { WelcomeStackNavigator };

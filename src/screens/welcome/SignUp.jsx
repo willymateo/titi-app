@@ -1,11 +1,11 @@
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { TextInputHookForm } from "../components/TextInputHookForm";
-import { LoginFooter } from "../components/LoginFooter";
+import { TextInputHookForm } from "../../components/TextInputHookForm";
+import { LoginFooter } from "../../components/LoginFooter";
 import { Button, TextInput } from "react-native-paper";
-import { catHotAPI } from "../services/catHotAPI";
+import { catHotAPI } from "../../services/catHotAPI";
 import { StyleSheet, View } from "react-native";
+import { EMAIL_REGEX } from "../../config";
 import { useForm } from "react-hook-form";
-import { EMAIL_REGEX } from "../config";
 import { useState } from "react";
 import {
   Mail,

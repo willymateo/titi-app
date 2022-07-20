@@ -1,9 +1,9 @@
 import { useFonts, Pacifico_400Regular as Pacifico400Regular } from "@expo-google-fonts/pacifico";
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
 import { EyeClose, EyeEmpty, KeyAltBack, User } from "iconoir-react-native";
-import { TextInputHookForm } from "../components/TextInputHookForm";
+import { TextInputHookForm } from "../../components/TextInputHookForm";
 import { Button, Text, TextInput } from "react-native-paper";
-import { LoginFooter } from "../components/LoginFooter";
+import { LoginFooter } from "../../components/LoginFooter";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 

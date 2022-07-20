@@ -1,4 +1,4 @@
-import { setColorMode } from "../../redux/states/colorMode";
+import { setColorMode } from "../../../redux/states/colorMode";
 import { useSelector, useDispatch } from "react-redux";
 import { RadioButton } from "react-native-paper";
 

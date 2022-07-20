@@ -1,4 +1,5 @@
 import { HelperText, TextInput } from "react-native-paper";
+import { StyleSheet, View } from "react-native";
 import { Controller } from "react-hook-form";
 
 function TextInputHookForm({
@@ -18,7 +19,7 @@ function TextInputHookForm({
       name={controllerName}
       rules={rules}
       render={({ field: { value, onChange, onBlur }, fieldState: { error } }) => (
-        <>
+        <View>
           <TextInput
             style={style}
             error={error}
@@ -31,15 +32,33 @@ function TextInputHookForm({
             placeholder={placeholder}
             secureTextEntry={secureTextEntry}
           />
-          {error && (
-            <HelperText type="error" visible={true}>
-              {error.message}
-            </HelperText>
-          )}
-        </>
+          <View style={styles.helpersWrapper}>
+            {error && (
+              <HelperText visible type="error">
+                {error.message}
+              </HelperText>
+            )}
+            {rules.maxLength && (
+              <HelperText visible style={styles.counterHelper} type={error ? "error" : "info"}>
+                {value ? value.length : 0}/{rules.maxLength.value}
+              </HelperText>
+            )}
+          </View>
+        </View>
       )}
     />
   );
 }
+
+const styles = StyleSheet.create({
+  helpersWrapper: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  counterHelper: {
+    flex: 1,
+    textAlign: "right",
+  },
+});
 
 export { TextInputHookForm };
