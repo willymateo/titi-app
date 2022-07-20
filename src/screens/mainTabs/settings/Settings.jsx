@@ -1,5 +1,5 @@
+import { Language, Palette } from "iconoir-react-native";
 import { StyleSheet, View } from "react-native";
-import { Palette } from "iconoir-react-native";
 import { List } from "react-native-paper";
 
 function Settings({ navigation }) {
@@ -11,6 +11,11 @@ function Settings({ navigation }) {
           title="Theme"
           onPress={() => navigation.navigate("ThemeSettings")}
           left={() => <List.Icon icon={props => <Palette {...props} {...styles.iconoir} />} />}
+        />
+        <List.Item
+          title="Language"
+          onPress={() => navigation.navigate("LanguageSettings")}
+          left={() => <List.Icon icon={props => <Language {...props} {...styles.iconoir} />} />}
         />
       </List.Section>
     </View>

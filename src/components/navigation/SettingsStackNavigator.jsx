@@ -1,3 +1,4 @@
+import { LanguageSettings } from "../../screens/mainTabs/settings/LanguageSettings";
 import { ThemeSettings } from "../../screens/mainTabs/settings/ThemeSettings";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Settings } from "../../screens/mainTabs/settings/Settings";
@@ -10,9 +11,6 @@ function SettingsStackNavigator() {
     <Stack.Navigator
       initialRouteName="SettingsRoot"
       screenOptions={{
-        contentStyle: {
-          paddingHorizontal: 20,
-        },
         header: ({ options: { title }, navigation }) => (
           <Appbar.Header>
             <Appbar.BackAction onPress={() => navigation.goBack()} />
@@ -33,6 +31,14 @@ function SettingsStackNavigator() {
         options={{
           headerShown: true,
           title: "Theme Settings",
+        }}
+      />
+      <Stack.Screen
+        name="LanguageSettings"
+        component={LanguageSettings}
+        options={{
+          headerShown: true,
+          title: "Language Settings",
         }}
       />
     </Stack.Navigator>
