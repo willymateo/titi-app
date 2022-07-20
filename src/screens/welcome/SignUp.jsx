@@ -10,6 +10,7 @@ import { useState } from "react";
 import {
   Mail,
   User,
+  KeyAlt,
   EyeClose,
   EyeEmpty,
   KeyAltBack,
@@ -111,7 +112,7 @@ The only allowed special characters are '_' and '.'`,
           label="Password"
           control={control}
           controllerName="password"
-          left={<TextInput.Icon name={props => <KeyAltBack {...props} {...styles.iconoir} />} />}
+          left={<TextInput.Icon name={props => <KeyAlt {...props} {...styles.iconoir} />} />}
           right={
             <TextInput.Icon
               name={props => {

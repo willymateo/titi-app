@@ -1,4 +1,6 @@
 import { AccountRecovery } from "../../screens/welcome/accountRecovery/AccountRecovery";
+import { ResetPassword } from "../../screens/welcome/accountRecovery/ResetPassword";
+import { RecoveryCode } from "../../screens/welcome/accountRecovery/RecoveryCode";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Welcome } from "../../screens/welcome/Welcome";
 import { SignUp } from "../../screens/welcome/SignUp";
@@ -50,6 +52,22 @@ function WelcomeStackNavigator() {
         options={{
           headerShown: true,
           title: "Account Recovery",
+        }}
+      />
+      <Stack.Screen
+        name="RecoveryCode"
+        component={RecoveryCode}
+        options={{
+          headerShown: true,
+          title: "Recovery Code",
+        }}
+      />
+      <Stack.Screen
+        name="ResetPassword"
+        component={ResetPassword}
+        options={{
+          headerShown: true,
+          title: "Reset Password",
         }}
       />
     </Stack.Navigator>

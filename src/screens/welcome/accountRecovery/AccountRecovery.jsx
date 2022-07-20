@@ -10,6 +10,7 @@ function AccountRecovery({ navigation }) {
   const { control, handleSubmit } = useForm();
   const onPressSendRecovery = data => {
     console.log(data);
+    navigation.navigate("RecoveryCode");
   };
 
   return (
@@ -34,7 +35,7 @@ function AccountRecovery({ navigation }) {
         />
 
         <Button mode="contained" uppercase={false} onPress={handleSubmit(onPressSendRecovery)}>
-          Send recovery email
+          Send recovery code
         </Button>
         <LoginFooter
           onPressLogin={() => navigation.navigate("Login")}
