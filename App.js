@@ -1,3 +1,4 @@
+import "expo-dev-client";
 import { Provider as ReduxProvider } from "react-redux";
 import { storeConfiguration } from "./src/redux/store";
 import { Main } from "./src/Main";
