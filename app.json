@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "CatHot",
-    "description": "App for dating and finding adventures in less than 24 hours",
+    "description": "Publish and search for adventures that only take place in the next 24 hours",
     "slug": "cathot",
     "version": "1.0.0",
     "orientation": "portrait",
