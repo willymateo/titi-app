@@ -1,19 +1,19 @@
 import "dotenv/config";
 
 export default ({ config }) => {
-  const extras = {
+  const extra = {
     development: {
-      domainCathotAPI: process.env.DEV_CATHOT_API_URL,
+      CATHOT_API_URL: process.env.DEV_CATHOT_API_URL,
     },
     production: {
-      domainCathotAPI: process.env.PROD_CATHOT_API_URL,
+      CATHOT_API_URL: process.env.PROD_CATHOT_API_URL,
     },
   };
 
   return {
     ...config,
-    extras: {
-      ...extras[process.env.NODE_ENV],
+    extra: {
+      ...extra[process.env.APP_ENV],
     },
   };
 };

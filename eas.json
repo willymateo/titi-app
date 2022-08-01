@@ -3,18 +3,28 @@
     "version": ">= 0.56.0"
   },
   "build": {
+    "production": {
+      "env": {
+        "APP_ENV": "production"
+      }
+    },
     "development": {
       "distribution": "internal",
       "developmentClient": true,
       "android": {
         "buildType": "apk"
       },
-      "ios": {}
+      "ios": {},
+      "env": {
+        "APP_ENV": "development"
+      }
     },
     "preview": {
-      "distribution": "internal"
-    },
-    "production": {}
+      "distribution": "internal",
+      "env": {
+        "APP_ENV": "preview"
+      }
+    }
   },
   "submit": {
     "production": {}
