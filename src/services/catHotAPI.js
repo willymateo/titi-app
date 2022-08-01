@@ -1,4 +1,4 @@
-import { BASE_API_URL } from "../config";
+import { BASE_API_URL } from "../share/app.config";
 import axios from "axios";
 
 axios.defaults.baseURL = BASE_API_URL;

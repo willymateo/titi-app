@@ -1,8 +1,8 @@
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
 import { TextInputHookForm } from "../../../components/TextInputHookForm";
 import { LoginFooter } from "../../../components/LoginFooter";
+import { EMAIL_REGEX } from "../../../share/app.config";
 import { Button, TextInput } from "react-native-paper";
-import { EMAIL_REGEX } from "../../../config";
 import { Mail } from "iconoir-react-native";
 import { useForm } from "react-hook-form";
 

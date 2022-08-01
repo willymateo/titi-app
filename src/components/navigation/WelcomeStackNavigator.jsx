@@ -2,8 +2,8 @@ import { AccountRecovery } from "../../screens/welcome/accountRecovery/AccountRe
 import { ResetPassword } from "../../screens/welcome/accountRecovery/ResetPassword";
 import { RecoveryCode } from "../../screens/welcome/accountRecovery/RecoveryCode";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { SignUp } from "../../screens/welcome/signUp/SignUp";
 import { Welcome } from "../../screens/welcome/Welcome";
-import { SignUp } from "../../screens/welcome/SignUp";
 import { Login } from "../../screens/welcome/Login";
 import { Appbar } from "react-native-paper";
 import { StyleSheet } from "react-native";

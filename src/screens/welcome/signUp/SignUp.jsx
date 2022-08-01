@@ -1,22 +1,13 @@
+import { Mail, User, KeyAlt, EyeClose, EyeEmpty, KeyAltBack, Calendar } from "iconoir-react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { TextInputHookForm } from "../../components/TextInputHookForm";
-import { LoginFooter } from "../../components/LoginFooter";
+import { TextInputHookForm } from "../../../components/TextInputHookForm";
+import { LoginFooter } from "../../../components/LoginFooter";
+import { catHotAPI } from "../../../services/catHotAPI";
+import { EMAIL_REGEX } from "../../../share/app.config";
 import { Button, TextInput } from "react-native-paper";
-import { catHotAPI } from "../../services/catHotAPI";
 import { StyleSheet, View } from "react-native";
-import { EMAIL_REGEX } from "../../config";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
-import {
-  Mail,
-  User,
-  KeyAlt,
-  EyeClose,
-  EyeEmpty,
-  KeyAltBack,
-  PeopleRounded,
-  SmartphoneDevice,
-} from "iconoir-react-native";
 
 function SignUp({ navigation }) {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
@@ -37,22 +28,16 @@ function SignUp({ navigation }) {
         <TextInputHookForm
           style={styles.inputText}
           rules={{
-            required: "First names are required",
+            required: "Email is required",
+            pattern: {
+              value: EMAIL_REGEX,
+              message: "Email is invalid",
+            },
           }}
-          label="First names"
+          label="Email"
           control={control}
-          controllerName="firstNames"
-          left={<TextInput.Icon name={props => <PeopleRounded {...props} {...styles.iconoir} />} />}
-        />
-        <TextInputHookForm
-          style={styles.inputText}
-          rules={{
-            required: "Last names are required",
-          }}
-          label="Last names"
-          control={control}
-          controllerName="lastNames"
-          left={<TextInput.Icon name={props => <PeopleRounded {...props} {...styles.iconoir} />} />}
+          controllerName="email"
+          left={<TextInput.Icon name={props => <Mail {...props} {...styles.iconoir} />} />}
         />
         <TextInputHookForm
           style={styles.inputText}
@@ -80,6 +65,18 @@ The only allowed special characters are '_' and '.'`,
         <TextInputHookForm
           style={styles.inputText}
           rules={{
+            required: "Born date is required",
+          }}
+          label="Born date"
+          control={control}
+          controllerName="bornDate"
+          left={<TextInput.Icon name={props => <Calendar {...props} {...styles.iconoir} />} />}
+        />
+
+        {/*
+        <TextInputHookForm
+          style={styles.inputText}
+          rules={{
             required: "Phone number is required",
           }}
           label="Phone number"
@@ -89,20 +86,8 @@ The only allowed special characters are '_' and '.'`,
             <TextInput.Icon name={props => <SmartphoneDevice {...props} {...styles.iconoir} />} />
           }
         />
-        <TextInputHookForm
-          style={styles.inputText}
-          rules={{
-            required: "Email is required",
-            pattern: {
-              value: EMAIL_REGEX,
-              message: "Email is invalid",
-            },
-          }}
-          label="Email"
-          control={control}
-          controllerName="email"
-          left={<TextInput.Icon name={props => <Mail {...props} {...styles.iconoir} />} />}
-        />
+             */}
+
         <TextInputHookForm
           style={styles.inputText}
           rules={{

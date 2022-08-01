@@ -1,8 +1,8 @@
 import { LoginFooter } from "../../components/LoginFooter";
 import LightLogo from "../../../assets/lightLogo.svg";
 import DarkLogo from "../../../assets/darkLogo.svg";
+import { Button, Text } from "react-native-paper";
 import { StyleSheet, View } from "react-native";
-import { Button } from "react-native-paper";
 import { useSelector } from "react-redux";
 
 function Welcome({ navigation }) {
@@ -10,6 +10,9 @@ function Welcome({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <View style={styles.welcomeTextContainer}>
+        <Text style={styles.welcomeText}>Welcome to</Text>
+      </View>
       <View style={styles.logoContainer}>
         {isDark ? <DarkLogo width={styles.logo.width} /> : <LightLogo width={styles.logo.width} />}
       </View>
@@ -41,6 +44,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
+  },
+  welcomeTextContainer: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  welcomeText: {
+    textAlign: "center",
+    fontSize: 30,
   },
   logoContainer: {
     flex: 3,
