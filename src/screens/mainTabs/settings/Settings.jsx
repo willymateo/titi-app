@@ -1,3 +1,4 @@
+import { LogoutButton } from "../../../components/LogoutButton";
 import { Language, Palette } from "iconoir-react-native";
 import { StyleSheet, View } from "react-native";
 import { List } from "react-native-paper";
@@ -17,6 +18,7 @@ function Settings({ navigation }) {
           onPress={() => navigation.navigate("LanguageSettings")}
           left={() => <List.Icon icon={props => <Language {...props} {...styles.iconoir} />} />}
         />
+        <LogoutButton />
       </List.Section>
     </View>
   );

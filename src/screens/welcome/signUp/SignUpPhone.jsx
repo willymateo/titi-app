@@ -1,18 +1,13 @@
-import { Mail, User, KeyAlt, EyeClose, EyeEmpty, KeyAltBack, Calendar } from "iconoir-react-native";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { TextInputHookForm } from "../../../components/TextInputHookForm";
+import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
 import { LoginFooter } from "../../../components/LoginFooter";
+import { SmartphoneDevice } from "iconoir-react-native";
 import { catHotAPI } from "../../../services/catHotAPI";
-import { EMAIL_REGEX } from "../../../share/app.config";
 import { Button, TextInput } from "react-native-paper";
-import { StyleSheet, View } from "react-native";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 
-function SignUp({ navigation }) {
-  const [isPasswordHidden, setIsPasswordHidden] = useState(true);
-  const { control, handleSubmit, watch } = useForm();
-  const password = watch("password");
+function SignUpPhone({ navigation }) {
+  const { control, handleSubmit } = useForm();
   const onPressSignUp = async data => {
     console.log(data);
     const response = await catHotAPI.createUser(data);
@@ -20,60 +15,10 @@ function SignUp({ navigation }) {
   };
 
   return (
-    <KeyboardAwareScrollView
-      style={styles.scrollView}
-      showsVerticalScrollIndicator={false}
-      contentContainerStyle={styles.container}>
-      <View>
-        <TextInputHookForm
-          style={styles.inputText}
-          rules={{
-            required: "Email is required",
-            pattern: {
-              value: EMAIL_REGEX,
-              message: "Email is invalid",
-            },
-          }}
-          label="Email"
-          control={control}
-          controllerName="email"
-          left={<TextInput.Icon name={props => <Mail {...props} {...styles.iconoir} />} />}
-        />
-        <TextInputHookForm
-          style={styles.inputText}
-          rules={{
-            required: "Born date is required",
-          }}
-          label="Born date"
-          control={control}
-          controllerName="bornDate"
-          left={<TextInput.Icon name={props => <Calendar {...props} {...styles.iconoir} />} />}
-        />
-        <TextInputHookForm
-          style={styles.inputText}
-          rules={{
-            required: "Username is required",
-            minLength: {
-              value: 5,
-              message: "Username should be minimum 5 characters long",
-            },
-            maxLength: {
-              value: 30,
-              message: "Username should be maximum 30 characters long",
-            },
-            pattern: {
-              value: /^[a-z0-9_\.]*[a-z]+[a-z0-9_\.]*$/i,
-              message: `Username should be in lowercase.
-The only allowed special characters are '_' and '.'`,
-            },
-          }}
-          label="Username"
-          control={control}
-          controllerName="username"
-          left={<TextInput.Icon name={props => <User {...props} {...styles.iconoir} />} />}
-        />
-
-        {/*
+    <KeyboardAvoidingView
+      style={styles.root}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}>
+      <View style={{ ...styles.container }}>
         <TextInputHookForm
           style={styles.inputText}
           rules={{
@@ -86,43 +31,6 @@ The only allowed special characters are '_' and '.'`,
             <TextInput.Icon name={props => <SmartphoneDevice {...props} {...styles.iconoir} />} />
           }
         />
-             */}
-
-        <TextInputHookForm
-          style={styles.inputText}
-          rules={{
-            required: "Password is required",
-          }}
-          secureTextEntry={isPasswordHidden}
-          label="Password"
-          control={control}
-          controllerName="password"
-          left={<TextInput.Icon name={props => <KeyAlt {...props} {...styles.iconoir} />} />}
-          right={
-            <TextInput.Icon
-              name={props => {
-                return isPasswordHidden ? (
-                  <EyeEmpty {...props} {...styles.iconoir} />
-                ) : (
-                  <EyeClose {...props} {...styles.iconoir} />
-                );
-              }}
-              onPress={() => setIsPasswordHidden(!isPasswordHidden)}
-            />
-          }
-        />
-        <TextInputHookForm
-          style={styles.inputText}
-          rules={{
-            required: "Password is required",
-            validate: value => value === password || "Password do not match",
-          }}
-          secureTextEntry
-          label="Repeat password"
-          control={control}
-          controllerName="repeatPassword"
-          left={<TextInput.Icon name={props => <KeyAltBack {...props} {...styles.iconoir} />} />}
-        />
 
         <Button mode="contained" uppercase={false} onPress={handleSubmit(onPressSignUp)}>
           Sign Up
@@ -132,12 +40,12 @@ The only allowed special characters are '_' and '.'`,
           onPressAccountRecovery={() => navigation.navigate("AccountRecovery")}
         />
       </View>
-    </KeyboardAwareScrollView>
+    </KeyboardAvoidingView>
   );
 }
 
 const styles = StyleSheet.create({
-  scrollView: {
+  root: {
     flex: 1,
   },
   container: {
@@ -153,4 +61,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export { SignUp };
+export { SignUpPhone };

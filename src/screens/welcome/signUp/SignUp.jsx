@@ -2,7 +2,6 @@ import { Mail, User, KeyAlt, EyeClose, EyeEmpty, KeyAltBack, Calendar } from "ic
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { TextInputHookForm } from "../../../components/TextInputHookForm";
 import { LoginFooter } from "../../../components/LoginFooter";
-import { catHotAPI } from "../../../services/catHotAPI";
 import { EMAIL_REGEX } from "../../../share/app.config";
 import { Button, TextInput } from "react-native-paper";
 import { StyleSheet, View } from "react-native";
@@ -13,10 +12,9 @@ function SignUp({ navigation }) {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   const { control, handleSubmit, watch } = useForm();
   const password = watch("password");
-  const onPressSignUp = async data => {
+  const onPressContinue = data => {
     console.log(data);
-    const response = await catHotAPI.createUser(data);
-    console.log("response", response);
+    navigation.navigate("SignUpPhone");
   };
 
   return (
@@ -72,22 +70,6 @@ The only allowed special characters are '_' and '.'`,
           controllerName="bornDate"
           left={<TextInput.Icon name={props => <Calendar {...props} {...styles.iconoir} />} />}
         />
-
-        {/*
-        <TextInputHookForm
-          style={styles.inputText}
-          rules={{
-            required: "Phone number is required",
-          }}
-          label="Phone number"
-          control={control}
-          controllerName="phoneNumber"
-          left={
-            <TextInput.Icon name={props => <SmartphoneDevice {...props} {...styles.iconoir} />} />
-          }
-        />
-             */}
-
         <TextInputHookForm
           style={styles.inputText}
           rules={{
@@ -124,8 +106,8 @@ The only allowed special characters are '_' and '.'`,
           left={<TextInput.Icon name={props => <KeyAltBack {...props} {...styles.iconoir} />} />}
         />
 
-        <Button mode="contained" uppercase={false} onPress={handleSubmit(onPressSignUp)}>
-          Sign Up
+        <Button mode="contained" uppercase={false} onPress={handleSubmit(onPressContinue)}>
+          Continue
         </Button>
         <LoginFooter
           onPressLogin={() => navigation.navigate("Login")}

@@ -2,6 +2,7 @@ import { AccountRecovery } from "../../screens/welcome/accountRecovery/AccountRe
 import { ResetPassword } from "../../screens/welcome/accountRecovery/ResetPassword";
 import { RecoveryCode } from "../../screens/welcome/accountRecovery/RecoveryCode";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { SignUpPhone } from "../../screens/welcome/signUp/SignUpPhone";
 import { SignUp } from "../../screens/welcome/signUp/SignUp";
 import { Welcome } from "../../screens/welcome/Welcome";
 import { Login } from "../../screens/welcome/Login";
@@ -38,38 +39,52 @@ function WelcomeStackNavigator() {
           headerShown: false,
         }}
       />
-      <Stack.Screen
-        name="SignUp"
-        component={SignUp}
-        options={{
-          title: "Sign Up",
-          headerShown: true,
-        }}
-      />
-      <Stack.Screen
-        name="AccountRecovery"
-        component={AccountRecovery}
-        options={{
-          headerShown: true,
-          title: "Account Recovery",
-        }}
-      />
-      <Stack.Screen
-        name="RecoveryCode"
-        component={RecoveryCode}
-        options={{
-          headerShown: true,
-          title: "Recovery Code",
-        }}
-      />
-      <Stack.Screen
-        name="ResetPassword"
-        component={ResetPassword}
-        options={{
-          headerShown: true,
-          title: "Reset Password",
-        }}
-      />
+
+      <Stack.Group>
+        <Stack.Screen
+          name="SignUp"
+          component={SignUp}
+          options={{
+            title: "Sign Up",
+            headerShown: true,
+          }}
+        />
+        <Stack.Screen
+          name="SignUpPhone"
+          component={SignUpPhone}
+          options={{
+            title: "Sign Up",
+            headerShown: true,
+          }}
+        />
+      </Stack.Group>
+
+      <Stack.Group>
+        <Stack.Screen
+          name="AccountRecovery"
+          component={AccountRecovery}
+          options={{
+            headerShown: true,
+            title: "Account Recovery",
+          }}
+        />
+        <Stack.Screen
+          name="RecoveryCode"
+          component={RecoveryCode}
+          options={{
+            headerShown: true,
+            title: "Recovery Code",
+          }}
+        />
+        <Stack.Screen
+          name="ResetPassword"
+          component={ResetPassword}
+          options={{
+            headerShown: true,
+            title: "Reset Password",
+          }}
+        />
+      </Stack.Group>
     </Stack.Navigator>
   );
 }
