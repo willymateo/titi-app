@@ -2,19 +2,28 @@ import { useFonts, Pacifico_400Regular as Pacifico400Regular } from "@expo-googl
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
 import { EyeClose, EyeEmpty, KeyAltBack, User } from "iconoir-react-native";
 import { TextInputHookForm } from "../../components/TextInputHookForm";
+import { setUserSession } from "../../redux/states/userSession";
 import { Button, Text, TextInput } from "react-native-paper";
 import { LoginFooter } from "../../components/LoginFooter";
+import catHotAPI from "../../services/catHotAPI";
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 
 function Login({ navigation }) {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   const { control, handleSubmit } = useForm();
+  const dispatch = useDispatch();
   const [fontsLoaded] = useFonts({
     Pacifico400Regular,
   });
-  const onPressLogin = data => {
-    console.log(data);
+  const onPressLogin = async data => {
+    try {
+      const { token, err } = await catHotAPI.login(data);
+      token ? dispatch(setUserSession({ token })) : console.log(err);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

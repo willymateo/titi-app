@@ -12,8 +12,6 @@ export default ({ config }) => {
 
   return {
     ...config,
-    extra: {
-      ...extra[process.env.APP_ENV],
-    },
+    extra: extra[process.env.APP_ENV],
   };
 };

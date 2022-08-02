@@ -1,7 +1,7 @@
-import { BASE_API_URL } from "../share/app.config";
+import Constants from "expo-constants";
 import axios from "axios";
 
-axios.defaults.baseURL = BASE_API_URL;
+axios.defaults.baseURL = Constants.manifest.extra.CATHOT_API_URL;
 
 // ====================================================================================================================
 // Create user
@@ -18,8 +18,18 @@ const createUser = async data => {
 };
 // ====================================================================================================================
 
-const catHotAPI = {
-  createUser,
+// ====================================================================================================================
+// Login
+const login = async ({ username, password }) => {
+  try {
+    const { data: response } = await axios.post("/auth/login", { username, password });
+    return response;
+  } catch (err) {
+    console.log(err);
+    return {
+      err: "Could not be login",
+    };
+  }
 };
-
-export { catHotAPI };
+// ====================================================================================================================
+export default { createUser, login };
