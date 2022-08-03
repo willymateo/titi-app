@@ -5,7 +5,7 @@ import { TextInputHookForm } from "../../components/TextInputHookForm";
 import { setUserSession } from "../../redux/states/userSession";
 import { Button, Text, TextInput } from "react-native-paper";
 import { LoginFooter } from "../../components/LoginFooter";
-import catHotAPI from "../../services/catHotAPI";
+import catHotAPI from "../../services/catHotAPI/api";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
@@ -19,8 +19,12 @@ function Login({ navigation }) {
   });
   const onPressLogin = async data => {
     try {
-      const { token, err } = await catHotAPI.login(data);
-      token ? dispatch(setUserSession({ token })) : console.log(err);
+      const { token, error } = await catHotAPI.login(data);
+      if (error) {
+        console.log("Show modal of error message", error);
+        return;
+      }
+      dispatch(setUserSession({ token }));
     } catch (err) {
       console.log(err);
     }

@@ -1,8 +1,8 @@
 import { TextInputHookForm } from "../../../components/TextInputHookForm";
 import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
 import { LoginFooter } from "../../../components/LoginFooter";
+import { catHotAPI } from "../../../services/catHotAPI/api";
 import { SmartphoneDevice } from "iconoir-react-native";
-import { catHotAPI } from "../../../services/catHotAPI";
 import { Button, TextInput } from "react-native-paper";
 import { useForm } from "react-hook-form";
 
