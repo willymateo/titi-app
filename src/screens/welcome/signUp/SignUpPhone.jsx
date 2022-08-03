@@ -1,17 +1,27 @@
 import { TextInputHookForm } from "../../../components/TextInputHookForm";
 import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
+import { setUserSession } from "../../../redux/states/userSession";
 import { LoginFooter } from "../../../components/LoginFooter";
-import { catHotAPI } from "../../../services/catHotAPI/api";
+import catHotAPI from "../../../services/catHotAPI/api";
 import { SmartphoneDevice } from "iconoir-react-native";
 import { Button, TextInput } from "react-native-paper";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 
-function SignUpPhone({ navigation }) {
+function SignUpPhone({ navigation, route }) {
   const { control, handleSubmit } = useForm();
+  const dispatch = useDispatch();
   const onPressSignUp = async data => {
-    console.log(data);
-    const response = await catHotAPI.createUser(data);
-    console.log("response", response);
+    try {
+      const { token, error } = await catHotAPI.createUser({ ...data, ...route.params });
+      if (error) {
+        console.log("Show modal of error message", error);
+        return;
+      }
+      dispatch(setUserSession({ token }));
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

@@ -13,8 +13,7 @@ function SignUp({ navigation }) {
   const { control, handleSubmit, watch } = useForm();
   const password = watch("password");
   const onPressContinue = data => {
-    console.log(data);
-    navigation.navigate("SignUpPhone");
+    navigation.navigate("SignUpPhone", data);
   };
 
   return (

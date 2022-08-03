@@ -1,34 +1,47 @@
 import Constants from "expo-constants";
 import axios from "axios";
+
 axios.defaults.baseURL = Constants.manifest.extra.CATHOT_API_URL;
 
-const errorHandler = ({ request, response, ...err }) => {
-  if (response) {
-    console.log("The server responded with an error");
-    resolve(response.data);
-  } else if (request) {
-    console.log("Error in the request");
-    resolve(request);
-  } else {
-    console.log("Unexpected error ocurred");
-    console.log(err);
-    resolve({
-      error: "Could not be login",
-    });
-  }
-};
+const createUser = ({ username, password, email, phoneNumber, bornDate }) => {
+  const data = {
+    username,
+    password,
+    email,
+    phone: {
+      countryCode: 593,
+      phoneNumber,
+    },
+    location: {
+      latitude: "3196727",
+      longitude: "6943923",
+    },
+    profileInformation: {
+      bornDate,
+    },
+  };
 
-const createUser = async data => {
-  try {
-    const { data: response } = await axios.post("/users", data);
-    return response;
-  } catch (err) {
-    err = err.toJSON();
-    console.log(err);
-    return {
-      error: "Could not be created the user",
-    };
-  }
+  return new Promise(resolve => {
+    axios
+      .post("/users", data)
+      .then(({ data }) => resolve(data))
+      .catch(({ request, response }) => {
+        if (response) {
+          resolve({
+            status: response.status,
+            ...response.data,
+          });
+        } else if (request) {
+          resolve({
+            error: "The request was made but no response was received",
+          });
+        } else {
+          resolve({
+            error: "Unexpected error ocurred",
+          });
+        }
+      });
+  });
 };
 
 export { createUser };
