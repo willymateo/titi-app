@@ -1,15 +1,25 @@
-import { Mail, User, KeyAlt, EyeClose, EyeEmpty, KeyAltBack, Calendar } from "iconoir-react-native";
+import { Button, Chip, Dialog, Portal, RadioButton, Text, TextInput } from "react-native-paper";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { TextInputHookForm } from "../../../components/TextInputHookForm";
 import { LoginFooter } from "../../../components/LoginFooter";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { EMAIL_REGEX } from "../../../share/app.config";
-import { Button, TextInput } from "react-native-paper";
-import { StyleSheet, View } from "react-native";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
+import {
+  Mail,
+  User,
+  KeyAlt,
+  EyeClose,
+  Calendar,
+  EyeEmpty,
+  KeyAltBack,
+  PeopleRounded,
+} from "iconoir-react-native";
 
 function SignUp({ navigation }) {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
+  const [visibleDialog, setVisibleDialog] = useState(false);
   const { control, handleSubmit, watch } = useForm();
   const password = watch("password");
   const onPressContinue = data => {
@@ -62,16 +72,6 @@ The only allowed special characters are '_' and '.'`,
         <TextInputHookForm
           style={styles.inputText}
           rules={{
-            required: "Born date is required",
-          }}
-          label="Born date"
-          control={control}
-          controllerName="bornDate"
-          left={<TextInput.Icon name={props => <Calendar {...props} {...styles.iconoir} />} />}
-        />
-        <TextInputHookForm
-          style={styles.inputText}
-          rules={{
             required: "Password is required",
           }}
           secureTextEntry={isPasswordHidden}
@@ -105,6 +105,59 @@ The only allowed special characters are '_' and '.'`,
           left={<TextInput.Icon name={props => <KeyAltBack {...props} {...styles.iconoir} />} />}
         />
 
+        <View style={styles.chipsRow}>
+          <View style={styles.chipInput}>
+            <Text style={styles.labelChip}>Born date</Text>
+            <Chip mode="flat" icon={props => <Calendar {...props} {...styles.iconoir} />}>
+              date_value
+            </Chip>
+          </View>
+
+          <View style={styles.chipInput}>
+            <Text style={styles.labelChip}>Genre</Text>
+            <Chip
+              mode="flat"
+              onPress={() => setVisibleDialog(true)}
+              icon={props => <PeopleRounded {...props} {...styles.iconoir} />}>
+              not specified
+            </Chip>
+          </View>
+        </View>
+
+        <Portal>
+          <Dialog visible={visibleDialog} onDismiss={() => setVisibleDialog(false)}>
+            {/* <Dialog.Icon icon={props => <EmojiBlinkRight {...props} {...styles.iconoir} />} />*/}
+            <Dialog.Title style={styles.dialogTitle}>Genre</Dialog.Title>
+            <Dialog.ScrollArea>
+              <ScrollView>
+                <RadioButton.Group>
+                  <RadioButton.Item label="male" value="male" />
+                  <RadioButton.Item label="female" value="female" />
+                  <RadioButton.Item label="not specified" value="not_specified" />
+                </RadioButton.Group>
+              </ScrollView>
+            </Dialog.ScrollArea>
+            <Dialog.Actions>
+              <Button onPress={() => setVisibleDialog(false)} uppercase={false}>
+                Close
+              </Button>
+            </Dialog.Actions>
+          </Dialog>
+        </Portal>
+
+        {/*
+        <TextInputHookForm
+          style={styles.inputText}
+          rules={{
+            required: "Born date is required",
+          }}
+          label="Born date"
+          control={control}
+          controllerName="bornDate"
+          left={<TextInput.Icon name={props => <Calendar {...props} {...styles.iconoir} />} />}
+        />
+          */}
+
         <Button mode="contained" uppercase={false} onPress={handleSubmit(onPressContinue)}>
           Continue
         </Button>
@@ -131,6 +184,22 @@ const styles = StyleSheet.create({
   iconoir: {
     height: 25,
     width: 25,
+  },
+  dialogTitle: {
+    textAlign: "center",
+  },
+  chipInput: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  labelChip: {
+    marginRight: 10,
+  },
+  chipsRow: {
+    marginVertical: 20,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
 });
 

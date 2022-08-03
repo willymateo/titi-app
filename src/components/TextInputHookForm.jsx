@@ -3,6 +3,7 @@ import { StyleSheet, View } from "react-native";
 import { Controller } from "react-hook-form";
 
 function TextInputHookForm({
+  mode,
   left,
   label,
   right,
@@ -15,19 +16,20 @@ function TextInputHookForm({
 }) {
   return (
     <Controller
+      rules={rules}
       control={control}
       name={controllerName}
-      rules={rules}
       render={({ field: { value, onChange, onBlur }, fieldState: { error } }) => (
         <View>
           <TextInput
+            mode={mode}
+            left={left}
             style={style}
             error={error}
             label={label}
             value={value}
-            onBlur={onBlur}
-            left={left}
             right={right}
+            onBlur={onBlur}
             onChangeText={onChange}
             placeholder={placeholder}
             secureTextEntry={secureTextEntry}
