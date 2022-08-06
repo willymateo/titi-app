@@ -25,6 +25,7 @@ function SignUp({ navigation }) {
   const [visibleDialog, setVisibleDialog] = useState(false);
   const [bornDate, setBornDate] = useState(new Date());
   const { control, handleSubmit, watch } = useForm();
+  const idGenreSelected = watch("idGenre");
   const password = watch("password");
   const onPressContinue = data => navigation.navigate("SignUpPhone", data);
   const showDatePicker = () => {
@@ -132,7 +133,10 @@ The only allowed special characters are '_' and '.'`,
             mode="flat"
             label="Genre"
             Icon={PeopleRounded}
-            value={"not specified"}
+            value={
+              genres.filter(({ id }) => id === idGenreSelected).map(({ genre }) => genre)[0] ||
+              "Select your genre"
+            }
             style={styles.inputChip}
             onPress={() => setVisibleDialog(true)}
           />
