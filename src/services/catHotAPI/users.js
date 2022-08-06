@@ -3,14 +3,14 @@ import axios from "axios";
 
 axios.defaults.baseURL = Constants.manifest.extra.CATHOT_API_URL;
 
-const createUser = ({ username, password, email, phoneNumber, bornDate }) => {
+const createUser = ({ username, password, email, phoneNumber, bornDate, idGenre }) => {
   const data = {
     username,
     password,
     email,
     phone: {
-      countryCode: 593,
       phoneNumber,
+      countryCode: 593,
     },
     location: {
       latitude: "3196727",
@@ -18,6 +18,7 @@ const createUser = ({ username, password, email, phoneNumber, bornDate }) => {
     },
     profileInformation: {
       bornDate,
+      idGenre,
     },
   };
 

@@ -1,9 +1,11 @@
 import { Button, Chip, Dialog, Portal, RadioButton, Text, TextInput } from "react-native-paper";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
+import { RadioButtonGroupHF } from "../../../components/RadioButtonGroupHF";
 import { TextInputHookForm } from "../../../components/TextInputHookForm";
+import { EMAIL_REGEX, USERNAME_REGEX } from "../../../share/app.config";
 import { LoginFooter } from "../../../components/LoginFooter";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { EMAIL_REGEX } from "../../../share/app.config";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import {
@@ -20,11 +22,24 @@ import {
 function SignUp({ navigation }) {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   const [visibleDialog, setVisibleDialog] = useState(false);
+  const [bornDate, setBornDate] = useState(new Date());
   const { control, handleSubmit, watch } = useForm();
   const password = watch("password");
-  const onPressContinue = data => {
-    navigation.navigate("SignUpPhone", data);
+  const onPressContinue = data => navigation.navigate("SignUpPhone", data);
+  const showDatePicker = () => {
+    console.log("Showing datepicker");
+    DateTimePickerAndroid.open({
+      mode: "time",
+      value: bornDate,
+      onChange: (event, date) => setBornDate(date),
+    });
+    console.log("datepicker showed");
   };
+  const genres = [
+    { id: 1, genre: "not_specified" },
+    { id: 2, genre: "male" },
+    { id: 3, genre: "female" },
+  ];
 
   return (
     <KeyboardAwareScrollView
@@ -33,7 +48,6 @@ function SignUp({ navigation }) {
       contentContainerStyle={styles.container}>
       <View>
         <TextInputHookForm
-          style={styles.inputText}
           rules={{
             required: "Email is required",
             pattern: {
@@ -44,10 +58,10 @@ function SignUp({ navigation }) {
           label="Email"
           control={control}
           controllerName="email"
+          style={styles.inputText}
           left={<TextInput.Icon name={props => <Mail {...props} {...styles.iconoir} />} />}
         />
         <TextInputHookForm
-          style={styles.inputText}
           rules={{
             required: "Username is required",
             minLength: {
@@ -59,33 +73,32 @@ function SignUp({ navigation }) {
               message: "Username should be maximum 30 characters long",
             },
             pattern: {
-              value: /^[a-z0-9_\.]*[a-z]+[a-z0-9_\.]*$/i,
+              value: USERNAME_REGEX,
               message: `Username should be in lowercase.
 The only allowed special characters are '_' and '.'`,
             },
           }}
           label="Username"
           control={control}
+          style={styles.inputText}
           controllerName="username"
           left={<TextInput.Icon name={props => <User {...props} {...styles.iconoir} />} />}
         />
         <TextInputHookForm
-          style={styles.inputText}
-          rules={{
-            required: "Password is required",
-          }}
-          secureTextEntry={isPasswordHidden}
           label="Password"
           control={control}
+          style={styles.inputText}
           controllerName="password"
+          secureTextEntry={isPasswordHidden}
+          rules={{ required: "Password is required" }}
           left={<TextInput.Icon name={props => <KeyAlt {...props} {...styles.iconoir} />} />}
           right={
             <TextInput.Icon
               name={props => {
                 return isPasswordHidden ? (
-                  <EyeEmpty {...props} {...styles.iconoir} />
-                ) : (
                   <EyeClose {...props} {...styles.iconoir} />
+                ) : (
+                  <EyeEmpty {...props} {...styles.iconoir} />
                 );
               }}
               onPress={() => setIsPasswordHidden(!isPasswordHidden)}
@@ -93,14 +106,14 @@ The only allowed special characters are '_' and '.'`,
           }
         />
         <TextInputHookForm
-          style={styles.inputText}
           rules={{
             required: "Password is required",
             validate: value => value === password || "Password do not match",
           }}
           secureTextEntry
-          label="Repeat password"
           control={control}
+          label="Repeat password"
+          style={styles.inputText}
           controllerName="repeatPassword"
           left={<TextInput.Icon name={props => <KeyAltBack {...props} {...styles.iconoir} />} />}
         />
@@ -108,8 +121,11 @@ The only allowed special characters are '_' and '.'`,
         <View style={styles.chipsRow}>
           <View style={styles.chipInput}>
             <Text style={styles.labelChip}>Born date</Text>
-            <Chip mode="flat" icon={props => <Calendar {...props} {...styles.iconoir} />}>
-              date_value
+            <Chip
+              mode="flat"
+              onPress={showDatePicker}
+              icon={props => <Calendar {...props} {...styles.iconoir} />}>
+              {bornDate.toLocaleDateString()}
             </Chip>
           </View>
 
@@ -130,11 +146,14 @@ The only allowed special characters are '_' and '.'`,
             <Dialog.Title style={styles.dialogTitle}>Genre</Dialog.Title>
             <Dialog.ScrollArea>
               <ScrollView>
-                <RadioButton.Group>
-                  <RadioButton.Item label="male" value="male" />
-                  <RadioButton.Item label="female" value="female" />
-                  <RadioButton.Item label="not specified" value="not_specified" />
-                </RadioButton.Group>
+                <RadioButtonGroupHF
+                  control={control}
+                  controllerName="idGenre"
+                  rules={{ required: "Genre is required" }}>
+                  {genres.map(({ id, genre }) => (
+                    <RadioButton.Item label={genre} value={id} key={id} />
+                  ))}
+                </RadioButtonGroupHF>
               </ScrollView>
             </Dialog.ScrollArea>
             <Dialog.Actions>
@@ -189,11 +208,12 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   chipInput: {
+    paddingHorizontal: 10,
     flexDirection: "row",
     alignItems: "center",
   },
   labelChip: {
-    marginRight: 10,
+    marginRight: 5,
   },
   chipsRow: {
     marginVertical: 20,

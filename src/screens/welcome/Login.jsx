@@ -68,9 +68,9 @@ function Login({ navigation }) {
               <TextInput.Icon
                 name={props => {
                   return isPasswordHidden ? (
-                    <EyeEmpty {...props} {...styles.iconoir} />
-                  ) : (
                     <EyeClose {...props} {...styles.iconoir} />
+                  ) : (
+                    <EyeEmpty {...props} {...styles.iconoir} />
                   );
                 }}
                 onPress={() => setIsPasswordHidden(!isPasswordHidden)}
