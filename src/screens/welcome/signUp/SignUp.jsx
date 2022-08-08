@@ -36,9 +36,6 @@ function SignUp({ navigation }) {
   ];
 
   const bornDate = watch("bornDate");
-  console.log("begin signup");
-  console.log(bornDate);
-  console.log("end signup");
 
   return (
     <KeyboardAwareScrollView
