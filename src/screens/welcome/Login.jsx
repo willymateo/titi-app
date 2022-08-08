@@ -1,7 +1,7 @@
 import { useFonts, Pacifico_400Regular as Pacifico400Regular } from "@expo-google-fonts/pacifico";
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
 import { EyeClose, EyeEmpty, KeyAltBack, User } from "iconoir-react-native";
-import { TextInputHookForm } from "../../components/TextInputHookForm";
+import { TextInputHF } from "../../components/hookForm/TextInputHF";
 import { setUserSession } from "../../redux/states/userSession";
 import { Button, Text, TextInput } from "react-native-paper";
 import { LoginFooter } from "../../components/LoginFooter";
@@ -44,7 +44,7 @@ function Login({ navigation }) {
           CatHot
         </Text>
         <View>
-          <TextInputHookForm
+          <TextInputHF
             style={styles.inputText}
             rules={{
               required: "Username is required",
@@ -54,7 +54,7 @@ function Login({ navigation }) {
             controllerName="username"
             left={<TextInput.Icon name={props => <User {...props} {...styles.iconoir} />} />}
           />
-          <TextInputHookForm
+          <TextInputHF
             style={styles.inputText}
             rules={{
               required: "Password is required",

@@ -1,5 +1,5 @@
 import { KeyAlt, EyeClose, EyeEmpty, KeyAltBack } from "iconoir-react-native";
-import { TextInputHookForm } from "../../../components/TextInputHookForm";
+import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
 import { LoginFooter } from "../../../components/LoginFooter";
 import { Button, TextInput } from "react-native-paper";
@@ -19,7 +19,7 @@ function ResetPassword({ navigation }) {
       style={styles.root}
       behavior={Platform.OS === "ios" ? "padding" : "height"}>
       <View style={styles.container}>
-        <TextInputHookForm
+        <TextInputHF
           style={styles.inputText}
           rules={{
             required: "Password is required",
@@ -42,7 +42,7 @@ function ResetPassword({ navigation }) {
             />
           }
         />
-        <TextInputHookForm
+        <TextInputHF
           style={styles.inputText}
           rules={{
             required: "Password is required",

@@ -1,12 +1,13 @@
+import { RadioButtonGroupHF } from "../../../components/hookForm/RadioButtonGroupHF";
 import { Button, Dialog, Portal, RadioButton, TextInput } from "react-native-paper";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { DateTimePickerAndroid } from "@react-native-community/datetimepicker";
-import { RadioButtonGroupHF } from "../../../components/RadioButtonGroupHF";
-import { TextInputHookForm } from "../../../components/TextInputHookForm";
+import { DateTimePickerHF } from "../../../components/hookForm/DateTimePickerHF";
 import { EMAIL_REGEX, USERNAME_REGEX } from "../../../share/app.config";
+import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { LoginFooter } from "../../../components/LoginFooter";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { InputChip } from "../../../components/InputChip";
+import { intlFormat, parseISO } from "date-fns";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import {
@@ -21,27 +22,23 @@ import {
 } from "iconoir-react-native";
 
 function SignUp({ navigation }) {
-  const [isPasswordHidden, setIsPasswordHidden] = useState(true);
-  const [visibleDialog, setVisibleDialog] = useState(false);
-  const [bornDate, setBornDate] = useState(new Date());
-  const { control, handleSubmit, watch } = useForm();
-  const idGenreSelected = watch("idGenre");
-  const password = watch("password");
   const onPressContinue = data => navigation.navigate("SignUpPhone", data);
-  const showDatePicker = () => {
-    console.log("Showing datepicker");
-    DateTimePickerAndroid.open({
-      mode: "time",
-      value: bornDate,
-      onChange: (event, date) => setBornDate(date),
-    });
-    console.log("datepicker showed");
-  };
+  const [isPasswordHidden, setIsPasswordHidden] = useState(true);
+  const { control, handleSubmit, watch } = useForm();
+  const password = watch("password");
+
+  const [visibleDialog, setVisibleDialog] = useState(false);
+  const idGenreSelected = watch("idGenre");
   const genres = [
     { id: 1, genre: "not_specified" },
     { id: 2, genre: "male" },
     { id: 3, genre: "female" },
   ];
+
+  const bornDate = watch("bornDate");
+  console.log("begin signup");
+  console.log(bornDate);
+  console.log("end signup");
 
   return (
     <KeyboardAwareScrollView
@@ -50,7 +47,7 @@ function SignUp({ navigation }) {
       contentContainerStyle={styles.container}>
       <View>
         <View>
-          <TextInputHookForm
+          <TextInputHF
             rules={{
               required: "Email is required",
               pattern: {
@@ -64,7 +61,7 @@ function SignUp({ navigation }) {
             style={styles.inputText}
             left={<TextInput.Icon name={props => <Mail {...props} {...styles.iconoir} />} />}
           />
-          <TextInputHookForm
+          <TextInputHF
             rules={{
               required: "Username is required",
               minLength: {
@@ -87,7 +84,7 @@ The only allowed special characters are '_' and '.'`,
             controllerName="username"
             left={<TextInput.Icon name={props => <User {...props} {...styles.iconoir} />} />}
           />
-          <TextInputHookForm
+          <TextInputHF
             label="Password"
             control={control}
             style={styles.inputText}
@@ -108,7 +105,7 @@ The only allowed special characters are '_' and '.'`,
               />
             }
           />
-          <TextInputHookForm
+          <TextInputHF
             rules={{
               required: "Password is required",
               validate: value => value === password || "Password do not match",
@@ -121,26 +118,27 @@ The only allowed special characters are '_' and '.'`,
             left={<TextInput.Icon name={props => <KeyAltBack {...props} {...styles.iconoir} />} />}
           />
 
-          <InputChip
-            mode="flat"
-            Icon={Calendar}
-            label="Born date"
-            style={styles.inputChip}
-            onPress={showDatePicker}
-            value={bornDate.toLocaleString()}
-          />
+          <DateTimePickerHF control={control} controllerName="bornDate" mode="date">
+            <InputChip
+              mode="flat"
+              icon={Calendar}
+              label="Born date"
+              style={styles.inputChip}
+              value={bornDate ? parseISO(bornDate).toLocaleString() : "Select your born date"}
+            />
+          </DateTimePickerHF>
+
           <InputChip
             mode="flat"
             label="Genre"
-            Icon={PeopleRounded}
+            icon={PeopleRounded}
+            style={styles.inputChip}
+            onPress={() => setVisibleDialog(true)}
             value={
               genres.filter(({ id }) => id === idGenreSelected).map(({ genre }) => genre)[0] ||
               "Select your genre"
             }
-            style={styles.inputChip}
-            onPress={() => setVisibleDialog(true)}
           />
-
           <Portal>
             <Dialog visible={visibleDialog} onDismiss={() => setVisibleDialog(false)}>
               {/* <Dialog.Icon icon={props => <EmojiBlinkRight {...props} {...styles.iconoir} />} />*/}
@@ -165,19 +163,6 @@ The only allowed special characters are '_' and '.'`,
             </Dialog>
           </Portal>
         </View>
-
-        {/*
-        <TextInputHookForm
-          style={styles.inputText}
-          rules={{
-            required: "Born date is required",
-          }}
-          label="Born date"
-          control={control}
-          controllerName="bornDate"
-          left={<TextInput.Icon name={props => <Calendar {...props} {...styles.iconoir} />} />}
-        />
-          */}
 
         <View>
           <Button mode="contained" uppercase={false} onPress={handleSubmit(onPressContinue)}>

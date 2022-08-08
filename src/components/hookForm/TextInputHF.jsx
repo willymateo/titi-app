@@ -2,7 +2,7 @@ import { HelperText, TextInput } from "react-native-paper";
 import { StyleSheet, View } from "react-native";
 import { Controller } from "react-hook-form";
 
-function TextInputHookForm({
+function TextInputHF({
   mode,
   left,
   label,
@@ -63,4 +63,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export { TextInputHookForm };
+export { TextInputHF };

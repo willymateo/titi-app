@@ -1,4 +1,4 @@
-import { TextInputHookForm } from "../../../components/TextInputHookForm";
+import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
 import { setUserSession } from "../../../redux/states/userSession";
 import { LoginFooter } from "../../../components/LoginFooter";
@@ -29,7 +29,7 @@ function SignUpPhone({ navigation, route }) {
       style={styles.root}
       behavior={Platform.OS === "ios" ? "padding" : "height"}>
       <View style={{ ...styles.container }}>
-        <TextInputHookForm
+        <TextInputHF
           style={styles.inputText}
           rules={{
             required: "Phone number is required",

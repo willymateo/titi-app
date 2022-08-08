@@ -1,7 +1,7 @@
 import { Text, Chip } from "react-native-paper";
 import { StyleSheet, View } from "react-native";
 
-function InputChip({ style, label, mode, onPress, Icon, value }) {
+function InputChip({ style, label, mode, onPress, icon: Icon, value }) {
   return (
     <View style={style}>
       <Text style={styles.labelChip}>{label}</Text>

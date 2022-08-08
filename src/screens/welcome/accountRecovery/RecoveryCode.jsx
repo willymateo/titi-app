@@ -1,5 +1,5 @@
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
-import { TextInputHookForm } from "../../../components/TextInputHookForm";
+import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { LoginFooter } from "../../../components/LoginFooter";
 import { Button, TextInput } from "react-native-paper";
 import { PasswordCursor } from "iconoir-react-native";
@@ -17,7 +17,7 @@ function RecoveryCode({ navigation }) {
       style={styles.root}
       behavior={Platform.OS === "ios" ? "padding" : "height"}>
       <View style={styles.container}>
-        <TextInputHookForm
+        <TextInputHF
           style={styles.inputText}
           rules={{
             required: "Recovery code is required",
