@@ -5,6 +5,7 @@ import { Provider as PaperProvider } from "react-native-paper";
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import { useSelector } from "react-redux";
+import "./locales/i18n";
 
 function Main() {
   const { isDark } = useSelector(state => state.colorMode);

@@ -1,16 +1,19 @@
 import { Button, Divider, Text } from "react-native-paper";
 import { StyleSheet, View } from "react-native";
+import { useTranslation } from "react-i18next";
 
 function LoginFooter({ onPressLogin, onPressSignUp, onPressAccountRecovery, style }) {
+  const { t } = useTranslation();
+
   return (
     <View style={style}>
       {onPressLogin && (
         <>
           <Divider />
           <View style={styles.flexRow}>
-            <Text>Already have an account?</Text>
+            <Text>{t("components.loginFooter.loginMessage")}</Text>
             <Button mode="Text" uppercase={false} onPress={onPressLogin}>
-              Login
+              {t("screens.welcome.login")}
             </Button>
           </View>
         </>
@@ -20,9 +23,9 @@ function LoginFooter({ onPressLogin, onPressSignUp, onPressAccountRecovery, styl
         <>
           <Divider />
           <View style={styles.flexRow}>
-            <Text>Forgot your password?</Text>
+            <Text>{t("components.loginFooter.accountRecoveryMessage")}</Text>
             <Button mode="text" uppercase={false} onPress={onPressAccountRecovery}>
-              Recover account
+              {t("components.loginFooter.accountRecovery")}
             </Button>
           </View>
         </>
@@ -32,9 +35,9 @@ function LoginFooter({ onPressLogin, onPressSignUp, onPressAccountRecovery, styl
         <>
           <Divider />
           <View style={styles.flexRow}>
-            <Text>Don't have an account?</Text>
+            <Text>{t("components.loginFooter.signUpMessage")}</Text>
             <Button mode="Text" uppercase={false} onPress={onPressSignUp}>
-              Sign up
+              {t("screens.welcome.signUp")}
             </Button>
           </View>
         </>

@@ -1,0 +1,6 @@
+{
+  "loginMessage": "¿Ya tienes una cuenta?",
+  "signUpMessage": "¿Aún no tienes una cuenta?",
+  "accountRecoveryMessage": "¿Olvidaste tu contraseña?",
+  "accountRecovery": "Recuperar cuenta"
+}

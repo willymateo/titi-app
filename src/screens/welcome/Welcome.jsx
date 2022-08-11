@@ -3,15 +3,17 @@ import LightLogo from "../../../assets/lightLogo.svg";
 import DarkLogo from "../../../assets/darkLogo.svg";
 import { Button, Text } from "react-native-paper";
 import { StyleSheet, View } from "react-native";
+import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
 function Welcome({ navigation }) {
+  const { t } = useTranslation("translation", { keyPrefix: "screens.welcome" });
   const { isDark } = useSelector(state => state.colorMode);
 
   return (
     <View style={styles.container}>
       <View style={styles.welcomeTextContainer}>
-        <Text style={styles.welcomeText}>Welcome to</Text>
+        <Text style={styles.welcomeText}>{t("welcomeTo")}</Text>
       </View>
       <View style={styles.logoContainer}>
         {isDark ? <DarkLogo width={styles.logo.width} /> : <LightLogo width={styles.logo.width} />}
@@ -22,14 +24,14 @@ function Welcome({ navigation }) {
           uppercase={false}
           style={styles.buttons}
           onPress={() => navigation.navigate("Login")}>
-          Log in
+          {t("login")}
         </Button>
         <Button
           mode="contained"
           uppercase={false}
           style={styles.buttons}
           onPress={() => navigation.navigate("SignUp")}>
-          Sign Up
+          {t("signUp")}
         </Button>
       </View>
       <LoginFooter
