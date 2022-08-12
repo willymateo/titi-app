@@ -3,10 +3,12 @@ import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { LoginFooter } from "../../../components/LoginFooter";
 import { Button, TextInput } from "react-native-paper";
 import { PasswordCursor } from "iconoir-react-native";
+import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 
 function RecoveryCode({ navigation }) {
   const { control, handleSubmit } = useForm();
+  const { t } = useTranslation();
   const onPressSendRecovery = data => {
     console.log(data);
     navigation.navigate("ResetPassword");
@@ -20,19 +22,18 @@ function RecoveryCode({ navigation }) {
         <TextInputHF
           style={styles.inputText}
           rules={{
-            required: "Recovery code is required",
+            required: t("components.inputHookForm.recoveryCodeRequired"),
           }}
-          label="Recovery code"
+          label={t("components.inputHookForm.recoveryCode")}
           control={control}
           controllerName="recoveryCode"
-          placeholder="Enter the recovery code"
           left={
             <TextInput.Icon name={props => <PasswordCursor {...props} {...styles.iconoir} />} />
           }
         />
 
         <Button mode="contained" uppercase={false} onPress={handleSubmit(onPressSendRecovery)}>
-          Verify recovery code
+          {t("screens.accountRecovery.verifyRecoveryCode")}
         </Button>
         <LoginFooter
           onPressLogin={() => navigation.navigate("Login")}

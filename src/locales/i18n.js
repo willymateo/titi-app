@@ -6,6 +6,7 @@ import i18next from "i18next";
 
 i18next.use(initReactI18next).init({
   debug: Constants.manifest.extra.APP_ENV === "development",
+  // To remove
   compatibilityJSON: "v3",
   fallbackLng: "es",
   interpolation: {

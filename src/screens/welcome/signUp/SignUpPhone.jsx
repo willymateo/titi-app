@@ -5,12 +5,14 @@ import { LoginFooter } from "../../../components/LoginFooter";
 import catHotAPI from "../../../services/catHotAPI/api";
 import { SmartphoneDevice } from "iconoir-react-native";
 import { Button, TextInput } from "react-native-paper";
+import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 
 function SignUpPhone({ navigation, route }) {
   const { control, handleSubmit } = useForm();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const onPressSignUp = async data => {
     try {
       const { token, error } = await catHotAPI.createUser({ ...data, ...route.params });
@@ -32,9 +34,9 @@ function SignUpPhone({ navigation, route }) {
         <TextInputHF
           style={styles.inputText}
           rules={{
-            required: "Phone number is required",
+            required: t("components.inputHookForm.phoneNumberRequired"),
           }}
-          label="Phone number"
+          label={t("components.inputHookForm.phoneNumber")}
           control={control}
           controllerName="phoneNumber"
           left={
@@ -43,7 +45,7 @@ function SignUpPhone({ navigation, route }) {
         />
 
         <Button mode="contained" uppercase={false} onPress={handleSubmit(onPressSignUp)}>
-          Sign Up
+          {t("screens.welcome.signUp")}
         </Button>
         <LoginFooter
           onPressLogin={() => navigation.navigate("Login")}

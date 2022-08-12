@@ -8,6 +8,7 @@ import { LoginFooter } from "../../../components/LoginFooter";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { InputChip } from "../../../components/InputChip";
 import { intlFormat, parseISO } from "date-fns";
+import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 import {
@@ -26,6 +27,7 @@ function SignUp({ navigation }) {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   const { control, handleSubmit, watch } = useForm();
   const password = watch("password");
+  const { t } = useTranslation();
 
   const [visibleDialog, setVisibleDialog] = useState(false);
   const idGenreSelected = watch("idGenre");
@@ -46,13 +48,13 @@ function SignUp({ navigation }) {
         <View>
           <TextInputHF
             rules={{
-              required: "Email is required",
+              required: t("components.inputHookForm.emailRequired"),
               pattern: {
                 value: EMAIL_REGEX,
-                message: "Email is invalid",
+                message: t("components.inputHookForm.emailInvalid"),
               },
             }}
-            label="Email"
+            label={t("components.inputHookForm.email")}
             control={control}
             controllerName="email"
             style={styles.inputText}
@@ -60,34 +62,33 @@ function SignUp({ navigation }) {
           />
           <TextInputHF
             rules={{
-              required: "Username is required",
+              required: t("components.inputHookForm.usernameRequired"),
               minLength: {
                 value: 5,
-                message: "Username should be minimum 5 characters long",
+                message: t("components.inputHookForm.usernameMinLength"),
               },
               maxLength: {
                 value: 30,
-                message: "Username should be maximum 30 characters long",
+                message: t("components.inputHookForm.usernameMaxLength"),
               },
               pattern: {
                 value: USERNAME_REGEX,
-                message: `Username should be in lowercase.
-The only allowed special characters are '_' and '.'`,
+                message: t("components.inputHookForm.usernameRegex"),
               },
             }}
-            label="Username"
+            label={t("components.inputHookForm.username")}
             control={control}
             style={styles.inputText}
             controllerName="username"
             left={<TextInput.Icon name={props => <User {...props} {...styles.iconoir} />} />}
           />
           <TextInputHF
-            label="Password"
+            label={t("components.inputHookForm.password")}
             control={control}
             style={styles.inputText}
             controllerName="password"
             secureTextEntry={isPasswordHidden}
-            rules={{ required: "Password is required" }}
+            rules={{ required: t("components.inputHookForm.passwordRequired") }}
             left={<TextInput.Icon name={props => <KeyAlt {...props} {...styles.iconoir} />} />}
             right={
               <TextInput.Icon
@@ -104,12 +105,12 @@ The only allowed special characters are '_' and '.'`,
           />
           <TextInputHF
             rules={{
-              required: "Password is required",
-              validate: value => value === password || "Password do not match",
+              required: t("components.inputHookForm.passwordRequired"),
+              validate: value => value === password || t("components.inputHookForm.passwordMatch"),
             }}
             secureTextEntry
             control={control}
-            label="Repeat password"
+            label={t("components.inputHookForm.repeatPassword")}
             style={styles.inputText}
             controllerName="repeatPassword"
             left={<TextInput.Icon name={props => <KeyAltBack {...props} {...styles.iconoir} />} />}
@@ -119,33 +120,39 @@ The only allowed special characters are '_' and '.'`,
             <InputChip
               mode="flat"
               icon={Calendar}
-              label="Born date"
+              label={t("components.inputHookForm.bornDate")}
               style={styles.inputChip}
-              value={bornDate ? parseISO(bornDate).toLocaleString() : "Select your born date"}
+              value={
+                bornDate
+                  ? parseISO(bornDate).toLocaleString()
+                  : t("components.inputHookForm.bornDatePlaceholder")
+              }
             />
           </DateTimePickerHF>
 
           <InputChip
             mode="flat"
-            label="Genre"
+            label={t("components.inputHookForm.genre")}
             icon={PeopleRounded}
             style={styles.inputChip}
             onPress={() => setVisibleDialog(true)}
             value={
               genres.filter(({ id }) => id === idGenreSelected).map(({ genre }) => genre)[0] ||
-              "Select your genre"
+              t("components.inputHookForm.genrePlaceholder")
             }
           />
           <Portal>
             <Dialog visible={visibleDialog} onDismiss={() => setVisibleDialog(false)}>
               {/* <Dialog.Icon icon={props => <EmojiBlinkRight {...props} {...styles.iconoir} />} />*/}
-              <Dialog.Title style={styles.dialogTitle}>Genre</Dialog.Title>
+              <Dialog.Title style={styles.dialogTitle}>
+                {t("components.inputHookForm.genre")}
+              </Dialog.Title>
               <Dialog.ScrollArea>
                 <ScrollView>
                   <RadioButtonGroupHF
                     control={control}
                     controllerName="idGenre"
-                    rules={{ required: "Genre is required" }}>
+                    rules={{ required: t("components.inputHookForm.genreRequired") }}>
                     {genres.map(({ id, genre }) => (
                       <RadioButton.Item label={genre} value={id} key={id} />
                     ))}
@@ -154,7 +161,7 @@ The only allowed special characters are '_' and '.'`,
               </Dialog.ScrollArea>
               <Dialog.Actions>
                 <Button onPress={() => setVisibleDialog(false)} uppercase={false}>
-                  Close
+                  {t("components.inputHookForm.close")}
                 </Button>
               </Dialog.Actions>
             </Dialog>
@@ -163,7 +170,7 @@ The only allowed special characters are '_' and '.'`,
 
         <View>
           <Button mode="contained" uppercase={false} onPress={handleSubmit(onPressContinue)}>
-            Continue
+            {t("screens.signUp.continue")}
           </Button>
           <LoginFooter
             onPressLogin={() => navigation.navigate("Login")}

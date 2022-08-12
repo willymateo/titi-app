@@ -3,11 +3,13 @@ import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { LoginFooter } from "../../../components/LoginFooter";
 import { EMAIL_REGEX } from "../../../share/app.config";
 import { Button, TextInput } from "react-native-paper";
+import { useTranslation } from "react-i18next";
 import { Mail } from "iconoir-react-native";
 import { useForm } from "react-hook-form";
 
 function AccountRecovery({ navigation }) {
   const { control, handleSubmit } = useForm();
+  const { t } = useTranslation();
   const onPressSendRecovery = data => {
     console.log(data);
     navigation.navigate("RecoveryCode");
@@ -21,21 +23,21 @@ function AccountRecovery({ navigation }) {
         <TextInputHF
           style={styles.inputText}
           rules={{
-            required: "Enter the email of the account you wanna recover",
+            required: t("components.inputHookForm.emailRequired"),
             pattern: {
               value: EMAIL_REGEX,
-              message: "Email is invalid",
+              message: t("components.inputHookForm.emailInvalid"),
             },
           }}
-          label="Email"
+          label={t("components.inputHookForm.email")}
           control={control}
           controllerName="email"
-          placeholder="Enter your account email"
+          placeholder={t("components.inputHookForm.emailPlaceholder")}
           left={<TextInput.Icon name={props => <Mail {...props} {...styles.iconoir} />} />}
         />
 
         <Button mode="contained" uppercase={false} onPress={handleSubmit(onPressSendRecovery)}>
-          Send recovery code
+          {t("screens.accountRecovery.sendRecoveryCode")}
         </Button>
         <LoginFooter
           onPressLogin={() => navigation.navigate("Login")}

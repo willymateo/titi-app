@@ -3,6 +3,7 @@ import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
 import { LoginFooter } from "../../../components/LoginFooter";
 import { Button, TextInput } from "react-native-paper";
+import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
 
@@ -10,6 +11,7 @@ function ResetPassword({ navigation }) {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   const { control, handleSubmit, watch } = useForm();
   const password = watch("password");
+  const { t } = useTranslation();
   const onPressSignUp = async data => {
     console.log(data);
   };
@@ -21,11 +23,9 @@ function ResetPassword({ navigation }) {
       <View style={styles.container}>
         <TextInputHF
           style={styles.inputText}
-          rules={{
-            required: "Password is required",
-          }}
+          rules={{ required: t("components.inputHookForm.passwordRequired") }}
           secureTextEntry={isPasswordHidden}
-          label="Password"
+          label={t("components.inputHookForm.password")}
           control={control}
           controllerName="password"
           left={<TextInput.Icon name={props => <KeyAlt {...props} {...styles.iconoir} />} />}
@@ -45,18 +45,18 @@ function ResetPassword({ navigation }) {
         <TextInputHF
           style={styles.inputText}
           rules={{
-            required: "Password is required",
-            validate: value => value === password || "Password do not match",
+            required: t("components.inputHookForm.passwordRequired"),
+            validate: value => value === password || t("components.inputHookForm.passwordMatch"),
           }}
           secureTextEntry
-          label="Repeat password"
+          label={t("components.inputHookForm.repeatPassword")}
           control={control}
           controllerName="repeatPassword"
           left={<TextInput.Icon name={props => <KeyAltBack {...props} {...styles.iconoir} />} />}
         />
 
         <Button mode="contained" uppercase={false} onPress={handleSubmit(onPressSignUp)}>
-          Reset password
+          {t("screens.accountRecovery.resetPassword")}
         </Button>
         <LoginFooter
           onPressLogin={() => navigation.navigate("Login")}

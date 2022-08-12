@@ -6,6 +6,7 @@ import { setUserSession } from "../../redux/states/userSession";
 import { Button, Text, TextInput } from "react-native-paper";
 import { LoginFooter } from "../../components/LoginFooter";
 import catHotAPI from "../../services/catHotAPI/api";
+import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
@@ -14,6 +15,7 @@ function Login({ navigation }) {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   const { control, handleSubmit } = useForm();
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const [fontsLoaded] = useFonts({
     Pacifico400Regular,
   });
@@ -47,9 +49,9 @@ function Login({ navigation }) {
           <TextInputHF
             style={styles.inputText}
             rules={{
-              required: "Username is required",
+              required: t("components.inputHookForm.usernameRequired"),
             }}
-            label="Username"
+            label={t("components.inputHookForm.username")}
             control={control}
             controllerName="username"
             left={<TextInput.Icon name={props => <User {...props} {...styles.iconoir} />} />}
@@ -57,10 +59,10 @@ function Login({ navigation }) {
           <TextInputHF
             style={styles.inputText}
             rules={{
-              required: "Password is required",
+              required: t("components.inputHookForm.passwordRequired"),
             }}
             secureTextEntry={isPasswordHidden}
-            label="Password"
+            label={t("components.inputHookForm.password")}
             control={control}
             controllerName="password"
             left={<TextInput.Icon name={props => <KeyAltBack {...props} {...styles.iconoir} />} />}
@@ -80,7 +82,7 @@ function Login({ navigation }) {
         </View>
 
         <Button mode="contained" uppercase={false} onPress={handleSubmit(onPressLogin)}>
-          Log in
+          {t("screens.welcome.login")}
         </Button>
         <LoginFooter
           onPressSignUp={() => navigation.navigate("SignUp")}
