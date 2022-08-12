@@ -10,7 +10,7 @@ import { StyleSheet } from "react-native";
 const Tab = createMaterialBottomTabNavigator();
 
 function MainBottomTabsNavigator() {
-  const { t } = useTranslation();
+  const { t } = useTranslation("translation", { keyPrefix: "components.mainBottomTabsNavigator" });
 
   return (
     <Tab.Navigator
@@ -25,7 +25,7 @@ function MainBottomTabsNavigator() {
         component={Home}
         options={{
           tabBarIcon: props => <HomeSimple {...props} {...styles.iconoir} />,
-          tabBarLabel: t("components.mainBottomTabsNavigator.home"),
+          tabBarLabel: t("home"),
         }}
       />
       <Tab.Screen
@@ -33,7 +33,7 @@ function MainBottomTabsNavigator() {
         component={Notifications}
         options={{
           tabBarIcon: props => <Bell {...props} {...styles.iconoir} />,
-          tabBarLabel: t("components.mainBottomTabsNavigator.notifications"),
+          tabBarLabel: t("notifications"),
         }}
       />
       <Tab.Screen
@@ -41,7 +41,7 @@ function MainBottomTabsNavigator() {
         component={Profile}
         options={{
           tabBarIcon: props => <UserCircleAlt {...props} {...styles.iconoir} />,
-          tabBarLabel: t("components.mainBottomTabsNavigator.profile"),
+          tabBarLabel: t("profile"),
         }}
       />
       <Tab.Screen
@@ -49,7 +49,7 @@ function MainBottomTabsNavigator() {
         component={SettingsStackNavigator}
         options={{
           tabBarIcon: props => <IosSettings {...props} {...styles.iconoir} />,
-          tabBarLabel: t("components.mainBottomTabsNavigator.settings"),
+          tabBarLabel: t("settings"),
         }}
       />
     </Tab.Navigator>

@@ -8,7 +8,7 @@ import { Appbar } from "react-native-paper";
 const Stack = createNativeStackNavigator();
 
 function SettingsStackNavigator() {
-  const { t } = useTranslation();
+  const { t } = useTranslation("translation", { keyPrefix: "components.settingsStackNavigator" });
 
   return (
     <Stack.Navigator
@@ -33,14 +33,14 @@ function SettingsStackNavigator() {
         name="ThemeSettings"
         component={ThemeSettings}
         options={{
-          title: t("components.settingsStackNavigator.themeSettings"),
+          title: t("themeSettings"),
         }}
       />
       <Stack.Screen
         name="LanguageSettings"
         component={LanguageSettings}
         options={{
-          title: t("components.settingsStackNavigator.languageSettings"),
+          title: t("languageSettings"),
         }}
       />
     </Stack.Navigator>

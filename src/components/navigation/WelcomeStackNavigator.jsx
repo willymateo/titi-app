@@ -13,7 +13,7 @@ import { StyleSheet } from "react-native";
 const Stack = createNativeStackNavigator();
 
 function WelcomeStackNavigator() {
-  const { t } = useTranslation();
+  const { t } = useTranslation("translation", { keyPrefix: "components.welcomeStackNavigator" });
 
   return (
     <Stack.Navigator
@@ -50,14 +50,14 @@ function WelcomeStackNavigator() {
           name="SignUp"
           component={SignUp}
           options={{
-            title: t("components.welcomeStackNavigator.signUp"),
+            title: t("signUp"),
           }}
         />
         <Stack.Screen
           name="SignUpPhone"
           component={SignUpPhone}
           options={{
-            title: t("components.welcomeStackNavigator.signUpPhone"),
+            title: t("signUpPhone"),
           }}
         />
       </Stack.Group>
@@ -67,21 +67,21 @@ function WelcomeStackNavigator() {
           name="AccountRecovery"
           component={AccountRecovery}
           options={{
-            title: t("components.welcomeStackNavigator.accountRecovery"),
+            title: t("accountRecovery"),
           }}
         />
         <Stack.Screen
           name="RecoveryCode"
           component={RecoveryCode}
           options={{
-            title: t("components.welcomeStackNavigator.recoveryCode"),
+            title: t("recoveryCode"),
           }}
         />
         <Stack.Screen
           name="ResetPassword"
           component={ResetPassword}
           options={{
-            title: t("components.welcomeStackNavigator.resetPassword"),
+            title: t("resetPassword"),
           }}
         />
       </Stack.Group>
