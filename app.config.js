@@ -68,9 +68,6 @@ export default () => {
       },
       ...environment[process.env.APP_ENV].android,
     },
-    web: {
-      favicon: "./assets/favicon.png",
-    },
     extra: {
       APP_ENV: process.env.APP_ENV,
       ...environment[process.env.APP_ENV].extra,
