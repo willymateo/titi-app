@@ -6,22 +6,27 @@ import { SignUpPhone } from "../../screens/welcome/signUp/SignUpPhone";
 import { SignUp } from "../../screens/welcome/signUp/SignUp";
 import { Welcome } from "../../screens/welcome/Welcome";
 import { Login } from "../../screens/welcome/Login";
+import { useTranslation } from "react-i18next";
 import { Appbar } from "react-native-paper";
 import { StyleSheet } from "react-native";
 
 const Stack = createNativeStackNavigator();
 
 function WelcomeStackNavigator() {
+  const { t } = useTranslation();
+
   return (
     <Stack.Navigator
       initialRouteName="Welcome"
       screenOptions={{
+        headerShown: true,
         contentStyle: {
           paddingHorizontal: 20,
         },
-        header: ({ options: { title } }) => (
+        header: ({ options: { title }, navigation }) => (
           <Appbar.Header>
-            <Appbar.Content title={title} style={styles.appBarContent} />
+            <Appbar.BackAction onPress={() => navigation.goBack()} />
+            <Appbar.Content title={title} />
           </Appbar.Header>
         ),
       }}>
@@ -45,16 +50,14 @@ function WelcomeStackNavigator() {
           name="SignUp"
           component={SignUp}
           options={{
-            title: "Sign Up",
-            headerShown: true,
+            title: t("components.welcomeStackNavigator.signUp"),
           }}
         />
         <Stack.Screen
           name="SignUpPhone"
           component={SignUpPhone}
           options={{
-            title: "Sign Up",
-            headerShown: true,
+            title: t("components.welcomeStackNavigator.signUpPhone"),
           }}
         />
       </Stack.Group>
@@ -64,24 +67,21 @@ function WelcomeStackNavigator() {
           name="AccountRecovery"
           component={AccountRecovery}
           options={{
-            headerShown: true,
-            title: "Account Recovery",
+            title: t("components.welcomeStackNavigator.accountRecovery"),
           }}
         />
         <Stack.Screen
           name="RecoveryCode"
           component={RecoveryCode}
           options={{
-            headerShown: true,
-            title: "Recovery Code",
+            title: t("components.welcomeStackNavigator.recoveryCode"),
           }}
         />
         <Stack.Screen
           name="ResetPassword"
           component={ResetPassword}
           options={{
-            headerShown: true,
-            title: "Reset Password",
+            title: t("components.welcomeStackNavigator.resetPassword"),
           }}
         />
       </Stack.Group>

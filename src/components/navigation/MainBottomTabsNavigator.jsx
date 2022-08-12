@@ -4,11 +4,14 @@ import { Notifications } from "../../screens/mainTabs/Notifications";
 import { SettingsStackNavigator } from "./SettingsStackNavigator";
 import { Profile } from "../../screens/mainTabs/Profile";
 import { Home } from "../../screens/mainTabs/Home";
+import { useTranslation } from "react-i18next";
 import { StyleSheet } from "react-native";
 
 const Tab = createMaterialBottomTabNavigator();
 
 function MainBottomTabsNavigator() {
+  const { t } = useTranslation();
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -22,6 +25,7 @@ function MainBottomTabsNavigator() {
         component={Home}
         options={{
           tabBarIcon: props => <HomeSimple {...props} {...styles.iconoir} />,
+          tabBarLabel: t("components.mainBottomTabsNavigator.home"),
         }}
       />
       <Tab.Screen
@@ -29,6 +33,7 @@ function MainBottomTabsNavigator() {
         component={Notifications}
         options={{
           tabBarIcon: props => <Bell {...props} {...styles.iconoir} />,
+          tabBarLabel: t("components.mainBottomTabsNavigator.notifications"),
         }}
       />
       <Tab.Screen
@@ -36,6 +41,7 @@ function MainBottomTabsNavigator() {
         component={Profile}
         options={{
           tabBarIcon: props => <UserCircleAlt {...props} {...styles.iconoir} />,
+          tabBarLabel: t("components.mainBottomTabsNavigator.profile"),
         }}
       />
       <Tab.Screen
@@ -43,7 +49,7 @@ function MainBottomTabsNavigator() {
         component={SettingsStackNavigator}
         options={{
           tabBarIcon: props => <IosSettings {...props} {...styles.iconoir} />,
-          tabBarLabel: "Settings",
+          tabBarLabel: t("components.mainBottomTabsNavigator.settings"),
         }}
       />
     </Tab.Navigator>
