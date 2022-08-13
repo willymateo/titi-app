@@ -1,41 +1,72 @@
+import { LanguageSettings } from "../mainTabs/settings/LanguageSettings";
+import { Button, Dialog, Portal, Text } from "react-native-paper";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { LoginFooter } from "../../components/LoginFooter";
 import LightLogo from "../../../assets/lightLogo.svg";
 import DarkLogo from "../../../assets/darkLogo.svg";
-import { Button, Text } from "react-native-paper";
-import { StyleSheet, View } from "react-native";
+import { NavArrowDown } from "iconoir-react-native";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 
 function Welcome({ navigation }) {
   const { t } = useTranslation("translation", { keyPrefix: "screens.welcome" });
   const { isDark } = useSelector(state => state.colorMode);
+  const [isVisibleLS, setIsVisibleLS] = useState(false);
 
   return (
     <View style={styles.container}>
-      <View style={styles.welcomeTextContainer}>
-        <Text style={styles.welcomeText}>{t("welcomeTo")}</Text>
-      </View>
-      <View style={styles.logoContainer}>
-        {isDark ? <DarkLogo width={styles.logo.width} /> : <LightLogo width={styles.logo.width} />}
-      </View>
-      <View style={styles.buttonsContainer}>
+      <View style={styles.topContainer}>
         <Button
-          mode="contained"
           uppercase={false}
-          style={styles.buttons}
-          onPress={() => navigation.navigate("Login")}>
-          {t("login")}
+          onPress={() => setIsVisibleLS(true)}
+          icon={props => <NavArrowDown {...props} {...styles.iconoir} />}>
+          {t("language")}
         </Button>
-        <Button
-          mode="contained"
-          uppercase={false}
-          style={styles.buttons}
-          onPress={() => navigation.navigate("SignUp")}>
-          {t("signUp")}
-        </Button>
+        <Portal>
+          <Dialog visible={isVisibleLS} onDismiss={() => setIsVisibleLS(false)}>
+            {/* <Dialog.Icon icon={props => <EmojiBlinkRight {...props} {...styles.iconoir} />} />*/}
+            <Dialog.Title style={styles.dialogTitle}>{t("language")}</Dialog.Title>
+            <Dialog.ScrollArea>
+              <ScrollView>
+                <LanguageSettings />
+              </ScrollView>
+            </Dialog.ScrollArea>
+          </Dialog>
+        </Portal>
       </View>
+
+      <View style={styles.middleContainer}>
+        <View style={styles.welcomeTextContainer}>
+          <Text style={styles.welcomeText}>{t("welcomeTo")}</Text>
+        </View>
+        <View style={styles.logoContainer}>
+          {isDark ? (
+            <DarkLogo width={styles.logo.width} />
+          ) : (
+            <LightLogo width={styles.logo.width} />
+          )}
+        </View>
+        <View style={styles.buttonsContainer}>
+          <Button
+            mode="contained"
+            uppercase={false}
+            style={styles.buttons}
+            onPress={() => navigation.navigate("Login")}>
+            {t("login")}
+          </Button>
+          <Button
+            mode="contained"
+            uppercase={false}
+            style={styles.buttons}
+            onPress={() => navigation.navigate("SignUp")}>
+            {t("signUp")}
+          </Button>
+        </View>
+      </View>
+
       <LoginFooter
-        style={styles.loginFooter}
+        style={styles.bottomContainer}
         onPressAccountRecovery={() => navigation.navigate("AccountRecovery")}
       />
     </View>
@@ -47,23 +78,36 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
   },
+  topContainer: {
+    flex: 1,
+    justifyContent: "flex-end",
+    alignItems: "center",
+  },
+  middleContainer: {
+    flex: 6,
+    justifyContent: "center",
+  },
+  bottomContainer: {
+    flex: 1,
+    justifyContent: "flex-end",
+  },
   welcomeTextContainer: {
     flex: 1,
     justifyContent: "flex-end",
     alignItems: "center",
   },
-  welcomeText: {
-    textAlign: "center",
-    fontSize: 30,
-  },
   logoContainer: {
-    flex: 3,
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
   buttonsContainer: {
     flex: 2,
-    justifyContent: "flex-end",
+    justifyContent: "center",
+  },
+  welcomeText: {
+    textAlign: "center",
+    fontSize: 30,
   },
   logo: {
     width: "70%",
@@ -71,9 +115,9 @@ const styles = StyleSheet.create({
   buttons: {
     marginVertical: 5,
   },
-  loginFooter: {
-    flex: 1,
-    justifyContent: "center",
+  iconoir: {
+    height: 25,
+    width: 25,
   },
 });
 

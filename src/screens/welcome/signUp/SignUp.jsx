@@ -24,20 +24,19 @@ import {
 
 function SignUp({ navigation }) {
   const onPressContinue = data => navigation.navigate("SignUpPhone", data);
+  const [isVisibleGenreRB, setIsVisibleGenreRB] = useState(false);
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   const { control, handleSubmit, watch } = useForm();
+  const idGenreSelected = watch("idGenre");
   const password = watch("password");
+  const bornDate = watch("bornDate");
   const { t } = useTranslation();
 
-  const [visibleDialog, setVisibleDialog] = useState(false);
-  const idGenreSelected = watch("idGenre");
   const genres = [
     { id: 1, genre: "not_specified" },
     { id: 2, genre: "male" },
     { id: 3, genre: "female" },
   ];
-
-  const bornDate = watch("bornDate");
 
   return (
     <KeyboardAwareScrollView
@@ -135,14 +134,14 @@ function SignUp({ navigation }) {
             label={t("components.inputHookForm.genre")}
             icon={PeopleRounded}
             style={styles.inputChip}
-            onPress={() => setVisibleDialog(true)}
+            onPress={() => setIsVisibleGenreRB(true)}
             value={
               genres.filter(({ id }) => id === idGenreSelected).map(({ genre }) => genre)[0] ||
               t("components.inputHookForm.genrePlaceholder")
             }
           />
           <Portal>
-            <Dialog visible={visibleDialog} onDismiss={() => setVisibleDialog(false)}>
+            <Dialog visible={isVisibleGenreRB} onDismiss={() => setIsVisibleGenreRB(false)}>
               {/* <Dialog.Icon icon={props => <EmojiBlinkRight {...props} {...styles.iconoir} />} />*/}
               <Dialog.Title style={styles.dialogTitle}>
                 {t("components.inputHookForm.genre")}
@@ -159,11 +158,6 @@ function SignUp({ navigation }) {
                   </RadioButtonGroupHF>
                 </ScrollView>
               </Dialog.ScrollArea>
-              <Dialog.Actions>
-                <Button onPress={() => setVisibleDialog(false)} uppercase={false}>
-                  {t("components.inputHookForm.close")}
-                </Button>
-              </Dialog.Actions>
             </Dialog>
           </Portal>
         </View>

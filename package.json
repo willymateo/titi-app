@@ -5,8 +5,8 @@
   "main": "node_modules/expo/AppEntry.js",
   "description": "Publish and search for adventures that only take place in the next 24 hours",
   "scripts": {
-    "start": "expo start --dev-client",
-    "start:dev": "expo start ",
+    "start": "expo start ",
+    "start:dev": "expo start --dev-client",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "eject": "expo eject",
