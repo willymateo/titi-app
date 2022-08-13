@@ -7,7 +7,7 @@ import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { LoginFooter } from "../../../components/LoginFooter";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { InputChip } from "../../../components/InputChip";
-import { intlFormat, parseISO } from "date-fns";
+import { parseISO, intlFormat } from "date-fns";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
@@ -123,7 +123,12 @@ function SignUp({ navigation }) {
               style={styles.inputChip}
               value={
                 bornDate
-                  ? parseISO(bornDate).toLocaleString()
+                  ? intlFormat(parseISO(bornDate), {
+                      weekday: "long",
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })
                   : t("components.inputHookForm.bornDatePlaceholder")
               }
             />

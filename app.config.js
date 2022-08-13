@@ -1,47 +1,8 @@
 import "dotenv/config";
 
 export default () => {
-  const environment = {
-    development: {
-      name: "CatHot dev",
-      ios: {
-        bundleIdentifier: "com.darkosoft.cathot.dev",
-      },
-      android: {
-        package: "com.darkosoft.cathot",
-      },
-      extra: {
-        CATHOT_API_URL: process.env.DEV_CATHOT_API_URL,
-      },
-    },
-    preview: {
-      name: "CatHot prev",
-      ios: {
-        bundleIdentifier: "com.darkosoft.cathot.prev",
-      },
-      android: {
-        package: "com.darkosoft.cathot",
-      },
-      extra: {
-        CATHOT_API_URL: process.env.DEV_CATHOT_API_URL,
-      },
-    },
-    production: {
-      name: "CatHot",
-      ios: {
-        bundleIdentifier: "com.darkosoft.cathot",
-      },
-      android: {
-        package: "com.darkosoft.cathot",
-      },
-      extra: {
-        CATHOT_API_URL: process.env.PROD_CATHOT_API_URL,
-      },
-    },
-  };
-
   return {
-    name: environment[process.env.APP_ENV].name,
+    name: process.env.APP_NAME,
     description: "Publish and search for adventures that only take place in the next 24 hours",
     slug: "cathot",
     version: "1.0.0",
@@ -59,18 +20,18 @@ export default () => {
     },
     ios: {
       supportsTablet: true,
-      ...environment[process.env.APP_ENV].ios,
+      bundleIdentifier: process.env.IOS_BUNDL_ID,
     },
     android: {
+      package: process.env.ANDROID_PKG,
       adaptiveIcon: {
         foregroundImage: "./assets/adaptive-icon.png",
         backgroundColor: "#000000",
       },
-      ...environment[process.env.APP_ENV].android,
     },
     extra: {
       APP_ENV: process.env.APP_ENV,
-      ...environment[process.env.APP_ENV].extra,
+      CATHOT_API_URL: process.env.CATHOT_API_URL,
     },
   };
 };

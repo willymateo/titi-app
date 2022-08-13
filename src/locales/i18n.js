@@ -3,11 +3,10 @@ import { translationEs } from "./es/translation";
 import { initReactI18next } from "react-i18next";
 import Constants from "expo-constants";
 import i18next from "i18next";
+import "intl-pluralrules";
 
 i18next.use(initReactI18next).init({
   debug: Constants.manifest.extra.APP_ENV === "development",
-  // To remove
-  compatibilityJSON: "v3",
   fallbackLng: "es",
   interpolation: {
     escapeValue: false,
