@@ -9,6 +9,7 @@ export default () => {
     orientation: "portrait",
     icon: "./assets/icon.png",
     assetBundlePatterns: ["**/*"],
+    platforms: ["android", "ios"],
     userInterfaceStyle: "automatic",
     splash: {
       image: "./assets/splash.png",

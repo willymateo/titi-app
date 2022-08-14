@@ -43,7 +43,8 @@
     "react-native-svg-transformer": "^1.0.0",
     "react-native-vector-icons": "^9.2.0",
     "react-native-web": "0.17.7",
-    "react-redux": "^8.0.2"
+    "react-redux": "^8.0.2",
+    "expo-localization": "~13.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
