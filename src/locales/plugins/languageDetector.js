@@ -8,7 +8,7 @@ const languageDetector = {
     try {
       const { locale } = await Localization.getLocalizationAsync();
       console.log("Setting the language preference:", locale);
-      return callback(locale);
+      return callback(locale.replaceAll("_", "-"));
     } catch (err) {
       console.log("i18next: Error reading the language preferences", err);
     }
