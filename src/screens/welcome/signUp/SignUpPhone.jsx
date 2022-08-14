@@ -1,5 +1,6 @@
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
+import { MMKV_USER_TOKEN, storage } from "../../../share/app.config";
 import { setUserSession } from "../../../redux/states/userSession";
 import { LoginFooter } from "../../../components/LoginFooter";
 import catHotAPI from "../../../services/catHotAPI/api";
@@ -20,6 +21,7 @@ function SignUpPhone({ navigation, route }) {
         console.log("Show modal of error message", error);
         return;
       }
+      storage.set(MMKV_USER_TOKEN, token);
       dispatch(setUserSession({ token }));
     } catch (err) {
       console.log(err);

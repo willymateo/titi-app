@@ -1,3 +1,4 @@
+import { MMKV_IS_DARK, MMKV_THEME, storage } from "../../../share/app.config";
 import { setColorMode } from "../../../redux/states/colorMode";
 import { useSelector, useDispatch } from "react-redux";
 import { RadioButton } from "react-native-paper";
@@ -8,8 +9,11 @@ function ThemeSettings() {
   const { theme, isDark } = useSelector(state => state.colorMode);
   const dispatch = useDispatch();
 
-  const colorModeHandler = selectedTheme =>
-    dispatch(setColorMode({ theme: selectedTheme, isDark: !isDark }));
+  const colorModeHandler = value => {
+    storage.set(MMKV_THEME, value);
+    storage.set(MMKV_IS_DARK, !isDark);
+    dispatch(setColorMode({ theme: value, isDark: !isDark }));
+  };
 
   return (
     <RadioButton.Group onValueChange={colorModeHandler} value={theme}>

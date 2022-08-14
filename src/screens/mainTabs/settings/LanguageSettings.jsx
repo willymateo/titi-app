@@ -1,4 +1,5 @@
 import { setLanguagePreference } from "../../../redux/states/languagePreference";
+import { MMKV_LNG, storage } from "../../../share/app.config";
 import { useSelector, useDispatch } from "react-redux";
 import { RadioButton } from "react-native-paper";
 import { useTranslation } from "react-i18next";
@@ -10,6 +11,7 @@ function LanguageSettings() {
 
   const languageHandler = value => {
     i18n.changeLanguage(value);
+    storage.set(MMKV_LNG, value);
     dispatch(setLanguagePreference({ language: value }));
   };
 

@@ -2,6 +2,7 @@ import { useFonts, Pacifico_400Regular as Pacifico400Regular } from "@expo-googl
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
 import { EyeClose, EyeEmpty, KeyAltBack, User } from "iconoir-react-native";
 import { TextInputHF } from "../../components/hookForm/TextInputHF";
+import { MMKV_USER_TOKEN, storage } from "../../share/app.config";
 import { setUserSession } from "../../redux/states/userSession";
 import { Button, Text, TextInput } from "react-native-paper";
 import { LoginFooter } from "../../components/LoginFooter";
@@ -26,6 +27,7 @@ function Login({ navigation }) {
         console.log("Show modal of error message", error);
         return;
       }
+      storage.set(MMKV_USER_TOKEN, token);
       dispatch(setUserSession({ token }));
     } catch (err) {
       console.log(err);
