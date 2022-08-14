@@ -7,13 +7,16 @@ import i18next from "i18next";
 import "intl-pluralrules";
 
 i18next
-  // .use(languageDetector)
+  .use(languageDetector)
   .use(initReactI18next)
   .init({
     debug: Constants.manifest.extra.APP_ENV === "development",
-    fallbackLng: "es",
+    fallbackLng: "en",
     interpolation: {
       escapeValue: false,
+    },
+    react: {
+      useSuspense: false,
     },
     resources: {
       en: {

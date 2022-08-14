@@ -9,7 +9,6 @@ import { setColorMode } from "./redux/states/colorMode";
 import { useDispatch, useSelector } from "react-redux";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
-import "./locales/i18n";
 
 function Main() {
   const { isDark, theme } = useSelector(state => state.colorMode);
@@ -32,6 +31,7 @@ function Main() {
     storage.set(MMKV_THEME, theme);
   }, []);
 
+  // To change or delete
   useEffect(() => {
     if (storedToken) {
       console.log("Stored token:", storedToken);
