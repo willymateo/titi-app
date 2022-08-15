@@ -6,9 +6,7 @@ import { useDispatch } from "react-redux";
 function LogoutButton() {
   const { t } = useTranslation("translation", { keyPrefix: "components.logoutButton" });
   const dispatch = useDispatch();
-  const onPressLogout = () => {
-    dispatch(resetUserSession());
-  };
+  const onPressLogout = () => dispatch(resetUserSession());
 
   return (
     <Button mode="contained" onPress={onPressLogout}>

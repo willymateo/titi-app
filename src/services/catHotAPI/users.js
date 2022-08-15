@@ -1,26 +1,11 @@
+import { reduxStore } from "../../redux/store";
 import Constants from "expo-constants";
 import axios from "axios";
 
 axios.defaults.baseURL = Constants.manifest.extra.CATHOT_API_URL;
 
-const createUser = ({ username, password, email, phoneNumber, bornDate, idGenre }) => {
-  const data = {
-    username,
-    password,
-    email,
-    phone: {
-      phoneNumber,
-      countryCode: 593,
-    },
-    location: {
-      latitude: "3196727",
-      longitude: "6943923",
-    },
-    profileInformation: {
-      bornDate,
-      idGenre,
-    },
-  };
+const createUser = () => {
+  const { signUpForm: data } = reduxStore.getState();
 
   return new Promise(resolve => {
     axios
@@ -28,6 +13,11 @@ const createUser = ({ username, password, email, phoneNumber, bornDate, idGenre 
       .then(({ data }) => resolve(data))
       .catch(({ request, response }) => {
         if (response) {
+          if (!response.token) {
+            resolve({
+              error: "Unexpected error ocurred",
+            });
+          }
           resolve({
             status: response.status,
             ...response.data,

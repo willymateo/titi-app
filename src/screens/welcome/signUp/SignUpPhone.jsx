@@ -1,3 +1,4 @@
+import { resetSignUpForm, setSignUpForm } from "../../../redux/states/signUpForm";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
 import { MMKV_USER_TOKEN, storage } from "../../../share/app.config";
@@ -7,21 +8,24 @@ import catHotAPI from "../../../services/catHotAPI/api";
 import { SmartphoneDevice } from "iconoir-react-native";
 import { Button, TextInput } from "react-native-paper";
 import { useTranslation } from "react-i18next";
-import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
+import { useForm } from "react-hook-form";
 
-function SignUpPhone({ navigation, route }) {
+function SignUpPhone({ navigation }) {
   const { control, handleSubmit } = useForm();
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const onPressSignUp = async data => {
+
+  const onPressSignUp = async ({ phoneNumber }) => {
     try {
-      const { token, error } = await catHotAPI.createUser({ ...data, ...route.params });
+      dispatch(setSignUpForm({ phone: { phoneNumber } }));
+      const { token, error } = await catHotAPI.createUser();
       if (error) {
         console.log("Show modal of error message", error);
         return;
       }
       storage.set(MMKV_USER_TOKEN, token);
+      dispatch(resetSignUpForm());
       dispatch(setUserSession({ token }));
     } catch (err) {
       console.log(err);

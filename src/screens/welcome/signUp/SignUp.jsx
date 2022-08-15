@@ -4,12 +4,14 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { DateTimePickerHF } from "../../../components/hookForm/DateTimePickerHF";
 import { EMAIL_REGEX, USERNAME_REGEX } from "../../../share/app.config";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
+import { setSignUpForm } from "../../../redux/states/signUpForm";
 import { LoginFooter } from "../../../components/LoginFooter";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { InputChip } from "../../../components/InputChip";
 import { parseISO, intlFormat } from "date-fns";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
 import {
   Mail,
@@ -23,7 +25,6 @@ import {
 } from "iconoir-react-native";
 
 function SignUp({ navigation }) {
-  const onPressContinue = data => navigation.navigate("SignUpPhone", data);
   const [isVisibleGenreRB, setIsVisibleGenreRB] = useState(false);
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   const { control, handleSubmit, watch } = useForm();
@@ -31,6 +32,22 @@ function SignUp({ navigation }) {
   const password = watch("password");
   const bornDate = watch("bornDate");
   const { t } = useTranslation();
+  const dispatch = useDispatch();
+
+  const onPressContinue = ({ username, password, email, bornDate, idGenre }) => {
+    dispatch(
+      setSignUpForm({
+        username,
+        password,
+        email,
+        profileInformation: {
+          bornDate,
+          idGenre,
+        },
+      })
+    );
+    navigation.navigate("SignUpPhone");
+  };
 
   const genres = [
     { id: 1, genre: "not_specified" },
@@ -114,26 +131,15 @@ function SignUp({ navigation }) {
             controllerName="repeatPassword"
             left={<TextInput.Icon name={props => <KeyAltBack {...props} {...styles.iconoir} />} />}
           />
-
           <DateTimePickerHF control={control} controllerName="bornDate" mode="date">
             <InputChip
               mode="flat"
               icon={Calendar}
               label={t("components.inputHookForm.bornDate")}
               style={styles.inputChip}
-              value={
-                bornDate
-                  ? intlFormat(parseISO(bornDate), {
-                      weekday: "long",
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })
-                  : t("components.inputHookForm.bornDatePlaceholder")
-              }
+              value={bornDate ? bornDate : t("components.inputHookForm.bornDatePlaceholder")}
             />
           </DateTimePickerHF>
-
           <InputChip
             mode="flat"
             label={t("components.inputHookForm.genre")}

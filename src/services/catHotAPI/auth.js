@@ -10,6 +10,11 @@ const login = ({ username, password }) => {
       .then(({ data }) => resolve(data))
       .catch(({ request, response }) => {
         if (response) {
+          if (!response.token) {
+            resolve({
+              error: "Unexpected error ocurred",
+            });
+          }
           resolve({
             status: response.status,
             ...response.data,
