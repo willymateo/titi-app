@@ -20,13 +20,10 @@ function Main() {
 
   // To change or delete
   useEffect(() => {
-    if (storedTheme) {
-      console.log("Stored theme:", storedTheme);
-      console.log("Stored isDark:", storedIsDark);
+    if (storedTheme && storedIsDark !== undefined) {
       dispatch(setColorMode({ theme: storedTheme, isDark: storedIsDark }));
       return;
     }
-    console.log("Not stored theme yet");
     storage.set(MMKV_IS_DARK, isDark);
     storage.set(MMKV_THEME, theme);
   }, []);
@@ -34,11 +31,9 @@ function Main() {
   // To change or delete
   useEffect(() => {
     if (storedToken) {
-      console.log("Stored token:", storedToken);
       dispatch(setUserSession({ token: storedToken }));
       return;
     }
-    console.log("Not stored user token yet");
     if (token) {
       storage.set(MMKV_USER_TOKEN, token);
     }

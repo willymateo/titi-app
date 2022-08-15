@@ -6,7 +6,7 @@ const USERNAME_REGEX = /^[a-z0-9_\.]*[a-z]+[a-z0-9_\.]*$/;
 const MMKV_LNG = "languagePreference.language";
 const MMKV_USER_TOKEN = "userSession.token";
 const MMKV_THEME = "colorMode.theme";
-const MMKV_IS_DARK = "colorMode.theme";
+const MMKV_IS_DARK = "colorMode.isDark";
 const storage = new MMKV();
 
 export {
