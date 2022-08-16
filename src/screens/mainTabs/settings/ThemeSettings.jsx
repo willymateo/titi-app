@@ -1,11 +1,12 @@
 import { MMKV_IS_DARK, MMKV_THEME, storage } from "../../../share/app.config";
 import { setColorMode } from "../../../redux/states/colorMode";
+import { useDispatch, useSelector } from "react-redux";
 import { RadioButton } from "react-native-paper";
 import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
 
 function ThemeSettings() {
   const { t } = useTranslation("translation", { keyPrefix: "screens.themeSettings" });
+  const { theme } = useSelector(state => state.colorMode);
   const dispatch = useDispatch();
 
   const colorModeHandler = value => {

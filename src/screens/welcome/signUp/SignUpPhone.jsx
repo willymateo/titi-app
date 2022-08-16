@@ -74,7 +74,7 @@ function SignUpPhone({ navigation }) {
         />
 
         <Button mode="contained" uppercase={false} onPress={handleSubmit(onPressSignUp)}>
-          {t("screens.welcome.signUp")}
+          {t("screens.signUp.createAccount")}
         </Button>
         <LoginFooter
           onPressLogin={() => navigation.navigate("Login")}
