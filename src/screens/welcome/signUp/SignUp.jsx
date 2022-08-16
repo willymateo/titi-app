@@ -174,7 +174,20 @@ function SignUp({ navigation }) {
           <View style={styles.inputChip}>
             <DateTimePickerHF control={control} controllerName="bornDate" mode="date">
               <InputChip
-                value={bornDate ? bornDate : t("components.inputHookForm.bornDatePlaceholder")}
+                value={
+                  bornDate
+                    ? intlFormat(
+                        parseISO(bornDate),
+                        {
+                          weekday: "long",
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        },
+                        { locale: "en" }
+                      )
+                    : t("components.inputHookForm.bornDatePlaceholder")
+                }
                 label={t("components.inputHookForm.bornDate")}
                 icon={Calendar}
                 mode="flat"

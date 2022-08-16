@@ -8,11 +8,13 @@ import { setUserSession } from "./redux/states/userSession";
 import { setColorMode } from "./redux/states/colorMode";
 import { useDispatch, useSelector } from "react-redux";
 import { StatusBar } from "expo-status-bar";
+import { IntlProvider } from "react-intl";
 import { useEffect } from "react";
 
 function Main() {
   const { isDark, theme } = useSelector(state => state.colorMode);
   const { token } = useSelector(state => state.userSession);
+  const { language } = useSelector(state => state.languagePreference);
   const storedToken = storage.getString(MMKV_USER_TOKEN);
   const storedIsDark = storage.getBoolean(MMKV_IS_DARK);
   const storedTheme = storage.getString(MMKV_THEME);
@@ -40,12 +42,14 @@ function Main() {
   }, []);
 
   return (
-    <PaperProvider theme={isDark ? CombinedDarkTheme : CombinedDefaultTheme}>
-      <NavigationContainer theme={isDark ? CombinedDarkTheme : CombinedDefaultTheme}>
-        <StatusBar style={theme} />
-        {token ? <MainBottomTabsNavigator /> : <WelcomeStackNavigator />}
-      </NavigationContainer>
-    </PaperProvider>
+    <IntlProvider locale={language}>
+      <PaperProvider theme={isDark ? CombinedDarkTheme : CombinedDefaultTheme}>
+        <NavigationContainer theme={isDark ? CombinedDarkTheme : CombinedDefaultTheme}>
+          <StatusBar style={theme} />
+          {token ? <MainBottomTabsNavigator /> : <WelcomeStackNavigator />}
+        </NavigationContainer>
+      </PaperProvider>
+    </IntlProvider>
   );
 }
 
