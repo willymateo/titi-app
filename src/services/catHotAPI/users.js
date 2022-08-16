@@ -6,6 +6,7 @@ axios.defaults.baseURL = Constants.manifest.extra.CATHOT_API_URL;
 
 const createUser = () => {
   const { signUpForm: data } = reduxStore.getState();
+  console.log(data);
 
   return new Promise(resolve => {
     axios

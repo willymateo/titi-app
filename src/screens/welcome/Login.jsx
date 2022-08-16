@@ -1,10 +1,10 @@
 import { useFonts, Pacifico_400Regular as Pacifico400Regular } from "@expo-google-fonts/pacifico";
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
+import { Button, Dialog, Portal, Text, TextInput } from "react-native-paper";
 import { EyeClose, EyeEmpty, KeyAltBack, User } from "iconoir-react-native";
 import { TextInputHF } from "../../components/hookForm/TextInputHF";
 import { MMKV_USER_TOKEN, storage } from "../../share/app.config";
 import { setUserSession } from "../../redux/states/userSession";
-import { Button, Text, TextInput } from "react-native-paper";
 import { LoginFooter } from "../../components/LoginFooter";
 import catHotAPI from "../../services/catHotAPI/api";
 import { useTranslation } from "react-i18next";
@@ -20,11 +20,16 @@ function Login({ navigation }) {
   const [fontsLoaded] = useFonts({
     Pacifico400Regular,
   });
+  const [errorDialog, setErrorDialog] = useState({
+    isVisible: false,
+    title: "Error",
+    content: "",
+  });
   const onPressLogin = async data => {
     try {
       const { token, error } = await catHotAPI.login(data);
       if (error) {
-        console.log("Show modal of error message", error);
+        setErrorDialog({ ...errorDialog, isVisible: true, content: error });
         return;
       }
       storage.set(MMKV_USER_TOKEN, token);
@@ -39,6 +44,23 @@ function Login({ navigation }) {
       style={styles.root}
       behavior={Platform.OS === "ios" ? "padding" : "height"}>
       <View style={{ ...styles.container }}>
+        <Portal>
+          <Dialog
+            visible={errorDialog.isVisible}
+            onDismiss={() => setErrorDialog({ ...errorDialog, isVisible: false })}>
+            {/* <Dialog.Icon icon={props => <EmojiBlinkRight {...props} {...styles.iconoir} />} />*/}
+            <Dialog.Title>{errorDialog.title}</Dialog.Title>
+            <Dialog.Content>
+              <Text>{errorDialog.content}</Text>
+            </Dialog.Content>
+            <Dialog.Actions>
+              <Button onPress={() => setErrorDialog({ ...errorDialog, isVisible: false })}>
+                Ok
+              </Button>
+            </Dialog.Actions>
+          </Dialog>
+        </Portal>
+
         <Text
           style={
             fontsLoaded

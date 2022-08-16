@@ -1,4 +1,5 @@
 import { resetSignUpForm, setSignUpForm } from "../../../redux/states/signUpForm";
+import { Button, Dialog, Portal, Text, TextInput } from "react-native-paper";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
 import { MMKV_USER_TOKEN, storage } from "../../../share/app.config";
@@ -6,22 +7,27 @@ import { setUserSession } from "../../../redux/states/userSession";
 import { LoginFooter } from "../../../components/LoginFooter";
 import catHotAPI from "../../../services/catHotAPI/api";
 import { SmartphoneDevice } from "iconoir-react-native";
-import { Button, TextInput } from "react-native-paper";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 
 function SignUpPhone({ navigation }) {
   const { control, handleSubmit } = useForm();
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const [errorDialog, setErrorDialog] = useState({
+    isVisible: false,
+    title: "Error",
+    content: "",
+  });
 
   const onPressSignUp = async ({ phoneNumber }) => {
     try {
       dispatch(setSignUpForm({ phone: { phoneNumber } }));
       const { token, error } = await catHotAPI.createUser();
       if (error) {
-        console.log("Show modal of error message", error);
+        setErrorDialog({ ...errorDialog, isVisible: true, content: error });
         return;
       }
       storage.set(MMKV_USER_TOKEN, token);
@@ -37,6 +43,23 @@ function SignUpPhone({ navigation }) {
       style={styles.root}
       behavior={Platform.OS === "ios" ? "padding" : "height"}>
       <View style={{ ...styles.container }}>
+        <Portal>
+          <Dialog
+            visible={errorDialog.isVisible}
+            onDismiss={() => setErrorDialog({ ...errorDialog, isVisible: false })}>
+            {/* <Dialog.Icon icon={props => <EmojiBlinkRight {...props} {...styles.iconoir} />} />*/}
+            <Dialog.Title>{errorDialog.title}</Dialog.Title>
+            <Dialog.Content>
+              <Text>{errorDialog.content}</Text>
+            </Dialog.Content>
+            <Dialog.Actions>
+              <Button onPress={() => setErrorDialog({ ...errorDialog, isVisible: false })}>
+                Ok
+              </Button>
+            </Dialog.Actions>
+          </Dialog>
+        </Portal>
+
         <TextInputHF
           style={styles.inputText}
           rules={{

@@ -1,5 +1,5 @@
+import { Button, Dialog, HelperText, Portal, RadioButton, TextInput } from "react-native-paper";
 import { RadioButtonGroupHF } from "../../../components/hookForm/RadioButtonGroupHF";
-import { Button, Dialog, Portal, RadioButton, TextInput } from "react-native-paper";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { DateTimePickerHF } from "../../../components/hookForm/DateTimePickerHF";
 import { EMAIL_REGEX, USERNAME_REGEX } from "../../../share/app.config";
@@ -131,15 +131,7 @@ function SignUp({ navigation }) {
             controllerName="repeatPassword"
             left={<TextInput.Icon name={props => <KeyAltBack {...props} {...styles.iconoir} />} />}
           />
-          <DateTimePickerHF control={control} controllerName="bornDate" mode="date">
-            <InputChip
-              mode="flat"
-              icon={Calendar}
-              label={t("components.inputHookForm.bornDate")}
-              style={styles.inputChip}
-              value={bornDate ? bornDate : t("components.inputHookForm.bornDatePlaceholder")}
-            />
-          </DateTimePickerHF>
+
           <InputChip
             mode="flat"
             label={t("components.inputHookForm.genre")}
@@ -154,9 +146,7 @@ function SignUp({ navigation }) {
           <Portal>
             <Dialog visible={isVisibleGenreRB} onDismiss={() => setIsVisibleGenreRB(false)}>
               {/* <Dialog.Icon icon={props => <EmojiBlinkRight {...props} {...styles.iconoir} />} />*/}
-              <Dialog.Title style={styles.dialogTitle}>
-                {t("components.inputHookForm.genre")}
-              </Dialog.Title>
+              <Dialog.Title>{t("components.inputHookForm.genre")}</Dialog.Title>
               <Dialog.ScrollArea>
                 <ScrollView>
                   <RadioButtonGroupHF
@@ -171,6 +161,17 @@ function SignUp({ navigation }) {
               </Dialog.ScrollArea>
             </Dialog>
           </Portal>
+          <View style={styles.inputChip}>
+            <DateTimePickerHF control={control} controllerName="bornDate" mode="date">
+              <InputChip
+                mode="flat"
+                icon={Calendar}
+                label={t("components.inputHookForm.bornDate")}
+                value={bornDate ? bornDate : t("components.inputHookForm.bornDatePlaceholder")}
+              />
+            </DateTimePickerHF>
+            <HelperText>This is to confirm your legal of age</HelperText>
+          </View>
         </View>
 
         <View>
@@ -201,9 +202,6 @@ const styles = StyleSheet.create({
   iconoir: {
     height: 25,
     width: 25,
-  },
-  dialogTitle: {
-    textAlign: "center",
   },
   inputChip: {
     marginVertical: 12,

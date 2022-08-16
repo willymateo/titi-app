@@ -4,6 +4,7 @@ import axios from "axios";
 axios.defaults.baseURL = Constants.manifest.extra.CATHOT_API_URL;
 
 const login = ({ username, password }) => {
+  console.log(username, password);
   return new Promise(resolve => {
     axios
       .post("/auth/login", { username, password })
