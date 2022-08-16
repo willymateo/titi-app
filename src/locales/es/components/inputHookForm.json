@@ -16,6 +16,7 @@
   "bornDate": "Fecha de nacimiento",
   "bornDateRequired": "Se requiere fecha de nacimiento",
   "bornDatePlaceholder": "Seleccione su fecha de nacimiento",
+  "bornDateHelperText": "Esto es para confirmar su mayoría de edad",
   "genre": "Género",
   "genreRequired": "Se requiere que especifique su género",
   "genrePlaceholder": "Seleccione su género",

@@ -4,9 +4,9 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { DateTimePickerHF } from "../../../components/hookForm/DateTimePickerHF";
 import { EMAIL_REGEX, USERNAME_REGEX } from "../../../share/app.config";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
+import { Platform, ScrollView, StyleSheet, View } from "react-native";
 import { setSignUpForm } from "../../../redux/states/signUpForm";
 import { LoginFooter } from "../../../components/LoginFooter";
-import { ScrollView, StyleSheet, View } from "react-native";
 import { InputChip } from "../../../components/InputChip";
 import { parseISO, intlFormat } from "date-fns";
 import { useTranslation } from "react-i18next";
@@ -27,7 +27,13 @@ import {
 function SignUp({ navigation }) {
   const [isVisibleGenreRB, setIsVisibleGenreRB] = useState(false);
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
-  const { control, handleSubmit, watch } = useForm();
+  const {
+    watch,
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  console.log(errors);
   const idGenreSelected = watch("idGenre");
   const password = watch("password");
   const bornDate = watch("bornDate");
@@ -70,10 +76,10 @@ function SignUp({ navigation }) {
                 message: t("components.inputHookForm.emailInvalid"),
               },
             }}
-            label={t("components.inputHookForm.email")}
             control={control}
             controllerName="email"
             style={styles.inputText}
+            label={t("components.inputHookForm.email")}
             left={<TextInput.Icon name={props => <Mail {...props} {...styles.iconoir} />} />}
           />
           <TextInputHF
@@ -92,22 +98,23 @@ function SignUp({ navigation }) {
                 message: t("components.inputHookForm.usernameRegex"),
               },
             }}
-            label={t("components.inputHookForm.username")}
             control={control}
             style={styles.inputText}
             controllerName="username"
+            label={t("components.inputHookForm.username")}
             left={<TextInput.Icon name={props => <User {...props} {...styles.iconoir} />} />}
           />
           <TextInputHF
-            label={t("components.inputHookForm.password")}
             control={control}
             style={styles.inputText}
             controllerName="password"
             secureTextEntry={isPasswordHidden}
+            label={t("components.inputHookForm.password")}
             rules={{ required: t("components.inputHookForm.passwordRequired") }}
             left={<TextInput.Icon name={props => <KeyAlt {...props} {...styles.iconoir} />} />}
             right={
               <TextInput.Icon
+                onPress={() => setIsPasswordHidden(!isPasswordHidden)}
                 name={props => {
                   return isPasswordHidden ? (
                     <EyeClose {...props} {...styles.iconoir} />
@@ -115,7 +122,6 @@ function SignUp({ navigation }) {
                     <EyeEmpty {...props} {...styles.iconoir} />
                   );
                 }}
-                onPress={() => setIsPasswordHidden(!isPasswordHidden)}
               />
             }
           />
@@ -126,22 +132,21 @@ function SignUp({ navigation }) {
             }}
             secureTextEntry
             control={control}
-            label={t("components.inputHookForm.repeatPassword")}
             style={styles.inputText}
             controllerName="repeatPassword"
+            label={t("components.inputHookForm.repeatPassword")}
             left={<TextInput.Icon name={props => <KeyAltBack {...props} {...styles.iconoir} />} />}
           />
-
           <InputChip
-            mode="flat"
-            label={t("components.inputHookForm.genre")}
-            icon={PeopleRounded}
-            style={styles.inputChip}
-            onPress={() => setIsVisibleGenreRB(true)}
             value={
               genres.filter(({ id }) => id === idGenreSelected).map(({ genre }) => genre)[0] ||
               t("components.inputHookForm.genrePlaceholder")
             }
+            label={t("components.inputHookForm.genre")}
+            onPress={() => setIsVisibleGenreRB(true)}
+            style={styles.inputChip}
+            icon={PeopleRounded}
+            mode="flat"
           />
           <Portal>
             <Dialog visible={isVisibleGenreRB} onDismiss={() => setIsVisibleGenreRB(false)}>
@@ -154,7 +159,12 @@ function SignUp({ navigation }) {
                     controllerName="idGenre"
                     rules={{ required: t("components.inputHookForm.genreRequired") }}>
                     {genres.map(({ id, genre }) => (
-                      <RadioButton.Item label={genre} value={id} key={id} />
+                      <RadioButton.Item
+                        mode={Platform.OS === "ios" ? "ios" : "android"}
+                        label={genre}
+                        value={id}
+                        key={id}
+                      />
                     ))}
                   </RadioButtonGroupHF>
                 </ScrollView>
@@ -164,13 +174,13 @@ function SignUp({ navigation }) {
           <View style={styles.inputChip}>
             <DateTimePickerHF control={control} controllerName="bornDate" mode="date">
               <InputChip
-                mode="flat"
-                icon={Calendar}
-                label={t("components.inputHookForm.bornDate")}
                 value={bornDate ? bornDate : t("components.inputHookForm.bornDatePlaceholder")}
+                label={t("components.inputHookForm.bornDate")}
+                icon={Calendar}
+                mode="flat"
               />
             </DateTimePickerHF>
-            <HelperText>This is to confirm your legal of age</HelperText>
+            <HelperText>{t("components.inputHookForm.bornDateHelperText")}</HelperText>
           </View>
         </View>
 
@@ -179,8 +189,8 @@ function SignUp({ navigation }) {
             {t("screens.signUp.continue")}
           </Button>
           <LoginFooter
-            onPressLogin={() => navigation.navigate("Login")}
             onPressAccountRecovery={() => navigation.navigate("AccountRecovery")}
+            onPressLogin={() => navigation.navigate("Login")}
           />
         </View>
       </View>
