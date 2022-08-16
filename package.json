@@ -17,6 +17,9 @@
   "dependencies": {
     "@expo-google-fonts/pacifico": "^0.2.2",
     "@formatjs/intl-datetimeformat": "^6.0.3",
+    "@formatjs/intl-getcanonicallocales": "^2.0.2",
+    "@formatjs/intl-locale": "^3.0.3",
+    "@formatjs/intl-numberformat": "^8.0.4",
     "@formatjs/intl-pluralrules": "^5.0.3",
     "@react-native-community/datetimepicker": "6.1.2",
     "@react-navigation/material-bottom-tabs": "^6.2.2",

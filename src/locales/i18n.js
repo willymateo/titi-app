@@ -1,7 +1,10 @@
 // Polyfills
 // Is important the order
 // Check if in the newest version of react native are necesaries
+import "@formatjs/intl-locale/polyfill";
+import "@formatjs/intl-getcanonicallocales/polyfill";
 import "@formatjs/intl-pluralrules/polyfill";
+import "@formatjs/intl-numberformat/polyfill";
 import "@formatjs/intl-datetimeformat/polyfill";
 
 import { languageDetector } from "./plugins/languageDetector";
