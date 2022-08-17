@@ -42,9 +42,9 @@ function Welcome({ navigation }) {
         </View>
         <View style={styles.logoContainer}>
           {isDark ? (
-            <DarkLogo width={styles.logo.width} />
+            <DarkLogo width={styles.logo.width} height={styles.logo.height} />
           ) : (
-            <LightLogo width={styles.logo.width} />
+            <LightLogo width={styles.logo.width} height={styles.logo.height} />
           )}
         </View>
         <View style={styles.buttonsContainer}>
@@ -110,6 +110,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   logo: {
+    height: "100%",
     width: "70%",
   },
   buttons: {
