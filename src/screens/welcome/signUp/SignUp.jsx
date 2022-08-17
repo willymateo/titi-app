@@ -8,10 +8,10 @@ import { Platform, ScrollView, StyleSheet, View } from "react-native";
 import { setSignUpForm } from "../../../redux/states/signUpForm";
 import { LoginFooter } from "../../../components/LoginFooter";
 import { InputChip } from "../../../components/InputChip";
+import { useDispatch, useSelector } from "react-redux";
 import { parseISO, intlFormat } from "date-fns";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import { useState } from "react";
 import {
   Mail,
@@ -25,6 +25,7 @@ import {
 } from "iconoir-react-native";
 
 function SignUp({ navigation }) {
+  const { language } = useSelector(state => state.languagePreference);
   const [isVisibleGenreRB, setIsVisibleGenreRB] = useState(false);
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   const {
@@ -184,7 +185,7 @@ function SignUp({ navigation }) {
                           month: "long",
                           day: "numeric",
                         },
-                        { locale: "en" }
+                        { locale: language }
                       )
                     : t("components.inputHookForm.bornDatePlaceholder")
                 }

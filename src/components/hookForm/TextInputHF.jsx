@@ -29,7 +29,12 @@ function TextInputHF({
             label={label}
             value={value}
             right={right}
-            onBlur={onBlur}
+            onBlur={() => {
+              if (value) {
+                onChange(value.trim());
+              }
+              onBlur();
+            }}
             onChangeText={onChange}
             placeholder={placeholder}
             secureTextEntry={secureTextEntry}
