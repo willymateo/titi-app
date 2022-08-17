@@ -54,6 +54,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "babel-plugin-formatjs": "^10.3.25",
     "eslint": "^8.18.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^8.5.0",
