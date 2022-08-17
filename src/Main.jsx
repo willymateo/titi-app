@@ -1,5 +1,5 @@
+import { logger, MMKV_IS_DARK, MMKV_THEME, MMKV_USER_TOKEN, storage } from "./share/app.config";
 import { MainBottomTabsNavigator } from "./components/navigation/MainBottomTabsNavigator";
-import { MMKV_IS_DARK, MMKV_THEME, MMKV_USER_TOKEN, storage } from "./share/app.config";
 import { WelcomeStackNavigator } from "./components/navigation/WelcomeStackNavigator";
 import { CombinedDarkTheme, CombinedDefaultTheme } from "./theme/theme";
 import { Provider as PaperProvider } from "react-native-paper";
@@ -12,27 +12,30 @@ import { IntlProvider } from "react-intl";
 import { useEffect } from "react";
 
 function Main() {
+  const { language } = useSelector(state => state.languagePreference);
   const { isDark, theme } = useSelector(state => state.colorMode);
   const { token } = useSelector(state => state.userSession);
-  const { language } = useSelector(state => state.languagePreference);
   const storedToken = storage.getString(MMKV_USER_TOKEN);
   const storedIsDark = storage.getBoolean(MMKV_IS_DARK);
   const storedTheme = storage.getString(MMKV_THEME);
   const dispatch = useDispatch();
 
-  // To change or delete
   useEffect(() => {
     if (storedTheme && storedIsDark !== undefined) {
+      logger("Stored isDark:", storedIsDark);
+      logger("Stored theme:", storedTheme);
       dispatch(setColorMode({ theme: storedTheme, isDark: storedIsDark }));
       return;
     }
+    logger("No stored isDark, using default:", isDark);
+    logger("No stored theme, using default:", theme);
     storage.set(MMKV_IS_DARK, isDark);
     storage.set(MMKV_THEME, theme);
   }, []);
 
-  // To change or delete
   useEffect(() => {
     if (storedToken) {
+      logger("Stored token:", storedToken);
       dispatch(setUserSession({ token: storedToken }));
       return;
     }

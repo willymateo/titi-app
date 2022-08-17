@@ -1,6 +1,6 @@
 // Polyfills
 // Is important the order
-// Check if in the newest version of react native are necesaries
+// TODO: Check if in the newest version of react native are necesaries
 import "@formatjs/intl-getcanonicallocales/polyfill";
 import "@formatjs/intl-locale/polyfill";
 import "@formatjs/intl-pluralrules/polyfill";
