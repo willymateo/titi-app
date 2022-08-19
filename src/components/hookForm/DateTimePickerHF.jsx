@@ -13,7 +13,7 @@ function DateTimePickerHF({ control, controllerName, mode, children }) {
         control={control}
         name={controllerName}
         defaultValue={formatISO(new Date())}
-        render={({ field: { value, onChange } }) => {
+        render={({ field: { value, onChange, onBlur } }) => {
           return isVisible ? (
             <DateTimePicker
               mode={mode}
@@ -21,6 +21,7 @@ function DateTimePickerHF({ control, controllerName, mode, children }) {
               onChange={(event, value) => {
                 setIsVisible(false);
                 onChange(formatISO(value));
+                onBlur();
               }}
             />
           ) : (

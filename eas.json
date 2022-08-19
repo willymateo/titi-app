@@ -13,8 +13,8 @@
       "env": {
         "APP_ENV": "development",
         "APP_NAME": "CatHot Dev",
-        "IOS_BUNDL_ID": "com.darkosoft.cathot.dev",
-        "ANDROID_PKG": "com.darkosoft.cathot.dev",
+        "IOS_BUNDL_ID": "com.darkos.cathot.dev",
+        "ANDROID_PKG": "com.darkos.cathot.dev",
         "CATHOT_API_URL": "https://cathot-development.up.railway.app/api"
       }
     },
@@ -24,8 +24,8 @@
       "env": {
         "APP_ENV": "preview",
         "APP_NAME": "CatHot Prev",
-        "IOS_BUNDL_ID": "com.darkosoft.cathot.prev",
-        "ANDROID_PKG": "com.darkosoft.cathot.prev",
+        "IOS_BUNDL_ID": "com.darkos.cathot.prev",
+        "ANDROID_PKG": "com.darkos.cathot.prev",
         "CATHOT_API_URL": "https://cathot-development.up.railway.app/api"
       }
     },
@@ -34,8 +34,8 @@
       "env": {
         "APP_ENV": "production",
         "APP_NAME": "CatHot",
-        "IOS_BUNDL_ID": "com.darkosoft.cathot",
-        "ANDROID_PKG": "com.darkosoft.cathot",
+        "IOS_BUNDL_ID": "com.darkos.cathot",
+        "ANDROID_PKG": "com.darkos.cathot",
         "CATHOT_API_URL": "https://cathot.up.railway.app/api"
       }
     }

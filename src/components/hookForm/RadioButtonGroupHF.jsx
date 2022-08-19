@@ -8,9 +8,14 @@ function RadioButtonGroupHF({ rules = {}, control, children, controllerName }) {
       rules={rules}
       control={control}
       name={controllerName}
-      render={({ field: { value, onChange }, fieldState: { error } }) => (
+      render={({ field: { value, onChange, onBlur }, fieldState: { error } }) => (
         <View>
-          <RadioButton.Group value={value} onValueChange={onChange}>
+          <RadioButton.Group
+            value={value}
+            onValueChange={value => {
+              onChange(value);
+              onBlur();
+            }}>
             {children}
           </RadioButton.Group>
 
