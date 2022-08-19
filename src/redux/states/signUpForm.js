@@ -16,7 +16,7 @@ const emptyState = {
   },
   profileInformation: {
     bornDate: null,
-    idGenre: null,
+    idGender: null,
   },
 };
 

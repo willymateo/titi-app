@@ -26,7 +26,7 @@ import {
 
 function SignUp({ navigation }) {
   const { language } = useSelector(state => state.languagePreference);
-  const [isVisibleGenreRB, setIsVisibleGenreRB] = useState(false);
+  const [isVisibleGenderRB, setIsVisibleGenderRB] = useState(false);
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   const {
     watch,
@@ -35,13 +35,13 @@ function SignUp({ navigation }) {
     formState: { errors },
   } = useForm();
   console.log(errors);
-  const idGenreSelected = watch("idGenre");
+  const idGenderSelected = watch("idGender");
   const password = watch("password");
   const bornDate = watch("bornDate");
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
-  const onPressContinue = ({ username, password, email, bornDate, idGenre }) => {
+  const onPressContinue = ({ username, password, email, bornDate, idGender }) => {
     dispatch(
       setSignUpForm({
         username,
@@ -49,17 +49,19 @@ function SignUp({ navigation }) {
         email,
         profileInformation: {
           bornDate,
-          idGenre,
+          idGender,
         },
       })
     );
     navigation.navigate("SignUpPhone");
   };
 
-  const genres = [
-    { id: 1, genre: "not_specified" },
-    { id: 2, genre: "male" },
-    { id: 3, genre: "female" },
+  const genders = [
+    { id: 1, gender: "male" },
+    { id: 2, gender: "female" },
+    { id: 3, gender: "gay" },
+    { id: 4, gender: "lesbian" },
+    { id: 5, gender: "no_binary" },
   ];
 
   return (
@@ -140,26 +142,26 @@ function SignUp({ navigation }) {
           />
           <InputChip
             value={
-              genres.filter(({ id }) => id === idGenreSelected).map(({ genre }) => genre)[0] ||
-              t("components.inputHookForm.genrePlaceholder")
+              genders.filter(({ id }) => id === idGenderSelected).map(({ gender }) => gender)[0] ||
+              t("components.inputHookForm.genderPlaceholder")
             }
-            label={t("components.inputHookForm.genre")}
-            onPress={() => setIsVisibleGenreRB(true)}
+            label={t("components.inputHookForm.gender")}
+            onPress={() => setIsVisibleGenderRB(true)}
             style={styles.inputChip}
             icon={PeopleRounded}
             mode="flat"
           />
           <Portal>
-            <Dialog visible={isVisibleGenreRB} onDismiss={() => setIsVisibleGenreRB(false)}>
+            <Dialog visible={isVisibleGenderRB} onDismiss={() => setIsVisibleGenderRB(false)}>
               {/* <Dialog.Icon icon={props => <EmojiBlinkRight {...props} {...styles.iconoir} />} />*/}
-              <Dialog.Title>{t("components.inputHookForm.genre")}</Dialog.Title>
+              <Dialog.Title>{t("components.inputHookForm.gender")}</Dialog.Title>
               <Dialog.ScrollArea>
                 <ScrollView>
                   <RadioButtonGroupHF
                     control={control}
-                    controllerName="idGenre"
-                    items={genres.map(({ id, genre }) => ({ id, value: genre }))}
-                    rules={{ required: t("components.inputHookForm.genreRequired") }}
+                    controllerName="idGender"
+                    items={genders.map(({ id, gender }) => ({ id, value: gender }))}
+                    rules={{ required: t("components.inputHookForm.genderRequired") }}
                   />
                 </ScrollView>
               </Dialog.ScrollArea>
