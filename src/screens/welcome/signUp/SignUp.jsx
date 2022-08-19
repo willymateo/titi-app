@@ -1,12 +1,12 @@
-import { Button, Dialog, HelperText, Portal, RadioButton, TextInput } from "react-native-paper";
 import { RadioButtonGroupHF } from "../../../components/hookForm/RadioButtonGroupHF";
+import { Button, Dialog, HelperText, Portal, TextInput } from "react-native-paper";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { DateTimePickerHF } from "../../../components/hookForm/DateTimePickerHF";
 import { EMAIL_REGEX, USERNAME_REGEX } from "../../../share/app.config";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
-import { Platform, ScrollView, StyleSheet, View } from "react-native";
 import { setSignUpForm } from "../../../redux/states/signUpForm";
 import { LoginFooter } from "../../../components/LoginFooter";
+import { ScrollView, StyleSheet, View } from "react-native";
 import { InputChip } from "../../../components/InputChip";
 import { useDispatch, useSelector } from "react-redux";
 import { parseISO, intlFormat } from "date-fns";
@@ -158,16 +158,9 @@ function SignUp({ navigation }) {
                   <RadioButtonGroupHF
                     control={control}
                     controllerName="idGenre"
-                    rules={{ required: t("components.inputHookForm.genreRequired") }}>
-                    {genres.map(({ id, genre }) => (
-                      <RadioButton.Item
-                        mode={Platform.OS === "ios" ? "ios" : "android"}
-                        label={genre}
-                        value={id}
-                        key={id}
-                      />
-                    ))}
-                  </RadioButtonGroupHF>
+                    items={genres.map(({ id, genre }) => ({ id, value: genre }))}
+                    rules={{ required: t("components.inputHookForm.genreRequired") }}
+                  />
                 </ScrollView>
               </Dialog.ScrollArea>
             </Dialog>

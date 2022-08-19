@@ -1,8 +1,8 @@
 import { HelperText, RadioButton } from "react-native-paper";
+import { Platform, View } from "react-native";
 import { Controller } from "react-hook-form";
-import { View } from "react-native";
 
-function RadioButtonGroupHF({ rules = {}, control, children, controllerName }) {
+function RadioButtonGroupHF({ rules = {}, control, controllerName, items }) {
   return (
     <Controller
       rules={rules}
@@ -16,7 +16,14 @@ function RadioButtonGroupHF({ rules = {}, control, children, controllerName }) {
               onChange(value);
               onBlur();
             }}>
-            {children}
+            {items.map(({ id, value }) => (
+              <RadioButton.Item
+                mode={Platform.OS === "ios" ? "ios" : "android"}
+                label={value}
+                value={id}
+                key={id}
+              />
+            ))}
           </RadioButton.Group>
 
           {error && (
