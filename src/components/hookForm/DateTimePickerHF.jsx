@@ -1,34 +1,30 @@
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { useController } from "react-hook-form";
 import { formatISO, parseISO } from "date-fns";
 import { cloneElement, useState } from "react";
-import { Controller } from "react-hook-form";
 
-function DateTimePickerHF({ control, controllerName, mode, children }) {
+function DateTimePickerHF({ control, controllerName, mode, children, rules = {} }) {
   const [isVisible, setIsVisible] = useState(false);
+  const {
+    field: { value, onChange, onBlur },
+  } = useController({ control, rules, name: controllerName, defaultValue: formatISO(new Date()) });
 
   return (
     <>
       {cloneElement(children, { onPress: () => setIsVisible(true) })}
-      <Controller
-        control={control}
-        name={controllerName}
-        defaultValue={formatISO(new Date())}
-        render={({ field: { value, onChange, onBlur } }) => {
-          return isVisible ? (
-            <DateTimePicker
-              mode={mode}
-              value={parseISO(value)}
-              onChange={(event, value) => {
-                setIsVisible(false);
-                onChange(formatISO(value));
-                onBlur();
-              }}
-            />
-          ) : (
-            <></>
-          );
-        }}
-      />
+      {isVisible ? (
+        <DateTimePicker
+          mode={mode}
+          value={parseISO(value)}
+          onChange={(event, value) => {
+            setIsVisible(false);
+            onChange(formatISO(value));
+            onBlur();
+          }}
+        />
+      ) : (
+        <></>
+      )}
     </>
   );
 }
