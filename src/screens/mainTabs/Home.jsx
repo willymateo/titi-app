@@ -1,10 +1,31 @@
+import { Avatar, Button, Card, Paragraph } from "react-native-paper";
+import { UserCircleAlt } from "iconoir-react-native";
 import { StyleSheet, View } from "react-native";
-import { Text } from "react-native-paper";
 
 function Home() {
   return (
     <View style={styles.container}>
-      <Text variant="displayLarge">Home Screen</Text>
+      <Card>
+        <Card.Title
+          title="Go to cinema"
+          subtitle="willymateo"
+          left={props => (
+            <Avatar.Icon
+              {...props}
+              icon={props => <UserCircleAlt {...props} {...styles.iconoir} />}
+            />
+          )}
+        />
+        <Card.Content>
+          <Paragraph>
+            This is a example of CatHot adventure. I would like to go to cinema with a girl this
+            fridary afternoon.
+          </Paragraph>
+        </Card.Content>
+        <Card.Actions>
+          <Button onPress={() => console.log("Engage")}>Engage</Button>
+        </Card.Actions>
+      </Card>
     </View>
   );
 }
@@ -12,8 +33,11 @@ function Home() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
     justifyContent: "center",
+  },
+  iconoir: {
+    height: 25,
+    width: 25,
   },
 });
 

@@ -49,7 +49,7 @@ function Main() {
       <PaperProvider theme={isDark ? CombinedDarkTheme : CombinedDefaultTheme}>
         <NavigationContainer theme={isDark ? CombinedDarkTheme : CombinedDefaultTheme}>
           <StatusBar style={theme} />
-          {token ? <MainBottomTabsNavigator /> : <WelcomeStackNavigator />}
+          {!token ? <MainBottomTabsNavigator /> : <WelcomeStackNavigator />}
         </NavigationContainer>
       </PaperProvider>
     </IntlProvider>
