@@ -8,11 +8,12 @@ import { setSignUpForm } from "../../../redux/states/signUpForm";
 import { LoginFooter } from "../../../components/LoginFooter";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { InputChip } from "../../../components/InputChip";
+import catHotAPI from "../../../services/catHotAPI/api";
 import { useDispatch, useSelector } from "react-redux";
 import { parseISO, intlFormat } from "date-fns";
 import { useTranslation } from "react-i18next";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 import {
   Mail,
   User,
@@ -28,6 +29,7 @@ function SignUp({ navigation }) {
   const { language } = useSelector(state => state.languagePreference);
   const [isVisibleGenderRB, setIsVisibleGenderRB] = useState(false);
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
+  const [genders, setGenders] = useState([]);
   const {
     watch,
     control,
@@ -56,13 +58,17 @@ function SignUp({ navigation }) {
     navigation.navigate("SignUpPhone");
   };
 
-  const genders = [
-    { id: 1, gender: "male" },
-    { id: 2, gender: "female" },
-    { id: 3, gender: "gay" },
-    { id: 4, gender: "lesbian" },
-    { id: 5, gender: "no_binary" },
-  ];
+  useEffect(() => {
+    const fetchGenders = async () => {
+      const response = await catHotAPI.getAllGenders();
+      if (response.error) {
+        console.log(response.error);
+      }
+      setGenders(response);
+    };
+
+    fetchGenders();
+  }, []);
 
   return (
     <KeyboardAwareScrollView
