@@ -1,4 +1,3 @@
-import { RadioButtonGroupHF } from "../../../components/hookForm/RadioButtonGroupHF";
 import { Button, Dialog, HelperText, Portal, TextInput } from "react-native-paper";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { DateTimePickerHF } from "../../../components/hookForm/DateTimePickerHF";
@@ -9,11 +8,10 @@ import { LoginFooter } from "../../../components/LoginFooter";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { InputChip } from "../../../components/InputChip";
 import { useDispatch, useSelector } from "react-redux";
-import catHotAPI from "../../../services/catHot/api";
 import { parseISO, intlFormat } from "date-fns";
 import { useTranslation } from "react-i18next";
-import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import {
   Mail,
   User,
@@ -24,19 +22,13 @@ import {
   KeyAltBack,
   PeopleRounded,
 } from "iconoir-react-native";
+import { GendersRadioButtons } from "../../../components/GendersRadioButtons";
 
 function SignUp({ navigation }) {
   const { language } = useSelector(state => state.languagePreference);
   const [isVisibleGenderRB, setIsVisibleGenderRB] = useState(false);
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
-  const [genders, setGenders] = useState([]);
-  const {
-    watch,
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
-  console.log(errors);
+  const { watch, control, handleSubmit } = useForm();
   const idGenderSelected = watch("idGender");
   const password = watch("password");
   const bornDate = watch("bornDate");
@@ -57,19 +49,6 @@ function SignUp({ navigation }) {
     );
     navigation.navigate("SignUpPhone");
   };
-
-  useEffect(() => {
-    const fetchGenders = async () => {
-      const response = await catHotAPI.getAllGenders();
-      if (response.error) {
-        console.log(response.error);
-        return;
-      }
-      setGenders(response);
-    };
-
-    fetchGenders();
-  }, []);
 
   return (
     <KeyboardAwareScrollView
@@ -148,10 +127,7 @@ function SignUp({ navigation }) {
             left={<TextInput.Icon name={props => <KeyAltBack {...props} {...styles.iconoir} />} />}
           />
           <InputChip
-            value={
-              genders.filter(({ id }) => id === idGenderSelected).map(({ gender }) => gender)[0] ||
-              t("components.inputHookForm.genderPlaceholder")
-            }
+            value={t("components.inputHookForm.genderPlaceholder")}
             label={t("components.inputHookForm.gender")}
             onPress={() => setIsVisibleGenderRB(true)}
             style={styles.inputChip}
@@ -164,12 +140,7 @@ function SignUp({ navigation }) {
               <Dialog.Title>{t("components.inputHookForm.gender")}</Dialog.Title>
               <Dialog.ScrollArea>
                 <ScrollView>
-                  <RadioButtonGroupHF
-                    control={control}
-                    controllerName="idGender"
-                    items={genders.map(({ id, gender }) => ({ id, value: gender }))}
-                    rules={{ required: t("components.inputHookForm.genderRequired") }}
-                  />
+                  <GendersRadioButtons control={control} controllerName="idGender" />
                 </ScrollView>
               </Dialog.ScrollArea>
             </Dialog>

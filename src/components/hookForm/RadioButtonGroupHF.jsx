@@ -2,7 +2,7 @@ import { HelperText, RadioButton } from "react-native-paper";
 import { useController } from "react-hook-form";
 import { Platform, View } from "react-native";
 
-function RadioButtonGroupHF({ rules = {}, control, controllerName, items }) {
+function RadioButtonGroupHF({ rules = {}, control, controllerName, items = [] }) {
   const {
     fieldState: { error },
     field: { value, onChange, onBlur },

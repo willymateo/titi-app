@@ -1,10 +1,17 @@
 import { axiosCatHot, errorHandler } from "./axios.config";
+import useSWR from "swr";
 
-const getAllAdventures = async () => {
+const getAllAdventuresUrl = "/adventures";
+const getAllAdventures = async url => {
   axiosCatHot
-    .get("/adventures")
+    .get(url)
     .then(({ data }) => data)
     .catch(errorHandler);
 };
 
-export { getAllAdventures };
+const useAdventures = () => {
+  const response = useSWR(getAllAdventuresUrl, getAllAdventures);
+  return response;
+};
+
+export { getAllAdventures, getAllAdventuresUrl, useAdventures };
