@@ -1,13 +1,13 @@
-import Constants from "expo-constants";
-import axios from "axios";
+import { reduxStore } from "../../redux/store";
+import { axiosCatHot } from "./axios.config";
 
-axios.defaults.baseURL = Constants.manifest.extra.CATHOT_API_URL;
+const createUser = () => {
+  const { signUpForm: data } = reduxStore.getState();
+  console.log(data);
 
-const login = ({ username, password }) => {
-  console.log(username, password);
   return new Promise((resolve, reject) => {
-    axios
-      .post("/auth/login", { username, password })
+    axiosCatHot
+      .post("/users", data)
       .then(({ data }) => resolve(data))
       .catch(({ request, response }) => {
         if (response) {
@@ -33,4 +33,4 @@ const login = ({ username, password }) => {
   });
 };
 
-export { login };
+export { createUser };

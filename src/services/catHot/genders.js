@@ -1,16 +1,9 @@
-import { reduxStore } from "../../redux/store";
-import Constants from "expo-constants";
-import axios from "axios";
+import { axiosCatHot } from "./axios.config";
 
-axios.defaults.baseURL = Constants.manifest.extra.CATHOT_API_URL;
-
-const createUser = () => {
-  const { signUpForm: data } = reduxStore.getState();
-  console.log(data);
-
+const getAllGenders = () => {
   return new Promise((resolve, reject) => {
-    axios
-      .post("/users", data)
+    axiosCatHot
+      .get("/genders")
       .then(({ data }) => resolve(data))
       .catch(({ request, response }) => {
         if (response) {
@@ -36,4 +29,4 @@ const createUser = () => {
   });
 };
 
-export { createUser };
+export { getAllGenders };

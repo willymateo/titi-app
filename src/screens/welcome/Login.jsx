@@ -6,7 +6,7 @@ import { TextInputHF } from "../../components/hookForm/TextInputHF";
 import { MMKV_USER_TOKEN, storage } from "../../share/app.config";
 import { setUserSession } from "../../redux/states/userSession";
 import { LoginFooter } from "../../components/LoginFooter";
-import catHotAPI from "../../services/catHotAPI/api";
+import catHotAPI from "../../services/catHot/api";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";

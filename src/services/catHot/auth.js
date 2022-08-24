@@ -1,12 +1,11 @@
-import Constants from "expo-constants";
-import axios from "axios";
+import { axiosCatHot } from "./axios.config";
 
-axios.defaults.baseURL = Constants.manifest.extra.CATHOT_API_URL;
+const login = ({ username, password }) => {
+  console.log(username, password);
 
-const getAllGenders = () => {
   return new Promise((resolve, reject) => {
-    axios
-      .get("/genders")
+    axiosCatHot
+      .post("/auth/login", { username, password })
       .then(({ data }) => resolve(data))
       .catch(({ request, response }) => {
         if (response) {
@@ -32,4 +31,4 @@ const getAllGenders = () => {
   });
 };
 
-export { getAllGenders };
+export { login };

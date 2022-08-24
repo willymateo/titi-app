@@ -8,8 +8,8 @@ import { setSignUpForm } from "../../../redux/states/signUpForm";
 import { LoginFooter } from "../../../components/LoginFooter";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { InputChip } from "../../../components/InputChip";
-import catHotAPI from "../../../services/catHotAPI/api";
 import { useDispatch, useSelector } from "react-redux";
+import catHotAPI from "../../../services/catHot/api";
 import { parseISO, intlFormat } from "date-fns";
 import { useTranslation } from "react-i18next";
 import { useEffect, useState } from "react";
@@ -63,6 +63,7 @@ function SignUp({ navigation }) {
       const response = await catHotAPI.getAllGenders();
       if (response.error) {
         console.log(response.error);
+        return;
       }
       setGenders(response);
     };
