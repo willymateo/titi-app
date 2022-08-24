@@ -11,14 +11,15 @@ const createUser = () => {
       .then(({ data }) => resolve(data))
       .catch(({ request, response }) => {
         if (response) {
-          if (!response.token) {
+          if (!response.data?.error) {
             resolve({
+              status: response.status,
               error: "Unexpected error ocurred",
             });
           }
           resolve({
-            status: response.status,
             ...response.data,
+            status: response.status,
           });
         } else if (request) {
           resolve({
