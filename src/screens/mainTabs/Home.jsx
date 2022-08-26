@@ -2,7 +2,11 @@ import { AdventuresCard } from "../../components/AdventuresCard";
 import { StyleSheet, View } from "react-native";
 
 function Home() {
-  return <View style={styles.container}></View>;
+  return (
+    <View style={styles.container}>
+      <AdventuresCard />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

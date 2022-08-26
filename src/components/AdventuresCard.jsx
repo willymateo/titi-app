@@ -8,8 +8,6 @@ import { useSelector } from "react-redux";
 function AdventuresCard() {
   const { language } = useSelector(state => state.languagePreference);
   const { data: adventures, error, isValidating } = useAdventures();
-  console.log("adventures", adventures);
-  console.log("error", error);
 
   if (isValidating) {
     return <ActivityIndicator size="large" />;
@@ -23,7 +21,7 @@ function AdventuresCard() {
     <View style={styles.container}>
       {adventures.map(
         ({ id, title, description, endDateTime, numInvitations, publisher: { username } }) => (
-          <Card key={id}>
+          <Card key={id} style={styles.card}>
             <Card.Title
               title={title}
               subtitle={username}
@@ -63,7 +61,10 @@ function AdventuresCard() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-start",
+  },
+  card: {
+    marginVertical: 4,
   },
   iconoir: {
     height: 25,

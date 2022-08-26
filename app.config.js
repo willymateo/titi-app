@@ -35,6 +35,9 @@ export default () => {
       CATHOT_API_URL: process.env.CATHOT_API_URL,
       MMKV_ID: process.env.MMKV_ID,
       MMKV_KEY: process.env.MMKV_KEY,
+      eas: {
+        projectId: "e7266ea4-aef5-4213-92ad-e0846267007e",
+      },
     },
   };
 };
