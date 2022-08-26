@@ -20,6 +20,7 @@
   "plugins": ["react", "react-native"],
   "rules": {
     "react/no-unescaped-entities": "off",
+    "no-throw-literal": "off",
     "react/prop-types": "off",
     "require-jsdoc": "off",
     "semi": ["error", "always"],

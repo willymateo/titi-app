@@ -28,4 +28,17 @@ const errorHandler = ({ request, response }) => {
   }
 };
 
-export { axiosCatHot, errorHandler };
+const errorHandlerSWR = ({ request, response }) => {
+  if (response) {
+    if (!response.data?.error) {
+      throw "Unexpected error ocurred";
+    }
+    throw response.data.error;
+  } else if (request) {
+    throw "The request was made but no response was received";
+  } else {
+    throw "Unexpected error ocurred";
+  }
+};
+
+export { axiosCatHot, errorHandler, errorHandlerSWR };

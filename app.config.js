@@ -33,6 +33,8 @@ export default () => {
     extra: {
       APP_ENV: process.env.APP_ENV,
       CATHOT_API_URL: process.env.CATHOT_API_URL,
+      MMKV_ID: process.env.MMKV_ID,
+      MMKV_KEY: process.env.MMKV_KEY,
     },
   };
 };

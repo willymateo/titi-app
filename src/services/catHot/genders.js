@@ -1,4 +1,4 @@
-import { axiosCatHot, errorHandler } from "./axios.config";
+import { axiosCatHot, errorHandlerSWR } from "./axios.config";
 import useSWR from "swr";
 
 const getAllGendersUrl = "/genders";
@@ -6,7 +6,7 @@ const getAllGenders = async url =>
   axiosCatHot
     .get(url)
     .then(({ data }) => data)
-    .catch(errorHandler);
+    .catch(errorHandlerSWR);
 
 const useGenders = () => {
   const response = useSWR(getAllGendersUrl, getAllGenders);

@@ -8,7 +8,10 @@ const MMKV_LNG = "languagePreference.language";
 const MMKV_USER_TOKEN = "userSession.token";
 const MMKV_THEME = "colorMode.theme";
 const MMKV_IS_DARK = "colorMode.isDark";
-const storage = new MMKV();
+const storage = new MMKV({
+  id: Constants.manifest.extra.MMKV_ID,
+  encryptionKey: Constants.manifest.extra.MMKV_KEY,
+});
 
 const logger = (...args) => {
   if (Constants.manifest.extra.APP_ENV === "development") {
