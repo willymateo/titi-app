@@ -48,7 +48,7 @@ function Main() {
     <IntlProvider locale={language}>
       <PaperProvider theme={isDark ? CombinedDarkTheme : CombinedDefaultTheme}>
         <NavigationContainer theme={isDark ? CombinedDarkTheme : CombinedDefaultTheme}>
-          <StatusBar style={theme} />
+          <StatusBar style={theme} translucent={false} />
           {token ? <MainBottomTabsNavigator /> : <WelcomeStackNavigator />}
         </NavigationContainer>
       </PaperProvider>

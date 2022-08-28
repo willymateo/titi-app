@@ -16,7 +16,7 @@ function Welcome({ navigation }) {
 
   return (
     <View style={styles.container}>
-      <View style={styles.topContainer}>
+      <View>
         <Button
           uppercase={false}
           onPress={() => setIsVisibleLS(true)}
@@ -77,11 +77,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-  },
-  topContainer: {
-    flex: 1,
-    justifyContent: "flex-end",
-    alignItems: "center",
   },
   middleContainer: {
     flex: 6,

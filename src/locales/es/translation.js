@@ -2,6 +2,7 @@ import mainBottomTabsNavigator from "./components/mainBottomTabsNavigator.json";
 import settingsStackNavigator from "./components/settingsStackNavigator.json";
 import welcomeStackNavigator from "./components/welcomeStackNavigator.json";
 import languageSettings from "./screens/languageSettings.json";
+import adventuresCard from "./components/adventuresCard.json";
 import accountRecovery from "./screens/accountRecovery.json";
 import inputHookForm from "./components/inputHookForm.json";
 import logoutButton from "./components/logoutButton.json";
@@ -16,6 +17,7 @@ const translationEs = {
     loginFooter,
     logoutButton,
     inputHookForm,
+    adventuresCard,
     welcomeStackNavigator,
     settingsStackNavigator,
     mainBottomTabsNavigator,
