@@ -2,6 +2,7 @@ import { LanguageSettings } from "../../screens/mainTabs/settings/LanguageSettin
 import { ThemeSettings } from "../../screens/mainTabs/settings/ThemeSettings";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { Settings } from "../../screens/mainTabs/settings/Settings";
+import { FocusAwareStatusBar } from "../FocusAwareStatusBar";
 import { useTranslation } from "react-i18next";
 import { Appbar } from "react-native-paper";
 
@@ -16,10 +17,13 @@ function SettingsStackNavigator() {
       screenOptions={{
         headerShown: true,
         header: ({ options: { title }, navigation }) => (
-          <Appbar.Header>
-            <Appbar.BackAction onPress={() => navigation.goBack()} />
-            <Appbar.Content title={title} />
-          </Appbar.Header>
+          <>
+            <FocusAwareStatusBar translucent />
+            <Appbar.Header>
+              <Appbar.BackAction onPress={() => navigation.goBack()} />
+              <Appbar.Content title={title} />
+            </Appbar.Header>
+          </>
         ),
       }}>
       <Stack.Screen
