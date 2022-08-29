@@ -1,4 +1,6 @@
 {
   "published": "Published",
-  "engage": "Engage"
+  "engage": "Engage",
+  "invitations_one": "{{count}} invitation",
+  "invitations_other": "{{count}} invitations"
 }

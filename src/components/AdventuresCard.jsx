@@ -1,4 +1,4 @@
-import { Female, Group, Heart, Male, User, UserCircleAlt, Wristwatch } from "iconoir-react-native";
+import { Group, Heart, User, UserCircleAlt, Wristwatch } from "iconoir-react-native";
 import { formatDistanceToNow, intlFormat, parseISO } from "date-fns";
 import { useAdventures } from "../services/catHot/adventures";
 import { StyleSheet, View } from "react-native";
@@ -18,12 +18,7 @@ function AdventuresCard() {
   const { t } = useTranslation("translation", { keyPrefix: "components.adventuresCard" });
   const { language } = useSelector(state => state.languagePreference);
   const { data: adventures, error, isValidating } = useAdventures();
-
   console.log(adventures);
-  const genderIcons = {
-    male: <Male />,
-    female: <Female />,
-  };
 
   if (isValidating) {
     return <ActivityIndicator size="large" />;
@@ -88,7 +83,7 @@ function AdventuresCard() {
                         <User {...props} {...styles.iconoirChip} />
                       );
                     }}>
-                    {`${numInvitations} `}invitation
+                    {t("invitations", { count: numInvitations })}
                   </Chip>
                 </View>
                 <View style={styles.startDateTimeContainer}>
