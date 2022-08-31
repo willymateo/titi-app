@@ -22,7 +22,7 @@ function Settings({ navigation }) {
           onPress={() => navigation.navigate("LanguageSettings")}
           left={() => <List.Icon icon={props => <Language {...props} {...styles.iconoir} />} />}
         />
-        <About />
+        <About style={styles.about} />
         <LogoutButton />
       </List.Section>
     </View>
@@ -36,6 +36,9 @@ const styles = StyleSheet.create({
   iconoir: {
     height: 25,
     width: 25,
+  },
+  about: {
+    marginBottom: 15,
   },
 });
 

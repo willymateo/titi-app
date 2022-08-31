@@ -1,10 +1,10 @@
 import { useFonts, Pacifico_400Regular as Pacifico400Regular } from "@expo-google-fonts/pacifico";
 import { Eczar_400Regular as Eczar400Regular } from "@expo-google-fonts/eczar";
-import { ActivityIndicator, Text } from "react-native-paper";
+import { ActivityIndicator, Card, Text } from "react-native-paper";
 import { StyleSheet, View } from "react-native";
 import Constants from "expo-constants";
 
-function About() {
+function About({ style }) {
   const [fontsLoaded] = useFonts({
     Pacifico400Regular,
     Eczar400Regular,
@@ -15,14 +15,16 @@ function About() {
   }
 
   return (
-    <View style={styles.container}>
-      <View style={styles.rowContainer}>
-        <Text style={styles.appTitle}>CatHot</Text>
-        <Text>v{Constants.manifest.version}</Text>
-      </View>
-      <Text>from</Text>
-      <Text style={styles.owner}>DarkOs</Text>
-    </View>
+    <Card style={style}>
+      <Card.Content style={styles.container}>
+        <View style={styles.rowContainer}>
+          <Text style={styles.appTitle}>CatHot </Text>
+          <Text>v{Constants.manifest.version}</Text>
+        </View>
+        <Text>from</Text>
+        <Text style={styles.owner}>ÐarkÖs</Text>
+      </Card.Content>
+    </Card>
   );
 }
 
@@ -37,9 +39,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   appTitle: {
-    fontSize: 20,
+    fontSize: 30,
     paddingRight: 5,
-    textAlign: "center",
     fontFamily: "Pacifico400Regular",
   },
   owner: {
