@@ -1,10 +1,10 @@
+import { ProfileTop } from "../../components/ProfileTop";
 import { StyleSheet, View } from "react-native";
-import { Text } from "react-native-paper";
 
 function Profile() {
   return (
     <View style={styles.container}>
-      <Text>Profile screen</Text>
+      <ProfileTop />
     </View>
   );
 }
