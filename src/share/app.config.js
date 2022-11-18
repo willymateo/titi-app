@@ -6,15 +6,15 @@ const USERNAME_REGEX = /^[a-z0-9_\.]*[a-z]+[a-z0-9_\.]*$/;
 
 const MMKV_LNG = "languagePreference.language";
 const MMKV_USER_TOKEN = "userSession.token";
-const MMKV_THEME = "colorMode.theme";
 const MMKV_IS_DARK = "colorMode.isDark";
+const MMKV_THEME = "colorMode.theme";
 const storage = new MMKV({
-  id: Constants.manifest.extra.MMKV_ID,
-  encryptionKey: Constants.manifest.extra.MMKV_KEY,
+  id: Constants.manifest2.extra.MMKV_ID,
+  encryptionKey: Constants.manifest2.extra.MMKV_KEY,
 });
 
 const logger = (...args) => {
-  if (Constants.manifest.extra.APP_ENV === "development") {
+  if (Constants.manifest2.extra.APP_ENV === "development") {
     console.log(...args);
   }
 };

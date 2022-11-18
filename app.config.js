@@ -4,7 +4,7 @@ export default () => {
   return {
     name: process.env.APP_NAME,
     description: "Publish and search for adventures that only take place in the next 24 hours",
-    slug: "cathot",
+    slug: "titi",
     version: "1.0.0",
     orientation: "portrait",
     icon: "./assets/icon.png",
@@ -32,7 +32,8 @@ export default () => {
     },
     extra: {
       APP_ENV: process.env.APP_ENV,
-      CATHOT_API_URL: process.env.CATHOT_API_URL,
+      APP_NAME: process.env.APP_NAME,
+      APP_API_URL: process.env.APP_API_URL,
       MMKV_ID: process.env.MMKV_ID,
       MMKV_KEY: process.env.MMKV_KEY,
       eas: {

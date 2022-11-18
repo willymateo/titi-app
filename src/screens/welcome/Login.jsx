@@ -10,6 +10,7 @@ import catHotAPI from "../../services/catHot/api";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
+import Constants from "expo-constants";
 import { useState } from "react";
 
 function Login({ navigation }) {
@@ -67,7 +68,7 @@ function Login({ navigation }) {
               ? { ...styles.appTitle, fontFamily: "Pacifico400Regular" }
               : { ...styles.appTitle }
           }>
-          CatHot
+          {Constants.manifest2.extra.APP_NAME}
         </Text>
         <View>
           <TextInputHF
