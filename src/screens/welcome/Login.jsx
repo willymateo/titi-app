@@ -6,7 +6,7 @@ import { TextInputHF } from "../../components/hookForm/TextInputHF";
 import { MMKV_USER_TOKEN, storage } from "../../share/app.config";
 import { setUserSession } from "../../redux/states/userSession";
 import { LoginFooter } from "../../components/LoginFooter";
-import catHotAPI from "../../services/catHot/api";
+import appAPI from "../../services/app/api";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
@@ -28,7 +28,7 @@ function Login({ navigation }) {
   });
   const onPressLogin = async data => {
     try {
-      const { token, error } = await catHotAPI.login(data);
+      const { token, error } = await appAPI.login(data);
       if (error) {
         setErrorDialog({ ...errorDialog, isVisible: true, content: error });
         return;

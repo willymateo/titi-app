@@ -6,7 +6,7 @@ import { MMKV_USER_TOKEN, storage } from "../../../share/app.config";
 import { setUserSession } from "../../../redux/states/userSession";
 import { LoginFooter } from "../../../components/LoginFooter";
 import { SmartphoneDevice } from "iconoir-react-native";
-import catHotAPI from "../../../services/catHot/api";
+import appAPI from "../../../services/app/api";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
@@ -25,7 +25,7 @@ function SignUpPhone({ navigation }) {
   const onPressSignUp = async ({ phoneNumber }) => {
     try {
       dispatch(setSignUpForm({ phone: { phoneNumber } }));
-      const { token, error } = await catHotAPI.createUser();
+      const { token, error } = await appAPI.createUser();
       if (error) {
         setErrorDialog({ ...errorDialog, isVisible: true, content: error });
         return;

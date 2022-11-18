@@ -1,6 +1,6 @@
 import { RadioButtonGroupHF } from "./hookForm/RadioButtonGroupHF";
 import { ActivityIndicator, Text } from "react-native-paper";
-import { useGenders } from "../services/catHot/genders";
+import { useGenders } from "../services/app/genders";
 import { useTranslation } from "react-i18next";
 
 function GendersRadioButtons({ control, controllerName }) {

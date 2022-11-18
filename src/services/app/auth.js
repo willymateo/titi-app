@@ -1,7 +1,7 @@
-import { axiosCatHot, errorHandler } from "./axios.config";
+import { axiosInstance, axiosInstance, errorHandler } from "./axios.config";
 
 const login = async ({ username, password }) =>
-  axiosCatHot
+  axiosInstance
     .post("/auth/login", { username, password })
     .then(({ data }) => data)
     .catch(errorHandler);

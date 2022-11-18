@@ -1,4 +1,4 @@
-import { axiosCatHot, errorHandlerSWR } from "./axios.config";
+import { axiosInstance, errorHandlerSWR } from "./axios.config";
 import { reduxStore } from "../../redux/store";
 import useSWR from "swr";
 
@@ -8,7 +8,7 @@ const getAllAdventures = async url => {
     userSession: { token },
   } = reduxStore.getState();
 
-  return axiosCatHot
+  return axiosInstance
     .get(url, {
       headers: { Authorization: `Bearer ${token}` },
     })

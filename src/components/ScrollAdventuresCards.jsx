@@ -1,4 +1,4 @@
-import { useAdventures } from "../services/catHot/adventures";
+import { useAdventures } from "../services/app/adventures";
 import { Text, ActivityIndicator } from "react-native-paper";
 import { ScrollView, StyleSheet } from "react-native";
 import { AdventureCard } from "./AdventureCard";

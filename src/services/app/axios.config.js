@@ -1,7 +1,7 @@
 import Constants from "expo-constants";
 import axios from "axios";
 
-const axiosCatHot = axios.create({
+const axiosInstance = axios.create({
   baseURL: Constants.manifest2.extra.APP_API_URL,
 });
 
@@ -41,4 +41,4 @@ const errorHandlerSWR = ({ request, response }) => {
   }
 };
 
-export { axiosCatHot, errorHandler, errorHandlerSWR };
+export { axiosInstance, errorHandler, errorHandlerSWR };
