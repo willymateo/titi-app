@@ -2,7 +2,7 @@ import Constants from "expo-constants";
 import axios from "axios";
 
 const axiosCatHot = axios.create({
-  baseURL: Constants.manifest.extra.CATHOT_API_URL,
+  baseURL: Constants.manifest2.extra.APP_API_URL,
 });
 
 const errorHandler = ({ request, response }) => {
