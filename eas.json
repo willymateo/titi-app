@@ -1,0 +1,46 @@
+{
+  "cli": {
+    "version": ">= 0.55.0"
+  },
+  "build": {
+    "development": {
+      "distribution": "internal",
+      "developmentClient": true,
+      "android": {
+        "buildType": "apk"
+      },
+      "ios": {},
+      "env": {
+        "APP_ENV": "development",
+        "APP_NAME": "Titi Dev",
+        "IOS_BUNDL_ID": "com.darkos.titi.dev",
+        "ANDROID_PKG": "com.darkos.titi.dev",
+        "APP_API_URL": "https://titi-development.up.railway.app/api"
+      }
+    },
+    "preview": {
+      "channel": "preview",
+      "distribution": "internal",
+      "env": {
+        "APP_ENV": "preview",
+        "APP_NAME": "Titi Prev",
+        "IOS_BUNDL_ID": "com.darkos.titi.prev",
+        "ANDROID_PKG": "com.darkos.titi.prev",
+        "APP_API_URL": "https://titi-development.up.railway.app/api"
+      }
+    },
+    "production": {
+      "channel": "production",
+      "env": {
+        "APP_ENV": "production",
+        "APP_NAME": "Titi",
+        "IOS_BUNDL_ID": "com.darkos.titi",
+        "ANDROID_PKG": "com.darkos.titi",
+        "APP_API_URL": "https://titi.up.railway.app/api"
+      }
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}
