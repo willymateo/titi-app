@@ -68,7 +68,7 @@ function Login({ navigation }) {
               ? { ...styles.appTitle, fontFamily: "Pacifico400Regular" }
               : { ...styles.appTitle }
           }>
-          {Constants.manifest2.extra.APP_NAME}
+          {Constants.manifest.extra.APP_NAME}
         </Text>
         <View>
           <TextInputHF

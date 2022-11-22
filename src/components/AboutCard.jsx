@@ -18,8 +18,8 @@ function AboutCard({ style }) {
     <Card style={style}>
       <Card.Content style={styles.container}>
         <View style={styles.rowContainer}>
-          <Text style={styles.appTitle}>{Constants.manifest2.APP_NAME}</Text>
-          <Text>v{Constants.manifest2.version}</Text>
+          <Text style={styles.appTitle}>{Constants.manifest.APP_NAME}</Text>
+          <Text>v{Constants.manifest.version}</Text>
         </View>
         <Text>from</Text>
         <View style={styles.rowContainer}>

@@ -37,7 +37,7 @@ export default () => {
       MMKV_ID: process.env.MMKV_ID,
       MMKV_KEY: process.env.MMKV_KEY,
       eas: {
-        projectId: "e7266ea4-aef5-4213-92ad-e0846267007e",
+        projectId: "7cec6355-87e3-495b-a022-7322790645ce",
       },
     },
   };

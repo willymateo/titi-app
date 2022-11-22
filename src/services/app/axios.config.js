@@ -2,7 +2,7 @@ import Constants from "expo-constants";
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: Constants.manifest2.extra.APP_API_URL,
+  baseURL: Constants.manifest.extra.APP_API_URL,
 });
 
 const errorHandler = ({ request, response }) => {

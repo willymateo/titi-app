@@ -1,4 +1,4 @@
-import { axiosInstance, axiosInstance, errorHandlerSWR } from "./axios.config";
+import { axiosInstance, errorHandlerSWR } from "./axios.config";
 import useSWR from "swr";
 
 const getAllGendersUrl = "/genders";

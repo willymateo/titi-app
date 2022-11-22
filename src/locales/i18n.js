@@ -24,7 +24,7 @@ i18next
   .use(languageDetector)
   .use(initReactI18next)
   .init({
-    debug: Constants.manifest2.extra.APP_ENV === "development",
+    debug: Constants.manifest.extra.APP_ENV === "development",
     fallbackLng: "en",
     interpolation: {
       escapeValue: false,
