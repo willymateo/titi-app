@@ -1,14 +1,11 @@
-import { useFonts, Pacifico_400Regular as Pacifico400Regular } from "@expo-google-fonts/pacifico";
-import { Eczar_400Regular as Eczar400Regular } from "@expo-google-fonts/eczar";
+import { useFonts, Eczar_400Regular as Eczar400Regular } from "@expo-google-fonts/eczar";
 import { ActivityIndicator, Card, Text } from "react-native-paper";
+import "../../assets/fonts/RedHatMono-VariableFont_wght.ttf";
 import { StyleSheet, View } from "react-native";
 import Constants from "expo-constants";
 
 function AboutCard({ style }) {
-  const [fontsLoaded] = useFonts({
-    Pacifico400Regular,
-    Eczar400Regular,
-  });
+  const [fontsLoaded] = useFonts({ Eczar400Regular });
 
   if (!fontsLoaded) {
     return <ActivityIndicator />;
@@ -45,7 +42,7 @@ const styles = StyleSheet.create({
   appTitle: {
     fontSize: 30,
     paddingRight: 5,
-    fontFamily: "Pacifico400Regular",
+    fontFamily: "Red Hat Mono Regular",
   },
   owner: {
     fontSize: 20,

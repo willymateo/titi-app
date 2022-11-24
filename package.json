@@ -16,7 +16,6 @@
   },
   "dependencies": {
     "@expo-google-fonts/eczar": "^0.2.2",
-    "@expo-google-fonts/pacifico": "^0.2.2",
     "@formatjs/intl-datetimeformat": "^6.0.3",
     "@formatjs/intl-getcanonicallocales": "^2.0.2",
     "@formatjs/intl-locale": "^3.0.3",

@@ -122,7 +122,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   appTitle: {
-    fontFamily: "",
+    fontFamily: "Red Hat Mono Regular",
     textAlign: "center",
     fontSize: 60,
   },
