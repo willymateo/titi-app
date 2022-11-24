@@ -24,21 +24,21 @@ const SignUpFormSlice = createSlice({
   name: "signUpForm",
   initialState: emptyState,
   reducers: {
-    createSignUpForm: ({ action }) => action.payload,
-    setSignUpForm: (state, action) => ({
+    createSignUpForm: ({ action: { payload } }) => payload,
+    setSignUpForm: (state, { payload }) => ({
       ...state,
-      ...action.payload,
+      ...payload,
       phone: {
         ...state.phone,
-        ...action.payload.phone,
+        ...payload.phone,
       },
       location: {
         ...state.location,
-        ...action.payload.location,
+        ...payload.location,
       },
       profileInformation: {
         ...state.profileInformation,
-        ...action.payload.profileInformation,
+        ...payload.profileInformation,
       },
     }),
     resetSignUpForm: () => emptyState,

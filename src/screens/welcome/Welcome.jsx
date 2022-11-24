@@ -1,9 +1,9 @@
 import { LanguageSettings } from "../mainTabs/settings/LanguageSettings";
 import { Button, Dialog, Portal, Text } from "react-native-paper";
+import LightLogo from "../../../assets/images/lightLogo.svg";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { LoginFooter } from "../../components/LoginFooter";
-import LightLogo from "../../../assets/lightLogo.svg";
-import DarkLogo from "../../../assets/darkLogo.svg";
+import DarkLogo from "../../../assets/images/darkLogo.svg";
 import { NavArrowDown } from "iconoir-react-native";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   },
   logo: {
     height: "100%",
-    width: "70%",
+    width: "55%",
   },
   buttons: {
     marginVertical: 5,

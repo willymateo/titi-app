@@ -28,12 +28,12 @@
      inkscape:document-units="px"
      showgrid="false"
      inkscape:zoom="0.19827586"
-     inkscape:cx="617.82609"
-     inkscape:cy="1621.4783"
+     inkscape:cx="622.86957"
+     inkscape:cy="1223.0435"
      inkscape:window-width="1366"
-     inkscape:window-height="708"
-     inkscape:window-x="0"
-     inkscape:window-y="28"
+     inkscape:window-height="736"
+     inkscape:window-x="1366"
+     inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1"
      showguides="true" />
@@ -79,7 +79,7 @@
        id="text404-6-3"
        style="font-size:352.231px;line-height:1.25;font-family:'Red Hat Mono';-inkscape-font-specification:'Red Hat Mono, @wght=400';font-variation-settings:'wght' 400;text-align:center;text-anchor:middle;display:inline;fill:#ffffff;stroke-width:7.33816"
        inkscape:label="typography"
-       transform="matrix(0.21248329,0,0,0.21248329,55.514809,213.47105)">
+       transform="matrix(0.1700388,0,0,0.1700388,77.246387,235.20263)">
       <path
          d="m 227.92649,641.97324 q -28.88294,0 -44.38111,-12.32809 -15.14593,-12.68031 -15.14593,-36.63202 V 487.69607 h -58.82257 v -21.13386 h 58.82257 v -47.19896 l 25.71286,-5.98792 v 53.18688 h 79.25197 v 21.13386 h -79.25197 v 101.09029 q 0,16.20262 8.80578,23.24724 8.80577,7.04462 25.36063,7.04462 10.2147,0 21.13386,-2.11338 10.91916,-2.11339 23.9517,-7.04462 v 23.24724 q -11.62362,4.22677 -22.89501,6.34016 -11.27139,2.46562 -22.54278,2.46562 z"
          id="path1006-5"

@@ -1,4 +1,3 @@
-import { useFonts, Pacifico_400Regular as Pacifico400Regular } from "@expo-google-fonts/pacifico";
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
 import { Button, Dialog, Portal, Text, TextInput } from "react-native-paper";
 import { EyeClose, EyeEmpty, KeyAltBack, User } from "iconoir-react-native";
@@ -13,14 +12,13 @@ import { useForm } from "react-hook-form";
 import Constants from "expo-constants";
 import { useState } from "react";
 
+import "../../../assets/fonts/RedHatMono-VariableFont_wght.ttf";
+
 function Login({ navigation }) {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   const { control, handleSubmit } = useForm();
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const [fontsLoaded] = useFonts({
-    Pacifico400Regular,
-  });
   const [errorDialog, setErrorDialog] = useState({
     isVisible: false,
     title: "Error",
@@ -62,14 +60,7 @@ function Login({ navigation }) {
           </Dialog>
         </Portal>
 
-        <Text
-          style={
-            fontsLoaded
-              ? { ...styles.appTitle, fontFamily: "Pacifico400Regular" }
-              : { ...styles.appTitle }
-          }>
-          {Constants.manifest.extra.APP_NAME}
-        </Text>
+        <Text style={styles.appTitle}>{Constants.manifest.extra.APP_NAME}</Text>
         <View>
           <TextInputHF
             style={styles.inputText}
@@ -130,6 +121,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   appTitle: {
+    fontFamily: "",
     textAlign: "center",
     fontSize: 60,
   },

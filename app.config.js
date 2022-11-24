@@ -7,12 +7,12 @@ export default () => {
     slug: "titi",
     version: "1.0.0",
     orientation: "portrait",
-    icon: "./assets/icon.png",
+    icon: "./assets/images/icon.png",
     assetBundlePatterns: ["**/*"],
     platforms: ["android", "ios"],
     userInterfaceStyle: "automatic",
     splash: {
-      image: "./assets/splash.png",
+      image: "./assets/images/splash.png",
       resizeMode: "contain",
       backgroundColor: "#000000",
     },
@@ -26,7 +26,7 @@ export default () => {
     android: {
       package: process.env.ANDROID_PKG,
       adaptiveIcon: {
-        foregroundImage: "./assets/adaptive-icon.png",
+        foregroundImage: "./assets/images/adaptive-icon.png",
         backgroundColor: "#000000",
       },
     },
