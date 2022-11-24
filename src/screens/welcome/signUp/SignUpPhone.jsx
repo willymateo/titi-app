@@ -16,6 +16,7 @@ function SignUpPhone({ navigation }) {
   const { control, handleSubmit } = useForm();
   const dispatch = useDispatch();
   const { t } = useTranslation();
+
   const [errorDialog, setErrorDialog] = useState({
     isVisible: false,
     title: "Error",

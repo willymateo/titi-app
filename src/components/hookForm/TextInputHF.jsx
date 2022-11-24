@@ -3,16 +3,16 @@ import { StyleSheet, View } from "react-native";
 import { useController } from "react-hook-form";
 
 function TextInputHF({
-  mode,
-  left,
+  secureTextEntry,
+  controllerName,
+  placeholder,
+  rules = {},
+  control,
   label,
   right,
   style,
-  control,
-  rules = {},
-  placeholder,
-  controllerName,
-  secureTextEntry,
+  mode,
+  left,
 }) {
   const {
     fieldState: { error },

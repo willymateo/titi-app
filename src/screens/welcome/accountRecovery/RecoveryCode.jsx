@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 function RecoveryCode({ navigation }) {
   const { control, handleSubmit } = useForm();
   const { t } = useTranslation();
+
   const onPressSendRecovery = data => {
     console.log(data);
     navigation.navigate("ResetPassword");

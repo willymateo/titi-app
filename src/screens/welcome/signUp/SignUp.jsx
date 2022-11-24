@@ -1,6 +1,7 @@
 import { Button, Dialog, HelperText, Portal, TextInput } from "react-native-paper";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { DateTimePickerHF } from "../../../components/hookForm/DateTimePickerHF";
+import { GendersRadioButtons } from "../../../components/GendersRadioButtons";
 import { EMAIL_REGEX, USERNAME_REGEX } from "../../../share/app.config";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { setSignUpForm } from "../../../redux/states/signUpForm";
@@ -22,7 +23,6 @@ import {
   KeyAltBack,
   PeopleRounded,
 } from "iconoir-react-native";
-import { GendersRadioButtons } from "../../../components/GendersRadioButtons";
 
 function SignUp({ navigation }) {
   const { language } = useSelector(state => state.languagePreference);

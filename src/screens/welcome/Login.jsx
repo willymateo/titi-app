@@ -4,26 +4,27 @@ import { EyeClose, EyeEmpty, KeyAltBack, User } from "iconoir-react-native";
 import { TextInputHF } from "../../components/hookForm/TextInputHF";
 import { MMKV_USER_TOKEN, storage } from "../../share/app.config";
 import { setUserSession } from "../../redux/states/userSession";
+import "../../../assets/fonts/RedHatMono-VariableFont_wght.ttf";
 import { LoginFooter } from "../../components/LoginFooter";
-import appAPI from "../../services/app/api";
 import { useTranslation } from "react-i18next";
+import appAPI from "../../services/app/api";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import Constants from "expo-constants";
 import { useState } from "react";
-
-import "../../../assets/fonts/RedHatMono-VariableFont_wght.ttf";
 
 function Login({ navigation }) {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   const { control, handleSubmit } = useForm();
   const dispatch = useDispatch();
   const { t } = useTranslation();
+
   const [errorDialog, setErrorDialog] = useState({
     isVisible: false,
     title: "Error",
     content: "",
   });
+
   const onPressLogin = async data => {
     try {
       const { token, error } = await appAPI.login(data);

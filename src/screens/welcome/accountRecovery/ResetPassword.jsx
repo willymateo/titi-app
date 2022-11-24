@@ -12,6 +12,7 @@ function ResetPassword({ navigation }) {
   const { control, handleSubmit, watch } = useForm();
   const password = watch("password");
   const { t } = useTranslation();
+
   const onPressSignUp = async data => {
     console.log(data);
   };
