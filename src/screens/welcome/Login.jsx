@@ -4,7 +4,6 @@ import { EyeClose, EyeEmpty, KeyAltBack, User } from "iconoir-react-native";
 import { TextInputHF } from "../../components/hookForm/TextInputHF";
 import { MMKV_USER_TOKEN, storage } from "../../share/app.config";
 import { setUserSession } from "../../redux/states/userSession";
-import "../../../assets/fonts/RedHatMono-VariableFont_wght.ttf";
 import { LoginFooter } from "../../components/LoginFooter";
 import { useTranslation } from "react-i18next";
 import appAPI from "../../services/app/api";
@@ -122,7 +121,7 @@ const styles = StyleSheet.create({
     marginVertical: 5,
   },
   appTitle: {
-    fontFamily: "Red Hat Mono Regular",
+    fontFamily: "RedHatMono",
     textAlign: "center",
     fontSize: 60,
   },

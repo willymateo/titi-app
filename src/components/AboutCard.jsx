@@ -1,16 +1,8 @@
-import { useFonts, Eczar_400Regular as Eczar400Regular } from "@expo-google-fonts/eczar";
-import { ActivityIndicator, Card, Text } from "react-native-paper";
-import "../../assets/fonts/RedHatMono-VariableFont_wght.ttf";
+import { Card, Text } from "react-native-paper";
 import { StyleSheet, View } from "react-native";
 import Constants from "expo-constants";
 
 function AboutCard({ style }) {
-  const [fontsLoaded] = useFonts({ Eczar400Regular });
-
-  if (!fontsLoaded) {
-    return <ActivityIndicator />;
-  }
-
   return (
     <Card style={style}>
       <Card.Content style={styles.container}>
@@ -42,7 +34,7 @@ const styles = StyleSheet.create({
   appTitle: {
     fontSize: 30,
     paddingRight: 5,
-    fontFamily: "Red Hat Mono Regular",
+    fontFamily: "RedHatMono",
   },
   owner: {
     fontSize: 20,
