@@ -5,6 +5,7 @@ import { TextInputHF } from "../../components/hookForm/TextInputHF";
 import { MMKV_USER_TOKEN, storage } from "../../share/app.config";
 import { setUserSession } from "../../redux/states/userSession";
 import { LoginFooter } from "../../components/LoginFooter";
+import { useLoading } from "../../hooks/useLoading";
 import { useTranslation } from "react-i18next";
 import appAPI from "../../services/app/api";
 import { useDispatch } from "react-redux";
@@ -14,6 +15,7 @@ import { useState } from "react";
 
 function Login({ navigation }) {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
+  const { loading, startLoading, stopLoading } = useLoading();
   const { control, handleSubmit } = useForm();
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -24,15 +26,20 @@ function Login({ navigation }) {
     content: "",
   });
 
-  const onPressLogin = async data => {
+  const handlePressLogin = async data => {
     try {
+      startLoading();
       const { token, error } = await appAPI.login(data);
+
       if (error) {
         setErrorDialog({ ...errorDialog, isVisible: true, content: error });
+        stopLoading();
         return;
       }
+
       storage.set(MMKV_USER_TOKEN, token);
       dispatch(setUserSession({ token }));
+      stopLoading();
     } catch (err) {
       console.log(err);
     }
@@ -97,7 +104,7 @@ function Login({ navigation }) {
           />
         </View>
 
-        <Button mode="contained" uppercase={false} onPress={handleSubmit(onPressLogin)}>
+        <Button mode="contained" uppercase={false} onPress={handleSubmit(handlePressLogin)}>
           {t("screens.welcome.login")}
         </Button>
         <LoginFooter

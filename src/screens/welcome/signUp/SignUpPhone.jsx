@@ -6,6 +6,7 @@ import { MMKV_USER_TOKEN, storage } from "../../../share/app.config";
 import { setUserSession } from "../../../redux/states/userSession";
 import { LoginFooter } from "../../../components/LoginFooter";
 import { SmartphoneDevice } from "iconoir-react-native";
+import { useLoading } from "../../../hooks/useLoading";
 import appAPI from "../../../services/app/api";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
@@ -13,6 +14,7 @@ import { useForm } from "react-hook-form";
 import { useState } from "react";
 
 function SignUpPhone({ navigation }) {
+  const { loading, startLoading, stopLoading } = useLoading();
   const { control, handleSubmit } = useForm();
   const dispatch = useDispatch();
   const { t } = useTranslation();
@@ -23,17 +25,22 @@ function SignUpPhone({ navigation }) {
     content: "",
   });
 
-  const onPressSignUp = async ({ phoneNumber }) => {
+  const handlePressSignUp = async ({ phoneNumber }) => {
     try {
+      startLoading();
       dispatch(setSignUpForm({ phone: { phoneNumber } }));
       const { token, error } = await appAPI.createUser();
+
       if (error) {
         setErrorDialog({ ...errorDialog, isVisible: true, content: error });
+        stopLoading();
         return;
       }
+
       storage.set(MMKV_USER_TOKEN, token);
       dispatch(resetSignUpForm());
       dispatch(setUserSession({ token }));
+      stopLoading();
     } catch (err) {
       console.log(err);
     }
@@ -74,7 +81,7 @@ function SignUpPhone({ navigation }) {
           }
         />
 
-        <Button mode="contained" uppercase={false} onPress={handleSubmit(onPressSignUp)}>
+        <Button mode="contained" uppercase={false} onPress={handleSubmit(handlePressSignUp)}>
           {t("screens.signUp.createAccount")}
         </Button>
         <LoginFooter
