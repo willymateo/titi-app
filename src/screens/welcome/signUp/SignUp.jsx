@@ -2,7 +2,7 @@ import { Button, Dialog, HelperText, Portal, TextInput } from "react-native-pape
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { DateTimePickerHF } from "../../../components/hookForm/DateTimePickerHF";
 import { GendersRadioButtons } from "../../../components/GendersRadioButtons";
-import { EMAIL_REGEX, USERNAME_REGEX } from "../../../share/app.config";
+import { EMAIL_REGEX, USERNAME_REGEX } from "../../../config/app.config";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { setSignUpForm } from "../../../redux/states/signUpForm";
 import { LoginFooter } from "../../../components/LoginFooter";

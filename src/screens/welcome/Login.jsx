@@ -1,10 +1,12 @@
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
-import { Button, Dialog, Portal, Text, TextInput } from "react-native-paper";
 import { EyeClose, EyeEmpty, KeyAltBack, User } from "iconoir-react-native";
 import { TextInputHF } from "../../components/hookForm/TextInputHF";
-import { MMKV_USER_TOKEN, storage } from "../../share/app.config";
+import { MMKV_USER_TOKEN, storage } from "../../config/app.config";
 import { setUserSession } from "../../redux/states/userSession";
 import { LoadingDialog } from "../../components/LoadingDialog";
+import { Button, Text, TextInput } from "react-native-paper";
+import { useErrorDialog } from "../../hooks/useErrorDialog";
+import { ErrorDialog } from "../../components/ErrorDialog";
 import { LoginFooter } from "../../components/LoginFooter";
 import { useLoading } from "../../hooks/useLoading";
 import * as appAPI from "../../services/app/auth";
@@ -17,23 +19,18 @@ import { useState } from "react";
 function Login({ navigation }) {
   const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   const { loading, startLoading, stopLoading } = useLoading();
+  const { error, showError, hideError } = useErrorDialog();
   const { control, handleSubmit } = useForm();
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const [errorDialog, setErrorDialog] = useState({
-    isVisible: false,
-    title: "Error",
-    content: "",
-  });
-
   const handlePressLogin = async data => {
     try {
       startLoading();
-      const { token, error } = await appAPI.login(data);
+      const { token, error: requestError } = await appAPI.login(data);
 
-      if (error) {
-        setErrorDialog({ ...errorDialog, isVisible: true, content: error });
+      if (requestError) {
+        showError({ error: requestError });
         stopLoading();
         return;
       }
@@ -51,23 +48,6 @@ function Login({ navigation }) {
       style={styles.root}
       behavior={Platform.OS === "ios" ? "padding" : "height"}>
       <View style={{ ...styles.container }}>
-        <Portal>
-          <Dialog
-            visible={errorDialog.isVisible}
-            onDismiss={() => setErrorDialog({ ...errorDialog, isVisible: false })}>
-            {/* <Dialog.Icon icon={props => <EmojiBlinkRight {...props} {...styles.iconoir} />} />*/}
-            <Dialog.Title>{errorDialog.title}</Dialog.Title>
-            <Dialog.Content>
-              <Text>{errorDialog.content}</Text>
-            </Dialog.Content>
-            <Dialog.Actions>
-              <Button onPress={() => setErrorDialog({ ...errorDialog, isVisible: false })}>
-                Ok
-              </Button>
-            </Dialog.Actions>
-          </Dialog>
-        </Portal>
-
         <Text style={styles.appTitle}>{Constants.manifest.extra.APP_NAME}</Text>
         <View>
           <TextInputHF
@@ -114,6 +94,7 @@ function Login({ navigation }) {
         />
 
         <LoadingDialog isVisible={loading} />
+        <ErrorDialog isVisible={error} onDismiss={hideError} content={error} />
       </View>
     </KeyboardAvoidingView>
   );

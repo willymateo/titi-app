@@ -1,4 +1,4 @@
-import { logger, MMKV_IS_DARK, MMKV_THEME, MMKV_USER_TOKEN, storage } from "./share/app.config";
+import { logger, MMKV_IS_DARK, MMKV_THEME, MMKV_USER_TOKEN, storage } from "./config/app.config";
 import { MainBottomTabsNavigator } from "./components/navigation/MainBottomTabsNavigator";
 import { WelcomeStackNavigator } from "./components/navigation/WelcomeStackNavigator";
 import { CombinedDarkTheme, CombinedDefaultTheme } from "./theme/theme";

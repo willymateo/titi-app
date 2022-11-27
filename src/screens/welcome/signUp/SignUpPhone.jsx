@@ -2,7 +2,7 @@ import { resetSignUpForm, setSignUpForm } from "../../../redux/states/signUpForm
 import { Button, Dialog, Portal, Text, TextInput } from "react-native-paper";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
-import { MMKV_USER_TOKEN, storage } from "../../../share/app.config";
+import { MMKV_USER_TOKEN, storage } from "../../../config/app.config";
 import { setUserSession } from "../../../redux/states/userSession";
 import { LoadingDialog } from "../../../components/LoadingDialog";
 import { LoginFooter } from "../../../components/LoginFooter";
@@ -12,28 +12,24 @@ import * as appAPI from "../../../services/app/users";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
+import { ErrorDialog } from "../../../components/ErrorDialog";
+import { useErrorDialog } from "../../../hooks/useErrorDialog";
 
 function SignUpPhone({ navigation }) {
   const { loading, startLoading, stopLoading } = useLoading();
+  const { error, showError, hideError } = useErrorDialog();
   const { control, handleSubmit } = useForm();
   const dispatch = useDispatch();
   const { t } = useTranslation();
-
-  const [errorDialog, setErrorDialog] = useState({
-    isVisible: false,
-    title: "Error",
-    content: "",
-  });
 
   const handlePressSignUp = async ({ phoneNumber }) => {
     try {
       startLoading();
       dispatch(setSignUpForm({ phone: { phoneNumber } }));
-      const { token, error } = await appAPI.createUser();
+      const { token, error: requestError } = await appAPI.createUser();
 
-      if (error) {
-        setErrorDialog({ ...errorDialog, isVisible: true, content: error });
+      if (requestError) {
+        showError({ error: requestError });
         stopLoading();
         return;
       }
@@ -52,23 +48,6 @@ function SignUpPhone({ navigation }) {
       style={styles.root}
       behavior={Platform.OS === "ios" ? "padding" : "height"}>
       <View style={{ ...styles.container }}>
-        <Portal>
-          <Dialog
-            visible={errorDialog.isVisible}
-            onDismiss={() => setErrorDialog({ ...errorDialog, isVisible: false })}>
-            {/* <Dialog.Icon icon={props => <EmojiBlinkRight {...props} {...styles.iconoir} />} />*/}
-            <Dialog.Title>{errorDialog.title}</Dialog.Title>
-            <Dialog.Content>
-              <Text>{errorDialog.content}</Text>
-            </Dialog.Content>
-            <Dialog.Actions>
-              <Button onPress={() => setErrorDialog({ ...errorDialog, isVisible: false })}>
-                Ok
-              </Button>
-            </Dialog.Actions>
-          </Dialog>
-        </Portal>
-
         <TextInputHF
           style={styles.inputText}
           rules={{
@@ -91,6 +70,7 @@ function SignUpPhone({ navigation }) {
         />
 
         <LoadingDialog isVisible={loading} />
+        <ErrorDialog isVisible={error} onDismiss={hideError} content={error} />
       </View>
     </KeyboardAvoidingView>
   );

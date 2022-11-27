@@ -1,4 +1,4 @@
-import { MMKV_IS_DARK, MMKV_THEME, storage } from "../../../share/app.config";
+import { MMKV_IS_DARK, MMKV_THEME, storage } from "../../../config/app.config";
 import { setColorMode } from "../../../redux/states/colorMode";
 import { useDispatch, useSelector } from "react-redux";
 import { RadioButton } from "react-native-paper";

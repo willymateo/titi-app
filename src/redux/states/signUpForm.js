@@ -1,9 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const emptyState = {
-  username: null,
-  password: null,
-  email: null,
+  username: "",
+  password: "",
+  firstName: "",
+  lastName: "",
+  email: "",
+  photoUrl: "",
+  biography: "",
+  bornDate: "",
+  idGender: null,
   phone: {
     phoneNumber: null,
     countryCode: 593,
@@ -13,10 +19,6 @@ const emptyState = {
     // longitude: null,
     latitude: "3196727",
     longitude: "6943923",
-  },
-  profileInformation: {
-    bornDate: null,
-    idGender: null,
   },
 };
 

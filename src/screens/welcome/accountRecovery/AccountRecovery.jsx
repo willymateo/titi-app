@@ -1,7 +1,7 @@
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { LoginFooter } from "../../../components/LoginFooter";
-import { EMAIL_REGEX } from "../../../share/app.config";
+import { EMAIL_REGEX } from "../../../config/app.config";
 import { Button, TextInput } from "react-native-paper";
 import { useTranslation } from "react-i18next";
 import { Mail } from "iconoir-react-native";
