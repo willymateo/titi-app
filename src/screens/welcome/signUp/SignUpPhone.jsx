@@ -4,10 +4,11 @@ import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
 import { MMKV_USER_TOKEN, storage } from "../../../share/app.config";
 import { setUserSession } from "../../../redux/states/userSession";
+import { LoadingDialog } from "../../../components/LoadingDialog";
 import { LoginFooter } from "../../../components/LoginFooter";
 import { SmartphoneDevice } from "iconoir-react-native";
 import { useLoading } from "../../../hooks/useLoading";
-import appAPI from "../../../services/app/api";
+import * as appAPI from "../../../services/app/users";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
@@ -88,6 +89,8 @@ function SignUpPhone({ navigation }) {
           onPressLogin={() => navigation.navigate("Login")}
           onPressAccountRecovery={() => navigation.navigate("AccountRecovery")}
         />
+
+        <LoadingDialog isVisible={loading} />
       </View>
     </KeyboardAvoidingView>
   );

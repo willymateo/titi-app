@@ -4,10 +4,11 @@ import { EyeClose, EyeEmpty, KeyAltBack, User } from "iconoir-react-native";
 import { TextInputHF } from "../../components/hookForm/TextInputHF";
 import { MMKV_USER_TOKEN, storage } from "../../share/app.config";
 import { setUserSession } from "../../redux/states/userSession";
+import { LoadingDialog } from "../../components/LoadingDialog";
 import { LoginFooter } from "../../components/LoginFooter";
 import { useLoading } from "../../hooks/useLoading";
+import * as appAPI from "../../services/app/auth";
 import { useTranslation } from "react-i18next";
-import appAPI from "../../services/app/api";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import Constants from "expo-constants";
@@ -111,6 +112,8 @@ function Login({ navigation }) {
           onPressSignUp={() => navigation.navigate("SignUp")}
           onPressAccountRecovery={() => navigation.navigate("AccountRecovery")}
         />
+
+        <LoadingDialog isVisible={loading} />
       </View>
     </KeyboardAvoidingView>
   );

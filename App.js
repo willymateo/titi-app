@@ -17,7 +17,7 @@ export default function App() {
     Eczar400Regular,
   });
 
-  const onLayoutRootView = useCallback(async () => {
+  const handleReadyLayout = useCallback(async () => {
     if (fontsLoaded) {
       await SplashScreen.hideAsync();
     }
@@ -29,7 +29,7 @@ export default function App() {
 
   return (
     <ReduxProvider store={reduxStore}>
-      <Main onLayout={onLayoutRootView} />
+      <Main onLayout={handleReadyLayout} />
     </ReduxProvider>
   );
 }

@@ -5,6 +5,7 @@ import languageSettings from "./screens/languageSettings.json";
 import adventuresCard from "./components/adventuresCard.json";
 import accountRecovery from "./screens/accountRecovery.json";
 import inputHookForm from "./components/inputHookForm.json";
+import loadingDialog from "./components/loadingDialog.json";
 import logoutButton from "./components/logoutButton.json";
 import themeSettings from "./screens/themeSettings.json";
 import loginFooter from "./components/loginFooter.json";
@@ -16,6 +17,7 @@ const translationEn = {
   components: {
     loginFooter,
     logoutButton,
+    loadingDialog,
     inputHookForm,
     adventuresCard,
     welcomeStackNavigator,
