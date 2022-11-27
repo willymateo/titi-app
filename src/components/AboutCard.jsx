@@ -10,7 +10,6 @@ function AboutCard({ style }) {
           <Text style={styles.appTitle}>{Constants.manifest.APP_NAME}</Text>
           <Text>v{Constants.manifest.version}</Text>
         </View>
-        <Text>from</Text>
         <View style={styles.rowContainer}>
           <Text style={styles.owner}>ÐarkÖs</Text>
           <Text style={styles.separator}>●</Text>

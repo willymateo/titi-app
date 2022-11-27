@@ -1,19 +1,19 @@
 import { resetSignUpForm, setSignUpForm } from "../../../redux/states/signUpForm";
-import { Button, Dialog, Portal, Text, TextInput } from "react-native-paper";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
 import { MMKV_USER_TOKEN, storage } from "../../../config/app.config";
 import { setUserSession } from "../../../redux/states/userSession";
 import { LoadingDialog } from "../../../components/LoadingDialog";
+import { useErrorDialog } from "../../../hooks/useErrorDialog";
+import { ErrorDialog } from "../../../components/ErrorDialog";
 import { LoginFooter } from "../../../components/LoginFooter";
 import { SmartphoneDevice } from "iconoir-react-native";
 import { useLoading } from "../../../hooks/useLoading";
+import { Button, TextInput } from "react-native-paper";
 import * as appAPI from "../../../services/app/users";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
-import { ErrorDialog } from "../../../components/ErrorDialog";
-import { useErrorDialog } from "../../../hooks/useErrorDialog";
 
 function SignUpPhone({ navigation }) {
   const { loading, startLoading, stopLoading } = useLoading();

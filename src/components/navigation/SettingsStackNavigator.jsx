@@ -1,8 +1,8 @@
 import { LanguageSettings } from "../../screens/mainTabs/settings/LanguageSettings";
 import { ThemeSettings } from "../../screens/mainTabs/settings/ThemeSettings";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Settings } from "../../screens/mainTabs/settings/Settings";
 import { FocusAwareStatusBar } from "../FocusAwareStatusBar";
+import { Settings } from "../../screens/mainTabs/settings";
 import { useTranslation } from "react-i18next";
 import { Appbar } from "react-native-paper";
 

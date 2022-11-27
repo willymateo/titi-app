@@ -3,10 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 const emptyState = {
   username: "",
   password: "",
-  firstName: "",
-  lastName: "",
+  firstNames: "",
+  lastNames: "",
   email: "",
-  photoUrl: "",
+  photoUrl: "https://titi.app/darkos.png",
   biography: "",
   bornDate: "",
   idGender: null,
@@ -37,10 +37,6 @@ const SignUpFormSlice = createSlice({
       location: {
         ...state.location,
         ...payload.location,
-      },
-      profileInformation: {
-        ...state.profileInformation,
-        ...payload.profileInformation,
       },
     }),
     resetSignUpForm: () => emptyState,

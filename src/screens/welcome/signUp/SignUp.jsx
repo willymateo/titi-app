@@ -35,16 +35,14 @@ function SignUp({ navigation }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
-  const onPressContinue = ({ username, password, email, bornDate, idGender }) => {
+  const handlePressContinue = ({ username, password, email, bornDate, idGender }) => {
     dispatch(
       setSignUpForm({
         username,
         password,
+        bornDate,
+        idGender,
         email,
-        profileInformation: {
-          bornDate,
-          idGender,
-        },
       })
     );
     navigation.navigate("SignUpPhone");
@@ -172,7 +170,7 @@ function SignUp({ navigation }) {
         </View>
 
         <View>
-          <Button mode="contained" uppercase={false} onPress={handleSubmit(onPressContinue)}>
+          <Button mode="contained" uppercase={false} onPress={handleSubmit(handlePressContinue)}>
             {t("screens.signUp.continue")}
           </Button>
           <LoginFooter

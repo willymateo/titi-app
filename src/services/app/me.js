@@ -8,7 +8,7 @@ const getAccountInformation = async url => {
     userSession: { token },
   } = reduxStore.getState();
 
-  axiosInstance
+  return axiosInstance
     .get(url, {
       headers: { Authorization: `Bearer ${token}` },
     })

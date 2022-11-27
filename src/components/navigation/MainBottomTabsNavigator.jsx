@@ -2,7 +2,7 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 import { Bell, HomeSimple, IosSettings, UserCircleAlt } from "iconoir-react-native";
 import { Notifications } from "../../screens/mainTabs/Notifications";
 import { SettingsStackNavigator } from "./SettingsStackNavigator";
-import { Profile } from "../../screens/mainTabs/Profile";
+import { Profile } from "../../screens/mainTabs/profile";
 import { Home } from "../../screens/mainTabs/Home";
 import { useTranslation } from "react-i18next";
 import { StyleSheet } from "react-native";
