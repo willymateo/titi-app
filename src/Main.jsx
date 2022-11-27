@@ -11,7 +11,7 @@ import { StatusBar } from "expo-status-bar";
 import { IntlProvider } from "react-intl";
 import { useEffect } from "react";
 
-function Main() {
+function Main({ onLayout }) {
   const { language } = useSelector(state => state.languagePreference);
   const { isDark, theme } = useSelector(state => state.colorMode);
   const { token } = useSelector(state => state.userSession);
@@ -47,7 +47,9 @@ function Main() {
   return (
     <IntlProvider locale={language}>
       <PaperProvider theme={isDark ? CombinedDarkTheme : CombinedDefaultTheme}>
-        <NavigationContainer theme={isDark ? CombinedDarkTheme : CombinedDefaultTheme}>
+        <NavigationContainer
+          theme={isDark ? CombinedDarkTheme : CombinedDefaultTheme}
+          onReady={onLayout}>
           <StatusBar style={theme} translucent={false} animated />
           {token ? <MainBottomTabsNavigator /> : <WelcomeStackNavigator />}
         </NavigationContainer>

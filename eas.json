@@ -12,7 +12,8 @@
       "ios": {},
       "env": {
         "APP_ENV": "development",
-        "APP_NAME": "Titi Dev",
+        "APP_NAME": "tĭti Dev",
+        "APP_PLAIN_NAME": "titi Dev",
         "IOS_BUNDL_ID": "com.darkos.titi.dev",
         "ANDROID_PKG": "com.darkos.titi.dev",
         "APP_API_URL": "https://titi-development.up.railway.app/api"
@@ -23,7 +24,8 @@
       "distribution": "internal",
       "env": {
         "APP_ENV": "preview",
-        "APP_NAME": "Titi Prev",
+        "APP_NAME": "tĭti Prev",
+        "APP_PLAIN_NAME": "titi Prev",
         "IOS_BUNDL_ID": "com.darkos.titi.prev",
         "ANDROID_PKG": "com.darkos.titi.prev",
         "APP_API_URL": "https://titi-development.up.railway.app/api"
@@ -33,7 +35,8 @@
       "channel": "production",
       "env": {
         "APP_ENV": "production",
-        "APP_NAME": "Titi",
+        "APP_NAME": "tĭti",
+        "APP_PLAIN_NAME": "titi",
         "IOS_BUNDL_ID": "com.darkos.titi",
         "ANDROID_PKG": "com.darkos.titi",
         "APP_API_URL": "https://titi.up.railway.app/api"

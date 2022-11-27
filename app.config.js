@@ -2,7 +2,7 @@ import "dotenv/config";
 
 export default () => {
   return {
-    name: process.env.APP_NAME,
+    name: process.env.APP_PLAIN_NAME,
     description: "Publish and search for adventures that only take place in the next 24 hours",
     slug: "titi",
     version: "1.0.0",

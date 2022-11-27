@@ -2,11 +2,14 @@ import "expo-dev-client";
 
 import { Eczar_400Regular as Eczar400Regular } from "@expo-google-fonts/eczar";
 import { Provider as ReduxProvider } from "react-redux";
+import * as SplashScreen from "expo-splash-screen";
 import { reduxStore } from "./src/redux/store";
-import { Text } from "react-native-paper";
 import { useFonts } from "expo-font";
+import { useCallback } from "react";
 import { Main } from "./src/Main";
 import "./src/locales/i18n";
+
+SplashScreen.preventAutoHideAsync();
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -14,13 +17,19 @@ export default function App() {
     Eczar400Regular,
   });
 
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
   if (!fontsLoaded) {
-    return <Text>Loading...</Text>;
+    return null;
   }
 
   return (
     <ReduxProvider store={reduxStore}>
-      <Main />
+      <Main onLayout={onLayoutRootView} />
     </ReduxProvider>
   );
 }

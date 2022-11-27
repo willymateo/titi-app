@@ -25,6 +25,8 @@ i18next
   .use(initReactI18next)
   .init({
     debug: Constants.manifest.extra.APP_ENV === "development",
+    nonExplicitSupportedLngs: true,
+    supportedLngs: ["es", "en"],
     fallbackLng: "en",
     interpolation: {
       escapeValue: false,
