@@ -1,6 +1,12 @@
 import { StyleSheet } from "react-native";
 
 const sharedStyles = StyleSheet.create({
+  flx: {
+    flex: 1,
+  },
+  flxRow: {
+    flexDirection: "row",
+  },
   flxSBtwn: {
     justifyContent: "space-between",
   },
@@ -13,9 +19,6 @@ const sharedStyles = StyleSheet.create({
   flxCenter: {
     justifyContent: "center",
     alignItems: "center",
-  },
-  flxRow: {
-    flexDirection: "row",
   },
   fullHeight: {
     height: "100%",
@@ -30,8 +33,7 @@ const sharedStyles = StyleSheet.create({
   fullSizeCenter: {
     justifyContent: "center",
     alignItems: "center",
-    height: "100%",
-    width: "100%",
+    flex: 1,
   },
   iconoirS: {
     width: 15,
@@ -40,6 +42,9 @@ const sharedStyles = StyleSheet.create({
   iconoirM: {
     width: 25,
     height: 25,
+  },
+  profilePhoto: {
+    size: 80,
   },
 });
 

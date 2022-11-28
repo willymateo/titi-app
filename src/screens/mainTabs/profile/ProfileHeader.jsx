@@ -1,9 +1,9 @@
 import { UserStateChip } from "../../../components/UserStateChip";
 import { Avatar, Divider, Text } from "react-native-paper";
 import { sharedStyles } from "../../../shared/styles";
-import { StyleSheet, View } from "react-native";
+import { View } from "react-native";
 
-function ProfileTop({
+function ProfileHeader({
   currentState: { state } = {},
   numAdventures = 0,
   firstNames = "",
@@ -16,7 +16,7 @@ function ProfileTop({
   return (
     <View>
       <View style={sharedStyles.flxACenter}>
-        <Avatar.Image source={{ uri: photoUrl }} size={styles.avatar.size} />
+        <Avatar.Image source={{ uri: photoUrl }} {...sharedStyles.profilePhoto} />
         <View style={{ ...sharedStyles.flxRow, ...sharedStyles.flxACenter }}>
           <Text>@{username}</Text>
           <UserStateChip state={state} />
@@ -44,10 +44,4 @@ function ProfileTop({
   );
 }
 
-const styles = StyleSheet.create({
-  avatar: {
-    size: 80,
-  },
-});
-
-export { ProfileTop };
+export { ProfileHeader };

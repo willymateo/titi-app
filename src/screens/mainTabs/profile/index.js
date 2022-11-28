@@ -1,6 +1,6 @@
 import { useAccountInformation } from "../../../services/app/me";
 import { ActivityIndicator, Text } from "react-native-paper";
-import { ProfileTop } from "./ProfileTop";
+import { ProfileHeader } from "./ProfileHeader";
 
 function Profile() {
   const { data, error, isValidating } = useAccountInformation();
@@ -17,7 +17,7 @@ function Profile() {
 
   return (
     <>
-      <ProfileTop {...data} />
+      <ProfileHeader {...data} />
     </>
   );
 }

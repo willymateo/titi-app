@@ -1,20 +1,13 @@
-import { StyleSheet, View } from "react-native";
+import { sharedStyles } from "../../shared/styles";
 import { Text } from "react-native-paper";
+import { View } from "react-native";
 
 function Notifications() {
   return (
-    <View style={styles.container}>
+    <View style={sharedStyles.fullSizeCenter}>
       <Text>You don't have notifications yet</Text>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
 
 export { Notifications };

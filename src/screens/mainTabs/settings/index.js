@@ -2,15 +2,15 @@ import { Language, NavArrowRight, Palette } from "iconoir-react-native";
 import { LogoutButton } from "../../../components/LogoutButton";
 import { AboutCard } from "../../../components/AboutCard";
 import { sharedStyles } from "../../../shared/styles";
-import { StyleSheet, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { List } from "react-native-paper";
+import { StyleSheet } from "react-native";
 
 function Settings({ navigation }) {
   const { t } = useTranslation("translation", { keyPrefix: "screens.settings" });
 
   return (
-    <View>
+    <>
       <List.Section>
         <List.Subheader>{t("preferences")}</List.Subheader>
         <List.Item
@@ -33,10 +33,10 @@ function Settings({ navigation }) {
             <List.Icon icon={props => <NavArrowRight {...props} {...sharedStyles.iconoirM} />} />
           )}
         />
-        <AboutCard style={styles.about} />
-        <LogoutButton />
       </List.Section>
-    </View>
+      <AboutCard style={styles.about} />
+      <LogoutButton />
+    </>
   );
 }
 
