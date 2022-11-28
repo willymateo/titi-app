@@ -1,7 +1,8 @@
-import { useAdventures } from "../services/app/adventures";
 import { Text, ActivityIndicator } from "react-native-paper";
+import { useAdventures } from "../services/app/adventures";
 import { ScrollView, StyleSheet } from "react-native";
 import { AdventureCard } from "./AdventureCard";
+import { ErrorScreen } from "./ErrorScreen";
 
 function ScrollAdventuresCards() {
   const { data: adventures, error, isValidating } = useAdventures();
@@ -13,6 +14,12 @@ function ScrollAdventuresCards() {
   if (error) {
     return <Text>{error}</Text>;
   }
+
+  if (!adventures.length) {
+    return <ErrorScreen>Adventures not found</ErrorScreen>;
+  }
+
+  console.log("ADVENTURES", adventures);
 
   return (
     <ScrollView>

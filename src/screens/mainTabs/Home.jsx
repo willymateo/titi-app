@@ -1,20 +1,13 @@
 import { ScrollAdventuresCards } from "../../components/ScrollAdventuresCards";
-import { StyleSheet, View } from "react-native";
+import { sharedStyles } from "../../theme/styles";
+import { View } from "react-native";
 
 function Home() {
   return (
-    <View style={styles.container}>
+    <View style={sharedStyles.flxCenter}>
       <ScrollAdventuresCards />
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
 
 export { Home };

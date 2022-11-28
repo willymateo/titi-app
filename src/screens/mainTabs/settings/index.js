@@ -1,6 +1,6 @@
+import { Language, NavArrowRight, Palette } from "iconoir-react-native";
 import { LogoutButton } from "../../../components/LogoutButton";
 import { AboutCard } from "../../../components/AboutCard";
-import { Language, NavArrowRight, Palette } from "iconoir-react-native";
 import { StyleSheet, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { List } from "react-native-paper";
@@ -9,7 +9,7 @@ function Settings({ navigation }) {
   const { t } = useTranslation("translation", { keyPrefix: "screens.settings" });
 
   return (
-    <View style={styles.container}>
+    <View>
       <List.Section>
         <List.Subheader>{t("preferences")}</List.Subheader>
         <List.Item
@@ -36,9 +36,6 @@ function Settings({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
   iconoir: {
     height: 25,
     width: 25,
