@@ -9,6 +9,7 @@ import { useErrorDialog } from "../../hooks/useErrorDialog";
 import { ErrorDialog } from "../../components/ErrorDialog";
 import { LoginFooter } from "../../components/LoginFooter";
 import { useLoading } from "../../hooks/useLoading";
+import { sharedStyles } from "../../shared/styles";
 import * as appAPI from "../../services/app/auth";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
@@ -58,7 +59,7 @@ function Login({ navigation }) {
             label={t("components.inputHookForm.username")}
             control={control}
             controllerName="username"
-            left={<TextInput.Icon name={props => <User {...props} {...styles.iconoir} />} />}
+            left={<TextInput.Icon name={props => <User {...props} {...sharedStyles.iconoirM} />} />}
           />
           <TextInputHF
             style={styles.inputText}
@@ -69,14 +70,18 @@ function Login({ navigation }) {
             label={t("components.inputHookForm.password")}
             control={control}
             controllerName="password"
-            left={<TextInput.Icon name={props => <KeyAltBack {...props} {...styles.iconoir} />} />}
+            left={
+              <TextInput.Icon
+                name={props => <KeyAltBack {...props} {...sharedStyles.iconoirM} />}
+              />
+            }
             right={
               <TextInput.Icon
                 name={props => {
                   return isPasswordHidden ? (
-                    <EyeClose {...props} {...styles.iconoir} />
+                    <EyeClose {...props} {...sharedStyles.iconoirM} />
                   ) : (
-                    <EyeEmpty {...props} {...styles.iconoir} />
+                    <EyeEmpty {...props} {...sharedStyles.iconoirM} />
                   );
                 }}
                 onPress={() => setIsPasswordHidden(!isPasswordHidden)}
@@ -115,10 +120,6 @@ const styles = StyleSheet.create({
     fontFamily: "RedHatMono",
     textAlign: "center",
     fontSize: 60,
-  },
-  iconoir: {
-    height: 25,
-    width: 25,
   },
 });
 

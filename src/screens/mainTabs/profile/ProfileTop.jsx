@@ -1,6 +1,6 @@
 import { UserStateChip } from "../../../components/UserStateChip";
 import { Avatar, Divider, Text } from "react-native-paper";
-import { sharedStyles } from "../../../theme/styles";
+import { sharedStyles } from "../../../shared/styles";
 import { StyleSheet, View } from "react-native";
 
 function ProfileTop({

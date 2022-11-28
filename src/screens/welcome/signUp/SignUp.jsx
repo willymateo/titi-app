@@ -9,6 +9,7 @@ import { LoginFooter } from "../../../components/LoginFooter";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { InputChip } from "../../../components/InputChip";
 import { useDispatch, useSelector } from "react-redux";
+import { sharedStyles } from "../../../shared/styles";
 import { parseISO, intlFormat } from "date-fns";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
@@ -67,7 +68,7 @@ function SignUp({ navigation }) {
             controllerName="email"
             style={styles.inputText}
             label={t("components.inputHookForm.email")}
-            left={<TextInput.Icon name={props => <Mail {...props} {...styles.iconoir} />} />}
+            left={<TextInput.Icon name={props => <Mail {...props} {...sharedStyles.iconoirM} />} />}
           />
           <TextInputHF
             rules={{
@@ -89,7 +90,7 @@ function SignUp({ navigation }) {
             style={styles.inputText}
             controllerName="username"
             label={t("components.inputHookForm.username")}
-            left={<TextInput.Icon name={props => <User {...props} {...styles.iconoir} />} />}
+            left={<TextInput.Icon name={props => <User {...props} {...sharedStyles.iconoirM} />} />}
           />
           <TextInputHF
             control={control}
@@ -98,15 +99,17 @@ function SignUp({ navigation }) {
             secureTextEntry={isPasswordHidden}
             label={t("components.inputHookForm.password")}
             rules={{ required: t("components.inputHookForm.passwordRequired") }}
-            left={<TextInput.Icon name={props => <KeyAlt {...props} {...styles.iconoir} />} />}
+            left={
+              <TextInput.Icon name={props => <KeyAlt {...props} {...sharedStyles.iconoirM} />} />
+            }
             right={
               <TextInput.Icon
                 onPress={() => setIsPasswordHidden(!isPasswordHidden)}
                 name={props => {
                   return isPasswordHidden ? (
-                    <EyeClose {...props} {...styles.iconoir} />
+                    <EyeClose {...props} {...sharedStyles.iconoirM} />
                   ) : (
-                    <EyeEmpty {...props} {...styles.iconoir} />
+                    <EyeEmpty {...props} {...sharedStyles.iconoirM} />
                   );
                 }}
               />
@@ -122,7 +125,11 @@ function SignUp({ navigation }) {
             style={styles.inputText}
             controllerName="repeatPassword"
             label={t("components.inputHookForm.repeatPassword")}
-            left={<TextInput.Icon name={props => <KeyAltBack {...props} {...styles.iconoir} />} />}
+            left={
+              <TextInput.Icon
+                name={props => <KeyAltBack {...props} {...sharedStyles.iconoirM} />}
+              />
+            }
           />
           <InputChip
             value={t("components.inputHookForm.genderPlaceholder")}
@@ -134,7 +141,7 @@ function SignUp({ navigation }) {
           />
           <Portal>
             <Dialog visible={isVisibleGenderRB} onDismiss={() => setIsVisibleGenderRB(false)}>
-              {/* <Dialog.Icon icon={props => <EmojiBlinkRight {...props} {...styles.iconoir} />} />*/}
+              {/* <Dialog.Icon icon={props => <EmojiBlinkRight {...props} {...sharedStyles.iconoirM} />} />*/}
               <Dialog.Title>{t("components.inputHookForm.gender")}</Dialog.Title>
               <Dialog.ScrollArea>
                 <ScrollView>
@@ -193,10 +200,6 @@ const styles = StyleSheet.create({
   },
   inputText: {
     marginVertical: 5,
-  },
-  iconoir: {
-    height: 25,
-    width: 25,
   },
   inputChip: {
     marginVertical: 12,

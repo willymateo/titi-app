@@ -3,6 +3,7 @@ import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
 import { LoginFooter } from "../../../components/LoginFooter";
 import { Button, TextInput } from "react-native-paper";
+import { sharedStyles } from "../../../shared/styles";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { useState } from "react";
@@ -29,14 +30,14 @@ function ResetPassword({ navigation }) {
           label={t("components.inputHookForm.password")}
           control={control}
           controllerName="password"
-          left={<TextInput.Icon name={props => <KeyAlt {...props} {...styles.iconoir} />} />}
+          left={<TextInput.Icon name={props => <KeyAlt {...props} {...sharedStyles.iconoirM} />} />}
           right={
             <TextInput.Icon
               name={props => {
                 return isPasswordHidden ? (
-                  <EyeEmpty {...props} {...styles.iconoir} />
+                  <EyeEmpty {...props} {...sharedStyles.iconoirM} />
                 ) : (
-                  <EyeClose {...props} {...styles.iconoir} />
+                  <EyeClose {...props} {...sharedStyles.iconoirM} />
                 );
               }}
               onPress={() => setIsPasswordHidden(!isPasswordHidden)}
@@ -53,7 +54,9 @@ function ResetPassword({ navigation }) {
           label={t("components.inputHookForm.repeatPassword")}
           control={control}
           controllerName="repeatPassword"
-          left={<TextInput.Icon name={props => <KeyAltBack {...props} {...styles.iconoir} />} />}
+          left={
+            <TextInput.Icon name={props => <KeyAltBack {...props} {...sharedStyles.iconoirM} />} />
+          }
         />
 
         <Button mode="contained" uppercase={false} onPress={handleSubmit(onPressSignUp)}>
@@ -78,10 +81,6 @@ const styles = StyleSheet.create({
   },
   inputText: {
     marginVertical: 5,
-  },
-  iconoir: {
-    height: 25,
-    width: 25,
   },
 });
 

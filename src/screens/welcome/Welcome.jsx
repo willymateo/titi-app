@@ -5,6 +5,7 @@ import { ScrollView, StyleSheet, View } from "react-native";
 import { LoginFooter } from "../../components/LoginFooter";
 import DarkLogo from "../../../assets/images/darkLogo.svg";
 import { NavArrowDown } from "iconoir-react-native";
+import { sharedStyles } from "../../shared/styles";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { useState } from "react";
@@ -20,12 +21,12 @@ function Welcome({ navigation }) {
         <Button
           uppercase={false}
           onPress={() => setIsVisibleLS(true)}
-          icon={props => <NavArrowDown {...props} {...styles.iconoir} />}>
+          icon={props => <NavArrowDown {...props} {...sharedStyles.iconoirM} />}>
           {t("language")}
         </Button>
         <Portal>
           <Dialog visible={isVisibleLS} onDismiss={() => setIsVisibleLS(false)}>
-            {/* <Dialog.Icon icon={props => <EmojiBlinkRight {...props} {...styles.iconoir} />} />*/}
+            {/* <Dialog.Icon icon={props => <EmojiBlinkRight {...props} {...sharedStyles.iconoirM} />} />*/}
             <Dialog.Title style={styles.dialogTitle}>{t("language")}</Dialog.Title>
             <Dialog.ScrollArea>
               <ScrollView>
@@ -110,10 +111,6 @@ const styles = StyleSheet.create({
   },
   buttons: {
     marginVertical: 5,
-  },
-  iconoir: {
-    height: 25,
-    width: 25,
   },
 });
 

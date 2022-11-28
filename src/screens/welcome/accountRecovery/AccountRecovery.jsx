@@ -3,6 +3,7 @@ import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { LoginFooter } from "../../../components/LoginFooter";
 import { EMAIL_REGEX } from "../../../config/app.config";
 import { Button, TextInput } from "react-native-paper";
+import { sharedStyles } from "../../../shared/styles";
 import { useTranslation } from "react-i18next";
 import { Mail } from "iconoir-react-native";
 import { useForm } from "react-hook-form";
@@ -34,7 +35,7 @@ function AccountRecovery({ navigation }) {
           control={control}
           controllerName="email"
           placeholder={t("components.inputHookForm.emailPlaceholder")}
-          left={<TextInput.Icon name={props => <Mail {...props} {...styles.iconoir} />} />}
+          left={<TextInput.Icon name={props => <Mail {...props} {...sharedStyles.iconoirM} />} />}
         />
 
         <Button mode="contained" uppercase={false} onPress={handleSubmit(onPressSendRecovery)}>
@@ -59,10 +60,6 @@ const styles = StyleSheet.create({
   },
   inputText: {
     marginVertical: 5,
-  },
-  iconoir: {
-    height: 25,
-    width: 25,
   },
 });
 

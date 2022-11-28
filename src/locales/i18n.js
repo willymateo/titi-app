@@ -14,10 +14,10 @@ import "@formatjs/intl-datetimeformat/locale-data/en";
 import "@formatjs/intl-datetimeformat/locale-data/es";
 
 import { languageDetector } from "./plugins/languageDetector";
-import { translationEn } from "./en/translation";
-import { translationEs } from "./es/translation";
 import { initReactI18next } from "react-i18next";
 import Constants from "expo-constants";
+import { translationEn } from "./en";
+import { translationEs } from "./es";
 import i18next from "i18next";
 
 i18next

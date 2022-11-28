@@ -1,4 +1,5 @@
 import { DarkTheme as PaperDarkTheme, DefaultTheme as PaperDefaultTheme } from "react-native-paper";
+import { useSelector } from "react-redux";
 import {
   DefaultTheme as NavigationDefaultTheme,
   DarkTheme as NavigationDarkTheme,
@@ -25,13 +26,8 @@ const CombinedDarkTheme = {
 };
 
 const useTheme = () => {
-  const [theme, setTheme] = useState(CombinedDefaultTheme);
-
-  const toggleTheme = () => {
-    setTheme(theme.dark ? CombinedDefaultTheme : CombinedDarkTheme);
-  };
-
-  return { theme, toggleTheme };
+  const { isDark } = useSelector(state => state.colorMode);
+  return isDark ? CombinedDarkTheme : CombinedDefaultTheme;
 };
 
 export { useTheme };

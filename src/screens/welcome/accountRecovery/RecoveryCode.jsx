@@ -3,6 +3,7 @@ import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { LoginFooter } from "../../../components/LoginFooter";
 import { Button, TextInput } from "react-native-paper";
 import { PasswordCursor } from "iconoir-react-native";
+import { sharedStyles } from "../../../shared/styles";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 
@@ -29,7 +30,9 @@ function RecoveryCode({ navigation }) {
           control={control}
           controllerName="recoveryCode"
           left={
-            <TextInput.Icon name={props => <PasswordCursor {...props} {...styles.iconoir} />} />
+            <TextInput.Icon
+              name={props => <PasswordCursor {...props} {...sharedStyles.iconoirM} />}
+            />
           }
         />
 
@@ -55,10 +58,6 @@ const styles = StyleSheet.create({
   },
   inputText: {
     marginVertical: 5,
-  },
-  iconoir: {
-    height: 25,
-    width: 25,
   },
 });
 

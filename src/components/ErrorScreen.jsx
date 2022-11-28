@@ -1,4 +1,4 @@
-import { sharedStyles } from "../theme/styles";
+import { sharedStyles } from "../shared/styles";
 import { Text } from "react-native-paper";
 import { View } from "react-native";
 

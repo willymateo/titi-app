@@ -1,6 +1,6 @@
 import { Archery, Fishing, Stretching } from "iconoir-react-native";
+import { sharedStyles } from "../shared/styles";
 import { useTranslation } from "react-i18next";
-import { sharedStyles } from "../theme/styles";
 import { Chip } from "react-native-paper";
 
 function UserStateChip({ state }) {

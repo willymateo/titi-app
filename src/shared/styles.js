@@ -34,6 +34,10 @@ const sharedStyles = StyleSheet.create({
     width: "100%",
   },
   iconoirS: {
+    width: 15,
+    height: 15,
+  },
+  iconoirM: {
     width: 25,
     height: 25,
   },

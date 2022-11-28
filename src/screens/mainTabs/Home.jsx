@@ -1,5 +1,5 @@
 import { ScrollAdventuresCards } from "../../components/ScrollAdventuresCards";
-import { sharedStyles } from "../../theme/styles";
+import { sharedStyles } from "../../shared/styles";
 import { View } from "react-native";
 
 function Home() {

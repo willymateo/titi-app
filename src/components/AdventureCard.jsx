@@ -2,6 +2,7 @@ import { Group, Heart, User, UserCircleAlt, Wristwatch } from "iconoir-react-nat
 import { Card, Chip, Text, Avatar, Button, IconButton } from "react-native-paper";
 import { formatDistanceToNow, intlFormat, parseISO } from "date-fns";
 import { StyleSheet, View } from "react-native";
+import { sharedStyles } from "../shared/styles";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
@@ -30,7 +31,7 @@ function AdventureCard({
         left={props => (
           <Avatar.Icon
             {...props}
-            icon={props => <UserCircleAlt {...props} {...styles.iconoir} />}
+            icon={props => <UserCircleAlt {...props} {...sharedStyles.iconoirM} />}
           />
         )}
       />
@@ -56,9 +57,9 @@ function AdventureCard({
             <Chip
               icon={props => {
                 return numInvitations > 1 ? (
-                  <Group {...props} {...styles.iconoirChip} />
+                  <Group {...props} {...sharedStyles.iconoirS} />
                 ) : (
-                  <User {...props} {...styles.iconoirChip} />
+                  <User {...props} {...sharedStyles.iconoirS} />
                 );
               }}>
               {t("invitations", { count: numInvitations })}
@@ -74,7 +75,7 @@ function AdventureCard({
             </Text>
             <IconButton
               disabled
-              icon={props => <Wristwatch {...props} {...styles.iconoirChip} />}
+              icon={props => <Wristwatch {...props} {...sharedStyles.iconoirS} />}
             />
           </View>
         </View>
@@ -82,7 +83,7 @@ function AdventureCard({
       <Card.Actions>
         <Button
           onPress={() => console.log("Engage")}
-          icon={props => <Heart {...props} {...styles.iconoir} />}>
+          icon={props => <Heart {...props} {...sharedStyles.iconoirM} />}>
           {t("engage")}
         </Button>
       </Card.Actions>
@@ -113,14 +114,6 @@ const styles = StyleSheet.create({
   },
   endDateTimeText: {
     fontSize: 23,
-  },
-  iconoir: {
-    height: 25,
-    width: 25,
-  },
-  iconoirChip: {
-    height: 15,
-    width: 15,
   },
 });
 
