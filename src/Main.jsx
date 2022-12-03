@@ -18,10 +18,10 @@ function Main({ onLayout }) {
   const storedToken = storage.getString(MMKV_USER_TOKEN);
   const storedIsDark = storage.getBoolean(MMKV_IS_DARK);
   const storedTheme = storage.getString(MMKV_THEME);
+  const { paperTheme } = useTheme();
   const dispatch = useDispatch();
-  const paperTheme = useTheme();
 
-  useEffect(() => {
+  const verifyThemeCache = () => {
     if (storedTheme && storedIsDark !== undefined) {
       logger("Stored isDark:", storedIsDark);
       logger("Stored theme:", storedTheme);
@@ -32,9 +32,9 @@ function Main({ onLayout }) {
     logger("No stored theme, using default:", theme);
     storage.set(MMKV_IS_DARK, isDark);
     storage.set(MMKV_THEME, theme);
-  }, []);
+  };
 
-  useEffect(() => {
+  const verifyTokenCache = () => {
     if (storedToken) {
       logger("Stored token:", storedToken);
       dispatch(setUserSession({ token: storedToken }));
@@ -43,6 +43,11 @@ function Main({ onLayout }) {
     if (token) {
       storage.set(MMKV_USER_TOKEN, token);
     }
+  };
+
+  useEffect(() => {
+    verifyThemeCache();
+    verifyTokenCache();
   }, []);
 
   return (

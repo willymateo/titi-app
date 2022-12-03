@@ -4,8 +4,8 @@ import { Notifications } from "../../screens/mainTabs/Notifications";
 import { SettingsStackNavigator } from "./SettingsStackNavigator";
 import { Profile } from "../../screens/mainTabs/profile";
 import { Home } from "../../screens/mainTabs/Home";
-import { useTranslation } from "react-i18next";
 import { sharedStyles } from "../../shared/styles";
+import { useTranslation } from "react-i18next";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -13,13 +13,7 @@ function MainBottomTabsNavigator() {
   const { t } = useTranslation("translation", { keyPrefix: "components.mainBottomTabsNavigator" });
 
   return (
-    <Tab.Navigator
-      initialRouteName="Home"
-      screenOptions={{
-        contentStyle: {
-          paddingHorizontal: 20,
-        },
-      }}>
+    <Tab.Navigator initialRouteName="Home">
       <Tab.Screen
         name="Home"
         component={Home}

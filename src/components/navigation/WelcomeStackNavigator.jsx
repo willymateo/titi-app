@@ -7,6 +7,7 @@ import { SignUp } from "../../screens/welcome/signUp/SignUp";
 import { FocusAwareStatusBar } from "../FocusAwareStatusBar";
 import { Welcome } from "../../screens/welcome/Welcome";
 import { Login } from "../../screens/welcome/Login";
+import { sharedStyles } from "../../shared/styles";
 import { useTranslation } from "react-i18next";
 import { Appbar } from "react-native-paper";
 
@@ -20,9 +21,7 @@ function WelcomeStackNavigator() {
       initialRouteName="Welcome"
       screenOptions={{
         headerShown: true,
-        contentStyle: {
-          paddingHorizontal: 20,
-        },
+        contentStyle: sharedStyles.screenPadding,
         header: ({ options: { title }, navigation }) => (
           <>
             <FocusAwareStatusBar translucent />

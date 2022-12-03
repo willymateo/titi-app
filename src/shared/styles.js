@@ -1,6 +1,9 @@
 import { StyleSheet } from "react-native";
 
 const sharedStyles = StyleSheet.create({
+  screenPadding: {
+    paddingHorizontal: 20,
+  },
   flx: {
     flex: 1,
   },

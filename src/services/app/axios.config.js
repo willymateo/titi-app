@@ -1,44 +1,51 @@
 import Constants from "expo-constants";
 import axios from "axios";
+import { logger } from "../../config/app.config";
 
 const axiosInstance = axios.create({
   baseURL: Constants.manifest.extra.APP_API_URL,
 });
 
 const errorHandler = ({ request, response }) => {
+  let error = "Unexpected error ocurred";
+
   if (response) {
     if (!response.data?.error) {
-      return {
-        status: response.status,
-        error: "Unexpected error ocurred",
-      };
+      logger(`${request.method} ${request.url} ${response.status} : ${error}`);
+      return { error };
     }
-    return {
-      ...response.data,
-      status: response.status,
-    };
-  } else if (request) {
-    return {
-      error: "The request was made but no response was received",
-    };
-  } else {
-    return {
-      error: "Unexpected error ocurred",
-    };
+
+    logger(`${request.method} ${request.url} ${response.status} : ${response.data.error}`);
+    return response.data;
   }
+
+  if (request) {
+    error = "The request was made but no response was received";
+  }
+
+  logger(`${request.method} ${request.url} ${response.status} : ${error}`);
+  return { error };
 };
 
 const errorHandlerSWR = ({ request, response }) => {
+  let error = "Unexpected error ocurred";
+
   if (response) {
     if (!response.data?.error) {
-      throw "Unexpected error ocurred";
+      logger(`${request.method} ${request.url} ${response.status} : ${error}`);
+      throw error;
     }
+
+    logger(`${request.method} ${request.url} ${response.status} : ${response.data.error}`);
     throw response.data.error;
-  } else if (request) {
-    throw "The request was made but no response was received";
-  } else {
-    throw "Unexpected error ocurred";
   }
+
+  if (request) {
+    error = "The request was made but no response was received";
+  }
+
+  logger(`${request.method} ${request.url} ${response.status} : ${error}`);
+  throw error;
 };
 
 export { axiosInstance, errorHandler, errorHandlerSWR };

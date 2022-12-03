@@ -27,7 +27,9 @@ const CombinedDarkTheme = {
 
 const useTheme = () => {
   const { isDark } = useSelector(state => state.colorMode);
-  return isDark ? CombinedDarkTheme : CombinedDefaultTheme;
+  const paperTheme = isDark ? CombinedDarkTheme : CombinedDefaultTheme;
+
+  return { paperTheme };
 };
 
 export { useTheme };
