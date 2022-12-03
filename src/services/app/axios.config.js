@@ -11,11 +11,11 @@ const errorHandler = ({ request, response }) => {
 
   if (response) {
     if (!response.data?.error) {
-      logger(`${request.method} ${request.url} ${response.status} : ${error}`);
+      logger(`${request._method} ${response.status} ${request.responseURL} : ${error}`);
       return { error };
     }
 
-    logger(`${request.method} ${request.url} ${response.status} : ${response.data.error}`);
+    logger(`${request._method} ${response.status} ${request.responseURL} : ${response.data.error}`);
     return response.data;
   }
 
@@ -23,7 +23,7 @@ const errorHandler = ({ request, response }) => {
     error = "The request was made but no response was received";
   }
 
-  logger(`${request.method} ${request.url} ${response.status} : ${error}`);
+  logger(`${request._method} ${response.status} ${request.responseURL} : ${error}`);
   return { error };
 };
 
@@ -32,11 +32,11 @@ const errorHandlerSWR = ({ request, response }) => {
 
   if (response) {
     if (!response.data?.error) {
-      logger(`${request.method} ${request.url} ${response.status} : ${error}`);
+      logger(`${request._method} ${response.status} ${request.responseURL} : ${error}`);
       throw error;
     }
 
-    logger(`${request.method} ${request.url} ${response.status} : ${response.data.error}`);
+    logger(`${request._method} ${response.status} ${request.responseURL} : ${response.data.error}`);
     throw response.data.error;
   }
 
@@ -44,7 +44,7 @@ const errorHandlerSWR = ({ request, response }) => {
     error = "The request was made but no response was received";
   }
 
-  logger(`${request.method} ${request.url} ${response.status} : ${error}`);
+  logger(`${request._method} ${response.status} ${request.responseURL} : ${error}`);
   throw error;
 };
 
