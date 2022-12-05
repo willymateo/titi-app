@@ -6,7 +6,7 @@ import { sharedStyles } from "../shared/styles";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
-function AdventureCard({
+function AdventureMiniCard({
   style,
   title,
   description,
@@ -115,4 +115,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export { AdventureCard };
+export { AdventureMiniCard };

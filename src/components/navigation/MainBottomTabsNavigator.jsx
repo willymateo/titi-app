@@ -3,7 +3,7 @@ import { Bell, HomeSimple, IosSettings, UserCircleAlt } from "iconoir-react-nati
 import { Notifications } from "../../screens/mainTabs/Notifications";
 import { SettingsStackNavigator } from "./SettingsStackNavigator";
 import { ProfileStackNavigator } from "./ProfileStackNavigator";
-import { Home } from "../../screens/mainTabs/Home";
+import { Home } from "../../screens/mainTabs/home";
 import { sharedStyles } from "../../shared/styles";
 import { useTranslation } from "react-i18next";
 
