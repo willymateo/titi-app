@@ -1,10 +1,10 @@
-import { Language, NavArrowRight, Palette } from "iconoir-react-native";
+import { Language, NavArrowRight, Palette, PasswordCursor } from "iconoir-react-native";
 import { LogoutButton } from "../../../components/LogoutButton";
 import { AboutCard } from "../../../components/AboutCard";
 import { sharedStyles } from "../../../shared/styles";
+import { StyleSheet, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { List } from "react-native-paper";
-import { StyleSheet } from "react-native";
 
 function Settings({ navigation }) {
   const { t } = useTranslation("translation", { keyPrefix: "screens.settings" });
@@ -34,8 +34,23 @@ function Settings({ navigation }) {
           )}
         />
       </List.Section>
-      <AboutCard style={styles.about} />
-      <LogoutButton />
+      <List.Section>
+        <List.Subheader>{t("security")}</List.Subheader>
+        <List.Item
+          title={t("changePassword")}
+          onPress={() => navigation.navigate("ThemeSettings")}
+          left={() => (
+            <List.Icon icon={props => <PasswordCursor {...props} {...sharedStyles.iconoirM} />} />
+          )}
+          right={() => (
+            <List.Icon icon={props => <NavArrowRight {...props} {...sharedStyles.iconoirM} />} />
+          )}
+        />
+      </List.Section>
+      <View style={sharedStyles.mh20}>
+        <AboutCard style={styles.about} />
+        <LogoutButton />
+      </View>
     </>
   );
 }

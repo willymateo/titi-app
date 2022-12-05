@@ -3,7 +3,6 @@ import { ThemeSettings } from "../../screens/mainTabs/settings/ThemeSettings";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { FocusAwareStatusBar } from "../FocusAwareStatusBar";
 import { Settings } from "../../screens/mainTabs/settings";
-import { sharedStyles } from "../../shared/styles";
 import { useTranslation } from "react-i18next";
 import { Appbar } from "react-native-paper";
 
@@ -17,7 +16,6 @@ function SettingsStackNavigator() {
       initialRouteName="SettingsRoot"
       screenOptions={{
         headerShown: true,
-        contentStyle: sharedStyles.ph20,
         header: ({ options: { title }, navigation }) => (
           <>
             <FocusAwareStatusBar translucent />

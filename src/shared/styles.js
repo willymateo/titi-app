@@ -4,6 +4,9 @@ const sharedStyles = StyleSheet.create({
   ph20: {
     paddingHorizontal: 20,
   },
+  mh20: {
+    marginHorizontal: 20,
+  },
   mv15: {
     marginVertical: 15,
   },

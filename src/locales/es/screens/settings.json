@@ -1,5 +1,7 @@
 {
   "preferences": "Preferencias",
   "theme": "Tema",
-  "language": "Idioma"
+  "language": "Idioma",
+  "security": "Seguridad",
+  "changePassword": "Cambiar contraseña"
 }

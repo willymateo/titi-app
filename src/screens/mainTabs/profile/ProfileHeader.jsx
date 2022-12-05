@@ -22,17 +22,20 @@ function ProfileHeader({
   return (
     <View>
       <View style={sharedStyles.flxACenter}>
-        <Avatar.Image source={{ uri: photoUrl }} {...sharedStyles.profilePhoto} />
-        <View style={[sharedStyles.mv5, sharedStyles.flxACenter]}>
-          <View style={[sharedStyles.flxRow, sharedStyles.flxACenter]}>
-            <Text>@{username}</Text>
-            <UserStateChip state={state} style={sharedStyles.ml10} />
+        <View style={sharedStyles.flxRow}>
+          <Avatar.Image source={{ uri: photoUrl }} {...sharedStyles.profilePhoto} />
+          <View style={[sharedStyles.flxACenter, sharedStyles.flxJCCenter, sharedStyles.ml10]}>
+            <Text>
+              {firstNames} {lastNames}
+            </Text>
+            <View style={[sharedStyles.flxRow, sharedStyles.flxACenter]}>
+              <Text>@{username}</Text>
+              <UserStateChip state={state} style={sharedStyles.ml10} />
+            </View>
           </View>
-          <Text>
-            {firstNames} {lastNames}
-          </Text>
-          <Text>{biography}</Text>
         </View>
+
+        <Text style={sharedStyles.mv5}>{biography}</Text>
       </View>
 
       <Divider style={sharedStyles.mv5} />
