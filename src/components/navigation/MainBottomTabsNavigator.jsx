@@ -13,7 +13,7 @@ function MainBottomTabsNavigator() {
   const { t } = useTranslation("translation", { keyPrefix: "components.mainBottomTabsNavigator" });
 
   return (
-    <Tab.Navigator initialRouteName="Home">
+    <Tab.Navigator initialRouteName="Home" shifting>
       <Tab.Screen
         name="Home"
         component={Home}

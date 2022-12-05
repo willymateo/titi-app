@@ -1,8 +1,17 @@
 import { StyleSheet } from "react-native";
 
 const sharedStyles = StyleSheet.create({
-  screenPadding: {
+  ph20: {
     paddingHorizontal: 20,
+  },
+  mv15: {
+    marginVertical: 15,
+  },
+  mv5: {
+    marginVertical: 5,
+  },
+  ml10: {
+    marginLeft: 10,
   },
   flx: {
     flex: 1,

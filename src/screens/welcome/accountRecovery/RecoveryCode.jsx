@@ -22,7 +22,7 @@ function RecoveryCode({ navigation }) {
       behavior={Platform.OS === "ios" ? "padding" : "height"}>
       <View style={styles.container}>
         <TextInputHF
-          style={styles.inputText}
+          style={sharedStyles.mv5}
           rules={{
             required: t("components.inputHookForm.recoveryCodeRequired"),
           }}
@@ -55,9 +55,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-  },
-  inputText: {
-    marginVertical: 5,
   },
 });
 

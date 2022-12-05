@@ -17,7 +17,7 @@ function SettingsStackNavigator() {
       initialRouteName="SettingsRoot"
       screenOptions={{
         headerShown: true,
-        contentStyle: sharedStyles.screenPadding,
+        contentStyle: sharedStyles.ph20,
         header: ({ options: { title }, navigation }) => (
           <>
             <FocusAwareStatusBar translucent />

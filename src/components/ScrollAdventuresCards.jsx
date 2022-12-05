@@ -1,8 +1,9 @@
 import { Text, ActivityIndicator } from "react-native-paper";
 import { useAdventures } from "../services/app/adventures";
-import { ScrollView, StyleSheet } from "react-native";
 import { AdventureCard } from "./AdventureCard";
+import { sharedStyles } from "../shared/styles";
 import { ErrorScreen } from "./ErrorScreen";
+import { ScrollView } from "react-native";
 
 function ScrollAdventuresCards() {
   const { data: adventures, error, isValidating } = useAdventures();
@@ -24,16 +25,10 @@ function ScrollAdventuresCards() {
   return (
     <ScrollView>
       {adventures.map(adventure => (
-        <AdventureCard key={adventure.id} {...adventure} style={styles.card} />
+        <AdventureCard key={adventure.id} {...adventure} style={sharedStyles.mv5} />
       ))}
     </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  card: {
-    marginVertical: 4,
-  },
-});
 
 export { ScrollAdventuresCards };

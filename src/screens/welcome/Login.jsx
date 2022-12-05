@@ -46,13 +46,13 @@ function Login({ navigation }) {
 
   return (
     <KeyboardAvoidingView
-      style={styles.root}
+      style={sharedStyles.flx}
       behavior={Platform.OS === "ios" ? "padding" : "height"}>
       <View style={{ ...styles.container }}>
         <Text style={styles.appTitle}>{Constants.manifest.extra.APP_NAME}</Text>
         <View>
           <TextInputHF
-            style={styles.inputText}
+            style={sharedStyles.mv5}
             rules={{
               required: t("components.inputHookForm.usernameRequired"),
             }}
@@ -62,7 +62,7 @@ function Login({ navigation }) {
             left={<TextInput.Icon name={props => <User {...props} {...sharedStyles.iconoirM} />} />}
           />
           <TextInputHF
-            style={styles.inputText}
+            style={sharedStyles.mv5}
             rules={{
               required: t("components.inputHookForm.passwordRequired"),
             }}
@@ -106,15 +106,9 @@ function Login({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-  },
   container: {
     flex: 1,
     justifyContent: "center",
-  },
-  inputText: {
-    marginVertical: 5,
   },
   appTitle: {
     fontFamily: "RedHatMono",

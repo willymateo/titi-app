@@ -66,7 +66,7 @@ function SignUp({ navigation }) {
             }}
             control={control}
             controllerName="email"
-            style={styles.inputText}
+            style={sharedStyles.mv5}
             label={t("components.inputHookForm.email")}
             left={<TextInput.Icon name={props => <Mail {...props} {...sharedStyles.iconoirM} />} />}
           />
@@ -87,14 +87,14 @@ function SignUp({ navigation }) {
               },
             }}
             control={control}
-            style={styles.inputText}
+            style={sharedStyles.mv5}
             controllerName="username"
             label={t("components.inputHookForm.username")}
             left={<TextInput.Icon name={props => <User {...props} {...sharedStyles.iconoirM} />} />}
           />
           <TextInputHF
             control={control}
-            style={styles.inputText}
+            style={sharedStyles.mv5}
             controllerName="password"
             secureTextEntry={isPasswordHidden}
             label={t("components.inputHookForm.password")}
@@ -122,7 +122,7 @@ function SignUp({ navigation }) {
             }}
             secureTextEntry
             control={control}
-            style={styles.inputText}
+            style={sharedStyles.mv5}
             controllerName="repeatPassword"
             label={t("components.inputHookForm.repeatPassword")}
             left={
@@ -135,7 +135,7 @@ function SignUp({ navigation }) {
             value={t("components.inputHookForm.genderPlaceholder")}
             label={t("components.inputHookForm.gender")}
             onPress={() => setIsVisibleGenderRB(true)}
-            style={styles.inputChip}
+            style={sharedStyles.mv15}
             icon={PeopleRounded}
             mode="flat"
           />
@@ -150,7 +150,7 @@ function SignUp({ navigation }) {
               </Dialog.ScrollArea>
             </Dialog>
           </Portal>
-          <View style={styles.inputChip}>
+          <View style={sharedStyles.mv15}>
             <DateTimePickerHF control={control} controllerName="bornDate" mode="date">
               <InputChip
                 value={
@@ -197,12 +197,6 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     justifyContent: "center",
-  },
-  inputText: {
-    marginVertical: 5,
-  },
-  inputChip: {
-    marginVertical: 12,
   },
 });
 

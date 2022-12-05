@@ -15,9 +15,7 @@ function AdventureCard({
   numInvitations,
   publisher: {
     username,
-    profileInformation: {
-      gender: { gender },
-    },
+    gender: { gender },
   },
 }) {
   const { t } = useTranslation("translation", { keyPrefix: "components.adventuresCard" });

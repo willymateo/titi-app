@@ -21,7 +21,7 @@ function WelcomeStackNavigator() {
       initialRouteName="Welcome"
       screenOptions={{
         headerShown: true,
-        contentStyle: sharedStyles.screenPadding,
+        contentStyle: sharedStyles.ph20,
         header: ({ options: { title }, navigation }) => (
           <>
             <FocusAwareStatusBar translucent />

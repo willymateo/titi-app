@@ -52,14 +52,14 @@ function Welcome({ navigation }) {
           <Button
             mode="contained"
             uppercase={false}
-            style={styles.buttons}
+            style={sharedStyles.mv5}
             onPress={() => navigation.navigate("Login")}>
             {t("login")}
           </Button>
           <Button
             mode="contained"
             uppercase={false}
-            style={styles.buttons}
+            style={sharedStyles.mv5}
             onPress={() => navigation.navigate("SignUp")}>
             {t("signUp")}
           </Button>
@@ -108,9 +108,6 @@ const styles = StyleSheet.create({
   logo: {
     height: "100%",
     width: "55%",
-  },
-  buttons: {
-    marginVertical: 5,
   },
 });
 

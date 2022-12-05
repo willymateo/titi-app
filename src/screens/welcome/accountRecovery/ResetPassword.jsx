@@ -24,7 +24,7 @@ function ResetPassword({ navigation }) {
       behavior={Platform.OS === "ios" ? "padding" : "height"}>
       <View style={styles.container}>
         <TextInputHF
-          style={styles.inputText}
+          style={sharedStyles.mv5}
           rules={{ required: t("components.inputHookForm.passwordRequired") }}
           secureTextEntry={isPasswordHidden}
           label={t("components.inputHookForm.password")}
@@ -45,7 +45,7 @@ function ResetPassword({ navigation }) {
           }
         />
         <TextInputHF
-          style={styles.inputText}
+          style={sharedStyles.mv5}
           rules={{
             required: t("components.inputHookForm.passwordRequired"),
             validate: value => value === password || t("components.inputHookForm.passwordMatch"),
@@ -78,9 +78,6 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     justifyContent: "center",
-  },
-  inputText: {
-    marginVertical: 5,
   },
 });
 
