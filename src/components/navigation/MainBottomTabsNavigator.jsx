@@ -2,7 +2,7 @@ import { createMaterialBottomTabNavigator } from "@react-navigation/material-bot
 import { Bell, HomeSimple, IosSettings, UserCircleAlt } from "iconoir-react-native";
 import { Notifications } from "../../screens/mainTabs/Notifications";
 import { SettingsStackNavigator } from "./SettingsStackNavigator";
-import { Profile } from "../../screens/mainTabs/profile";
+import { ProfileStackNavigator } from "./ProfileStackNavigator";
 import { Home } from "../../screens/mainTabs/Home";
 import { sharedStyles } from "../../shared/styles";
 import { useTranslation } from "react-i18next";
@@ -31,8 +31,8 @@ function MainBottomTabsNavigator() {
         }}
       />
       <Tab.Screen
-        name="Profile"
-        component={Profile}
+        name="ProfileTab"
+        component={ProfileStackNavigator}
         options={{
           tabBarIcon: props => <UserCircleAlt {...props} {...sharedStyles.iconoirM} />,
           tabBarLabel: t("profile"),

@@ -38,7 +38,7 @@ function Settings({ navigation }) {
         <List.Subheader>{t("security")}</List.Subheader>
         <List.Item
           title={t("changePassword")}
-          onPress={() => navigation.navigate("ThemeSettings")}
+          onPress={() => navigation.navigate("ChangePassword")}
           left={() => (
             <List.Icon icon={props => <PasswordCursor {...props} {...sharedStyles.iconoirM} />} />
           )}

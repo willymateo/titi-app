@@ -1,6 +1,7 @@
-import { Bonfire, ClockOutline, EmojiBall } from "iconoir-react-native";
-import { Avatar, Divider, Text, useTheme } from "react-native-paper";
+import { Avatar, Divider, IconButton, Text, useTheme } from "react-native-paper";
+import { Bonfire, ClockOutline, Edit, EmojiBall } from "iconoir-react-native";
 import { UserStateChip } from "../../../components/UserStateChip";
+import { useNavigation } from "@react-navigation/native";
 import { sharedStyles } from "../../../shared/styles";
 import { View } from "react-native";
 
@@ -19,6 +20,8 @@ function ProfileHeader({
     colors: { onSurface },
   } = useTheme();
 
+  const navigation = useNavigation();
+
   return (
     <View>
       <View style={sharedStyles.flxACenter}>
@@ -32,6 +35,12 @@ function ProfileHeader({
               <Text>@{username}</Text>
               <UserStateChip state={state} style={sharedStyles.ml10} />
             </View>
+          </View>
+          <View style={sharedStyles.flxJCCenter}>
+            <IconButton
+              icon={props => <Edit {...props} {...sharedStyles.iconoirM} />}
+              onPress={() => navigation.navigate("EditProfile")}
+            />
           </View>
         </View>
 

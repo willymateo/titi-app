@@ -1,5 +1,6 @@
 import mainBottomTabsNavigator from "./components/mainBottomTabsNavigator.json";
 import settingsStackNavigator from "./components/settingsStackNavigator.json";
+import profileStackNavigator from "./components/profileStackNavigator.json";
 import welcomeStackNavigator from "./components/welcomeStackNavigator.json";
 import languageSettings from "./screens/languageSettings.json";
 import adventuresCard from "./components/adventuresCard.json";
@@ -22,6 +23,7 @@ const translationEn = {
     userStateChip,
     inputHookForm,
     adventuresCard,
+    profileStackNavigator,
     welcomeStackNavigator,
     settingsStackNavigator,
     mainBottomTabsNavigator,
