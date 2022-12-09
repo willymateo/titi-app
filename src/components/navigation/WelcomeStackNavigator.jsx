@@ -4,12 +4,11 @@ import { RecoveryCode } from "../../screens/welcome/accountRecovery/RecoveryCode
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { SignUpPhone } from "../../screens/welcome/signUp/SignUpPhone";
 import { SignUp } from "../../screens/welcome/signUp/SignUp";
-import { FocusAwareStatusBar } from "../FocusAwareStatusBar";
 import { Welcome } from "../../screens/welcome/Welcome";
 import { Login } from "../../screens/welcome/Login";
 import { sharedStyles } from "../../shared/styles";
+import { NavigationBar } from "./NavigationBar";
 import { useTranslation } from "react-i18next";
-import { Appbar } from "react-native-paper";
 
 const Stack = createNativeStackNavigator();
 
@@ -22,15 +21,7 @@ function WelcomeStackNavigator() {
       screenOptions={{
         headerShown: true,
         contentStyle: sharedStyles.ph20,
-        header: ({ options: { title }, navigation }) => (
-          <>
-            <FocusAwareStatusBar translucent />
-            <Appbar.Header>
-              <Appbar.BackAction onPress={() => navigation.goBack()} />
-              <Appbar.Content title={title} />
-            </Appbar.Header>
-          </>
-        ),
+        header: props => <NavigationBar {...props} />,
       }}>
       <Stack.Screen
         name="Welcome"

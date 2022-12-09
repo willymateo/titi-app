@@ -1,9 +1,8 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { EditProfile } from "../../screens/mainTabs/profile/EditProfile";
-import { FocusAwareStatusBar } from "../FocusAwareStatusBar";
 import { Profile } from "../../screens/mainTabs/profile";
+import { NavigationBar } from "./NavigationBar";
 import { useTranslation } from "react-i18next";
-import { Appbar } from "react-native-paper";
 
 const Stack = createNativeStackNavigator();
 
@@ -15,15 +14,7 @@ function ProfileStackNavigator() {
       initialRouteName="ProfileRoot"
       screenOptions={{
         headerShown: true,
-        header: ({ options: { title }, navigation }) => (
-          <>
-            <FocusAwareStatusBar translucent />
-            <Appbar.Header>
-              <Appbar.BackAction onPress={() => navigation.goBack()} />
-              <Appbar.Content title={title} />
-            </Appbar.Header>
-          </>
-        ),
+        header: props => <NavigationBar {...props} />,
       }}>
       <Stack.Screen
         name="ProfileRoot"

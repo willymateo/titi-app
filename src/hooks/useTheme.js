@@ -1,16 +1,25 @@
-import { DarkTheme as PaperDarkTheme, DefaultTheme as PaperDefaultTheme } from "react-native-paper";
 import { useSelector } from "react-redux";
 import {
-  DefaultTheme as NavigationDefaultTheme,
-  DarkTheme as NavigationDarkTheme,
+  DefaultTheme as NavigationOriginalLightTheme,
+  DarkTheme as NavigationOriginalDarkTheme,
 } from "@react-navigation/native";
+import {
+  MD3LightTheme as PaperLightTheme,
+  MD3DarkTheme as PaperDarkTheme,
+  adaptNavigationTheme,
+} from "react-native-paper";
 
-const CombinedDefaultTheme = {
-  ...PaperDefaultTheme,
-  ...NavigationDefaultTheme,
+const { LightTheme: NavigationLightTheme, DarkTheme: NavigationDarkTheme } = adaptNavigationTheme({
+  reactNavigationLight: NavigationOriginalLightTheme,
+  reactNavigationDark: NavigationOriginalDarkTheme,
+});
+
+const CombinedLightTheme = {
+  ...PaperLightTheme,
+  ...NavigationLightTheme,
   colors: {
-    ...PaperDefaultTheme.colors,
-    ...NavigationDefaultTheme.colors,
+    ...PaperLightTheme.colors,
+    ...NavigationLightTheme.colors,
   },
   mode: "adaptive",
 };
@@ -27,7 +36,7 @@ const CombinedDarkTheme = {
 
 const useTheme = () => {
   const { isDark } = useSelector(state => state.colorMode);
-  const paperTheme = isDark ? CombinedDarkTheme : CombinedDefaultTheme;
+  const paperTheme = isDark ? CombinedDarkTheme : CombinedLightTheme;
 
   return { paperTheme };
 };

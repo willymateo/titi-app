@@ -2,10 +2,9 @@ import { LanguageSettings } from "../../screens/mainTabs/settings/LanguageSettin
 import { ChangePassword } from "../../screens/mainTabs/settings/ChangePassword";
 import { ThemeSettings } from "../../screens/mainTabs/settings/ThemeSettings";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { FocusAwareStatusBar } from "../FocusAwareStatusBar";
 import { Settings } from "../../screens/mainTabs/settings";
+import { NavigationBar } from "./NavigationBar";
 import { useTranslation } from "react-i18next";
-import { Appbar } from "react-native-paper";
 
 const Stack = createNativeStackNavigator();
 
@@ -17,15 +16,7 @@ function SettingsStackNavigator() {
       initialRouteName="SettingsRoot"
       screenOptions={{
         headerShown: true,
-        header: ({ options: { title }, navigation }) => (
-          <>
-            <FocusAwareStatusBar translucent />
-            <Appbar.Header>
-              <Appbar.BackAction onPress={() => navigation.goBack()} />
-              <Appbar.Content title={title} />
-            </Appbar.Header>
-          </>
-        ),
+        header: props => <NavigationBar {...props} />,
       }}>
       <Stack.Screen
         name="SettingsRoot"
