@@ -1,8 +1,10 @@
 import { HelperText, TextInput } from "react-native-paper";
-import { StyleSheet, View } from "react-native";
+import { sharedStyles } from "../../shared/styles";
 import { useController } from "react-hook-form";
+import { View } from "react-native";
 
 function TextInputHF({
+  mode = "outlined",
   secureTextEntry,
   controllerName,
   placeholder,
@@ -11,7 +13,6 @@ function TextInputHF({
   label,
   right,
   style,
-  mode,
   left,
 }) {
   const {
@@ -22,31 +23,34 @@ function TextInputHF({
   return (
     <View>
       <TextInput
-        mode={mode}
-        left={left}
-        style={style}
-        error={error}
-        label={label}
-        value={value}
-        right={right}
+        secureTextEntry={secureTextEntry}
         onBlur={() => {
           if (value) {
             onChange(value.trim());
           }
           onBlur();
         }}
-        onChangeText={onChange}
         placeholder={placeholder}
-        secureTextEntry={secureTextEntry}
+        onChangeText={onChange}
+        style={style}
+        error={error}
+        label={label}
+        value={value}
+        right={right}
+        mode={mode}
+        left={left}
       />
-      <View style={styles.helpersWrapper}>
+      <View style={[sharedStyles.flxRow, sharedStyles.flxSBtwn]}>
         {error && (
           <HelperText visible type="error">
             {error.message}
           </HelperText>
         )}
         {rules.maxLength && (
-          <HelperText visible style={styles.counterHelper} type={error ? "error" : "info"}>
+          <HelperText
+            style={[sharedStyles.flx, sharedStyles.textAlignR]}
+            type={error ? "error" : "info"}
+            visible>
             {value ? value.length : 0}/{rules.maxLength.value}
           </HelperText>
         )}
@@ -54,16 +58,5 @@ function TextInputHF({
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  helpersWrapper: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
-  counterHelper: {
-    flex: 1,
-    textAlign: "right",
-  },
-});
 
 export { TextInputHF };

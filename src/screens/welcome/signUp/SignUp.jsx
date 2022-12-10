@@ -68,7 +68,7 @@ function SignUp({ navigation }) {
             controllerName="email"
             style={sharedStyles.mv5}
             label={t("components.inputHookForm.email")}
-            left={<TextInput.Icon name={props => <Mail {...props} {...sharedStyles.iconoirM} />} />}
+            left={<TextInput.Icon icon={props => <Mail {...props} {...sharedStyles.iconoirM} />} />}
           />
           <TextInputHF
             rules={{
@@ -90,7 +90,7 @@ function SignUp({ navigation }) {
             style={sharedStyles.mv5}
             controllerName="username"
             label={t("components.inputHookForm.username")}
-            left={<TextInput.Icon name={props => <User {...props} {...sharedStyles.iconoirM} />} />}
+            left={<TextInput.Icon icon={props => <User {...props} {...sharedStyles.iconoirM} />} />}
           />
           <TextInputHF
             control={control}
@@ -100,12 +100,12 @@ function SignUp({ navigation }) {
             label={t("components.inputHookForm.password")}
             rules={{ required: t("components.inputHookForm.passwordRequired") }}
             left={
-              <TextInput.Icon name={props => <KeyAlt {...props} {...sharedStyles.iconoirM} />} />
+              <TextInput.Icon icon={props => <KeyAlt {...props} {...sharedStyles.iconoirM} />} />
             }
             right={
               <TextInput.Icon
                 onPress={() => setIsPasswordHidden(!isPasswordHidden)}
-                name={props => {
+                icon={props => {
                   return isPasswordHidden ? (
                     <EyeClose {...props} {...sharedStyles.iconoirM} />
                   ) : (
@@ -127,7 +127,7 @@ function SignUp({ navigation }) {
             label={t("components.inputHookForm.repeatPassword")}
             left={
               <TextInput.Icon
-                name={props => <KeyAltBack {...props} {...sharedStyles.iconoirM} />}
+                icon={props => <KeyAltBack {...props} {...sharedStyles.iconoirM} />}
               />
             }
           />

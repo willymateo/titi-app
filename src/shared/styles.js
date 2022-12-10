@@ -16,6 +16,9 @@ const sharedStyles = StyleSheet.create({
   ml10: {
     marginLeft: 10,
   },
+  mb15: {
+    marginBottom: 15,
+  },
   flx: {
     flex: 1,
   },
@@ -58,8 +61,15 @@ const sharedStyles = StyleSheet.create({
     width: 25,
     height: 25,
   },
+  iconoirL: {
+    width: 30,
+    height: 30,
+  },
   profilePhoto: {
     size: 80,
+  },
+  textAlignR: {
+    textAlign: "right",
   },
 });
 

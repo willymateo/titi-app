@@ -2,9 +2,9 @@ import { Language, NavArrowRight, Palette, PasswordCursor } from "iconoir-react-
 import { LogoutButton } from "../../../components/LogoutButton";
 import { AboutCard } from "../../../components/AboutCard";
 import { sharedStyles } from "../../../shared/styles";
-import { StyleSheet, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { List } from "react-native-paper";
+import { View } from "react-native";
 
 function Settings({ navigation }) {
   const { t } = useTranslation("translation", { keyPrefix: "screens.settings" });
@@ -16,21 +16,33 @@ function Settings({ navigation }) {
         <List.Item
           title={t("theme")}
           onPress={() => navigation.navigate("ThemeSettings")}
-          left={() => (
-            <List.Icon icon={props => <Palette {...props} {...sharedStyles.iconoirM} />} />
+          left={props => (
+            <List.Icon
+              {...props}
+              icon={props => <Palette {...props} {...sharedStyles.iconoirM} />}
+            />
           )}
-          right={() => (
-            <List.Icon icon={props => <NavArrowRight {...props} {...sharedStyles.iconoirM} />} />
+          right={props => (
+            <List.Icon
+              {...props}
+              icon={props => <NavArrowRight {...props} {...sharedStyles.iconoirM} />}
+            />
           )}
         />
         <List.Item
           title={t("language")}
           onPress={() => navigation.navigate("LanguageSettings")}
-          left={() => (
-            <List.Icon icon={props => <Language {...props} {...sharedStyles.iconoirM} />} />
+          left={props => (
+            <List.Icon
+              {...props}
+              icon={props => <Language {...props} {...sharedStyles.iconoirM} />}
+            />
           )}
-          right={() => (
-            <List.Icon icon={props => <NavArrowRight {...props} {...sharedStyles.iconoirM} />} />
+          right={props => (
+            <List.Icon
+              {...props}
+              icon={props => <NavArrowRight {...props} {...sharedStyles.iconoirM} />}
+            />
           )}
         />
       </List.Section>
@@ -39,26 +51,26 @@ function Settings({ navigation }) {
         <List.Item
           title={t("changePassword")}
           onPress={() => navigation.navigate("ChangePassword")}
-          left={() => (
-            <List.Icon icon={props => <PasswordCursor {...props} {...sharedStyles.iconoirM} />} />
+          left={props => (
+            <List.Icon
+              {...props}
+              icon={props => <PasswordCursor {...props} {...sharedStyles.iconoirM} />}
+            />
           )}
-          right={() => (
-            <List.Icon icon={props => <NavArrowRight {...props} {...sharedStyles.iconoirM} />} />
+          right={props => (
+            <List.Icon
+              {...props}
+              icon={props => <NavArrowRight {...props} {...sharedStyles.iconoirM} />}
+            />
           )}
         />
       </List.Section>
       <View style={sharedStyles.mh20}>
-        <AboutCard style={styles.about} />
+        <AboutCard style={sharedStyles.mb15} />
         <LogoutButton />
       </View>
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  about: {
-    marginBottom: 15,
-  },
-});
 
 export { Settings };

@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 The date format used is DD/MM/YYYY.
 
-## [[1.1.0]](https://github.com/willymateo/titi-app/pull/2) - 27/11/2022
+## [[1.1.0]](https://github.com/willymateo/titi-app/pull/2) - 11/12/2022
 
 ### Added
 
@@ -15,6 +15,7 @@ The date format used is DD/MM/YYYY.
 ### Changed
 
 - Update expo SDK from v45 to v46.
+- Update react-native-paper from v4 to v5
 
 ### Fixed
 

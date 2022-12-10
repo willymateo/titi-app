@@ -1,10 +1,18 @@
 import { Button, Dialog, Portal, Text } from "react-native-paper";
+import { WarningCircledOutline } from "iconoir-react-native";
+import { sharedStyles } from "../shared/styles";
 
-function ErrorDialog({ isVisible, onDismiss, title = "Error", content }) {
+function ErrorDialog({
+  icon: Icon = WarningCircledOutline,
+  title = "Error",
+  isVisible,
+  onDismiss,
+  content,
+}) {
   return (
     <Portal>
       <Dialog visible={isVisible} onDismiss={onDismiss}>
-        {/* <Dialog.Icon icon={props => <EmojiBlinkRight {...props} {...styles.iconoir} />} />*/}
+        <Dialog.Icon icon={props => <Icon {...props} {...sharedStyles.iconoirL} />} />
         <Dialog.Title>{title}</Dialog.Title>
         <Dialog.Content>
           <Text>{content}</Text>

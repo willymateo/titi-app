@@ -59,7 +59,7 @@ function SignUpPhone({ navigation }) {
           controllerName="phoneNumber"
           left={
             <TextInput.Icon
-              name={props => <SmartphoneDevice {...props} {...sharedStyles.iconoirM} />}
+              icon={props => <SmartphoneDevice {...props} {...sharedStyles.iconoirM} />}
             />
           }
         />

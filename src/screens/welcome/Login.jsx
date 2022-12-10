@@ -1,5 +1,5 @@
+import { EyeClose, EyeEmpty, KeyAltBack, PasswordError, User } from "iconoir-react-native";
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
-import { EyeClose, EyeEmpty, KeyAltBack, User } from "iconoir-react-native";
 import { TextInputHF } from "../../components/hookForm/TextInputHF";
 import { MMKV_USER_TOKEN, storage } from "../../config/app.config";
 import { setUserSession } from "../../redux/states/userSession";
@@ -59,7 +59,7 @@ function Login({ navigation }) {
             label={t("components.inputHookForm.username")}
             control={control}
             controllerName="username"
-            left={<TextInput.Icon name={props => <User {...props} {...sharedStyles.iconoirM} />} />}
+            left={<TextInput.Icon icon={props => <User {...props} {...sharedStyles.iconoirM} />} />}
           />
           <TextInputHF
             style={sharedStyles.mv5}
@@ -72,12 +72,12 @@ function Login({ navigation }) {
             controllerName="password"
             left={
               <TextInput.Icon
-                name={props => <KeyAltBack {...props} {...sharedStyles.iconoirM} />}
+                icon={props => <KeyAltBack {...props} {...sharedStyles.iconoirM} />}
               />
             }
             right={
               <TextInput.Icon
-                name={props => {
+                icon={props => {
                   return isPasswordHidden ? (
                     <EyeClose {...props} {...sharedStyles.iconoirM} />
                   ) : (
@@ -99,7 +99,7 @@ function Login({ navigation }) {
         />
 
         <LoadingDialog isVisible={loading} />
-        <ErrorDialog isVisible={error} onDismiss={hideError} content={error} />
+        <ErrorDialog isVisible={error} onDismiss={hideError} content={error} icon={PasswordError} />
       </View>
     </KeyboardAvoidingView>
   );
