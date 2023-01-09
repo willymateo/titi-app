@@ -19,63 +19,63 @@ function WelcomeStackNavigator() {
     <Stack.Navigator
       initialRouteName="Welcome"
       screenOptions={{
-        headerShown: true,
-        contentStyle: sharedStyles.ph20,
         header: props => <NavigationBar {...props} />,
+        contentStyle: sharedStyles.ph20,
+        headerShown: true,
       }}>
       <Stack.Screen
-        name="Welcome"
-        component={Welcome}
         options={{
           headerShown: false,
         }}
+        component={Welcome}
+        name="Welcome"
       />
       <Stack.Screen
-        name="Login"
-        component={Login}
         options={{
           headerShown: false,
         }}
+        component={Login}
+        name="Login"
       />
 
       <Stack.Group>
         <Stack.Screen
-          name="SignUp"
-          component={SignUp}
           options={{
             title: t("signUp"),
           }}
+          component={SignUp}
+          name="SignUp"
         />
         <Stack.Screen
-          name="SignUpPhone"
-          component={SignUpPhone}
           options={{
             title: t("signUpPhone"),
           }}
+          component={SignUpPhone}
+          name="SignUpPhone"
         />
       </Stack.Group>
 
       <Stack.Group>
         <Stack.Screen
-          name="AccountRecovery"
-          component={AccountRecovery}
           options={{
             title: t("accountRecovery"),
           }}
+          component={AccountRecovery}
+          name="AccountRecovery"
         />
         <Stack.Screen
-          name="RecoveryCode"
-          component={RecoveryCode}
           options={{
             title: t("recoveryCode"),
           }}
+          component={RecoveryCode}
+          name="RecoveryCode"
         />
         <Stack.Screen
-          name="ResetPassword"
-          component={ResetPassword}
           options={{
             title: t("resetPassword"),
           }}
+          component={ResetPassword}
+          name="ResetPassword"
         />
       </Stack.Group>
     </Stack.Navigator>

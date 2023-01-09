@@ -1,19 +1,19 @@
-import { Button, Dialog, HelperText, Portal, TextInput } from "react-native-paper";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { DateTimePickerHF } from "../../../components/hookForm/DateTimePickerHF";
 import { GendersRadioButtons } from "../../../components/GendersRadioButtons";
 import { EMAIL_REGEX, USERNAME_REGEX } from "../../../config/app.config";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
+import { Button, HelperText, TextInput } from "react-native-paper";
 import { setSignUpForm } from "../../../redux/states/signUpForm";
 import { LoginFooter } from "../../../components/LoginFooter";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { useIsVisible } from "../../../hooks/useIsVisible";
 import { InputChip } from "../../../components/InputChip";
 import { useDispatch, useSelector } from "react-redux";
 import { sharedStyles } from "../../../shared/styles";
 import { parseISO, intlFormat } from "date-fns";
+import { StyleSheet, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 import {
   Mail,
   User,
@@ -26,9 +26,9 @@ import {
 } from "iconoir-react-native";
 
 function SignUp({ navigation }) {
+  const { isVisible: isVisibleGenderRB, show: showGenderRB, hide: hideGenderRB } = useIsVisible();
+  const { isVisible: isVisiblePassword, toggle: togglePasswordVisible } = useIsVisible();
   const { language } = useSelector(state => state.languagePreference);
-  const [isVisibleGenderRB, setIsVisibleGenderRB] = useState(false);
-  const [isPasswordHidden, setIsPasswordHidden] = useState(true);
   const { watch, control, handleSubmit } = useForm();
   const idGenderSelected = watch("idGender");
   const password = watch("password");
@@ -51,9 +51,9 @@ function SignUp({ navigation }) {
 
   return (
     <KeyboardAwareScrollView
-      style={styles.scrollView}
+      contentContainerStyle={styles.container}
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={styles.container}>
+      style={styles.scrollView}>
       <View>
         <View>
           <TextInputHF
@@ -70,6 +70,7 @@ function SignUp({ navigation }) {
             label={t("components.inputHookForm.email")}
             left={<TextInput.Icon icon={props => <Mail {...props} {...sharedStyles.iconoirM} />} />}
           />
+
           <TextInputHF
             rules={{
               required: t("components.inputHookForm.usernameRequired"),
@@ -92,11 +93,12 @@ function SignUp({ navigation }) {
             label={t("components.inputHookForm.username")}
             left={<TextInput.Icon icon={props => <User {...props} {...sharedStyles.iconoirM} />} />}
           />
+
           <TextInputHF
             control={control}
             style={sharedStyles.mv5}
             controllerName="password"
-            secureTextEntry={isPasswordHidden}
+            secureTextEntry={!isVisiblePassword}
             label={t("components.inputHookForm.password")}
             rules={{ required: t("components.inputHookForm.passwordRequired") }}
             left={
@@ -104,17 +106,18 @@ function SignUp({ navigation }) {
             }
             right={
               <TextInput.Icon
-                onPress={() => setIsPasswordHidden(!isPasswordHidden)}
+                onPress={togglePasswordVisible}
                 icon={props => {
-                  return isPasswordHidden ? (
-                    <EyeClose {...props} {...sharedStyles.iconoirM} />
-                  ) : (
+                  return isVisiblePassword ? (
                     <EyeEmpty {...props} {...sharedStyles.iconoirM} />
+                  ) : (
+                    <EyeClose {...props} {...sharedStyles.iconoirM} />
                   );
                 }}
               />
             }
           />
+
           <TextInputHF
             rules={{
               required: t("components.inputHookForm.passwordRequired"),
@@ -131,25 +134,22 @@ function SignUp({ navigation }) {
               />
             }
           />
+
           <InputChip
             value={t("components.inputHookForm.genderPlaceholder")}
             label={t("components.inputHookForm.gender")}
-            onPress={() => setIsVisibleGenderRB(true)}
             style={sharedStyles.mv15}
+            onPress={showGenderRB}
             icon={PeopleRounded}
             mode="flat"
           />
-          <Portal>
-            <Dialog visible={isVisibleGenderRB} onDismiss={() => setIsVisibleGenderRB(false)}>
-              {/* <Dialog.Icon icon={props => <EmojiBlinkRight {...props} {...sharedStyles.iconoirM} />} />*/}
-              <Dialog.Title>{t("components.inputHookForm.gender")}</Dialog.Title>
-              <Dialog.ScrollArea>
-                <ScrollView>
-                  <GendersRadioButtons control={control} controllerName="idGender" />
-                </ScrollView>
-              </Dialog.ScrollArea>
-            </Dialog>
-          </Portal>
+          <GendersRadioButtons
+            isVisible={isVisibleGenderRB}
+            controllerName="idGender"
+            hide={hideGenderRB}
+            control={control}
+          />
+
           <View style={sharedStyles.mv15}>
             <DateTimePickerHF control={control} controllerName="bornDate" mode="date">
               <InputChip

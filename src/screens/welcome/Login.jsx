@@ -8,6 +8,7 @@ import { Button, Text, TextInput } from "react-native-paper";
 import { useErrorDialog } from "../../hooks/useErrorDialog";
 import { ErrorDialog } from "../../components/ErrorDialog";
 import { LoginFooter } from "../../components/LoginFooter";
+import { useIsVisible } from "../../hooks/useIsVisible";
 import { useLoading } from "../../hooks/useLoading";
 import { sharedStyles } from "../../shared/styles";
 import * as appAPI from "../../services/app/auth";
@@ -15,10 +16,9 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import Constants from "expo-constants";
-import { useState } from "react";
 
 function Login({ navigation }) {
-  const [isPasswordHidden, setIsPasswordHidden] = useState(true);
+  const { isVisible: isPasswordVisible, toggle: togglePasswordVisible } = useIsVisible();
   const { loading, startLoading, stopLoading } = useLoading();
   const { error, showError, hideError } = useErrorDialog();
   const { control, handleSubmit } = useForm();
@@ -46,47 +46,49 @@ function Login({ navigation }) {
 
   return (
     <KeyboardAvoidingView
-      style={sharedStyles.flx}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}>
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={sharedStyles.flx}>
       <View style={{ ...styles.container }}>
         <Text style={styles.appTitle}>{Constants.manifest.extra.APP_NAME}</Text>
+
         <View>
           <TextInputHF
-            style={sharedStyles.mv5}
+            left={<TextInput.Icon icon={props => <User {...props} {...sharedStyles.iconoirM} />} />}
             rules={{
               required: t("components.inputHookForm.usernameRequired"),
             }}
             label={t("components.inputHookForm.username")}
-            control={control}
             controllerName="username"
-            left={<TextInput.Icon icon={props => <User {...props} {...sharedStyles.iconoirM} />} />}
-          />
-          <TextInputHF
             style={sharedStyles.mv5}
-            rules={{
-              required: t("components.inputHookForm.passwordRequired"),
-            }}
-            secureTextEntry={isPasswordHidden}
-            label={t("components.inputHookForm.password")}
             control={control}
-            controllerName="password"
+          />
+
+          <TextInputHF
             left={
               <TextInput.Icon
                 icon={props => <KeyAltBack {...props} {...sharedStyles.iconoirM} />}
               />
             }
+            rules={{
+              required: t("components.inputHookForm.passwordRequired"),
+            }}
             right={
               <TextInput.Icon
                 icon={props => {
-                  return isPasswordHidden ? (
-                    <EyeClose {...props} {...sharedStyles.iconoirM} />
-                  ) : (
+                  return isPasswordVisible ? (
                     <EyeEmpty {...props} {...sharedStyles.iconoirM} />
+                  ) : (
+                    <EyeClose {...props} {...sharedStyles.iconoirM} />
                   );
                 }}
-                onPress={() => setIsPasswordHidden(!isPasswordHidden)}
+                onPress={togglePasswordVisible}
               />
             }
+            label={t("components.inputHookForm.password")}
+            secureTextEntry={!isPasswordVisible}
+            controllerName="password"
+            style={sharedStyles.mv5}
+            control={control}
           />
         </View>
 

@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 
 function ChangePassword() {
-  const { isVisible: isPasswordVisible, toggleIsVisible: togglePasswordHidden } = useIsVisible();
+  const { isVisible: isPasswordVisible, toggle: togglePasswordHidden } = useIsVisible();
   const { t } = useTranslation("translation", { keyPrefix: "components.inputHookForm" });
   const { control } = useForm();
 

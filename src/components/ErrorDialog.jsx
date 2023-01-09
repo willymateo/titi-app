@@ -4,9 +4,9 @@ import { sharedStyles } from "../shared/styles";
 
 function ErrorDialog({
   icon: Icon = WarningCircledOutline,
+  onDismiss = () => {},
   title = "Error",
   isVisible,
-  onDismiss,
   content,
 }) {
   return (
