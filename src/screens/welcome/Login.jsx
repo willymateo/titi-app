@@ -8,8 +8,8 @@ import { Button, Text, TextInput } from "react-native-paper";
 import { useErrorDialog } from "../../hooks/useErrorDialog";
 import { ErrorDialog } from "../../components/ErrorDialog";
 import { LoginFooter } from "../../components/LoginFooter";
-import { useIsVisible } from "../../hooks/useIsVisible";
 import { useLoading } from "../../hooks/useLoading";
+import { useVisible } from "../../hooks/useVisible";
 import { sharedStyles } from "../../shared/styles";
 import * as appAPI from "../../services/app/auth";
 import { useTranslation } from "react-i18next";
@@ -18,7 +18,7 @@ import { useForm } from "react-hook-form";
 import Constants from "expo-constants";
 
 function Login({ navigation }) {
-  const { isVisible: isPasswordVisible, toggle: togglePasswordVisible } = useIsVisible();
+  const { isVisible: isPasswordVisible, toggle: togglePasswordVisible } = useVisible();
   const { loading, startLoading, stopLoading } = useLoading();
   const { error, showError, hideError } = useErrorDialog();
   const { control, handleSubmit } = useForm();
@@ -54,9 +54,7 @@ function Login({ navigation }) {
         <View>
           <TextInputHF
             left={<TextInput.Icon icon={props => <User {...props} {...sharedStyles.iconoirM} />} />}
-            rules={{
-              required: t("components.inputHookForm.usernameRequired"),
-            }}
+            rules={{ required: t("components.inputHookForm.usernameRequired") }}
             label={t("components.inputHookForm.username")}
             controllerName="username"
             style={sharedStyles.mv5}
@@ -69,9 +67,7 @@ function Login({ navigation }) {
                 icon={props => <KeyAltBack {...props} {...sharedStyles.iconoirM} />}
               />
             }
-            rules={{
-              required: t("components.inputHookForm.passwordRequired"),
-            }}
+            rules={{ required: t("components.inputHookForm.passwordRequired") }}
             right={
               <TextInput.Icon
                 icon={props => {
@@ -96,12 +92,12 @@ function Login({ navigation }) {
           {t("screens.welcome.login")}
         </Button>
         <LoginFooter
-          onPressSignUp={() => navigation.navigate("SignUp")}
           onPressAccountRecovery={() => navigation.navigate("AccountRecovery")}
+          onPressSignUp={() => navigation.navigate("SignUp")}
         />
 
-        <LoadingDialog isVisible={loading} />
         <ErrorDialog isVisible={error} onDismiss={hideError} content={error} icon={PasswordError} />
+        <LoadingDialog isVisible={loading} />
       </View>
     </KeyboardAvoidingView>
   );

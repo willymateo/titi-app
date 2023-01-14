@@ -20,17 +20,12 @@ function ResetPassword({ navigation }) {
 
   return (
     <KeyboardAvoidingView
-      style={styles.root}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}>
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.root}>
       <View style={styles.container}>
         <TextInputHF
-          style={sharedStyles.mv5}
-          rules={{ required: t("components.inputHookForm.passwordRequired") }}
-          secureTextEntry={isPasswordHidden}
-          label={t("components.inputHookForm.password")}
-          control={control}
-          controllerName="password"
           left={<TextInput.Icon name={props => <KeyAlt {...props} {...sharedStyles.iconoirM} />} />}
+          rules={{ required: t("components.inputHookForm.passwordRequired") }}
           right={
             <TextInput.Icon
               name={props => {
@@ -43,28 +38,33 @@ function ResetPassword({ navigation }) {
               onPress={() => setIsPasswordHidden(!isPasswordHidden)}
             />
           }
+          label={t("components.inputHookForm.password")}
+          secureTextEntry={isPasswordHidden}
+          controllerName="password"
+          style={sharedStyles.mv5}
+          control={control}
         />
         <TextInputHF
-          style={sharedStyles.mv5}
-          rules={{
-            required: t("components.inputHookForm.passwordRequired"),
-            validate: value => value === password || t("components.inputHookForm.passwordMatch"),
-          }}
-          secureTextEntry
-          label={t("components.inputHookForm.repeatPassword")}
-          control={control}
-          controllerName="repeatPassword"
           left={
             <TextInput.Icon name={props => <KeyAltBack {...props} {...sharedStyles.iconoirM} />} />
           }
+          rules={{
+            validate: value => value === password || t("components.inputHookForm.passwordMatch"),
+            required: t("components.inputHookForm.passwordRequired"),
+          }}
+          label={t("components.inputHookForm.repeatPassword")}
+          controllerName="repeatPassword"
+          style={sharedStyles.mv5}
+          control={control}
+          secureTextEntry
         />
 
         <Button mode="contained" uppercase={false} onPress={handleSubmit(onPressSignUp)}>
           {t("screens.accountRecovery.resetPassword")}
         </Button>
         <LoginFooter
-          onPressLogin={() => navigation.navigate("Login")}
           onPressAccountRecovery={() => navigation.navigate("AccountRecovery")}
+          onPressLogin={() => navigation.navigate("Login")}
         />
       </View>
     </KeyboardAvoidingView>

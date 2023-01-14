@@ -1,32 +1,36 @@
 import { LanguageSettings } from "../mainTabs/settings/LanguageSettings";
 import { Button, Dialog, Portal, Text } from "react-native-paper";
+import { Language, NavArrowDown } from "iconoir-react-native";
 import LightLogo from "../../../assets/images/lightLogo.svg";
 import { ScrollView, StyleSheet, View } from "react-native";
 import { LoginFooter } from "../../components/LoginFooter";
 import DarkLogo from "../../../assets/images/darkLogo.svg";
-import { NavArrowDown } from "iconoir-react-native";
+import { useVisible } from "../../hooks/useVisible";
 import { sharedStyles } from "../../shared/styles";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
-import { useState } from "react";
 
 function Welcome({ navigation }) {
   const { t } = useTranslation("translation", { keyPrefix: "screens.welcome" });
   const { isDark } = useSelector(state => state.colorMode);
-  const [isVisibleLS, setIsVisibleLS] = useState(false);
+  const {
+    isVisible: isVisibleLanguageDialog,
+    hide: hideLanguageDialog,
+    show: showLanguageDialog,
+  } = useVisible();
 
   return (
     <View style={styles.container}>
       <View>
         <Button
-          uppercase={false}
-          onPress={() => setIsVisibleLS(true)}
-          icon={props => <NavArrowDown {...props} {...sharedStyles.iconoirM} />}>
+          icon={props => <NavArrowDown {...props} {...sharedStyles.iconoirM} />}
+          onPress={showLanguageDialog}
+          uppercase={false}>
           {t("language")}
         </Button>
         <Portal>
-          <Dialog visible={isVisibleLS} onDismiss={() => setIsVisibleLS(false)}>
-            {/* <Dialog.Icon icon={props => <EmojiBlinkRight {...props} {...sharedStyles.iconoirM} />} />*/}
+          <Dialog visible={isVisibleLanguageDialog} onDismiss={hideLanguageDialog}>
+            <Dialog.Icon icon={props => <Language {...props} {...sharedStyles.iconoirM} />} />
             <Dialog.Title style={styles.dialogTitle}>{t("language")}</Dialog.Title>
             <Dialog.ScrollArea>
               <ScrollView>
@@ -50,25 +54,25 @@ function Welcome({ navigation }) {
         </View>
         <View style={styles.buttonsContainer}>
           <Button
-            mode="contained"
-            uppercase={false}
+            onPress={() => navigation.navigate("Login")}
             style={sharedStyles.mv5}
-            onPress={() => navigation.navigate("Login")}>
+            uppercase={false}
+            mode="contained">
             {t("login")}
           </Button>
           <Button
-            mode="contained"
-            uppercase={false}
+            onPress={() => navigation.navigate("SignUp")}
             style={sharedStyles.mv5}
-            onPress={() => navigation.navigate("SignUp")}>
+            uppercase={false}
+            mode="contained">
             {t("signUp")}
           </Button>
         </View>
       </View>
 
       <LoginFooter
-        style={styles.bottomContainer}
         onPressAccountRecovery={() => navigation.navigate("AccountRecovery")}
+        style={styles.bottomContainer}
       />
     </View>
   );

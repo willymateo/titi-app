@@ -14,55 +14,55 @@ function Settings({ navigation }) {
       <List.Section>
         <List.Subheader>{t("preferences")}</List.Subheader>
         <List.Item
-          title={t("theme")}
-          onPress={() => navigation.navigate("ThemeSettings")}
+          right={props => (
+            <List.Icon
+              {...props}
+              icon={props => <NavArrowRight {...props} {...sharedStyles.iconoirM} />}
+            />
+          )}
           left={props => (
             <List.Icon
               {...props}
               icon={props => <Palette {...props} {...sharedStyles.iconoirM} />}
             />
           )}
+          onPress={() => navigation.navigate("ThemeSettings")}
+          title={t("theme")}
+        />
+        <List.Item
           right={props => (
             <List.Icon
               {...props}
               icon={props => <NavArrowRight {...props} {...sharedStyles.iconoirM} />}
             />
           )}
-        />
-        <List.Item
-          title={t("language")}
-          onPress={() => navigation.navigate("LanguageSettings")}
           left={props => (
             <List.Icon
               {...props}
               icon={props => <Language {...props} {...sharedStyles.iconoirM} />}
             />
           )}
+          onPress={() => navigation.navigate("LanguageSettings")}
+          title={t("language")}
+        />
+      </List.Section>
+      <List.Section>
+        <List.Subheader>{t("security")}</List.Subheader>
+        <List.Item
           right={props => (
             <List.Icon
               {...props}
               icon={props => <NavArrowRight {...props} {...sharedStyles.iconoirM} />}
             />
           )}
-        />
-      </List.Section>
-      <List.Section>
-        <List.Subheader>{t("security")}</List.Subheader>
-        <List.Item
-          title={t("changePassword")}
-          onPress={() => navigation.navigate("ChangePassword")}
           left={props => (
             <List.Icon
               {...props}
               icon={props => <PasswordCursor {...props} {...sharedStyles.iconoirM} />}
             />
           )}
-          right={props => (
-            <List.Icon
-              {...props}
-              icon={props => <NavArrowRight {...props} {...sharedStyles.iconoirM} />}
-            />
-          )}
+          onPress={() => navigation.navigate("ChangePassword")}
+          title={t("changePassword")}
         />
       </List.Section>
       <View style={sharedStyles.mh20}>

@@ -1,13 +1,13 @@
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { DateTimePickerHF } from "../../../components/hookForm/DateTimePickerHF";
-import { GendersRadioButtons } from "../../../components/GendersRadioButtons";
+import { GendersRadioButton } from "../../../components/GendersRadioButton";
 import { EMAIL_REGEX, USERNAME_REGEX } from "../../../config/app.config";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { Button, HelperText, TextInput } from "react-native-paper";
 import { setSignUpForm } from "../../../redux/states/signUpForm";
 import { LoginFooter } from "../../../components/LoginFooter";
-import { useIsVisible } from "../../../hooks/useIsVisible";
 import { InputChip } from "../../../components/InputChip";
+import { useVisible } from "../../../hooks/useVisible";
 import { useDispatch, useSelector } from "react-redux";
 import { sharedStyles } from "../../../shared/styles";
 import { parseISO, intlFormat } from "date-fns";
@@ -26,8 +26,8 @@ import {
 } from "iconoir-react-native";
 
 function SignUp({ navigation }) {
-  const { isVisible: isVisibleGenderRB, show: showGenderRB, hide: hideGenderRB } = useIsVisible();
-  const { isVisible: isVisiblePassword, toggle: togglePasswordVisible } = useIsVisible();
+  const { isVisible: isVisibleGenderRB, show: showGenderRB, hide: hideGenderRB } = useVisible();
+  const { isVisible: isVisiblePassword, toggle: togglePasswordVisible } = useVisible();
   const { language } = useSelector(state => state.languagePreference);
   const { watch, control, handleSubmit } = useForm();
   const idGenderSelected = watch("idGender");
@@ -46,6 +46,7 @@ function SignUp({ navigation }) {
         email,
       })
     );
+
     navigation.navigate("SignUpPhone");
   };
 
@@ -57,56 +58,50 @@ function SignUp({ navigation }) {
       <View>
         <View>
           <TextInputHF
+            left={<TextInput.Icon icon={props => <Mail {...props} {...sharedStyles.iconoirM} />} />}
             rules={{
               required: t("components.inputHookForm.emailRequired"),
               pattern: {
-                value: EMAIL_REGEX,
                 message: t("components.inputHookForm.emailInvalid"),
+                value: EMAIL_REGEX,
               },
             }}
-            control={control}
-            controllerName="email"
-            style={sharedStyles.mv5}
             label={t("components.inputHookForm.email")}
-            left={<TextInput.Icon icon={props => <Mail {...props} {...sharedStyles.iconoirM} />} />}
+            style={sharedStyles.mv5}
+            controllerName="email"
+            control={control}
           />
 
           <TextInputHF
+            left={<TextInput.Icon icon={props => <User {...props} {...sharedStyles.iconoirM} />} />}
             rules={{
               required: t("components.inputHookForm.usernameRequired"),
               minLength: {
-                value: 5,
                 message: t("components.inputHookForm.usernameMinLength"),
+                value: 5,
               },
               maxLength: {
-                value: 30,
                 message: t("components.inputHookForm.usernameMaxLength"),
+                value: 30,
               },
               pattern: {
-                value: USERNAME_REGEX,
                 message: t("components.inputHookForm.usernameRegex"),
+                value: USERNAME_REGEX,
               },
             }}
-            control={control}
-            style={sharedStyles.mv5}
-            controllerName="username"
             label={t("components.inputHookForm.username")}
-            left={<TextInput.Icon icon={props => <User {...props} {...sharedStyles.iconoirM} />} />}
+            controllerName="username"
+            style={sharedStyles.mv5}
+            control={control}
           />
 
           <TextInputHF
-            control={control}
-            style={sharedStyles.mv5}
-            controllerName="password"
-            secureTextEntry={!isVisiblePassword}
-            label={t("components.inputHookForm.password")}
-            rules={{ required: t("components.inputHookForm.passwordRequired") }}
             left={
               <TextInput.Icon icon={props => <KeyAlt {...props} {...sharedStyles.iconoirM} />} />
             }
+            rules={{ required: t("components.inputHookForm.passwordRequired") }}
             right={
               <TextInput.Icon
-                onPress={togglePasswordVisible}
                 icon={props => {
                   return isVisiblePassword ? (
                     <EyeEmpty {...props} {...sharedStyles.iconoirM} />
@@ -114,25 +109,31 @@ function SignUp({ navigation }) {
                     <EyeClose {...props} {...sharedStyles.iconoirM} />
                   );
                 }}
+                onPress={togglePasswordVisible}
               />
             }
+            label={t("components.inputHookForm.password")}
+            secureTextEntry={!isVisiblePassword}
+            controllerName="password"
+            style={sharedStyles.mv5}
+            control={control}
           />
 
           <TextInputHF
             rules={{
-              required: t("components.inputHookForm.passwordRequired"),
               validate: value => value === password || t("components.inputHookForm.passwordMatch"),
+              required: t("components.inputHookForm.passwordRequired"),
             }}
-            secureTextEntry
-            control={control}
-            style={sharedStyles.mv5}
-            controllerName="repeatPassword"
-            label={t("components.inputHookForm.repeatPassword")}
             left={
               <TextInput.Icon
                 icon={props => <KeyAltBack {...props} {...sharedStyles.iconoirM} />}
               />
             }
+            label={t("components.inputHookForm.repeatPassword")}
+            controllerName="repeatPassword"
+            style={sharedStyles.mv5}
+            control={control}
+            secureTextEntry
           />
 
           <InputChip
@@ -143,7 +144,7 @@ function SignUp({ navigation }) {
             icon={PeopleRounded}
             mode="flat"
           />
-          <GendersRadioButtons
+          <GendersRadioButton
             isVisible={isVisibleGenderRB}
             controllerName="idGender"
             hide={hideGenderRB}

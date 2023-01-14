@@ -18,30 +18,30 @@ function RecoveryCode({ navigation }) {
 
   return (
     <KeyboardAvoidingView
-      style={styles.root}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}>
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.root}>
       <View style={styles.container}>
         <TextInputHF
-          style={sharedStyles.mv5}
-          rules={{
-            required: t("components.inputHookForm.recoveryCodeRequired"),
-          }}
-          label={t("components.inputHookForm.recoveryCode")}
-          control={control}
-          controllerName="recoveryCode"
           left={
             <TextInput.Icon
               name={props => <PasswordCursor {...props} {...sharedStyles.iconoirM} />}
             />
           }
+          rules={{
+            required: t("components.inputHookForm.recoveryCodeRequired"),
+          }}
+          label={t("components.inputHookForm.recoveryCode")}
+          controllerName="recoveryCode"
+          style={sharedStyles.mv5}
+          control={control}
         />
 
         <Button mode="contained" uppercase={false} onPress={handleSubmit(onPressSendRecovery)}>
           {t("screens.accountRecovery.verifyRecoveryCode")}
         </Button>
         <LoginFooter
-          onPressLogin={() => navigation.navigate("Login")}
           onPressSignUp={() => navigation.navigate("SignUp")}
+          onPressLogin={() => navigation.navigate("Login")}
         />
       </View>
     </KeyboardAvoidingView>

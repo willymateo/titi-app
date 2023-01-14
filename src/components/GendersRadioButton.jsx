@@ -8,8 +8,8 @@ import { useTranslation } from "react-i18next";
 import { ErrorDialog } from "./ErrorDialog";
 import { ScrollView } from "react-native";
 
-function GendersRadioButtons({ control, controllerName, isVisible, hide }) {
-  const { t } = useTranslation("translation", { keyPrefix: "components.inputHookForm" });
+function GendersRadioButton({ control, controllerName, isVisible, hide }) {
+  const { t } = useTranslation("translation", { keyPrefix: "components" });
   const { data: genders, error, isValidating } = useGenders();
 
   if (!isVisible) {
@@ -28,12 +28,15 @@ function GendersRadioButtons({ control, controllerName, isVisible, hide }) {
     <Portal>
       <Dialog visible onDismiss={hide}>
         <Dialog.Icon icon={props => <PeopleRounded {...props} {...sharedStyles.iconoirM} />} />
-        <Dialog.Title>{t("gender")}</Dialog.Title>
+        <Dialog.Title>{t("inputHookForm.gender")}</Dialog.Title>
         <Dialog.ScrollArea>
           <ScrollView>
             <RadioButtonGroupHF
-              items={genders.map(({ id, gender }) => ({ id, value: gender }))}
-              rules={{ required: t("genderRequired") }}
+              rules={{ required: t("inputHookForm.genderRequired") }}
+              items={genders.map(({ id, gender }) => ({
+                value: t(`gendersRadioButton.${gender}`),
+                id,
+              }))}
               controllerName={controllerName}
               control={control}
               onSelect={hide}
@@ -45,4 +48,4 @@ function GendersRadioButtons({ control, controllerName, isVisible, hide }) {
   );
 }
 
-export { GendersRadioButtons };
+export { GendersRadioButton };

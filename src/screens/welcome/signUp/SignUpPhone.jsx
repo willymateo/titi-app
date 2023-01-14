@@ -46,34 +46,34 @@ function SignUpPhone({ navigation }) {
 
   return (
     <KeyboardAvoidingView
-      style={styles.root}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}>
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.root}>
       <View style={{ ...styles.container }}>
         <TextInputHF
-          style={sharedStyles.mv5}
-          rules={{
-            required: t("components.inputHookForm.phoneNumberRequired"),
-          }}
-          label={t("components.inputHookForm.phoneNumber")}
-          control={control}
-          controllerName="phoneNumber"
           left={
             <TextInput.Icon
               icon={props => <SmartphoneDevice {...props} {...sharedStyles.iconoirM} />}
             />
           }
+          rules={{
+            required: t("components.inputHookForm.phoneNumberRequired"),
+          }}
+          label={t("components.inputHookForm.phoneNumber")}
+          controllerName="phoneNumber"
+          style={sharedStyles.mv5}
+          control={control}
         />
 
         <Button mode="contained" uppercase={false} onPress={handleSubmit(handlePressSignUp)}>
           {t("screens.signUp.createAccount")}
         </Button>
         <LoginFooter
-          onPressLogin={() => navigation.navigate("Login")}
           onPressAccountRecovery={() => navigation.navigate("AccountRecovery")}
+          onPressLogin={() => navigation.navigate("Login")}
         />
 
-        <LoadingDialog isVisible={loading} />
         <ErrorDialog isVisible={error} onDismiss={hideError} content={error} />
+        <LoadingDialog isVisible={loading} />
       </View>
     </KeyboardAvoidingView>
   );

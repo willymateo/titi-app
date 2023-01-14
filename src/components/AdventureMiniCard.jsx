@@ -7,16 +7,16 @@ import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 
 function AdventureMiniCard({
-  style,
-  title,
-  description,
-  endDateTime,
-  startDateTime,
-  numInvitations,
   publisher: {
     username,
     gender: { gender },
   },
+  numInvitations,
+  startDateTime,
+  endDateTime,
+  description,
+  style,
+  title,
 }) {
   const { t } = useTranslation("translation", { keyPrefix: "components.adventuresCard" });
   const { language } = useSelector(state => state.languagePreference);
@@ -24,26 +24,26 @@ function AdventureMiniCard({
   return (
     <Card style={style}>
       <Card.Title
-        title={title}
-        subtitle={`${username} ● ${gender}`}
         left={props => (
           <Avatar.Icon
             {...props}
             icon={props => <UserCircleAlt {...props} {...sharedStyles.iconoirM} />}
           />
         )}
+        subtitle={`${username} ● ${gender}`}
+        title={title}
       />
       <Card.Content>
         <Text style={styles.endDateTimeText}>
           {intlFormat(
             parseISO(endDateTime),
             {
+              minute: "numeric",
+              hour: "numeric",
               weekday: "long",
               year: "numeric",
-              month: "long",
               day: "numeric",
-              hour: "numeric",
-              minute: "numeric",
+              month: "long",
               hour12: true,
             },
             { locale: language }
@@ -65,23 +65,22 @@ function AdventureMiniCard({
           </View>
           <View style={styles.startDateTimeContainer}>
             <Text style={styles.startDateTimeText}>
-              {`${t("published")} `}
-              {formatDistanceToNow(parseISO(startDateTime), {
+              {`${t("published")} ${formatDistanceToNow(parseISO(startDateTime), {
                 includeSeconds: true,
                 addSuffix: true,
-              })}
+              })}`}
             </Text>
             <IconButton
-              disabled
               icon={props => <Wristwatch {...props} {...sharedStyles.iconoirS} />}
+              disabled
             />
           </View>
         </View>
       </Card.Content>
       <Card.Actions>
         <Button
-          onPress={() => console.log("Engage")}
-          icon={props => <Heart {...props} {...sharedStyles.iconoirM} />}>
+          icon={props => <Heart {...props} {...sharedStyles.iconoirM} />}
+          onPress={() => console.log("Engage")}>
           {t("engage")}
         </Button>
       </Card.Actions>

@@ -1,5 +1,5 @@
 import { EyeClose, EyeEmpty, KeyAlt, KeyAltBack } from "iconoir-react-native";
-import { useIsVisible } from "../../hooks/useIsVisible";
+import { useVisible } from "../../hooks/useVisible";
 import { sharedStyles } from "../../shared/styles";
 import { TextInput } from "react-native-paper";
 import { useTranslation } from "react-i18next";
@@ -7,7 +7,7 @@ import { TextInputHF } from "./TextInputHF";
 import { useForm } from "react-hook-form";
 
 function RepeatPasswordHF() {
-  const { isVisible: isPasswordVisible, toggle: togglePasswordHidden } = useIsVisible();
+  const { isVisible: isPasswordVisible, toggle: togglePasswordHidden } = useVisible();
   const { t } = useTranslation("translation", { keyPrefix: "components.inputHookForm" });
   const { control } = useForm();
 

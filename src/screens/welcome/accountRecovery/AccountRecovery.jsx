@@ -19,11 +19,12 @@ function AccountRecovery({ navigation }) {
 
   return (
     <KeyboardAvoidingView
-      style={styles.root}
-      behavior={Platform.OS === "ios" ? "padding" : "height"}>
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+      style={styles.root}>
       <View style={styles.container}>
         <TextInputHF
-          style={sharedStyles.mv5}
+          left={<TextInput.Icon name={props => <Mail {...props} {...sharedStyles.iconoirM} />} />}
+          placeholder={t("components.inputHookForm.emailPlaceholder")}
           rules={{
             required: t("components.inputHookForm.emailRequired"),
             pattern: {
@@ -32,18 +33,17 @@ function AccountRecovery({ navigation }) {
             },
           }}
           label={t("components.inputHookForm.email")}
-          control={control}
+          style={sharedStyles.mv5}
           controllerName="email"
-          placeholder={t("components.inputHookForm.emailPlaceholder")}
-          left={<TextInput.Icon name={props => <Mail {...props} {...sharedStyles.iconoirM} />} />}
+          control={control}
         />
 
         <Button mode="contained" uppercase={false} onPress={handleSubmit(onPressSendRecovery)}>
           {t("screens.accountRecovery.sendRecoveryCode")}
         </Button>
         <LoginFooter
-          onPressLogin={() => navigation.navigate("Login")}
           onPressSignUp={() => navigation.navigate("SignUp")}
+          onPressLogin={() => navigation.navigate("Login")}
         />
       </View>
     </KeyboardAvoidingView>

@@ -2,6 +2,7 @@ import mainBottomTabsNavigator from "./components/mainBottomTabsNavigator.json";
 import settingsStackNavigator from "./components/settingsStackNavigator.json";
 import profileStackNavigator from "./components/profileStackNavigator.json";
 import welcomeStackNavigator from "./components/welcomeStackNavigator.json";
+import gendersRadioButton from "./components/gendersRadioButton.json";
 import languageSettings from "./screens/languageSettings.json";
 import adventuresCard from "./components/adventuresCard.json";
 import accountRecovery from "./screens/accountRecovery.json";
@@ -16,19 +17,20 @@ import welcome from "./screens/welcome.json";
 import signUp from "./screens/signUp.json";
 
 const translationEn = {
-  components: {
-    loginFooter,
-    logoutButton,
-    loadingDialog,
-    userStateChip,
-    inputHookForm,
-    adventuresCard,
-    profileStackNavigator,
-    welcomeStackNavigator,
-    settingsStackNavigator,
-    mainBottomTabsNavigator,
-  },
   screens: { welcome, signUp, accountRecovery, settings, languageSettings, themeSettings },
+  components: {
+    mainBottomTabsNavigator,
+    settingsStackNavigator,
+    welcomeStackNavigator,
+    profileStackNavigator,
+    gendersRadioButton,
+    adventuresCard,
+    inputHookForm,
+    userStateChip,
+    loadingDialog,
+    logoutButton,
+    loginFooter,
+  },
 };
 
 export { translationEn };
