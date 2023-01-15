@@ -1,6 +1,8 @@
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { DateTimePickerHF } from "../../../components/hookForm/DateTimePickerHF";
+import { RepeatPasswordHF } from "../../../components/hookForm/RepeatPasswordHF";
 import { GendersRadioButton } from "../../../components/GendersRadioButton";
+import { Mail, User, Calendar, PeopleRounded } from "iconoir-react-native";
 import { EMAIL_REGEX, USERNAME_REGEX } from "../../../config/app.config";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { Button, HelperText, TextInput } from "react-native-paper";
@@ -14,24 +16,12 @@ import { parseISO, intlFormat } from "date-fns";
 import { StyleSheet, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
-import {
-  Mail,
-  User,
-  KeyAlt,
-  EyeClose,
-  Calendar,
-  EyeEmpty,
-  KeyAltBack,
-  PeopleRounded,
-} from "iconoir-react-native";
 
 function SignUp({ navigation }) {
   const { isVisible: isVisibleGenderRB, show: showGenderRB, hide: hideGenderRB } = useVisible();
-  const { isVisible: isVisiblePassword, toggle: togglePasswordVisible } = useVisible();
   const { language } = useSelector(state => state.languagePreference);
   const { watch, control, handleSubmit } = useForm();
   const idGenderSelected = watch("idGender");
-  const password = watch("password");
   const bornDate = watch("bornDate");
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -54,7 +44,7 @@ function SignUp({ navigation }) {
     <KeyboardAwareScrollView
       contentContainerStyle={styles.container}
       showsVerticalScrollIndicator={false}
-      style={styles.scrollView}>
+      style={sharedStyles.flx}>
       <View>
         <View>
           <TextInputHF
@@ -95,46 +85,7 @@ function SignUp({ navigation }) {
             control={control}
           />
 
-          <TextInputHF
-            left={
-              <TextInput.Icon icon={props => <KeyAlt {...props} {...sharedStyles.iconoirM} />} />
-            }
-            rules={{ required: t("components.inputHookForm.passwordRequired") }}
-            right={
-              <TextInput.Icon
-                icon={props => {
-                  return isVisiblePassword ? (
-                    <EyeEmpty {...props} {...sharedStyles.iconoirM} />
-                  ) : (
-                    <EyeClose {...props} {...sharedStyles.iconoirM} />
-                  );
-                }}
-                onPress={togglePasswordVisible}
-              />
-            }
-            label={t("components.inputHookForm.password")}
-            secureTextEntry={!isVisiblePassword}
-            controllerName="password"
-            style={sharedStyles.mv5}
-            control={control}
-          />
-
-          <TextInputHF
-            rules={{
-              validate: value => value === password || t("components.inputHookForm.passwordMatch"),
-              required: t("components.inputHookForm.passwordRequired"),
-            }}
-            left={
-              <TextInput.Icon
-                icon={props => <KeyAltBack {...props} {...sharedStyles.iconoirM} />}
-              />
-            }
-            label={t("components.inputHookForm.repeatPassword")}
-            controllerName="repeatPassword"
-            style={sharedStyles.mv5}
-            control={control}
-            secureTextEntry
-          />
+          <RepeatPasswordHF control={control} watch={watch} />
 
           <InputChip
             value={t("components.inputHookForm.genderPlaceholder")}
@@ -192,12 +143,9 @@ function SignUp({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  scrollView: {
-    flex: 1,
-  },
   container: {
-    flexGrow: 1,
     justifyContent: "center",
+    flexGrow: 1,
   },
 });
 

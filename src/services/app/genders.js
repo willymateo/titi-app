@@ -10,4 +10,4 @@ const getAllGenders = url =>
 
 const useGenders = () => useSWRImmutable(getAllGendersUrl, getAllGenders);
 
-export { getAllGenders, getAllGendersUrl, useGenders };
+export { useGenders };

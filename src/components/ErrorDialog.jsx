@@ -1,6 +1,7 @@
 import { Button, Dialog, Portal, Text } from "react-native-paper";
 import { WarningCircledOutline } from "iconoir-react-native";
 import { sharedStyles } from "../shared/styles";
+import { useTranslation } from "react-i18next";
 
 function ErrorDialog({
   icon: Icon = WarningCircledOutline,
@@ -9,6 +10,8 @@ function ErrorDialog({
   isVisible,
   content,
 }) {
+  const { t } = useTranslation("translation", { keyPrefix: "components.dialog" });
+
   return (
     <Portal>
       <Dialog visible={isVisible} onDismiss={onDismiss}>
@@ -18,7 +21,7 @@ function ErrorDialog({
           <Text>{content}</Text>
         </Dialog.Content>
         <Dialog.Actions>
-          <Button onPress={onDismiss}>Ok</Button>
+          <Button onPress={onDismiss}>{t("ok")}</Button>
         </Dialog.Actions>
       </Dialog>
     </Portal>

@@ -14,7 +14,7 @@ function Welcome({ navigation }) {
   const { t } = useTranslation("translation", { keyPrefix: "screens.welcome" });
   const { isDark } = useSelector(state => state.colorMode);
   const {
-    isVisible: isVisibleLanguageDialog,
+    isVisible: isLanguageDialogVisible,
     hide: hideLanguageDialog,
     show: showLanguageDialog,
   } = useVisible();
@@ -29,9 +29,9 @@ function Welcome({ navigation }) {
           {t("language")}
         </Button>
         <Portal>
-          <Dialog visible={isVisibleLanguageDialog} onDismiss={hideLanguageDialog}>
+          <Dialog visible={isLanguageDialogVisible} onDismiss={hideLanguageDialog}>
             <Dialog.Icon icon={props => <Language {...props} {...sharedStyles.iconoirM} />} />
-            <Dialog.Title style={styles.dialogTitle}>{t("language")}</Dialog.Title>
+            <Dialog.Title>{t("language")}</Dialog.Title>
             <Dialog.ScrollArea>
               <ScrollView>
                 <LanguageRadioButton />

@@ -18,4 +18,4 @@ const getAllAdventures = async url => {
 
 const useAdventures = () => useSWR(getAllAdventuresUrl, getAllAdventures);
 
-export { getAllAdventures, getAllAdventuresUrl, useAdventures };
+export { useAdventures };

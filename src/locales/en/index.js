@@ -9,15 +9,25 @@ import accountRecovery from "./screens/accountRecovery.json";
 import inputHookForm from "./components/inputHookForm.json";
 import userStateChip from "./components/userStateChip.json";
 import loadingDialog from "./components/loadingDialog.json";
+import changePassword from "./screens/changePassword.json";
 import logoutButton from "./components/logoutButton.json";
 import themeSettings from "./screens/themeSettings.json";
 import loginFooter from "./components/loginFooter.json";
 import settings from "./screens/settings.json";
+import dialog from "./components/dialog.json";
 import welcome from "./screens/welcome.json";
 import signUp from "./screens/signUp.json";
 
 const translationEn = {
-  screens: { welcome, signUp, accountRecovery, settings, languageSettings, themeSettings },
+  screens: {
+    languageSettings,
+    accountRecovery,
+    changePassword,
+    themeSettings,
+    settings,
+    welcome,
+    signUp,
+  },
   components: {
     mainBottomTabsNavigator,
     settingsStackNavigator,
@@ -30,6 +40,7 @@ const translationEn = {
     loadingDialog,
     logoutButton,
     loginFooter,
+    dialog,
   },
 };
 
