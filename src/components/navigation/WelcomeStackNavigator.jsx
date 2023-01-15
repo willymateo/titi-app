@@ -1,14 +1,14 @@
-import { AccountRecovery } from "../../screens/welcome/accountRecovery/AccountRecovery";
 import { ResetPassword } from "../../screens/welcome/accountRecovery/ResetPassword";
 import { RecoveryCode } from "../../screens/welcome/accountRecovery/RecoveryCode";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { AccountRecovery } from "../../screens/welcome/accountRecovery";
 import { SignUpPhone } from "../../screens/welcome/signUp/SignUpPhone";
-import { SignUp } from "../../screens/welcome/signUp/SignUp";
-import { FocusAwareStatusBar } from "../FocusAwareStatusBar";
-import { Welcome } from "../../screens/welcome/Welcome";
+import { SignUp } from "../../screens/welcome/signUp";
 import { Login } from "../../screens/welcome/Login";
+import { sharedStyles } from "../../shared/styles";
+import { NavigationBar } from "./NavigationBar";
+import { Welcome } from "../../screens/welcome";
 import { useTranslation } from "react-i18next";
-import { Appbar } from "react-native-paper";
 
 const Stack = createNativeStackNavigator();
 
@@ -19,73 +19,63 @@ function WelcomeStackNavigator() {
     <Stack.Navigator
       initialRouteName="Welcome"
       screenOptions={{
+        header: props => <NavigationBar {...props} />,
+        contentStyle: sharedStyles.ph20,
         headerShown: true,
-        contentStyle: {
-          paddingHorizontal: 20,
-        },
-        header: ({ options: { title }, navigation }) => (
-          <>
-            <FocusAwareStatusBar translucent />
-            <Appbar.Header>
-              <Appbar.BackAction onPress={() => navigation.goBack()} />
-              <Appbar.Content title={title} />
-            </Appbar.Header>
-          </>
-        ),
       }}>
       <Stack.Screen
-        name="Welcome"
-        component={Welcome}
         options={{
           headerShown: false,
         }}
+        component={Welcome}
+        name="Welcome"
       />
       <Stack.Screen
-        name="Login"
-        component={Login}
         options={{
           headerShown: false,
         }}
+        component={Login}
+        name="Login"
       />
 
       <Stack.Group>
         <Stack.Screen
-          name="SignUp"
-          component={SignUp}
           options={{
             title: t("signUp"),
           }}
+          component={SignUp}
+          name="SignUp"
         />
         <Stack.Screen
-          name="SignUpPhone"
-          component={SignUpPhone}
           options={{
             title: t("signUpPhone"),
           }}
+          component={SignUpPhone}
+          name="SignUpPhone"
         />
       </Stack.Group>
 
       <Stack.Group>
         <Stack.Screen
-          name="AccountRecovery"
-          component={AccountRecovery}
           options={{
             title: t("accountRecovery"),
           }}
+          component={AccountRecovery}
+          name="AccountRecovery"
         />
         <Stack.Screen
-          name="RecoveryCode"
-          component={RecoveryCode}
           options={{
             title: t("recoveryCode"),
           }}
+          component={RecoveryCode}
+          name="RecoveryCode"
         />
         <Stack.Screen
-          name="ResetPassword"
-          component={ResetPassword}
           options={{
             title: t("resetPassword"),
           }}
+          component={ResetPassword}
+          name="ResetPassword"
         />
       </Stack.Group>
     </Stack.Navigator>

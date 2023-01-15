@@ -2,17 +2,17 @@ import "dotenv/config";
 
 export default () => {
   return {
-    name: process.env.APP_NAME,
+    name: process.env.APP_PLAIN_NAME,
     description: "Publish and search for adventures that only take place in the next 24 hours",
     slug: "titi",
-    version: "1.0.0",
+    version: "1.1.0",
     orientation: "portrait",
-    icon: "./assets/icon.png",
+    icon: "./assets/images/icon.png",
     assetBundlePatterns: ["**/*"],
     platforms: ["android", "ios"],
     userInterfaceStyle: "automatic",
     splash: {
-      image: "./assets/splash.png",
+      image: "./assets/images/splash.png",
       resizeMode: "contain",
       backgroundColor: "#000000",
     },
@@ -26,7 +26,7 @@ export default () => {
     android: {
       package: process.env.ANDROID_PKG,
       adaptiveIcon: {
-        foregroundImage: "./assets/adaptive-icon.png",
+        foregroundImage: "./assets/images/adaptive-icon.png",
         backgroundColor: "#000000",
       },
     },
@@ -37,7 +37,7 @@ export default () => {
       MMKV_ID: process.env.MMKV_ID,
       MMKV_KEY: process.env.MMKV_KEY,
       eas: {
-        projectId: "e7266ea4-aef5-4213-92ad-e0846267007e",
+        projectId: "7cec6355-87e3-495b-a022-7322790645ce",
       },
     },
   };

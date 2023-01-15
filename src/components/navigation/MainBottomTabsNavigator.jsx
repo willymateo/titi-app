@@ -1,11 +1,11 @@
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import { Bell, HomeSimple, IosSettings, UserCircleAlt } from "iconoir-react-native";
+import { Bell, HomeSimple, IosSettings, UserCircle } from "iconoir-react-native";
 import { Notifications } from "../../screens/mainTabs/Notifications";
 import { SettingsStackNavigator } from "./SettingsStackNavigator";
-import { Profile } from "../../screens/mainTabs/Profile";
-import { Home } from "../../screens/mainTabs/Home";
+import { ProfileStackNavigator } from "./ProfileStackNavigator";
+import { Home } from "../../screens/mainTabs/home";
+import { sharedStyles } from "../../shared/styles";
 import { useTranslation } from "react-i18next";
-import { StyleSheet } from "react-native";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -13,18 +13,12 @@ function MainBottomTabsNavigator() {
   const { t } = useTranslation("translation", { keyPrefix: "components.mainBottomTabsNavigator" });
 
   return (
-    <Tab.Navigator
-      initialRouteName="Home"
-      screenOptions={{
-        contentStyle: {
-          paddingHorizontal: 20,
-        },
-      }}>
+    <Tab.Navigator initialRouteName="Home" shifting>
       <Tab.Screen
         name="Home"
         component={Home}
         options={{
-          tabBarIcon: props => <HomeSimple {...props} {...styles.iconoir} />,
+          tabBarIcon: props => <HomeSimple {...props} {...sharedStyles.iconoirM} />,
           tabBarLabel: t("home"),
         }}
       />
@@ -32,15 +26,15 @@ function MainBottomTabsNavigator() {
         name="Notifications"
         component={Notifications}
         options={{
-          tabBarIcon: props => <Bell {...props} {...styles.iconoir} />,
+          tabBarIcon: props => <Bell {...props} {...sharedStyles.iconoirM} />,
           tabBarLabel: t("notifications"),
         }}
       />
       <Tab.Screen
-        name="Profile"
-        component={Profile}
+        name="ProfileTab"
+        component={ProfileStackNavigator}
         options={{
-          tabBarIcon: props => <UserCircleAlt {...props} {...styles.iconoir} />,
+          tabBarIcon: props => <UserCircle {...props} {...sharedStyles.iconoirM} />,
           tabBarLabel: t("profile"),
         }}
       />
@@ -48,19 +42,12 @@ function MainBottomTabsNavigator() {
         name="SettingsTab"
         component={SettingsStackNavigator}
         options={{
-          tabBarIcon: props => <IosSettings {...props} {...styles.iconoir} />,
+          tabBarIcon: props => <IosSettings {...props} {...sharedStyles.iconoirM} />,
           tabBarLabel: t("settings"),
         }}
       />
     </Tab.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  iconoir: {
-    height: 25,
-    width: 25,
-  },
-});
 
 export { MainBottomTabsNavigator };

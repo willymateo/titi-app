@@ -8,8 +8,8 @@ const UserSessionSlice = createSlice({
   name: "userSession",
   initialState: emptyState,
   reducers: {
-    createUserSession: ({ action }) => action.payload,
-    setUserSession: (state, action) => ({ ...state, ...action.payload }),
+    createUserSession: ({ action: { payload } }) => payload,
+    setUserSession: (state, { payload }) => ({ ...state, ...payload }),
     resetUserSession: () => emptyState,
   },
 });

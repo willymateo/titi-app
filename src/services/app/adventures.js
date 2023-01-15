@@ -16,9 +16,6 @@ const getAllAdventures = async url => {
     .catch(errorHandlerSWR);
 };
 
-const useAdventures = () => {
-  const response = useSWR(getAllAdventuresUrl, getAllAdventures);
-  return response;
-};
+const useAdventures = () => useSWR(getAllAdventuresUrl, getAllAdventures);
 
-export { getAllAdventures, getAllAdventuresUrl, useAdventures };
+export { useAdventures };

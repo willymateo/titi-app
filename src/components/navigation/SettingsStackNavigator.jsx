@@ -1,30 +1,22 @@
-import { LanguageSettings } from "../../screens/mainTabs/settings/LanguageSettings";
-import { ThemeSettings } from "../../screens/mainTabs/settings/ThemeSettings";
+import { ChangePassword } from "../../screens/mainTabs/settings/ChangePassword";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Settings } from "../../screens/mainTabs/settings/Settings";
-import { FocusAwareStatusBar } from "../FocusAwareStatusBar";
+import { Language } from "../../screens/mainTabs/settings/Language";
+import { Theme } from "../../screens/mainTabs/settings/Theme";
+import { Settings } from "../../screens/mainTabs/settings";
+import { NavigationBar } from "./NavigationBar";
 import { useTranslation } from "react-i18next";
-import { Appbar } from "react-native-paper";
 
 const Stack = createNativeStackNavigator();
 
 function SettingsStackNavigator() {
-  const { t } = useTranslation("translation", { keyPrefix: "components.settingsStackNavigator" });
+  const { t } = useTranslation("translation", {});
 
   return (
     <Stack.Navigator
       initialRouteName="SettingsRoot"
       screenOptions={{
         headerShown: true,
-        header: ({ options: { title }, navigation }) => (
-          <>
-            <FocusAwareStatusBar translucent />
-            <Appbar.Header>
-              <Appbar.BackAction onPress={() => navigation.goBack()} />
-              <Appbar.Content title={title} />
-            </Appbar.Header>
-          </>
-        ),
+        header: props => <NavigationBar {...props} />,
       }}>
       <Stack.Screen
         name="SettingsRoot"
@@ -35,16 +27,23 @@ function SettingsStackNavigator() {
       />
       <Stack.Screen
         name="ThemeSettings"
-        component={ThemeSettings}
+        component={Theme}
         options={{
-          title: t("themeSettings"),
+          title: t("components.settingsStackNavigator.themeSettings"),
         }}
       />
       <Stack.Screen
         name="LanguageSettings"
-        component={LanguageSettings}
+        component={Language}
         options={{
-          title: t("languageSettings"),
+          title: t("components.settingsStackNavigator.languageSettings"),
+        }}
+      />
+      <Stack.Screen
+        name="SecuritySettings"
+        component={ChangePassword}
+        options={{
+          title: t("screens.settings.changePassword"),
         }}
       />
     </Stack.Navigator>

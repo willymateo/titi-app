@@ -14,17 +14,19 @@ import "@formatjs/intl-datetimeformat/locale-data/en";
 import "@formatjs/intl-datetimeformat/locale-data/es";
 
 import { languageDetector } from "./plugins/languageDetector";
-import { translationEn } from "./en/translation";
-import { translationEs } from "./es/translation";
 import { initReactI18next } from "react-i18next";
 import Constants from "expo-constants";
+import { translationEn } from "./en";
+import { translationEs } from "./es";
 import i18next from "i18next";
 
 i18next
   .use(languageDetector)
   .use(initReactI18next)
   .init({
-    debug: Constants.manifest2.extra.APP_ENV === "development",
+    debug: Constants.manifest.extra.APP_ENV === "development",
+    nonExplicitSupportedLngs: true,
+    supportedLngs: ["es", "en"],
     fallbackLng: "en",
     interpolation: {
       escapeValue: false,

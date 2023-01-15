@@ -1,5 +1,5 @@
 import { setLanguagePreference } from "../../redux/states/languagePreference";
-import { logger, MMKV_LNG, storage } from "../../share/app.config";
+import { logger, MMKV_LNG, storage } from "../../config/app.config";
 import * as Localization from "expo-localization";
 import { reduxStore } from "../../redux/store";
 

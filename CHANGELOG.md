@@ -6,15 +6,26 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 The date format used is DD/MM/YYYY.
 
+## [[1.1.0]](https://github.com/willymateo/titi-app/pull/2) - 11/12/2022
+
+### Added
+
+- Hide the splash screen only when all components and dependencies were loaded.
+
+### Changed
+
+- Update expo SDK from v45 to v46.
+- Update react-native-paper from v4 to v5
+
+### Fixed
+
+- Add nonExplicitSupportedLngs to i18next (useful when use the detect locale API)
+
 ## [[1.0.0]](https://github.com/willymateo/titi-app/pull/1) - 11/11/2022
 
 ### Added
 
-- Add unit test workflow in GitHub Actions
-- Add ajv validation
-- Add genders model
-- Add adventures and genders routes
-
-### Changed
-
-- Change name fron CatHot to Titi
+- Welcome screens.
+- Home screens.
+- Multi-language support.
+- Dark and light mode support.

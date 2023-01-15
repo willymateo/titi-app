@@ -1,16 +1,13 @@
-import { axiosInstance, axiosInstance, errorHandlerSWR } from "./axios.config";
-import useSWR from "swr";
+import { axiosInstance, errorHandlerSWR } from "./axios.config";
+import useSWRImmutable from "swr/immutable";
 
 const getAllGendersUrl = "/genders";
-const getAllGenders = async url =>
+const getAllGenders = url =>
   axiosInstance
     .get(url)
     .then(({ data }) => data)
     .catch(errorHandlerSWR);
 
-const useGenders = () => {
-  const response = useSWR(getAllGendersUrl, getAllGenders);
-  return response;
-};
+const useGenders = () => useSWRImmutable(getAllGendersUrl, getAllGenders);
 
-export { getAllGenders, getAllGendersUrl, useGenders };
+export { useGenders };

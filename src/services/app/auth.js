@@ -1,6 +1,6 @@
-import { axiosInstance, axiosInstance, errorHandler } from "./axios.config";
+import { axiosInstance, errorHandler } from "./axios.config";
 
-const login = async ({ username, password }) =>
+const login = ({ username, password }) =>
   axiosInstance
     .post("/auth/login", { username, password })
     .then(({ data }) => data)

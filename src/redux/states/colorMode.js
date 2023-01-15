@@ -9,8 +9,8 @@ const ColorModeSlice = createSlice({
   name: "colorMode",
   initialState: emptyState,
   reducers: {
-    createColorMode: ({ action }) => action.payload,
-    setColorMode: (state, action) => ({ ...state, ...action.payload }),
+    createColorMode: ({ action: { payload } }) => payload,
+    setColorMode: (state, { payload }) => ({ ...state, ...payload }),
     resetColorMode: () => emptyState,
   },
 });

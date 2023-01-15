@@ -6,10 +6,10 @@ import { configureStore } from "@reduxjs/toolkit";
 
 const reduxStore = configureStore({
   reducer: {
-    colorMode: ColorModeReducer,
-    signUpForm: SignUpFormReducer,
-    userSession: UserSessionReducer,
     languagePreference: LanguagePreferenceReducer,
+    userSession: UserSessionReducer,
+    signUpForm: SignUpFormReducer,
+    colorMode: ColorModeReducer,
   },
 });
 

@@ -8,8 +8,8 @@ const LanguagePreferenceSlice = createSlice({
   name: "languagePreference",
   initialState: emptyState,
   reducers: {
-    createLanguagePreference: ({ action }) => action.payload,
-    setLanguagePreference: (state, action) => ({ ...state, ...action.payload }),
+    createLanguagePreference: ({ action: { payload } }) => payload,
+    setLanguagePreference: (state, { payload }) => ({ ...state, ...payload }),
     resetLanguagePreference: () => emptyState,
   },
 });
