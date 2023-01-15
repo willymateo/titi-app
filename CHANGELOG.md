@@ -6,16 +6,24 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 The date format used is DD/MM/YYYY.
 
-## [[1.1.0]](https://github.com/willymateo/titi-app/pull/2) - 11/12/2022
+## [[1.2.0]](https://github.com/willymateo/titi-app/pull/3) - 15/01/2023
+
+### Changed
+
+- Complete the profile screen
+
+## [[1.1.0]](https://github.com/willymateo/titi-app/pull/2) - 15/01/2023
 
 ### Added
 
 - Hide the splash screen only when all components and dependencies were loaded.
+- Change password screen
+- Basic profile screen
 
 ### Changed
 
-- Update expo SDK from v45 to v46.
 - Update react-native-paper from v4 to v5
+- Update expo SDK from v45 to v46.
 
 ### Fixed
 
