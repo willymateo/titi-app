@@ -10,4 +10,10 @@ const createUser = async () => {
     .catch(errorHandler);
 };
 
-export { createUser };
+const updateUser = payload =>
+  axiosInstance
+    .post("/users", payload)
+    .then(({ data }) => data)
+    .catch(errorHandler);
+
+export { createUser, updateUser };

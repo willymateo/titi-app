@@ -1,4 +1,4 @@
-import { LanguageSettings } from "../mainTabs/settings/LanguageSettings";
+import { Language as LanguageRadioButton } from "../mainTabs/settings/Language";
 import { Button, Dialog, Portal, Text } from "react-native-paper";
 import { Language, NavArrowDown } from "iconoir-react-native";
 import LightLogo from "../../../assets/images/lightLogo.svg";
@@ -34,7 +34,7 @@ function Welcome({ navigation }) {
             <Dialog.Title style={styles.dialogTitle}>{t("language")}</Dialog.Title>
             <Dialog.ScrollArea>
               <ScrollView>
-                <LanguageSettings />
+                <LanguageRadioButton />
               </ScrollView>
             </Dialog.ScrollArea>
           </Dialog>

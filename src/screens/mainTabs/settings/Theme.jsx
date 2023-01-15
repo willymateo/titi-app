@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RadioButton } from "react-native-paper";
 import { useTranslation } from "react-i18next";
 
-function ThemeSettings() {
+function Theme() {
   const { t } = useTranslation("translation", { keyPrefix: "screens.themeSettings" });
   const { theme } = useSelector(state => state.colorMode);
   const dispatch = useDispatch();
@@ -24,4 +24,4 @@ function ThemeSettings() {
   );
 }
 
-export { ThemeSettings };
+export { Theme };

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { RadioButton } from "react-native-paper";
 import { useTranslation } from "react-i18next";
 
-function LanguageSettings() {
+function Language() {
   const { t, i18n } = useTranslation("translation", { keyPrefix: "screens.languageSettings" });
   const { language } = useSelector(state => state.languagePreference);
   const dispatch = useDispatch();
@@ -23,4 +23,4 @@ function LanguageSettings() {
   );
 }
 
-export { LanguageSettings };
+export { Language };

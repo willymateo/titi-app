@@ -1,7 +1,7 @@
-import { LanguageSettings } from "../../screens/mainTabs/settings/LanguageSettings";
 import { ChangePassword } from "../../screens/mainTabs/settings/ChangePassword";
-import { ThemeSettings } from "../../screens/mainTabs/settings/ThemeSettings";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Language } from "../../screens/mainTabs/settings/Language";
+import { Theme } from "../../screens/mainTabs/settings/Theme";
 import { Settings } from "../../screens/mainTabs/settings";
 import { NavigationBar } from "./NavigationBar";
 import { useTranslation } from "react-i18next";
@@ -27,20 +27,20 @@ function SettingsStackNavigator() {
       />
       <Stack.Screen
         name="ThemeSettings"
-        component={ThemeSettings}
+        component={Theme}
         options={{
           title: t("components.settingsStackNavigator.themeSettings"),
         }}
       />
       <Stack.Screen
         name="LanguageSettings"
-        component={LanguageSettings}
+        component={Language}
         options={{
           title: t("components.settingsStackNavigator.languageSettings"),
         }}
       />
       <Stack.Screen
-        name="ChangePassword"
+        name="SecuritySettings"
         component={ChangePassword}
         options={{
           title: t("screens.settings.changePassword"),

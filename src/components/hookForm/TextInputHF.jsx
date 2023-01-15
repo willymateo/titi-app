@@ -16,8 +16,8 @@ function TextInputHF({
   left,
 }) {
   const {
-    fieldState: { error },
     field: { value, onChange, onBlur },
+    fieldState: { error },
   } = useController({ control, rules, name: controllerName });
 
   return (

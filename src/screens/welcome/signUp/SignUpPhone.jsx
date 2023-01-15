@@ -10,8 +10,8 @@ import { LoginFooter } from "../../../components/LoginFooter";
 import { SmartphoneDevice } from "iconoir-react-native";
 import { useLoading } from "../../../hooks/useLoading";
 import { Button, TextInput } from "react-native-paper";
-import * as appAPI from "../../../services/app/users";
 import { sharedStyles } from "../../../shared/styles";
+import { createUser } from "../../../services/app";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
@@ -24,24 +24,21 @@ function SignUpPhone({ navigation }) {
   const { t } = useTranslation();
 
   const handlePressSignUp = async ({ phoneNumber }) => {
-    try {
-      startLoading();
-      dispatch(setSignUpForm({ phone: { phoneNumber } }));
-      const { token, error: requestError } = await appAPI.createUser();
+    startLoading();
+    dispatch(setSignUpForm({ phone: { phoneNumber } }));
 
-      if (requestError) {
-        showError({ error: requestError });
-        stopLoading();
-        return;
-      }
+    const { token, error: errorOnCreate } = await createUser();
 
-      storage.set(MMKV_USER_TOKEN, token);
-      dispatch(resetSignUpForm());
-      dispatch(setUserSession({ token }));
+    if (errorOnCreate) {
+      showError({ error: errorOnCreate });
       stopLoading();
-    } catch (err) {
-      console.log(err);
+      return;
     }
+
+    storage.set(MMKV_USER_TOKEN, token);
+    dispatch(resetSignUpForm());
+    dispatch(setUserSession({ token }));
+    stopLoading();
   };
 
   return (

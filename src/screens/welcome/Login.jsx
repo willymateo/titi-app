@@ -11,8 +11,8 @@ import { LoginFooter } from "../../components/LoginFooter";
 import { useLoading } from "../../hooks/useLoading";
 import { useVisible } from "../../hooks/useVisible";
 import { sharedStyles } from "../../shared/styles";
-import * as appAPI from "../../services/app/auth";
 import { useTranslation } from "react-i18next";
+import { login } from "../../services/app";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import Constants from "expo-constants";
@@ -26,29 +26,25 @@ function Login({ navigation }) {
   const { t } = useTranslation();
 
   const handlePressLogin = async data => {
-    try {
-      startLoading();
-      const { token, error: requestError } = await appAPI.login(data);
+    startLoading();
+    const { token, error: errorOnLogin } = await login(data);
 
-      if (requestError) {
-        showError({ error: requestError });
-        stopLoading();
-        return;
-      }
-
-      storage.set(MMKV_USER_TOKEN, token);
-      dispatch(setUserSession({ token }));
+    if (errorOnLogin) {
+      showError({ error: errorOnLogin });
       stopLoading();
-    } catch (err) {
-      console.log(err);
+      return;
     }
+
+    storage.set(MMKV_USER_TOKEN, token);
+    dispatch(setUserSession({ token }));
+    stopLoading();
   };
 
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
       style={sharedStyles.flx}>
-      <View style={{ ...styles.container }}>
+      <View style={[sharedStyles.flx, sharedStyles.flxJCCenter]}>
         <Text style={styles.appTitle}>{Constants.manifest.extra.APP_NAME}</Text>
 
         <View>
@@ -104,10 +100,6 @@ function Login({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-  },
   appTitle: {
     fontFamily: "RedHatMono",
     textAlign: "center",

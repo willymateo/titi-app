@@ -1,10 +1,8 @@
+import { logger } from "../../config/app.config";
 import Constants from "expo-constants";
 import axios from "axios";
-import { logger } from "../../config/app.config";
 
-const axiosInstance = axios.create({
-  baseURL: Constants.manifest.extra.APP_API_URL,
-});
+const axiosInstance = axios.create({ baseURL: Constants.manifest.extra.APP_API_URL });
 
 const errorHandler = ({ request, response }) => {
   let error = "Unexpected error ocurred";

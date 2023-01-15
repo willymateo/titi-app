@@ -4,12 +4,11 @@ import { sharedStyles } from "../../shared/styles";
 import { TextInput } from "react-native-paper";
 import { useTranslation } from "react-i18next";
 import { TextInputHF } from "./TextInputHF";
-import { useForm } from "react-hook-form";
 
-function RepeatPasswordHF() {
-  const { isVisible: isPasswordVisible, toggle: togglePasswordHidden } = useVisible();
+function RepeatPasswordHF({ control, watch }) {
   const { t } = useTranslation("translation", { keyPrefix: "components.inputHookForm" });
-  const { control } = useForm();
+  const { isVisible: isPasswordVisible, toggle: togglePasswordHidden } = useVisible();
+  const password = watch("password");
 
   return (
     <>
@@ -34,13 +33,14 @@ function RepeatPasswordHF() {
         label={t("password")}
         control={control}
       />
+
       <TextInputHF
         left={
           <TextInput.Icon icon={props => <KeyAltBack {...props} {...sharedStyles.iconoirM} />} />
         }
         rules={{
-          required: t("passwordRequired"),
           validate: value => value === password || t("passwordMatch"),
+          required: t("passwordRequired"),
         }}
         controllerName="repeatPassword"
         label={t("repeatPassword")}
