@@ -1,4 +1,4 @@
-import { Group, Heart, User, UserCircleAlt, Wristwatch } from "iconoir-react-native";
+import { Group, Heart, User, UserCircle, Wristwatch } from "iconoir-react-native";
 import { Card, Chip, Text, Avatar, Button, IconButton } from "react-native-paper";
 import { formatDistanceToNow, intlFormat, parseISO } from "date-fns";
 import { StyleSheet, View } from "react-native";
@@ -27,7 +27,7 @@ function AdventureMiniCard({
         left={props => (
           <Avatar.Icon
             {...props}
-            icon={props => <UserCircleAlt {...props} {...sharedStyles.iconoirM} />}
+            icon={props => <UserCircle {...props} {...sharedStyles.iconoirM} />}
           />
         )}
         subtitle={`${username} ● ${gender}`}

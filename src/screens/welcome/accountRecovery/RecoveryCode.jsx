@@ -19,12 +19,12 @@ function RecoveryCode({ navigation }) {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.root}>
+      style={sharedStyles.flx}>
       <View style={styles.container}>
         <TextInputHF
           left={
             <TextInput.Icon
-              name={props => <PasswordCursor {...props} {...sharedStyles.iconoirM} />}
+              icon={props => <PasswordCursor {...props} {...sharedStyles.iconoirM} />}
             />
           }
           rules={{
@@ -49,9 +49,6 @@ function RecoveryCode({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-  },
   container: {
     flex: 1,
     justifyContent: "center",

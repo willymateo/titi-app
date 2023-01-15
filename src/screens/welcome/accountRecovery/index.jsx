@@ -23,7 +23,7 @@ function AccountRecovery({ navigation }) {
       style={styles.root}>
       <View style={styles.container}>
         <TextInputHF
-          left={<TextInput.Icon name={props => <Mail {...props} {...sharedStyles.iconoirM} />} />}
+          left={<TextInput.Icon icon={props => <Mail {...props} {...sharedStyles.iconoirM} />} />}
           placeholder={t("components.inputHookForm.emailPlaceholder")}
           rules={{
             required: t("components.inputHookForm.emailRequired"),

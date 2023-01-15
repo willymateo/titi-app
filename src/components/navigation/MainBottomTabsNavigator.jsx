@@ -1,5 +1,5 @@
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
-import { Bell, HomeSimple, IosSettings, UserCircleAlt } from "iconoir-react-native";
+import { Bell, HomeSimple, IosSettings, UserCircle } from "iconoir-react-native";
 import { Notifications } from "../../screens/mainTabs/Notifications";
 import { SettingsStackNavigator } from "./SettingsStackNavigator";
 import { ProfileStackNavigator } from "./ProfileStackNavigator";
@@ -34,7 +34,7 @@ function MainBottomTabsNavigator() {
         name="ProfileTab"
         component={ProfileStackNavigator}
         options={{
-          tabBarIcon: props => <UserCircleAlt {...props} {...sharedStyles.iconoirM} />,
+          tabBarIcon: props => <UserCircle {...props} {...sharedStyles.iconoirM} />,
           tabBarLabel: t("profile"),
         }}
       />

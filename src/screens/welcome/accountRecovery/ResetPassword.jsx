@@ -21,10 +21,10 @@ function ResetPassword({ navigation }) {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.root}>
+      style={sharedStyles.flx}>
       <View style={styles.container}>
         <TextInputHF
-          left={<TextInput.Icon name={props => <KeyAlt {...props} {...sharedStyles.iconoirM} />} />}
+          left={<TextInput.Icon icon={props => <KeyAlt {...props} {...sharedStyles.iconoirM} />} />}
           rules={{ required: t("components.inputHookForm.passwordRequired") }}
           right={
             <TextInput.Icon
@@ -46,7 +46,7 @@ function ResetPassword({ navigation }) {
         />
         <TextInputHF
           left={
-            <TextInput.Icon name={props => <KeyAltBack {...props} {...sharedStyles.iconoirM} />} />
+            <TextInput.Icon icon={props => <KeyAltBack {...props} {...sharedStyles.iconoirM} />} />
           }
           rules={{
             validate: value => value === password || t("components.inputHookForm.passwordMatch"),
@@ -72,9 +72,6 @@ function ResetPassword({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-  },
   container: {
     flexGrow: 1,
     justifyContent: "center",

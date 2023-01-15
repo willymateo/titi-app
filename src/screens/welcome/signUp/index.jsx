@@ -2,8 +2,8 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { DateTimePickerHF } from "../../../components/hookForm/DateTimePickerHF";
 import { RepeatPasswordHF } from "../../../components/hookForm/RepeatPasswordHF";
 import { GendersRadioButton } from "../../../components/GendersRadioButton";
-import { Mail, User, Calendar, PeopleRounded } from "iconoir-react-native";
 import { EMAIL_REGEX, USERNAME_REGEX } from "../../../config/app.config";
+import { User, Calendar, Mail, PeopleTag } from "iconoir-react-native";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { Button, HelperText, TextInput } from "react-native-paper";
 import { setSignUpForm } from "../../../redux/states/signUpForm";
@@ -92,7 +92,7 @@ function SignUp({ navigation }) {
             label={t("components.inputHookForm.gender")}
             style={sharedStyles.mv15}
             onPress={showGenderRB}
-            icon={PeopleRounded}
+            icon={PeopleTag}
             mode="flat"
           />
           <GendersRadioButton

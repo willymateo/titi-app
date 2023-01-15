@@ -1,5 +1,5 @@
 import { Avatar, Divider, IconButton, Text, useTheme } from "react-native-paper";
-import { Bonfire, ClockOutline, Edit, EmojiBall } from "iconoir-react-native";
+import { Bonfire, Clock, Edit, EmojiBall } from "iconoir-react-native";
 import { UserStateChip } from "../../../components/UserStateChip";
 import { useNavigation } from "@react-navigation/native";
 import { sharedStyles } from "../../../shared/styles";
@@ -57,7 +57,7 @@ function ProfileHeader({
         </View>
         <View style={sharedStyles.flxACenter}>
           <Text>{numLater}</Text>
-          <ClockOutline {...sharedStyles.iconoirM} color={onSurface} />
+          <Clock {...sharedStyles.iconoirM} color={onSurface} />
           <Text>later</Text>
         </View>
         <View style={sharedStyles.flxACenter}>
