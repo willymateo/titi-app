@@ -1,5 +1,5 @@
 import { EyeClose, EyeEmpty, KeyAltBack, PasswordError, User } from "iconoir-react-native";
-import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
+import { Keyboard, KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
 import { TextInputHF } from "../../components/hookForm/TextInputHF";
 import { MMKV_USER_TOKEN, storage } from "../../config/app.config";
 import { setUserSession } from "../../redux/states/userSession";
@@ -84,7 +84,13 @@ function Login({ navigation }) {
           />
         </View>
 
-        <Button mode="contained" uppercase={false} onPress={handleSubmit(handlePressLogin)}>
+        <Button
+          onPress={() => {
+            Keyboard.dismiss();
+            handleSubmit(handlePressLogin)();
+          }}
+          uppercase={false}
+          mode="contained">
           {t("screens.welcome.login")}
         </Button>
         <LoginFooter

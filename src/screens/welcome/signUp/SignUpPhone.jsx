@@ -61,7 +61,13 @@ function SignUpPhone({ navigation }) {
           control={control}
         />
 
-        <Button mode="contained" uppercase={false} onPress={handleSubmit(handlePressSignUp)}>
+        <Button
+          onPress={() => {
+            Keyboard.dismiss();
+            handleSubmit(handlePressSignUp)();
+          }}
+          uppercase={false}
+          mode="contained">
           {t("screens.signUp.createAccount")}
         </Button>
         <LoginFooter

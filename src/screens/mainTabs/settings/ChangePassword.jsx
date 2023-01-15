@@ -1,6 +1,6 @@
 import { RepeatPasswordHF } from "../../../components/hookForm/RepeatPasswordHF";
+import { Keyboard, KeyboardAvoidingView, Platform, View } from "react-native";
 import { PasswordError, WarningCircledOutline } from "iconoir-react-native";
-import { KeyboardAvoidingView, Platform, View } from "react-native";
 import { updateAccountInformation } from "../../../services/app/me";
 import { LoadingDialog } from "../../../components/LoadingDialog";
 import { useErrorDialog } from "../../../hooks/useErrorDialog";
@@ -63,7 +63,13 @@ function ChangePassword({ navigation }) {
           </Portal>
         </View>
 
-        <Button mode="contained" uppercase={false} onPress={handleSubmit(showConfirmDialog)}>
+        <Button
+          onPress={() => {
+            Keyboard.dismiss();
+            handleSubmit(showConfirmDialog)();
+          }}
+          uppercase={false}
+          mode="contained">
           {t("screens.settings.changePassword")}
         </Button>
 
