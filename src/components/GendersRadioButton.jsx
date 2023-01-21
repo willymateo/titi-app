@@ -1,5 +1,5 @@
 import { RadioButtonGroupHF } from "./hookForm/RadioButtonGroupHF";
-import { CloudError, PeopleRounded } from "iconoir-react-native";
+import { CloudError, PeopleTag } from "iconoir-react-native";
 import { useGenders } from "../services/app/genders";
 import { Dialog, Portal } from "react-native-paper";
 import { LoadingDialog } from "./LoadingDialog";
@@ -27,7 +27,7 @@ function GendersRadioButton({ control, controllerName, isVisible, hide }) {
   return (
     <Portal>
       <Dialog visible onDismiss={hide}>
-        <Dialog.Icon icon={props => <PeopleRounded {...props} {...sharedStyles.iconoirM} />} />
+        <Dialog.Icon icon={props => <PeopleTag {...props} {...sharedStyles.iconoirM} />} />
         <Dialog.Title>{t("inputHookForm.gender")}</Dialog.Title>
         <Dialog.ScrollArea>
           <ScrollView>

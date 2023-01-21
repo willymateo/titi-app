@@ -89,6 +89,7 @@ function Login({ navigation }) {
             Keyboard.dismiss();
             handleSubmit(handlePressLogin)();
           }}
+          style={sharedStyles.mv15}
           uppercase={false}
           mode="contained">
           {t("screens.welcome.login")}

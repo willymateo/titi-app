@@ -66,6 +66,7 @@ function SignUpPhone({ navigation }) {
             Keyboard.dismiss();
             handleSubmit(handlePressSignUp)();
           }}
+          style={sharedStyles.mv15}
           uppercase={false}
           mode="contained">
           {t("screens.signUp.createAccount")}

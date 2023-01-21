@@ -36,7 +36,11 @@ function RecoveryCode({ navigation }) {
           control={control}
         />
 
-        <Button mode="contained" uppercase={false} onPress={handleSubmit(onPressSendRecovery)}>
+        <Button
+          onPress={handleSubmit(onPressSendRecovery)}
+          style={sharedStyles.mv15}
+          uppercase={false}
+          mode="contained">
           {t("screens.accountRecovery.verifyRecoveryCode")}
         </Button>
         <LoginFooter

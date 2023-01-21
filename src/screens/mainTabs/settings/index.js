@@ -61,7 +61,7 @@ function Settings({ navigation }) {
               icon={props => <PasswordCursor {...props} {...sharedStyles.iconoirM} />}
             />
           )}
-          onPress={() => navigation.navigate("SecuritySettings")}
+          onPress={() => navigation.navigate("ChangePassword")}
           title={t("changePassword")}
         />
       </List.Section>

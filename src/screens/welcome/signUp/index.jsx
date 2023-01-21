@@ -102,7 +102,7 @@ function SignUp({ navigation }) {
             control={control}
           />
 
-          <View style={sharedStyles.mv15}>
+          <View style={sharedStyles.mt15}>
             <DateTimePickerHF control={control} controllerName="bornDate" mode="date">
               <InputChip
                 value={
@@ -129,7 +129,11 @@ function SignUp({ navigation }) {
         </View>
 
         <View>
-          <Button mode="contained" uppercase={false} onPress={handleSubmit(handlePressContinue)}>
+          <Button
+            onPress={handleSubmit(handlePressContinue)}
+            style={sharedStyles.mv15}
+            uppercase={false}
+            mode="contained">
             {t("screens.signUp.continue")}
           </Button>
           <LoginFooter

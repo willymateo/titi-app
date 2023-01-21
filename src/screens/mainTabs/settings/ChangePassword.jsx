@@ -68,6 +68,7 @@ function ChangePassword({ navigation }) {
             Keyboard.dismiss();
             handleSubmit(showConfirmDialog)();
           }}
+          style={sharedStyles.mt15}
           uppercase={false}
           mode="contained">
           {t("screens.settings.changePassword")}

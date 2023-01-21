@@ -1,5 +1,5 @@
-import { ResetPassword } from "../../screens/welcome/accountRecovery/ResetPassword";
 import { RecoveryCode } from "../../screens/welcome/accountRecovery/RecoveryCode";
+import { ChangePassword } from "../../screens/mainTabs/settings/ChangePassword";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { AccountRecovery } from "../../screens/welcome/accountRecovery";
 import { SignUpPhone } from "../../screens/welcome/signUp/SignUpPhone";
@@ -74,7 +74,7 @@ function WelcomeStackNavigator() {
           options={{
             title: t("resetPassword"),
           }}
-          component={ResetPassword}
+          component={ChangePassword}
           name="ResetPassword"
         />
       </Stack.Group>
