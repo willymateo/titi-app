@@ -1,8 +1,8 @@
+import { NavigationBar } from "../../../components/navigation/NavigationBar";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { EditProfile } from "../../screens/mainTabs/profile/EditProfile";
-import { Profile } from "../../screens/mainTabs/profile";
-import { NavigationBar } from "./NavigationBar";
 import { useTranslation } from "react-i18next";
+import { EditProfile } from "./EditProfile";
+import { Profile } from ".";
 
 const Stack = createNativeStackNavigator();
 

@@ -1,14 +1,14 @@
-import { RecoveryCode } from "../../screens/welcome/accountRecovery/RecoveryCode";
-import { ChangePassword } from "../../screens/mainTabs/settings/ChangePassword";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { AccountRecovery } from "../../screens/welcome/accountRecovery";
-import { SignUpPhone } from "../../screens/welcome/signUp/SignUpPhone";
-import { SignUp } from "../../screens/welcome/signUp";
-import { Login } from "../../screens/welcome/Login";
+import { NavigationBar } from "../../components/navigation/NavigationBar";
+import { ChangePassword } from "../mainTabs/settings/ChangePassword";
+import { RecoveryCode } from "./accountRecovery/RecoveryCode";
+import { AccountRecovery } from "./accountRecovery";
+import { SignUpPhone } from "./signUp/SignUpPhone";
 import { sharedStyles } from "../../shared/styles";
-import { NavigationBar } from "./NavigationBar";
-import { Welcome } from "../../screens/welcome";
 import { useTranslation } from "react-i18next";
+import { SignUp } from "./signUp";
+import { Login } from "./Login";
+import { Welcome } from ".";
 
 const Stack = createNativeStackNavigator();
 

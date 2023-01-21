@@ -1,11 +1,11 @@
-import { ChangePassword } from "../../screens/mainTabs/settings/ChangePassword";
+import { NavigationBar } from "../../../components/navigation/NavigationBar";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Language } from "../../screens/mainTabs/settings/Language";
-import { Theme } from "../../screens/mainTabs/settings/Theme";
-import { Settings } from "../../screens/mainTabs/settings";
-import { sharedStyles } from "../../shared/styles";
-import { NavigationBar } from "./NavigationBar";
+import { sharedStyles } from "../../../shared/styles";
+import { ChangePassword } from "./ChangePassword";
 import { useTranslation } from "react-i18next";
+import { Language } from "./Language";
+import { Theme } from "./Theme";
+import { Settings } from ".";
 
 const Stack = createNativeStackNavigator();
 

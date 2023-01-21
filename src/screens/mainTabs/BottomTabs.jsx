@@ -1,11 +1,11 @@
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { Bell, HomeSimple, IosSettings, UserCircle } from "iconoir-react-native";
-import { Notifications } from "../../screens/mainTabs/Notifications";
-import { SettingsStackNavigator } from "./SettingsStackNavigator";
-import { ProfileStackNavigator } from "./ProfileStackNavigator";
-import { Home } from "../../screens/mainTabs/home";
+import { SettingsStackNavigator } from "./settings/Stack";
+import { ProfileStackNavigator } from "./profile/Stack";
 import { sharedStyles } from "../../shared/styles";
+import { Notifications } from "./Notifications";
 import { useTranslation } from "react-i18next";
+import { Home } from "./home";
 
 const Tab = createMaterialBottomTabNavigator();
 
