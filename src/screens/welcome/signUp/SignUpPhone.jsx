@@ -6,7 +6,6 @@ import { setUserSession } from "../../../redux/states/userSession";
 import { LoadingDialog } from "../../../components/LoadingDialog";
 import { useErrorDialog } from "../../../hooks/useErrorDialog";
 import { ErrorDialog } from "../../../components/ErrorDialog";
-import { LoginFooter } from "../../../components/LoginFooter";
 import { createUser } from "../../../services/app/users";
 import { SmartphoneDevice } from "iconoir-react-native";
 import { useLoading } from "../../../hooks/useLoading";
@@ -15,6 +14,7 @@ import { sharedStyles } from "../../../shared/styles";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
+import { Footer } from "../Footer";
 
 function SignUpPhone({ navigation }) {
   const { loading, startLoading, stopLoading } = useLoading();
@@ -71,7 +71,7 @@ function SignUpPhone({ navigation }) {
           mode="contained">
           {t("screens.signUp.createAccount")}
         </Button>
-        <LoginFooter
+        <Footer
           onPressAccountRecovery={() => navigation.navigate("AccountRecovery")}
           onPressLogin={() => navigation.navigate("Login")}
         />

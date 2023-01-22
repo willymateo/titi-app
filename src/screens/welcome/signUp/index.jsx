@@ -7,7 +7,6 @@ import { User, Calendar, Mail, PeopleTag } from "iconoir-react-native";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { Button, HelperText, TextInput } from "react-native-paper";
 import { setSignUpForm } from "../../../redux/states/signUpForm";
-import { LoginFooter } from "../../../components/LoginFooter";
 import { InputChip } from "../../../components/InputChip";
 import { useVisible } from "../../../hooks/useVisible";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,6 +15,7 @@ import { parseISO, intlFormat } from "date-fns";
 import { StyleSheet, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
+import { Footer } from "../Footer";
 
 function SignUp({ navigation }) {
   const { isVisible: isVisibleGenderRB, show: showGenderRB, hide: hideGenderRB } = useVisible();
@@ -136,7 +136,7 @@ function SignUp({ navigation }) {
             mode="contained">
             {t("screens.signUp.continue")}
           </Button>
-          <LoginFooter
+          <Footer
             onPressAccountRecovery={() => navigation.navigate("AccountRecovery")}
             onPressLogin={() => navigation.navigate("Login")}
           />

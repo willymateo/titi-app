@@ -3,12 +3,12 @@ import { Button, Dialog, Portal, Text } from "react-native-paper";
 import { Language, NavArrowDown } from "iconoir-react-native";
 import LightLogo from "../../../assets/images/lightLogo.svg";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { LoginFooter } from "../../components/LoginFooter";
 import DarkLogo from "../../../assets/images/darkLogo.svg";
 import { useVisible } from "../../hooks/useVisible";
 import { sharedStyles } from "../../shared/styles";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { Footer } from "./Footer";
 
 function Welcome({ navigation }) {
   const { t } = useTranslation("translation", { keyPrefix: "screens.welcome" });
@@ -70,7 +70,7 @@ function Welcome({ navigation }) {
         </View>
       </View>
 
-      <LoginFooter
+      <Footer
         onPressAccountRecovery={() => navigation.navigate("AccountRecovery")}
         style={styles.bottomContainer}
       />

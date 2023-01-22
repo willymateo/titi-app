@@ -1,9 +1,9 @@
 import { Language, NavArrowRight, Palette, PasswordCursor } from "iconoir-react-native";
-import { LogoutButton } from "../../../components/LogoutButton";
-import { AboutCard } from "../../../components/AboutCard";
 import { sharedStyles } from "../../../shared/styles";
 import { useTranslation } from "react-i18next";
+import { LogoutButton } from "./LogoutButton";
 import { List } from "react-native-paper";
+import { AboutCard } from "./AboutCard";
 import { View } from "react-native";
 
 function Settings({ navigation }) {

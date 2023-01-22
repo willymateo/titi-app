@@ -1,12 +1,12 @@
 import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
-import { LoginFooter } from "../../../components/LoginFooter";
 import { EMAIL_REGEX } from "../../../config/app.config";
 import { Button, TextInput } from "react-native-paper";
 import { sharedStyles } from "../../../shared/styles";
 import { useTranslation } from "react-i18next";
 import { Mail } from "iconoir-react-native";
 import { useForm } from "react-hook-form";
+import { Footer } from "../Footer";
 
 function AccountRecovery({ navigation }) {
   const { control, handleSubmit } = useForm();
@@ -45,7 +45,7 @@ function AccountRecovery({ navigation }) {
           mode="contained">
           {t("screens.accountRecovery.sendRecoveryCode")}
         </Button>
-        <LoginFooter
+        <Footer
           onPressSignUp={() => navigation.navigate("SignUp")}
           onPressLogin={() => navigation.navigate("Login")}
         />

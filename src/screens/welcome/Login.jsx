@@ -7,7 +7,6 @@ import { LoadingDialog } from "../../components/LoadingDialog";
 import { Button, Text, TextInput } from "react-native-paper";
 import { useErrorDialog } from "../../hooks/useErrorDialog";
 import { ErrorDialog } from "../../components/ErrorDialog";
-import { LoginFooter } from "../../components/LoginFooter";
 import { useLoading } from "../../hooks/useLoading";
 import { useVisible } from "../../hooks/useVisible";
 import { sharedStyles } from "../../shared/styles";
@@ -16,6 +15,7 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import Constants from "expo-constants";
+import { Footer } from "./Footer";
 
 function Login({ navigation }) {
   const { isVisible: isPasswordVisible, toggle: togglePasswordVisible } = useVisible();
@@ -94,7 +94,7 @@ function Login({ navigation }) {
           mode="contained">
           {t("screens.welcome.login")}
         </Button>
-        <LoginFooter
+        <Footer
           onPressAccountRecovery={() => navigation.navigate("AccountRecovery")}
           onPressSignUp={() => navigation.navigate("SignUp")}
         />

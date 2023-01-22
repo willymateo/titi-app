@@ -2,7 +2,7 @@ import { Button, Divider, Text } from "react-native-paper";
 import { StyleSheet, View } from "react-native";
 import { useTranslation } from "react-i18next";
 
-function LoginFooter({ onPressLogin, onPressSignUp, onPressAccountRecovery, style }) {
+function Footer({ onPressLogin, onPressSignUp, onPressAccountRecovery, style }) {
   const { t } = useTranslation();
 
   return (
@@ -55,4 +55,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export { LoginFooter };
+export { Footer };
