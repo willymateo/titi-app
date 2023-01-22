@@ -3,15 +3,13 @@ import { DateTimePickerHF } from "../../../components/hookForm/DateTimePickerHF"
 import { RepeatPasswordHF } from "../../../components/hookForm/RepeatPasswordHF";
 import { GendersInputHF } from "../../../components/hookForm/GendersInputHF";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
-import { Button, HelperText, TextInput } from "react-native-paper";
 import { setSignUpForm } from "../../../redux/states/signUpForm";
-import { Calendar, Mail, AtSign } from "iconoir-react-native";
-import { InputChip } from "../../../components/InputChip";
-import { useDispatch, useSelector } from "react-redux";
+import { Button, TextInput } from "react-native-paper";
 import { sharedStyles } from "../../../shared/styles";
-import { parseISO, intlFormat } from "date-fns";
+import { Mail, AtSign } from "iconoir-react-native";
 import { StyleSheet, View } from "react-native";
 import { useTranslation } from "react-i18next";
+import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { Footer } from "../Footer";
 import {
@@ -22,9 +20,7 @@ import {
 } from "../../../config/app.config";
 
 function SignUp({ navigation }) {
-  const { language } = useSelector(state => state.languagePreference);
   const { watch, control, handleSubmit } = useForm();
-  const bornDate = watch("bornDate");
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
@@ -93,30 +89,16 @@ function SignUp({ navigation }) {
 
           <GendersInputHF controllerName="idGender" control={control} watch={watch} />
 
-          <View style={sharedStyles.mt15}>
-            <DateTimePickerHF control={control} controllerName="bornDate" mode="date">
-              <InputChip
-                value={
-                  bornDate
-                    ? intlFormat(
-                        parseISO(bornDate),
-                        {
-                          weekday: "long",
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        },
-                        { locale: language }
-                      )
-                    : t("components.inputHookForm.bornDatePlaceholder")
-                }
-                label={t("components.inputHookForm.bornDate")}
-                icon={Calendar}
-                mode="flat"
-              />
-            </DateTimePickerHF>
-            <HelperText>{t("components.inputHookForm.bornDateHelperText")}</HelperText>
-          </View>
+          <DateTimePickerHF
+            rules={{
+              required: t("components.inputHookForm.bornDateRequired"),
+            }}
+            style={sharedStyles.mt15}
+            controllerName="bornDate"
+            control={control}
+            watch={watch}
+            mode="date"
+          />
         </View>
 
         <View>

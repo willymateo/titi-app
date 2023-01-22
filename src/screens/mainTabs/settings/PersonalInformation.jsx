@@ -1,3 +1,4 @@
+import { DateTimePickerHF } from "../../../components/hookForm/DateTimePickerHF";
 import { GendersInputHF } from "../../../components/hookForm/GendersInputHF";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { updateAccountInformation } from "../../../services/app/me";
@@ -5,8 +6,8 @@ import { LoadingDialog } from "../../../components/LoadingDialog";
 import { useErrorDialog } from "../../../hooks/useErrorDialog";
 import { ErrorDialog } from "../../../components/ErrorDialog";
 import { EMAIL_REGEX } from "../../../config/app.config";
-import { Button, TextInput } from "react-native-paper";
 import { useLoading } from "../../../hooks/useLoading";
+import { Button, TextInput } from "react-native-paper";
 import { sharedStyles } from "../../../shared/styles";
 import { useTranslation } from "react-i18next";
 import { Keyboard, View } from "react-native";
@@ -59,6 +60,17 @@ function PersonalInformation({
         />
 
         <GendersInputHF controllerName="idGender" control={control} watch={watch} />
+
+        <DateTimePickerHF
+          rules={{
+            required: t("components.inputHookForm.bornDateRequired"),
+          }}
+          style={sharedStyles.mt15}
+          controllerName="bornDate"
+          control={control}
+          watch={watch}
+          mode="date"
+        />
       </View>
 
       <Button
