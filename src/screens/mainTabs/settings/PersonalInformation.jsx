@@ -1,7 +1,7 @@
-import { GendersRadioButton } from "../../../components/GendersRadioButton";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { updateAccountInformation } from "../../../services/app/me";
 import { LoadingDialog } from "../../../components/LoadingDialog";
+import { GendersDialog } from "../../../components/GendersDialog";
 import { useErrorDialog } from "../../../hooks/useErrorDialog";
 import { ErrorDialog } from "../../../components/ErrorDialog";
 import { InputChip } from "../../../components/InputChip";
@@ -22,14 +22,23 @@ function PersonalInformation({
   const { isVisible: isVisibleGenderRB, show: showGenderRB, hide: hideGenderRB } = useVisible();
   const { loading, startLoading, stopLoading } = useLoading();
   const { error, showError, hideError } = useErrorDialog();
-  const { control, handleSubmit } = useForm({
+  const { watch, control, handleSubmit } = useForm({
     defaultValues: {
       bornDate,
       idGender,
       email,
     },
   });
+  const idSelectedGender = watch("idGender");
   const { t } = useTranslation();
+
+  const GENDERS = {
+    1: t("components.gendersRadioButton.male"),
+    2: t("components.gendersRadioButton.female"),
+    3: t("components.gendersRadioButton.gay"),
+    4: t("components.gendersRadioButton.lesbian"),
+    5: t("components.gendersRadioButton.no_binary"),
+  };
 
   const handlePressSave = async data => {
     startLoading();
@@ -62,14 +71,14 @@ function PersonalInformation({
         />
 
         <InputChip
-          value={t("components.inputHookForm.genderPlaceholder")}
+          value={GENDERS[idSelectedGender] || t("components.inputHookForm.genderPlaceholder")}
           label={t("components.inputHookForm.gender")}
           style={sharedStyles.mv15}
           onPress={showGenderRB}
           icon={PeopleTag}
           mode="flat"
         />
-        <GendersRadioButton
+        <GendersDialog
           isVisible={isVisibleGenderRB}
           controllerName="idGender"
           hide={hideGenderRB}

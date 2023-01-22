@@ -1,6 +1,6 @@
 import { resetSignUpForm, setSignUpForm } from "../../../redux/states/signUpForm";
+import { Keyboard, KeyboardAvoidingView, StyleSheet, View } from "react-native";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
-import { KeyboardAvoidingView, StyleSheet, View } from "react-native";
 import { MMKV_USER_TOKEN, storage } from "../../../config/app.config";
 import { setUserSession } from "../../../redux/states/userSession";
 import { LoadingDialog } from "../../../components/LoadingDialog";

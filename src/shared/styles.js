@@ -19,6 +19,9 @@ const sharedStyles = StyleSheet.create({
   mb15: {
     marginBottom: 15,
   },
+  mb5: {
+    marginBottom: 5,
+  },
   mt15: {
     marginTop: 15,
   },

@@ -1,10 +1,10 @@
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { DateTimePickerHF } from "../../../components/hookForm/DateTimePickerHF";
 import { RepeatPasswordHF } from "../../../components/hookForm/RepeatPasswordHF";
-import { GendersRadioButton } from "../../../components/GendersRadioButton";
 import { Calendar, Mail, PeopleTag, AtSign } from "iconoir-react-native";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { Button, HelperText, TextInput } from "react-native-paper";
+import { GendersDialog } from "../../../components/GendersDialog";
 import { setSignUpForm } from "../../../redux/states/signUpForm";
 import { InputChip } from "../../../components/InputChip";
 import { useVisible } from "../../../hooks/useVisible";
@@ -102,7 +102,7 @@ function SignUp({ navigation }) {
             icon={PeopleTag}
             mode="flat"
           />
-          <GendersRadioButton
+          <GendersDialog
             isVisible={isVisibleGenderRB}
             controllerName="idGender"
             hide={hideGenderRB}

@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import { ErrorDialog } from "./ErrorDialog";
 import { ScrollView } from "react-native";
 
-function GendersRadioButton({ control, controllerName, isVisible, hide }) {
+function GendersDialog({ control, controllerName, isVisible, hide }) {
   const { t } = useTranslation("translation", { keyPrefix: "components" });
   const { data: genders, error, isValidating } = useGenders();
 
@@ -48,4 +48,4 @@ function GendersRadioButton({ control, controllerName, isVisible, hide }) {
   );
 }
 
-export { GendersRadioButton };
+export { GendersDialog };
