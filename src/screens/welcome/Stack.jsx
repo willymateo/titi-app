@@ -1,6 +1,5 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { NavigationBar } from "../../components/navigation/NavigationBar";
-import { ChangePassword } from "../mainTabs/settings/ChangePassword";
 import { RecoveryCode } from "./accountRecovery/RecoveryCode";
 import { AccountRecovery } from "./accountRecovery";
 import { SignUpPhone } from "./signUp/SignUpPhone";
@@ -9,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import { SignUp } from "./signUp";
 import { Login } from "./Login";
 import { Welcome } from ".";
+import { ChangePassword } from "../../components/ChangePassword";
 
 const Stack = createNativeStackNavigator();
 

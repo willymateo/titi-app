@@ -3,6 +3,8 @@ import Constants from "expo-constants";
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const USERNAME_REGEX = /^[a-z0-9_\.]*[a-z]+[a-z0-9_\.]*$/;
+const USERNAME_MAX_LENGTH = 30;
+const USERNAME_MIN_LENGTH = 5;
 
 const MMKV_LNG = "languagePreference.language";
 const MMKV_USER_TOKEN = "userSession.token";
@@ -20,12 +22,14 @@ const logger = (...args) => {
 };
 
 export {
-  logger,
-  storage,
-  MMKV_LNG,
-  MMKV_THEME,
-  EMAIL_REGEX,
-  MMKV_IS_DARK,
-  USERNAME_REGEX,
+  USERNAME_MIN_LENGTH,
+  USERNAME_MAX_LENGTH,
   MMKV_USER_TOKEN,
+  USERNAME_REGEX,
+  MMKV_IS_DARK,
+  EMAIL_REGEX,
+  MMKV_THEME,
+  MMKV_LNG,
+  storage,
+  logger,
 };

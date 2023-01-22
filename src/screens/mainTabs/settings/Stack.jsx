@@ -1,7 +1,7 @@
 import { NavigationBar } from "../../../components/navigation/NavigationBar";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { ChangePassword } from "../../../components/ChangePassword";
 import { sharedStyles } from "../../../shared/styles";
-import { ChangePassword } from "./ChangePassword";
 import { useTranslation } from "react-i18next";
 import { Language } from "./Language";
 import { Theme } from "./Theme";

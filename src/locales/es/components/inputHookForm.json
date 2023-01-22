@@ -24,5 +24,9 @@
   "phoneNumberRequired": "Se require número de teléfono",
   "recoveryCode": "Código de recuperación",
   "recoveryCodeRequired": "Se requiere el código de recuperación",
+  "firstNames": "Nombres",
+  "lastNames": "Apellidos",
+  "biography": "Biografía",
+  "biographyMaxLength": "La briografía debe tener máximo 255 caractéres",
   "close": "Cerrar"
 }

@@ -2,7 +2,6 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { DateTimePickerHF } from "../../../components/hookForm/DateTimePickerHF";
 import { RepeatPasswordHF } from "../../../components/hookForm/RepeatPasswordHF";
 import { GendersRadioButton } from "../../../components/GendersRadioButton";
-import { EMAIL_REGEX, USERNAME_REGEX } from "../../../config/app.config";
 import { Calendar, Mail, PeopleTag, AtSign } from "iconoir-react-native";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { Button, HelperText, TextInput } from "react-native-paper";
@@ -16,6 +15,12 @@ import { StyleSheet, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { Footer } from "../Footer";
+import {
+  EMAIL_REGEX,
+  USERNAME_REGEX,
+  USERNAME_MAX_LENGTH,
+  USERNAME_MIN_LENGTH,
+} from "../../../config/app.config";
 
 function SignUp({ navigation }) {
   const { isVisible: isVisibleGenderRB, show: showGenderRB, hide: hideGenderRB } = useVisible();
@@ -70,11 +75,11 @@ function SignUp({ navigation }) {
               required: t("components.inputHookForm.usernameRequired"),
               minLength: {
                 message: t("components.inputHookForm.usernameMinLength"),
-                value: 5,
+                value: USERNAME_MIN_LENGTH,
               },
               maxLength: {
                 message: t("components.inputHookForm.usernameMaxLength"),
-                value: 30,
+                value: USERNAME_MAX_LENGTH,
               },
               pattern: {
                 message: t("components.inputHookForm.usernameRegex"),

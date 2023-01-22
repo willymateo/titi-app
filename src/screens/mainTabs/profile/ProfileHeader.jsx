@@ -22,6 +22,15 @@ function ProfileHeader({
 
   const navigation = useNavigation();
 
+  const handlePressEdit = () =>
+    navigation.navigate("EditProfile", {
+      firstNames,
+      lastNames,
+      biography,
+      username,
+      photoUrl,
+    });
+
   return (
     <View>
       <View style={sharedStyles.flxACenter}>
@@ -39,7 +48,7 @@ function ProfileHeader({
           <View style={sharedStyles.flxJCCenter}>
             <IconButton
               icon={props => <Edit {...props} {...sharedStyles.iconoirM} />}
-              onPress={() => navigation.navigate("EditProfile", { photoUrl })}
+              onPress={handlePressEdit}
             />
           </View>
         </View>

@@ -13,6 +13,7 @@ import changePassword from "./screens/changePassword.json";
 import logoutButton from "./components/logoutButton.json";
 import themeSettings from "./screens/themeSettings.json";
 import loginFooter from "./components/loginFooter.json";
+import editProfile from "./screens/editProfile.json";
 import settings from "./screens/settings.json";
 import dialog from "./components/dialog.json";
 import welcome from "./screens/welcome.json";
@@ -24,6 +25,7 @@ const translationEn = {
     accountRecovery,
     changePassword,
     themeSettings,
+    editProfile,
     settings,
     welcome,
     signUp,

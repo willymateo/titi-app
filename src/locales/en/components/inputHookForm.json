@@ -24,5 +24,9 @@
   "phoneNumberRequired": "Phone number is required",
   "recoveryCode": "Recovery code",
   "recoveryCodeRequired": "Recovery code is required",
+  "firstNames": "First names",
+  "lastNames": "Last names",
+  "biography": "Biography",
+  "biographyMaxLength": "Biography should be maximum 255 characters long",
   "close": "Close"
 }

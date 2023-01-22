@@ -1,17 +1,51 @@
-import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { AtSign, EditPencil, OpenBook, User } from "iconoir-react-native";
+import { TextInputHF } from "../../../components/hookForm/TextInputHF";
+import { updateAccountInformation } from "../../../services/app/me";
+import { LoadingDialog } from "../../../components/LoadingDialog";
 import { Avatar, Button, TextInput } from "react-native-paper";
+import { useErrorDialog } from "../../../hooks/useErrorDialog";
+import { ErrorDialog } from "../../../components/ErrorDialog";
+import { useLoading } from "../../../hooks/useLoading";
 import { sharedStyles } from "../../../shared/styles";
 import { useTranslation } from "react-i18next";
 import { Keyboard, View } from "react-native";
 import { useForm } from "react-hook-form";
+import {
+  USERNAME_REGEX,
+  USERNAME_MAX_LENGTH,
+  USERNAME_MIN_LENGTH,
+} from "../../../config/app.config";
 
-function EditProfile({ firstNames = "", lastNames = "", biography = "", username = "", photoUrl }) {
-  const { control, handleSubmit } = useForm();
+function EditProfile({
+  route: {
+    params: { firstNames = "", lastNames = "", biography = "", username = "", photoUrl },
+  },
+  navigation,
+}) {
+  const { loading, startLoading, stopLoading } = useLoading();
+  const { error, showError, hideError } = useErrorDialog();
+  const { control, handleSubmit } = useForm({
+    defaultValues: {
+      firstNames,
+      lastNames,
+      biography,
+      username,
+    },
+  });
   const { t } = useTranslation();
   const showPictures = () => {};
 
-  const handlePressSave = () => {};
+  const handlePressSave = async data => {
+    startLoading();
+    const { error: errorOnUpdate } = await updateAccountInformation(data);
+
+    if (errorOnUpdate) {
+      showError({ error: errorOnUpdate });
+    }
+
+    stopLoading();
+    navigation.goBack();
+  };
 
   return (
     <View>
@@ -22,28 +56,42 @@ function EditProfile({ firstNames = "", lastNames = "", biography = "", username
           style={sharedStyles.mv5}
           onPress={showPictures}
           mode="contained">
-          Change profile picture
+          {t("screens.editProfile.changeProfilePhoto")}
         </Button>
       </View>
 
       <View>
         <TextInputHF
           left={<TextInput.Icon icon={props => <User {...props} {...sharedStyles.iconoirM} />} />}
-          label="First names"
+          label={t("components.inputHookForm.firstNames")}
           controllerName="firstNames"
           style={sharedStyles.mv5}
           control={control}
         />
         <TextInputHF
           left={<TextInput.Icon icon={props => <User {...props} {...sharedStyles.iconoirM} />} />}
-          label="Last names"
+          label={t("components.inputHookForm.lastNames")}
           controllerName="lastNames"
           style={sharedStyles.mv5}
           control={control}
         />
         <TextInputHF
           left={<TextInput.Icon icon={props => <AtSign {...props} {...sharedStyles.iconoirM} />} />}
-          rules={{ required: t("components.inputHookForm.usernameRequired") }}
+          rules={{
+            required: t("components.inputHookForm.usernameRequired"),
+            minLength: {
+              message: t("components.inputHookForm.usernameMinLength"),
+              value: USERNAME_MIN_LENGTH,
+            },
+            maxLength: {
+              message: t("components.inputHookForm.usernameMaxLength"),
+              value: USERNAME_MAX_LENGTH,
+            },
+            pattern: {
+              message: t("components.inputHookForm.usernameRegex"),
+              value: USERNAME_REGEX,
+            },
+          }}
           label={t("components.inputHookForm.username")}
           controllerName="username"
           style={sharedStyles.mv5}
@@ -53,11 +101,17 @@ function EditProfile({ firstNames = "", lastNames = "", biography = "", username
           left={
             <TextInput.Icon icon={props => <OpenBook {...props} {...sharedStyles.iconoirM} />} />
           }
+          rules={{
+            maxLength: {
+              message: t("components.inputHookForm.biographyMaxLength"),
+              value: 255,
+            },
+          }}
+          label={t("components.inputHookForm.biography")}
           controllerName="biography"
           style={sharedStyles.mv5}
-          label="Biography"
-          control={control}
           numberOfLines={4}
+          control={control}
           multiline
         />
       </View>
@@ -70,8 +124,11 @@ function EditProfile({ firstNames = "", lastNames = "", biography = "", username
         style={sharedStyles.mv15}
         uppercase={false}
         mode="contained">
-        Save
+        {t("screens.editProfile.save")}
       </Button>
+
+      <ErrorDialog isVisible={error} onDismiss={hideError} content={error} />
+      <LoadingDialog isVisible={loading} />
     </View>
   );
 }

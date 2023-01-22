@@ -1,15 +1,15 @@
-import { RepeatPasswordHF } from "../../../components/hookForm/RepeatPasswordHF";
 import { Keyboard, KeyboardAvoidingView, Platform, View } from "react-native";
 import { PasswordError, WarningCircledOutline } from "iconoir-react-native";
-import { updateAccountInformation } from "../../../services/app/me";
-import { LoadingDialog } from "../../../components/LoadingDialog";
-import { useErrorDialog } from "../../../hooks/useErrorDialog";
-import { ErrorDialog } from "../../../components/ErrorDialog";
+import { RepeatPasswordHF } from "./hookForm/RepeatPasswordHF";
+import { updateAccountInformation } from "../services/app/me";
 import { Button, Dialog, Portal } from "react-native-paper";
-import { useLoading } from "../../../hooks/useLoading";
-import { useVisible } from "../../../hooks/useVisible";
-import { sharedStyles } from "../../../shared/styles";
+import { useErrorDialog } from "../hooks/useErrorDialog";
+import { useLoading } from "../hooks/useLoading";
+import { useVisible } from "../hooks/useVisible";
+import { LoadingDialog } from "./LoadingDialog";
+import { sharedStyles } from "../shared/styles";
 import { useTranslation } from "react-i18next";
+import { ErrorDialog } from "./ErrorDialog";
 import { useForm } from "react-hook-form";
 
 function ChangePassword({ navigation }) {
