@@ -10,8 +10,8 @@ const getAllGenders = url =>
     .catch(errorHandlerSWR);
 
 const useGenders = () => {
-  const { t } = useTranslation("translation", { keyPrefix: "components.gendersRadioButton" });
-  const { data, error, isValidating } = useSWRImmutable(getAllGendersUrl, getAllGenders);
+  const { t } = useTranslation("translation", { keyPrefix: "components.gendersInputHF" });
+  const { data = [], error, isValidating } = useSWRImmutable(getAllGendersUrl, getAllGenders);
   let gendersObj = {};
 
   if (!error && !isValidating) {

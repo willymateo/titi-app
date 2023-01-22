@@ -1,25 +1,22 @@
+import { GendersInputHF } from "../../../components/hookForm/GendersInputHF";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { updateAccountInformation } from "../../../services/app/me";
 import { LoadingDialog } from "../../../components/LoadingDialog";
-import { GendersDialog } from "../../../components/GendersDialog";
 import { useErrorDialog } from "../../../hooks/useErrorDialog";
 import { ErrorDialog } from "../../../components/ErrorDialog";
-import { InputChip } from "../../../components/InputChip";
 import { EMAIL_REGEX } from "../../../config/app.config";
-import { useVisible } from "../../../hooks/useVisible";
 import { Button, TextInput } from "react-native-paper";
 import { useLoading } from "../../../hooks/useLoading";
-import { Mail, PeopleTag } from "iconoir-react-native";
 import { sharedStyles } from "../../../shared/styles";
 import { useTranslation } from "react-i18next";
 import { Keyboard, View } from "react-native";
+import { Mail } from "iconoir-react-native";
 import { useForm } from "react-hook-form";
 
 function PersonalInformation({
   route: { params: { email, bornDate, idGender } = {} } = {},
   navigation,
 }) {
-  const { isVisible: isVisibleGenderRB, show: showGenderRB, hide: hideGenderRB } = useVisible();
   const { loading, startLoading, stopLoading } = useLoading();
   const { error, showError, hideError } = useErrorDialog();
   const { watch, control, handleSubmit } = useForm({
@@ -29,16 +26,7 @@ function PersonalInformation({
       email,
     },
   });
-  const idSelectedGender = watch("idGender");
   const { t } = useTranslation();
-
-  const GENDERS = {
-    1: t("components.gendersRadioButton.male"),
-    2: t("components.gendersRadioButton.female"),
-    3: t("components.gendersRadioButton.gay"),
-    4: t("components.gendersRadioButton.lesbian"),
-    5: t("components.gendersRadioButton.no_binary"),
-  };
 
   const handlePressSave = async data => {
     startLoading();
@@ -70,20 +58,7 @@ function PersonalInformation({
           control={control}
         />
 
-        <InputChip
-          value={GENDERS[idSelectedGender] || t("components.inputHookForm.genderPlaceholder")}
-          label={t("components.inputHookForm.gender")}
-          style={sharedStyles.mv15}
-          onPress={showGenderRB}
-          icon={PeopleTag}
-          mode="flat"
-        />
-        <GendersDialog
-          isVisible={isVisibleGenderRB}
-          controllerName="idGender"
-          hide={hideGenderRB}
-          control={control}
-        />
+        <GendersInputHF controllerName="idGender" control={control} watch={watch} />
       </View>
 
       <Button

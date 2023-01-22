@@ -1,13 +1,12 @@
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { DateTimePickerHF } from "../../../components/hookForm/DateTimePickerHF";
 import { RepeatPasswordHF } from "../../../components/hookForm/RepeatPasswordHF";
-import { Calendar, Mail, PeopleTag, AtSign } from "iconoir-react-native";
+import { GendersInputHF } from "../../../components/hookForm/GendersInputHF";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { Button, HelperText, TextInput } from "react-native-paper";
-import { GendersDialog } from "../../../components/GendersDialog";
 import { setSignUpForm } from "../../../redux/states/signUpForm";
+import { Calendar, Mail, AtSign } from "iconoir-react-native";
 import { InputChip } from "../../../components/InputChip";
-import { useVisible } from "../../../hooks/useVisible";
 import { useDispatch, useSelector } from "react-redux";
 import { sharedStyles } from "../../../shared/styles";
 import { parseISO, intlFormat } from "date-fns";
@@ -23,10 +22,8 @@ import {
 } from "../../../config/app.config";
 
 function SignUp({ navigation }) {
-  const { isVisible: isVisibleGenderRB, show: showGenderRB, hide: hideGenderRB } = useVisible();
   const { language } = useSelector(state => state.languagePreference);
   const { watch, control, handleSubmit } = useForm();
-  const idGenderSelected = watch("idGender");
   const bornDate = watch("bornDate");
   const { t } = useTranslation();
   const dispatch = useDispatch();
@@ -94,20 +91,7 @@ function SignUp({ navigation }) {
 
           <RepeatPasswordHF control={control} watch={watch} />
 
-          <InputChip
-            value={t("components.inputHookForm.genderPlaceholder")}
-            label={t("components.inputHookForm.gender")}
-            style={sharedStyles.mv15}
-            onPress={showGenderRB}
-            icon={PeopleTag}
-            mode="flat"
-          />
-          <GendersDialog
-            isVisible={isVisibleGenderRB}
-            controllerName="idGender"
-            hide={hideGenderRB}
-            control={control}
-          />
+          <GendersInputHF controllerName="idGender" control={control} watch={watch} />
 
           <View style={sharedStyles.mt15}>
             <DateTimePickerHF control={control} controllerName="bornDate" mode="date">
