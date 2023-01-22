@@ -68,8 +68,11 @@ const sharedStyles = StyleSheet.create({
     width: 30,
     height: 30,
   },
-  profilePhoto: {
+  profilePhotoS: {
     size: 80,
+  },
+  profilePhotoM: {
+    size: 100,
   },
   textAlignR: {
     textAlign: "right",

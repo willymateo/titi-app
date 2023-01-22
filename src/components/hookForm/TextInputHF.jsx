@@ -4,9 +4,12 @@ import { useController } from "react-hook-form";
 import { View } from "react-native";
 
 function TextInputHF({
+  numberOfLines = 1,
+  multiline = false,
   mode = "outlined",
   secureTextEntry,
   controllerName,
+  dense = false,
   placeholder,
   rules = {},
   control,
@@ -24,6 +27,7 @@ function TextInputHF({
     <View>
       <TextInput
         secureTextEntry={secureTextEntry}
+        numberOfLines={numberOfLines}
         onBlur={() => {
           if (value) {
             onChange(value.trim());
@@ -32,6 +36,8 @@ function TextInputHF({
         }}
         placeholder={placeholder}
         onChangeText={onChange}
+        multiline={multiline}
+        dense={dense}
         style={style}
         error={error}
         label={label}

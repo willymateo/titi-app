@@ -3,7 +3,7 @@ import { DateTimePickerHF } from "../../../components/hookForm/DateTimePickerHF"
 import { RepeatPasswordHF } from "../../../components/hookForm/RepeatPasswordHF";
 import { GendersRadioButton } from "../../../components/GendersRadioButton";
 import { EMAIL_REGEX, USERNAME_REGEX } from "../../../config/app.config";
-import { User, Calendar, Mail, PeopleTag } from "iconoir-react-native";
+import { Calendar, Mail, PeopleTag, AtSign } from "iconoir-react-native";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { Button, HelperText, TextInput } from "react-native-paper";
 import { setSignUpForm } from "../../../redux/states/signUpForm";
@@ -63,7 +63,9 @@ function SignUp({ navigation }) {
           />
 
           <TextInputHF
-            left={<TextInput.Icon icon={props => <User {...props} {...sharedStyles.iconoirM} />} />}
+            left={
+              <TextInput.Icon icon={props => <AtSign {...props} {...sharedStyles.iconoirM} />} />
+            }
             rules={{
               required: t("components.inputHookForm.usernameRequired"),
               minLength: {

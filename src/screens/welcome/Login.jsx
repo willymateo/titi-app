@@ -1,4 +1,4 @@
-import { EyeClose, EyeEmpty, KeyAltBack, PasswordError, User } from "iconoir-react-native";
+import { AtSign, EyeClose, EyeEmpty, KeyAltBack, PasswordError } from "iconoir-react-native";
 import { Keyboard, KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
 import { TextInputHF } from "../../components/hookForm/TextInputHF";
 import { MMKV_USER_TOKEN, storage } from "../../config/app.config";
@@ -49,7 +49,9 @@ function Login({ navigation }) {
 
         <View>
           <TextInputHF
-            left={<TextInput.Icon icon={props => <User {...props} {...sharedStyles.iconoirM} />} />}
+            left={
+              <TextInput.Icon icon={props => <AtSign {...props} {...sharedStyles.iconoirM} />} />
+            }
             rules={{ required: t("components.inputHookForm.usernameRequired") }}
             label={t("components.inputHookForm.username")}
             controllerName="username"

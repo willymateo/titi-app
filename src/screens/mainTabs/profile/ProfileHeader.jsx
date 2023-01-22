@@ -26,7 +26,7 @@ function ProfileHeader({
     <View>
       <View style={sharedStyles.flxACenter}>
         <View style={sharedStyles.flxRow}>
-          <Avatar.Image source={{ uri: photoUrl }} {...sharedStyles.profilePhoto} />
+          <Avatar.Image source={{ uri: photoUrl }} {...sharedStyles.profilePhotoS} />
           <View style={[sharedStyles.flxACenter, sharedStyles.flxJCCenter, sharedStyles.ml10]}>
             <Text>
               {firstNames} {lastNames}
@@ -39,7 +39,7 @@ function ProfileHeader({
           <View style={sharedStyles.flxJCCenter}>
             <IconButton
               icon={props => <Edit {...props} {...sharedStyles.iconoirM} />}
-              onPress={() => navigation.navigate("EditProfile")}
+              onPress={() => navigation.navigate("EditProfile", { photoUrl })}
             />
           </View>
         </View>
