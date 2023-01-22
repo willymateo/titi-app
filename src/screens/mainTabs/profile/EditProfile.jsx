@@ -48,7 +48,7 @@ function EditProfile({
   };
 
   return (
-    <View>
+    <>
       <View style={sharedStyles.flxACenter}>
         <Avatar.Image source={{ uri: photoUrl }} {...sharedStyles.profilePhotoM} />
         <Button
@@ -129,7 +129,7 @@ function EditProfile({
 
       <ErrorDialog isVisible={error} onDismiss={hideError} content={error} />
       <LoadingDialog isVisible={loading} />
-    </View>
+    </>
   );
 }
 
