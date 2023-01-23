@@ -10,7 +10,14 @@ import { ErrorDialog } from "../ErrorDialog";
 import { ScrollView } from "react-native";
 import { InputChip } from "../InputChip";
 
-function GendersInputHF({ control, watch, controllerName }) {
+function GendersInputHF({
+  controllerName = "idGender",
+  rules = {},
+  style = {},
+  chipMode,
+  control,
+  watch,
+}) {
   const { isVisible: isDialogVisible, show: showDialog, hide: hideDialog } = useVisible();
   const { t } = useTranslation("translation", { keyPrefix: "components" });
   const { data: genders, error, isValidating, gendersObj } = useGenders();
@@ -21,10 +28,13 @@ function GendersInputHF({ control, watch, controllerName }) {
       <InputChip
         value={gendersObj[idSelectedGender] || t("inputHookForm.genderPlaceholder")}
         label={t("inputHookForm.gender")}
-        style={sharedStyles.mv15}
+        controllerName={controllerName}
         onPress={showDialog}
+        control={control}
         icon={PeopleTag}
-        mode="flat"
+        mode={chipMode}
+        rules={rules}
+        style={style}
       />
       <Portal>
         <Dialog visible={isDialogVisible && !isValidating && !error} onDismiss={hideDialog}>
@@ -33,7 +43,6 @@ function GendersInputHF({ control, watch, controllerName }) {
           <Dialog.ScrollArea>
             <ScrollView>
               <RadioButtonGroupHF
-                rules={{ required: t("inputHookForm.genderRequired") }}
                 items={genders.map(({ id, gender }) => ({
                   value: t(`gendersInputHF.${gender}`),
                   id,
@@ -41,6 +50,7 @@ function GendersInputHF({ control, watch, controllerName }) {
                 controllerName={controllerName}
                 onSelect={hideDialog}
                 control={control}
+                rules={rules}
               />
             </ScrollView>
           </Dialog.ScrollArea>

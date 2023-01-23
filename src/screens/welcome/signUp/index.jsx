@@ -87,17 +87,22 @@ function SignUp({ navigation }) {
 
           <RepeatPasswordHF control={control} watch={watch} />
 
-          <GendersInputHF controllerName="idGender" control={control} watch={watch} />
+          <GendersInputHF
+            rules={{ required: t("components.inputHookForm.genderRequired") }}
+            controllerName="idGender"
+            style={sharedStyles.mv15}
+            control={control}
+            watch={watch}
+          />
 
           <DateTimePickerHF
-            rules={{
-              required: t("components.inputHookForm.bornDateRequired"),
-            }}
-            style={sharedStyles.mt15}
+            rules={{ required: t("components.inputHookForm.bornDateRequired") }}
+            placeholder={t("components.inputHookForm.bornDatePlaceholder")}
+            helperText={t("components.inputHookForm.bornDateHelperText")}
+            label={t("components.inputHookForm.bornDate")}
             controllerName="bornDate"
             control={control}
             watch={watch}
-            mode="date"
           />
         </View>
 

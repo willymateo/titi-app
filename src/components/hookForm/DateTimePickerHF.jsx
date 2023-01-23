@@ -4,13 +4,21 @@ import { useVisible } from "../../hooks/useVisible";
 import { HelperText } from "react-native-paper";
 import { useController } from "react-hook-form";
 import { Calendar } from "iconoir-react-native";
-import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { InputChip } from "../InputChip";
 import { View } from "react-native";
 
-function DateTimePickerHF({ style, control, watch, controllerName, mode, rules = {} }) {
-  const { t } = useTranslation("translation", { keyPrefix: "components.inputHookForm" });
+function DateTimePickerHF({
+  placeholder = "",
+  helperText = "",
+  controllerName,
+  label = "",
+  rules = {},
+  chipMode,
+  control,
+  style,
+  watch,
+}) {
   const { language } = useSelector(state => state.languagePreference);
   const { isVisible, show, hide } = useVisible();
   const selectedDate = watch(controllerName);
@@ -26,6 +34,7 @@ function DateTimePickerHF({ style, control, watch, controllerName, mode, rules =
   return (
     <View style={style}>
       <InputChip
+        controllerName={controllerName}
         value={
           selectedDate
             ? intlFormat(
@@ -33,19 +42,21 @@ function DateTimePickerHF({ style, control, watch, controllerName, mode, rules =
                 {
                   weekday: "long",
                   year: "numeric",
-                  month: "long",
                   day: "numeric",
+                  month: "long",
                 },
                 { locale: language }
               )
-            : t("bornDatePlaceholder")
+            : placeholder
         }
-        label={t("bornDate")}
+        control={control}
+        mode={chipMode}
         icon={Calendar}
         onPress={show}
-        mode="flat"
+        label={label}
+        rules={rules}
       />
-      <HelperText>{t("bornDateHelperText")}</HelperText>
+      <HelperText>{helperText}</HelperText>
 
       {isVisible ? (
         <DateTimePicker
@@ -55,7 +66,7 @@ function DateTimePickerHF({ style, control, watch, controllerName, mode, rules =
             onBlur();
           }}
           value={parseISO(value)}
-          mode={mode}
+          mode="date"
         />
       ) : null}
     </View>
