@@ -11,7 +11,7 @@ function RecoveryCode({ navigation }) {
   const { control, handleSubmit } = useForm();
   const { t } = useTranslation();
 
-  const onPressSendRecovery = data => {
+  const verifyRecoveryCode = data => {
     console.log(data);
     navigation.navigate("ResetPassword");
   };
@@ -37,7 +37,7 @@ function RecoveryCode({ navigation }) {
         />
 
         <Button
-          onPress={handleSubmit(onPressSendRecovery)}
+          onPress={handleSubmit(verifyRecoveryCode)}
           style={sharedStyles.mv15}
           uppercase={false}
           mode="contained">

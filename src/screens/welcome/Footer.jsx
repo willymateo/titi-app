@@ -1,6 +1,7 @@
 import { Button, Divider, Text } from "react-native-paper";
-import { StyleSheet, View } from "react-native";
+import { sharedStyles } from "../../shared/styles";
 import { useTranslation } from "react-i18next";
+import { View } from "react-native";
 
 function Footer({ onPressLogin, onPressSignUp, onPressAccountRecovery, style }) {
   const { t } = useTranslation();
@@ -8,21 +9,30 @@ function Footer({ onPressLogin, onPressSignUp, onPressAccountRecovery, style }) 
   return (
     <View style={style}>
       {onPressLogin && (
-        <>
-          <Divider />
-          <View style={styles.flexRow}>
-            <Text>{t("components.loginFooter.loginMessage")}</Text>
-            <Button mode="Text" uppercase={false} onPress={onPressLogin}>
-              {t("screens.welcome.login")}
-            </Button>
-          </View>
-        </>
+        <View
+          style={[
+            sharedStyles.flxJCCenter,
+            sharedStyles.flxACenter,
+            sharedStyles.flxWrap,
+            sharedStyles.flxRow,
+          ]}>
+          <Text>{t("components.loginFooter.loginMessage")}</Text>
+          <Button mode="Text" uppercase={false} onPress={onPressLogin}>
+            {t("screens.welcome.login")}
+          </Button>
+        </View>
       )}
 
       {onPressAccountRecovery && (
         <>
           <Divider />
-          <View style={styles.flexRow}>
+          <View
+            style={[
+              sharedStyles.flxJCCenter,
+              sharedStyles.flxACenter,
+              sharedStyles.flxWrap,
+              sharedStyles.flxRow,
+            ]}>
             <Text>{t("components.loginFooter.accountRecoveryMessage")}</Text>
             <Button mode="text" uppercase={false} onPress={onPressAccountRecovery}>
               {t("components.loginFooter.accountRecovery")}
@@ -34,7 +44,13 @@ function Footer({ onPressLogin, onPressSignUp, onPressAccountRecovery, style }) 
       {onPressSignUp && (
         <>
           <Divider />
-          <View style={styles.flexRow}>
+          <View
+            style={[
+              sharedStyles.flxJCCenter,
+              sharedStyles.flxACenter,
+              sharedStyles.flxWrap,
+              sharedStyles.flxRow,
+            ]}>
             <Text>{t("components.loginFooter.signUpMessage")}</Text>
             <Button mode="Text" uppercase={false} onPress={onPressSignUp}>
               {t("screens.welcome.signUp")}
@@ -45,14 +61,5 @@ function Footer({ onPressLogin, onPressSignUp, onPressAccountRecovery, style }) 
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  flexRow: {
-    flexWrap: "wrap",
-    alignItems: "center",
-    flexDirection: "row",
-    justifyContent: "center",
-  },
-});
 
 export { Footer };

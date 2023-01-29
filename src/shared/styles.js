@@ -28,6 +28,12 @@ const sharedStyles = StyleSheet.create({
   flx: {
     flex: 1,
   },
+  flxWrap: {
+    flexWrap: "wrap",
+  },
+  flxNoWrap: {
+    flexWrap: "nowrap",
+  },
   flxRow: {
     flexDirection: "row",
   },

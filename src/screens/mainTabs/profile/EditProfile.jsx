@@ -18,8 +18,8 @@ import {
 
 function EditProfile({
   route: {
-    params: { firstNames = "", lastNames = "", biography = "", username = "", photoUrl },
-  },
+    params: { firstNames = "", lastNames = "", biography = "", username = "", photoUrl } = {},
+  } = {},
   navigation,
 }) {
   const { loading, startLoading, stopLoading } = useLoading();

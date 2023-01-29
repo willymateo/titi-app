@@ -1,5 +1,5 @@
 import { Keyboard, KeyboardAvoidingView, Platform, View } from "react-native";
-import { PasswordError, WarningCircledOutline } from "iconoir-react-native";
+import { PasswordError, WarningCircle } from "iconoir-react-native";
 import { RepeatPasswordHF } from "./hookForm/RepeatPasswordHF";
 import { updateAccountInformation } from "../services/app/me";
 import { Button, Dialog, Portal } from "react-native-paper";
@@ -12,7 +12,8 @@ import { useTranslation } from "react-i18next";
 import { ErrorDialog } from "./ErrorDialog";
 import { useForm } from "react-hook-form";
 
-function ChangePassword({ navigation }) {
+function ChangePassword({ navigation, route: { params: { buttonabel } = {} } = {} }) {
+  buttonabel = buttonabel || t("screens.settings.changePassword");
   const { loading, startLoading, stopLoading } = useLoading();
   const { error, showError, hideError } = useErrorDialog();
   const { watch, control, handleSubmit } = useForm();
@@ -46,7 +47,7 @@ function ChangePassword({ navigation }) {
           <Portal>
             <Dialog visible={isConfirmDialogVisible} onDismiss={hideConfirmDialog}>
               <Dialog.Icon
-                icon={props => <WarningCircledOutline {...props} {...sharedStyles.iconoirM} />}
+                icon={props => <WarningCircle {...props} {...sharedStyles.iconoirM} />}
               />
               <Dialog.Title>{t("screens.changePassword.confirmationDialog")}</Dialog.Title>
               <Dialog.Actions>
@@ -56,7 +57,7 @@ function ChangePassword({ navigation }) {
                     hideConfirmDialog();
                     handleSubmit(changePassword)();
                   }}>
-                  {t("screens.settings.changePassword")}
+                  {buttonabel}
                 </Button>
               </Dialog.Actions>
             </Dialog>
@@ -71,7 +72,7 @@ function ChangePassword({ navigation }) {
           style={sharedStyles.mt15}
           uppercase={false}
           mode="contained">
-          {t("screens.settings.changePassword")}
+          {buttonabel}
         </Button>
 
         <ErrorDialog isVisible={error} onDismiss={hideError} content={error} icon={PasswordError} />
