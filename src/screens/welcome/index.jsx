@@ -20,7 +20,7 @@ function Welcome({ navigation }) {
   } = useVisible();
 
   return (
-    <View style={styles.container}>
+    <View style={[sharedStyles.flx, sharedStyles.flxJCCenter]}>
       <View>
         <Button
           icon={props => <NavArrowDown {...props} {...sharedStyles.iconoirM} />}
@@ -42,10 +42,10 @@ function Welcome({ navigation }) {
       </View>
 
       <View style={styles.middleContainer}>
-        <View style={styles.welcomeTextContainer}>
+        <View style={[sharedStyles.flx, sharedStyles.flxJCEnd, sharedStyles.flxACenter]}>
           <Text style={styles.welcomeText}>{t("welcomeTo")}</Text>
         </View>
-        <View style={styles.logoContainer}>
+        <View style={[sharedStyles.flx, sharedStyles.flxACenter, sharedStyles.flxJCCenter]}>
           {isDark ? (
             <DarkLogo width={styles.logo.width} height={styles.logo.height} />
           ) : (
@@ -72,34 +72,16 @@ function Welcome({ navigation }) {
 
       <Footer
         onPressAccountRecovery={() => navigation.navigate("AccountRecovery")}
-        style={styles.bottomContainer}
+        style={[sharedStyles.flx, sharedStyles.flxJCEnd]}
       />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-  },
   middleContainer: {
     flex: 6,
     justifyContent: "center",
-  },
-  bottomContainer: {
-    flex: 1,
-    justifyContent: "flex-end",
-  },
-  welcomeTextContainer: {
-    flex: 1,
-    justifyContent: "flex-end",
-    alignItems: "center",
-  },
-  logoContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
   buttonsContainer: {
     flex: 2,

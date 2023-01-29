@@ -44,7 +44,7 @@ function SignUpPhone({ navigation }) {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.root}>
+      style={sharedStyles.flx}>
       <View style={{ ...styles.container }}>
         <TextInputHF
           left={
@@ -84,9 +84,6 @@ function SignUpPhone({ navigation }) {
 }
 
 const styles = StyleSheet.create({
-  root: {
-    flex: 1,
-  },
   container: {
     flexGrow: 1,
     justifyContent: "center",

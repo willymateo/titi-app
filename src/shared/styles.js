@@ -43,6 +43,9 @@ const sharedStyles = StyleSheet.create({
   flxJCCenter: {
     justifyContent: "center",
   },
+  flxJCEnd: {
+    justifyContent: "flex-end",
+  },
   flxACenter: {
     alignItems: "center",
   },

@@ -13,7 +13,6 @@ import { ErrorDialog } from "./ErrorDialog";
 import { useForm } from "react-hook-form";
 
 function ChangePassword({ navigation, route: { params: { buttonabel } = {} } = {} }) {
-  buttonabel = buttonabel || t("screens.settings.changePassword");
   const { loading, startLoading, stopLoading } = useLoading();
   const { error, showError, hideError } = useErrorDialog();
   const { watch, control, handleSubmit } = useForm();
@@ -23,6 +22,7 @@ function ChangePassword({ navigation, route: { params: { buttonabel } = {} } = {
     hide: hideConfirmDialog,
     show: showConfirmDialog,
   } = useVisible();
+  buttonabel = buttonabel || t("screens.settings.changePassword");
 
   const changePassword = async ({ password }) => {
     startLoading();
