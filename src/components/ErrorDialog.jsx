@@ -1,10 +1,10 @@
 import { Button, Dialog, Portal, Text } from "react-native-paper";
-import { WarningCircledOutline } from "iconoir-react-native";
+import { WarningCircle } from "iconoir-react-native";
 import { sharedStyles } from "../shared/styles";
 import { useTranslation } from "react-i18next";
 
 function ErrorDialog({
-  icon: Icon = WarningCircledOutline,
+  icon: Icon = WarningCircle,
   onDismiss = () => {},
   title = "Error",
   isVisible,

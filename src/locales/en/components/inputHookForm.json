@@ -27,6 +27,16 @@
   "firstNames": "First names",
   "lastNames": "Last names",
   "biography": "Biography",
+  "title": "Title",
+  "titleRequired": "Title is required",
+  "description": "Description",
+  "descriptionMaxLength": "Description should be maximum 255 characters long",
+  "startDateTime": "Start date time",
+  "startDateTimeRequired": "Start date time is required",
+  "startDateTimePlaceholder": "Select the start date time",
+  "endDateTime": "End date time",
+  "endDateTimeRequired": "End date time is required",
+  "endDateTimePlaceholder": "Select the end date time",
   "biographyMaxLength": "Biography should be maximum 255 characters long",
   "close": "Close"
 }

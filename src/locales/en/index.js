@@ -2,6 +2,7 @@ import mainBottomTabsNavigator from "./components/mainBottomTabsNavigator.json";
 import settingsStackNavigator from "./components/settingsStackNavigator.json";
 import profileStackNavigator from "./components/profileStackNavigator.json";
 import welcomeStackNavigator from "./components/welcomeStackNavigator.json";
+import homeStackNavigator from "./components/homeStackNavigator.json";
 import languageSettings from "./screens/languageSettings.json";
 import adventuresCard from "./components/adventuresCard.json";
 import gendersInputHF from "./components/gendersInputHF.json";
@@ -37,6 +38,7 @@ const translationEn = {
     settingsStackNavigator,
     welcomeStackNavigator,
     profileStackNavigator,
+    homeStackNavigator,
     gendersInputHF,
     adventuresCard,
     inputHookForm,

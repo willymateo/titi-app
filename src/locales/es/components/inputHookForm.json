@@ -27,6 +27,16 @@
   "firstNames": "Nombres",
   "lastNames": "Apellidos",
   "biography": "Biografía",
+  "title": "Título",
+  "titleRequired": "Se requiere un título",
+  "description": "Descripción",
+  "descriptionMaxLength": "La descripción debe tener máximo 255 caractéres",
+  "startDateTime": "Fecha y hora de comienzo",
+  "startDateTimeRequired": "Se requiere fecha y hora de comienzo",
+  "startDateTimePlaceholder": "Seleccione la fecha y hora de comienzo",
+  "endDateTime": "Fecha y hora de fin",
+  "endDateTimeRequired": "Se requiere fecha y hora de fin",
+  "endDateTimePlaceholder": "Seleccione la fecha y hora de fin",
   "biographyMaxLength": "La briografía debe tener máximo 255 caractéres",
   "close": "Cerrar"
 }
