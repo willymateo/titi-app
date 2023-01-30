@@ -6,11 +6,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 The date format used is DD/MM/YYYY.
 
-## [[1.2.0]](https://github.com/willymateo/titi-app/pull/3) - 15/01/2023
+## [[1.2.0]](https://github.com/willymateo/titi-app/pull/3) - 29/01/2023
+
+### Added
+
+- Personal information settings
+- Create adventure
+- Edit profile
+- NumberInput
 
 ### Changed
 
-- Complete the profile screen
+- Update expo SDK from v46 to v47
 
 ## [[1.1.0]](https://github.com/willymateo/titi-app/pull/2) - 15/01/2023
 
