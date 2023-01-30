@@ -1,13 +1,14 @@
 import { DateTimePickerHF } from "../../../components/hookForm/DateTimePickerHF";
+import { NumberInputHF } from "../../../components/hookForm/NumberInputHF";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { createAdventure } from "../../../services/app/adventures";
 import { LoadingDialog } from "../../../components/LoadingDialog";
 import { useErrorDialog } from "../../../hooks/useErrorDialog";
 import { ErrorDialog } from "../../../components/ErrorDialog";
+import { Bonfire, Group, Map } from "iconoir-react-native";
 import { Button, TextInput } from "react-native-paper";
 import { useLoading } from "../../../hooks/useLoading";
 import { sharedStyles } from "../../../shared/styles";
-import { Bonfire, Map } from "iconoir-react-native";
 import { useTranslation } from "react-i18next";
 import { Keyboard, View } from "react-native";
 import { useForm } from "react-hook-form";
@@ -16,10 +17,13 @@ function AdventureForm() {
   const { t } = useTranslation("translation", { keyPrefix: "components" });
   const { loading, startLoading, stopLoading } = useLoading();
   const { error, showError, hideError } = useErrorDialog();
-  const { control, watch, handleSubmit } = useForm();
+  const { control, watch, handleSubmit } = useForm({
+    defaultValues: {
+      numInvitations: 1,
+    },
+  });
 
-  const handlePressSave = async data => {
-    console.log({ data });
+  const handlePressCreate = async data => {
     startLoading();
     const { error: errorOnCreate } = await createAdventure(data);
 
@@ -55,19 +59,31 @@ function AdventureForm() {
         control={control}
         multiline
       />
+      <NumberInputHF
+        left={<TextInput.Icon icon={props => <Group {...props} {...sharedStyles.iconoirM} />} />}
+        rules={{
+          min: { value: 1, message: t("inputHookForm.numInvitationsMin") },
+          required: t("inputHookForm.numInvitationsRequired"),
+        }}
+        label={t("inputHookForm.numInvitations")}
+        controllerName="numInvitations"
+        style={sharedStyles.mv5}
+        control={control}
+      />
       <DateTimePickerHF
         rules={{ required: t("inputHookForm.startDateTimeRequired") }}
         placeholder={t("inputHookForm.startDateTimePlaceholder")}
-        helperText={t("inputHookForm.bornDateHelperText")}
+        helperText={t("inputHookForm.startDateTimeHelperText")}
         label={t("inputHookForm.startDateTime")}
         controllerName="startDateTime"
+        style={sharedStyles.mv5}
         control={control}
         watch={watch}
       />
       <DateTimePickerHF
         rules={{ required: t("inputHookForm.endDateTimeRequired") }}
         placeholder={t("inputHookForm.endDateTimePlaceholder")}
-        helperText={t("inputHookForm.bornDateHelperText")}
+        helperText={t("inputHookForm.endDateTimeHelperText")}
         label={t("inputHookForm.endDateTime")}
         controllerName="endDateTime"
         control={control}
@@ -76,7 +92,7 @@ function AdventureForm() {
       <Button
         onPress={() => {
           Keyboard.dismiss();
-          handleSubmit(handlePressSave)();
+          handleSubmit(handlePressCreate)();
         }}
         style={sharedStyles.mv15}
         uppercase={false}

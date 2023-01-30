@@ -27,9 +27,7 @@ function RecoveryCode({ navigation }) {
               icon={props => <PasswordCursor {...props} {...sharedStyles.iconoirM} />}
             />
           }
-          rules={{
-            required: t("components.inputHookForm.recoveryCodeRequired"),
-          }}
+          rules={{ required: t("components.inputHookForm.recoveryCodeRequired") }}
           label={t("components.inputHookForm.recoveryCode")}
           controllerName="recoveryCode"
           style={sharedStyles.mv5}
