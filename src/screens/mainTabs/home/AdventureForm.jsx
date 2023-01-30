@@ -13,15 +13,11 @@ import { useTranslation } from "react-i18next";
 import { Keyboard, View } from "react-native";
 import { useForm } from "react-hook-form";
 
-function AdventureForm() {
+function AdventureForm({ navigation }) {
   const { t } = useTranslation("translation", { keyPrefix: "components" });
   const { loading, startLoading, stopLoading } = useLoading();
   const { error, showError, hideError } = useErrorDialog();
-  const { control, watch, handleSubmit } = useForm({
-    defaultValues: {
-      numInvitations: 1,
-    },
-  });
+  const { control, watch, handleSubmit } = useForm();
 
   const handlePressCreate = async data => {
     startLoading();
@@ -29,9 +25,12 @@ function AdventureForm() {
 
     if (errorOnCreate) {
       showError({ error: errorOnCreate });
+      stopLoading();
+      return;
     }
 
     stopLoading();
+    navigation.goBack();
   };
 
   return (

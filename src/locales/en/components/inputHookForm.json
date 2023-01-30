@@ -1,4 +1,5 @@
 {
+  "validNumber": "Must be a valid number",
   "username": "Username",
   "usernameRequired": "Username is required",
   "usernameMinLength": "Username should be minimum 5 characters long",

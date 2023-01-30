@@ -1,7 +1,7 @@
 import { HelperText, TextInput } from "react-native-paper";
 import { useController } from "react-hook-form";
-import { View } from "react-native";
-import { Platform } from "react-native";
+import { useTranslation } from "react-i18next";
+import { View, Platform } from "react-native";
 
 function NumberInputHF({
   mode = "outlined",
@@ -16,24 +16,30 @@ function NumberInputHF({
   style,
   left,
 }) {
+  const { t } = useTranslation("translation", { keyPrefix: "components.inputHookForm" });
   const {
     field: { value, onChange, onBlur },
     fieldState: { error },
-  } = useController({ control, rules, name: controllerName });
+  } = useController({
+    rules: {
+      ...rules,
+      validate: value => !isNaN(value) || t("validNumber"),
+    },
+    name: controllerName,
+    control,
+  });
 
   return (
     <View>
       <TextInput
-        secureTextEntry={secureTextEntry}
-        onBlur={() => {
-          if (value) {
-            onChange(value.trim());
-          }
-          onBlur();
-        }}
         keyboardType={Platform.OS === "ios" ? "numeric" : "phone-pad"}
+        onChangeText={text => {
+          const numberInput = Number(text);
+          onChange(numberInput);
+        }}
+        secureTextEntry={secureTextEntry}
         placeholder={placeholder}
-        onChangeText={onChange}
+        onBlur={onBlur}
         dense={dense}
         style={style}
         error={error}
