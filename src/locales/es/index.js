@@ -12,6 +12,7 @@ import userStateChip from "./components/userStateChip.json";
 import loadingDialog from "./components/loadingDialog.json";
 import changePassword from "./screens/changePassword.json";
 import logoutButton from "./components/logoutButton.json";
+import profileHeader from "./screens/profileHeader.json";
 import notifications from "./screens/notifications.json";
 import themeSettings from "./screens/themeSettings.json";
 import loginFooter from "./components/loginFooter.json";
@@ -25,6 +26,7 @@ const translationEs = {
   screens: {
     languageSettings,
     accountRecovery,
+    profileHeader,
     notifications,
     changePassword,
     themeSettings,

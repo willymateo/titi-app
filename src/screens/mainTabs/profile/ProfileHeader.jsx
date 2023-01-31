@@ -3,6 +3,7 @@ import { Bonfire, Clock, Edit, EmojiBall } from "iconoir-react-native";
 import { UserStateChip } from "../../../components/UserStateChip";
 import { useNavigation } from "@react-navigation/native";
 import { sharedStyles } from "../../../shared/styles";
+import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 
 function ProfileHeader({
@@ -16,11 +17,11 @@ function ProfileHeader({
   username = "",
   numLater = 0,
 }) {
+  const { t } = useTranslation("translation", { keyPrefix: "screens.profileHeader" });
+  const navigation = useNavigation();
   const {
     colors: { onSurface },
   } = useTheme();
-
-  const navigation = useNavigation();
 
   const handlePressEdit = () =>
     navigation.navigate("EditProfile", {
@@ -62,17 +63,17 @@ function ProfileHeader({
         <View style={sharedStyles.flxACenter}>
           <Text>{numAdventures}</Text>
           <Bonfire {...sharedStyles.iconoirM} color={onSurface} />
-          <Text>adventures</Text>
+          <Text>{t("adventures")}</Text>
         </View>
         <View style={sharedStyles.flxACenter}>
           <Text>{numLater}</Text>
           <Clock {...sharedStyles.iconoirM} color={onSurface} />
-          <Text>later</Text>
+          <Text>{t("later")}</Text>
         </View>
         <View style={sharedStyles.flxACenter}>
           <Text>{numMissing}</Text>
           <EmojiBall {...sharedStyles.iconoirM} color={onSurface} />
-          <Text>missing</Text>
+          <Text>{t("missing")}</Text>
         </View>
       </View>
     </View>
