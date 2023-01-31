@@ -2,7 +2,7 @@ import { NavigationBar } from "../../../components/navigation/NavigationBar";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { sharedStyles } from "../../../shared/styles";
 import { useTranslation } from "react-i18next";
-import { EditProfile } from "./EditProfile";
+import { Edit } from "./Edit";
 import { Profile } from ".";
 
 const Stack = createNativeStackNavigator();
@@ -20,7 +20,7 @@ function ProfileStackNavigator() {
       <Stack.Screen name="ProfileRoot" component={Profile} options={{ headerShown: false }} />
       <Stack.Screen
         options={{ title: t("editProfile"), contentStyle: sharedStyles.ph20 }}
-        component={EditProfile}
+        component={Edit}
         name="EditProfile"
       />
     </Stack.Navigator>

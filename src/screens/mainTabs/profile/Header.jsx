@@ -6,7 +6,7 @@ import { sharedStyles } from "../../../shared/styles";
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 
-function ProfileHeader({
+function Header({
   currentState: { state } = {},
   numAdventures = 0,
   firstNames = "",
@@ -80,4 +80,4 @@ function ProfileHeader({
   );
 }
 
-export { ProfileHeader };
+export { Header };

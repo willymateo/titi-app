@@ -17,7 +17,7 @@ import {
   USERNAME_MIN_LENGTH,
 } from "../../../config/app.config";
 
-function EditProfile({
+function Edit({
   route: {
     params: { firstNames = "", lastNames = "", biography = "", username = "", photoUrl } = {},
   } = {},
@@ -137,4 +137,4 @@ function EditProfile({
   );
 }
 
-export { EditProfile };
+export { Edit };
