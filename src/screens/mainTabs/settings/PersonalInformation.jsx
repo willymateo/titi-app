@@ -1,3 +1,4 @@
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { DateTimePickerHF } from "../../../components/hookForm/DateTimePickerHF";
 import { GendersInputHF } from "../../../components/hookForm/GendersInputHF";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
@@ -42,7 +43,10 @@ function PersonalInformation({
   };
 
   return (
-    <>
+    <KeyboardAwareScrollView
+      contentContainerStyle={sharedStyles.flxGrow1}
+      showsVerticalScrollIndicator={false}
+      style={sharedStyles.flx}>
       <View>
         <TextInputHF
           left={<TextInput.Icon icon={props => <Mail {...props} {...sharedStyles.iconoirM} />} />}
@@ -91,7 +95,7 @@ function PersonalInformation({
 
       <ErrorDialog isVisible={error} onDismiss={hideError} content={error} />
       <LoadingDialog isVisible={loading} />
-    </>
+    </KeyboardAwareScrollView>
   );
 }
 

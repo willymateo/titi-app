@@ -1,10 +1,10 @@
 import { resetSignUpForm, setSignUpForm } from "../../../redux/states/signUpForm";
-import { Keyboard, KeyboardAvoidingView, StyleSheet, View } from "react-native";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { MMKV_USER_TOKEN, storage } from "../../../config/app.config";
 import { setUserSession } from "../../../redux/states/userSession";
 import { LoadingDialog } from "../../../components/LoadingDialog";
 import { useErrorDialog } from "../../../hooks/useErrorDialog";
+import { Keyboard, KeyboardAvoidingView } from "react-native";
 import { ErrorDialog } from "../../../components/ErrorDialog";
 import { createUser } from "../../../services/app/users";
 import { SmartphoneDevice } from "iconoir-react-native";
@@ -44,50 +44,41 @@ function SignUpPhone({ navigation }) {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={sharedStyles.flx}>
-      <View style={{ ...styles.container }}>
-        <TextInputHF
-          left={
-            <TextInput.Icon
-              icon={props => <SmartphoneDevice {...props} {...sharedStyles.iconoirM} />}
-            />
-          }
-          rules={{
-            required: t("components.inputHookForm.phoneNumberRequired"),
-          }}
-          label={t("components.inputHookForm.phoneNumber")}
-          controllerName="phoneNumber"
-          style={sharedStyles.mv5}
-          control={control}
-        />
+      style={[sharedStyles.flx, sharedStyles.flxJCCenter]}>
+      <TextInputHF
+        left={
+          <TextInput.Icon
+            icon={props => <SmartphoneDevice {...props} {...sharedStyles.iconoirM} />}
+          />
+        }
+        rules={{
+          required: t("components.inputHookForm.phoneNumberRequired"),
+        }}
+        label={t("components.inputHookForm.phoneNumber")}
+        controllerName="phoneNumber"
+        style={sharedStyles.mv5}
+        control={control}
+      />
 
-        <Button
-          onPress={() => {
-            Keyboard.dismiss();
-            handleSubmit(handlePressSignUp)();
-          }}
-          style={sharedStyles.mv15}
-          uppercase={false}
-          mode="contained">
-          {t("screens.signUp.createAccount")}
-        </Button>
-        <Footer
-          onPressAccountRecovery={() => navigation.navigate("AccountRecovery")}
-          onPressLogin={() => navigation.navigate("Login")}
-        />
+      <Button
+        onPress={() => {
+          Keyboard.dismiss();
+          handleSubmit(handlePressSignUp)();
+        }}
+        style={sharedStyles.mv15}
+        uppercase={false}
+        mode="contained">
+        {t("screens.signUp.createAccount")}
+      </Button>
+      <Footer
+        onPressAccountRecovery={() => navigation.navigate("AccountRecovery")}
+        onPressLogin={() => navigation.navigate("Login")}
+      />
 
-        <ErrorDialog isVisible={error} onDismiss={hideError} content={error} />
-        <LoadingDialog isVisible={loading} />
-      </View>
+      <ErrorDialog isVisible={error} onDismiss={hideError} content={error} />
+      <LoadingDialog isVisible={loading} />
     </KeyboardAvoidingView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    justifyContent: "center",
-  },
-});
 
 export { SignUpPhone };

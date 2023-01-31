@@ -53,6 +53,9 @@ const sharedStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  flxGrow1: {
+    flexGrow: 1,
+  },
   fullHeight: {
     height: "100%",
   },

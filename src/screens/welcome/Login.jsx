@@ -43,67 +43,61 @@ function Login({ navigation }) {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={sharedStyles.flx}>
-      <View style={[sharedStyles.flx, sharedStyles.flxJCCenter]}>
-        <Text style={styles.appTitle}>{Constants.manifest.extra.APP_NAME}</Text>
+      style={[sharedStyles.flx, sharedStyles.flxJCCenter]}>
+      <Text style={styles.appTitle}>{Constants.manifest.extra.APP_NAME}</Text>
 
-        <View>
-          <TextInputHF
-            left={
-              <TextInput.Icon icon={props => <AtSign {...props} {...sharedStyles.iconoirM} />} />
-            }
-            rules={{ required: t("components.inputHookForm.usernameRequired") }}
-            label={t("components.inputHookForm.username")}
-            controllerName="username"
-            style={sharedStyles.mv5}
-            control={control}
-          />
-
-          <TextInputHF
-            left={
-              <TextInput.Icon
-                icon={props => <KeyAltBack {...props} {...sharedStyles.iconoirM} />}
-              />
-            }
-            rules={{ required: t("components.inputHookForm.passwordRequired") }}
-            right={
-              <TextInput.Icon
-                icon={props => {
-                  return isPasswordVisible ? (
-                    <EyeEmpty {...props} {...sharedStyles.iconoirM} />
-                  ) : (
-                    <EyeClose {...props} {...sharedStyles.iconoirM} />
-                  );
-                }}
-                onPress={togglePasswordVisible}
-              />
-            }
-            label={t("components.inputHookForm.password")}
-            secureTextEntry={!isPasswordVisible}
-            controllerName="password"
-            style={sharedStyles.mv5}
-            control={control}
-          />
-        </View>
-
-        <Button
-          onPress={() => {
-            Keyboard.dismiss();
-            handleSubmit(handlePressLogin)();
-          }}
-          style={sharedStyles.mv15}
-          uppercase={false}
-          mode="contained">
-          {t("screens.welcome.login")}
-        </Button>
-        <Footer
-          onPressAccountRecovery={() => navigation.navigate("AccountRecovery")}
-          onPressSignUp={() => navigation.navigate("SignUp")}
+      <View>
+        <TextInputHF
+          left={<TextInput.Icon icon={props => <AtSign {...props} {...sharedStyles.iconoirM} />} />}
+          rules={{ required: t("components.inputHookForm.usernameRequired") }}
+          label={t("components.inputHookForm.username")}
+          controllerName="username"
+          style={sharedStyles.mv5}
+          control={control}
         />
 
-        <ErrorDialog isVisible={error} onDismiss={hideError} content={error} icon={PasswordError} />
-        <LoadingDialog isVisible={loading} />
+        <TextInputHF
+          left={
+            <TextInput.Icon icon={props => <KeyAltBack {...props} {...sharedStyles.iconoirM} />} />
+          }
+          rules={{ required: t("components.inputHookForm.passwordRequired") }}
+          right={
+            <TextInput.Icon
+              icon={props => {
+                return isPasswordVisible ? (
+                  <EyeEmpty {...props} {...sharedStyles.iconoirM} />
+                ) : (
+                  <EyeClose {...props} {...sharedStyles.iconoirM} />
+                );
+              }}
+              onPress={togglePasswordVisible}
+            />
+          }
+          label={t("components.inputHookForm.password")}
+          secureTextEntry={!isPasswordVisible}
+          controllerName="password"
+          style={sharedStyles.mv5}
+          control={control}
+        />
       </View>
+
+      <Button
+        onPress={() => {
+          Keyboard.dismiss();
+          handleSubmit(handlePressLogin)();
+        }}
+        style={sharedStyles.mv15}
+        uppercase={false}
+        mode="contained">
+        {t("screens.welcome.login")}
+      </Button>
+      <Footer
+        onPressAccountRecovery={() => navigation.navigate("AccountRecovery")}
+        onPressSignUp={() => navigation.navigate("SignUp")}
+      />
+
+      <ErrorDialog isVisible={error} onDismiss={hideError} content={error} icon={PasswordError} />
+      <LoadingDialog isVisible={loading} />
     </KeyboardAvoidingView>
   );
 }

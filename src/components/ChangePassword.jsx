@@ -39,45 +39,41 @@ function ChangePassword({ navigation, route: { params: { buttonabel } = {} } = {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={sharedStyles.flx}>
-      <View style={[sharedStyles.flx, sharedStyles.flxJCCenter]}>
-        <View>
-          <RepeatPasswordHF control={control} watch={watch} />
+      style={[sharedStyles.flx, sharedStyles.flxJCCenter]}>
+      <View>
+        <RepeatPasswordHF control={control} watch={watch} />
 
-          <Portal>
-            <Dialog visible={isConfirmDialogVisible} onDismiss={hideConfirmDialog}>
-              <Dialog.Icon
-                icon={props => <WarningCircle {...props} {...sharedStyles.iconoirM} />}
-              />
-              <Dialog.Title>{t("screens.changePassword.confirmationDialog")}</Dialog.Title>
-              <Dialog.Actions>
-                <Button onPress={hideConfirmDialog}>{t("components.dialog.cancel")}</Button>
-                <Button
-                  onPress={() => {
-                    hideConfirmDialog();
-                    handleSubmit(changePassword)();
-                  }}>
-                  {buttonabel}
-                </Button>
-              </Dialog.Actions>
-            </Dialog>
-          </Portal>
-        </View>
-
-        <Button
-          onPress={() => {
-            Keyboard.dismiss();
-            handleSubmit(showConfirmDialog)();
-          }}
-          style={sharedStyles.mt15}
-          uppercase={false}
-          mode="contained">
-          {buttonabel}
-        </Button>
-
-        <ErrorDialog isVisible={error} onDismiss={hideError} content={error} icon={PasswordError} />
-        <LoadingDialog isVisible={loading} />
+        <Portal>
+          <Dialog visible={isConfirmDialogVisible} onDismiss={hideConfirmDialog}>
+            <Dialog.Icon icon={props => <WarningCircle {...props} {...sharedStyles.iconoirM} />} />
+            <Dialog.Title>{t("screens.changePassword.confirmationDialog")}</Dialog.Title>
+            <Dialog.Actions>
+              <Button onPress={hideConfirmDialog}>{t("components.dialog.cancel")}</Button>
+              <Button
+                onPress={() => {
+                  hideConfirmDialog();
+                  handleSubmit(changePassword)();
+                }}>
+                {buttonabel}
+              </Button>
+            </Dialog.Actions>
+          </Dialog>
+        </Portal>
       </View>
+
+      <Button
+        onPress={() => {
+          Keyboard.dismiss();
+          handleSubmit(showConfirmDialog)();
+        }}
+        style={sharedStyles.mt15}
+        uppercase={false}
+        mode="contained">
+        {buttonabel}
+      </Button>
+
+      <ErrorDialog isVisible={error} onDismiss={hideError} content={error} icon={PasswordError} />
+      <LoadingDialog isVisible={loading} />
     </KeyboardAvoidingView>
   );
 }
