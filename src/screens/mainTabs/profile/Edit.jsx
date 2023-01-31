@@ -1,4 +1,4 @@
-import { ImagePickerButton } from "../../../components/hookForm/ImagePickerButton";
+import { ImagePickerButtonHF } from "../../../components/hookForm/ImagePickerButtonHF";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { AtSign, EditPencil, OpenBook, User } from "iconoir-react-native";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
@@ -32,6 +32,7 @@ function Edit({
       lastNames,
       biography,
       username,
+      photoUrl,
     },
   });
   const photoUrlSelected = watch("photoUrl");
@@ -56,13 +57,13 @@ function Edit({
       style={sharedStyles.flx}>
       <View style={sharedStyles.flxACenter}>
         <Avatar.Image source={{ uri: photoUrlSelected }} {...sharedStyles.profilePhotoM} />
-        <ImagePickerButton
+        <ImagePickerButtonHF
           icon={props => <EditPencil {...props} {...sharedStyles.iconoirM} />}
           controllerName="photoUrl"
           style={sharedStyles.mv5}
           control={control}>
           {t("screens.editProfile.changeProfilePhoto")}
-        </ImagePickerButton>
+        </ImagePickerButtonHF>
       </View>
 
       <View>

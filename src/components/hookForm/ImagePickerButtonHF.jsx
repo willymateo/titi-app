@@ -4,7 +4,7 @@ import * as ImagePicker from "expo-image-picker";
 import { useController } from "react-hook-form";
 import { View } from "react-native";
 
-function ImagePickerButton({
+function ImagePickerButtonHF({
   mode = "contained",
   controllerName,
   rules = {},
@@ -36,9 +36,13 @@ function ImagePickerButton({
       <Button icon={icon} style={style} onPress={pickImage} mode={mode}>
         {children}
       </Button>
-      {error && <HelperText type="error">{error.message}</HelperText>}
+      {error && (
+        <HelperText type="error" visible>
+          {error.message}
+        </HelperText>
+      )}
     </View>
   );
 }
 
-export { ImagePickerButton };
+export { ImagePickerButtonHF };

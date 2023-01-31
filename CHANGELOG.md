@@ -11,6 +11,7 @@ The date format used is DD/MM/YYYY.
 ### Added
 
 - ImagePicker in edit profile screen
+- ImagePickerButtonHF
 
 ## [[1.2.0]](https://github.com/willymateo/titi-app/pull/3) - 30/01/2023
 
