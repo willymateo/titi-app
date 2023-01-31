@@ -1,10 +1,10 @@
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { Bell, HomeSimple, IosSettings, UserCircle } from "iconoir-react-native";
-import { Notifications } from "../../screens/mainTabs/Notifications";
-import { SettingsStackNavigator } from "./SettingsStackNavigator";
-import { ProfileStackNavigator } from "./ProfileStackNavigator";
-import { Home } from "../../screens/mainTabs/home";
+import { SettingsStackNavigator } from "./settings/Stack";
+import { ProfileStackNavigator } from "./profile/Stack";
 import { sharedStyles } from "../../shared/styles";
+import { HomeStackNavigator } from "./home/Stack";
+import { Notifications } from "./Notifications";
 import { useTranslation } from "react-i18next";
 
 const Tab = createMaterialBottomTabNavigator();
@@ -13,10 +13,10 @@ function MainBottomTabsNavigator() {
   const { t } = useTranslation("translation", { keyPrefix: "components.mainBottomTabsNavigator" });
 
   return (
-    <Tab.Navigator initialRouteName="Home" shifting>
+    <Tab.Navigator initialRouteName="HomeTab" shifting>
       <Tab.Screen
-        name="Home"
-        component={Home}
+        name="HomeTab"
+        component={HomeStackNavigator}
         options={{
           tabBarIcon: props => <HomeSimple {...props} {...sharedStyles.iconoirM} />,
           tabBarLabel: t("home"),

@@ -1,8 +1,9 @@
+import { NavigationBar } from "../../../components/navigation/NavigationBar";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { EditProfile } from "../../screens/mainTabs/profile/EditProfile";
-import { Profile } from "../../screens/mainTabs/profile";
-import { NavigationBar } from "./NavigationBar";
+import { sharedStyles } from "../../../shared/styles";
 import { useTranslation } from "react-i18next";
+import { Edit } from "./Edit";
+import { Profile } from ".";
 
 const Stack = createNativeStackNavigator();
 
@@ -11,24 +12,16 @@ function ProfileStackNavigator() {
 
   return (
     <Stack.Navigator
-      initialRouteName="ProfileRoot"
       screenOptions={{
-        headerShown: true,
         header: props => <NavigationBar {...props} />,
-      }}>
+        headerShown: true,
+      }}
+      initialRouteName="ProfileRoot">
+      <Stack.Screen name="ProfileRoot" component={Profile} options={{ headerShown: false }} />
       <Stack.Screen
-        name="ProfileRoot"
-        component={Profile}
-        options={{
-          headerShown: false,
-        }}
-      />
-      <Stack.Screen
+        options={{ title: t("editProfile"), contentStyle: sharedStyles.ph20 }}
+        component={Edit}
         name="EditProfile"
-        component={EditProfile}
-        options={{
-          title: t("editProfile"),
-        }}
       />
     </Stack.Navigator>
   );

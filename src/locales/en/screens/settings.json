@@ -3,5 +3,6 @@
   "theme": "Theme",
   "language": "Language",
   "security": "Security",
-  "changePassword": "Change password"
+  "changePassword": "Change password",
+  "personalInformation": "Personal information"
 }

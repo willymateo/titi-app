@@ -1,0 +1,108 @@
+import { DateTimePickerHF } from "../../../components/hookForm/DateTimePickerHF";
+import { NumberInputHF } from "../../../components/hookForm/NumberInputHF";
+import { TextInputHF } from "../../../components/hookForm/TextInputHF";
+import { createAdventure } from "../../../services/app/adventures";
+import { LoadingDialog } from "../../../components/LoadingDialog";
+import { useErrorDialog } from "../../../hooks/useErrorDialog";
+import { ErrorDialog } from "../../../components/ErrorDialog";
+import { Bonfire, Group, Map } from "iconoir-react-native";
+import { Button, TextInput } from "react-native-paper";
+import { useLoading } from "../../../hooks/useLoading";
+import { sharedStyles } from "../../../shared/styles";
+import { useTranslation } from "react-i18next";
+import { Keyboard, View } from "react-native";
+import { useForm } from "react-hook-form";
+
+function AdventureForm({ navigation }) {
+  const { t } = useTranslation("translation", { keyPrefix: "components" });
+  const { loading, startLoading, stopLoading } = useLoading();
+  const { error, showError, hideError } = useErrorDialog();
+  const { control, watch, handleSubmit } = useForm();
+
+  const handlePressCreate = async data => {
+    startLoading();
+    const { error: errorOnCreate } = await createAdventure(data);
+
+    if (errorOnCreate) {
+      showError({ error: errorOnCreate });
+      stopLoading();
+      return;
+    }
+
+    stopLoading();
+    navigation.goBack();
+  };
+
+  return (
+    <View>
+      <TextInputHF
+        left={<TextInput.Icon icon={props => <Bonfire {...props} {...sharedStyles.iconoirM} />} />}
+        rules={{ required: t("inputHookForm.titleRequired") }}
+        label={t("inputHookForm.title")}
+        style={sharedStyles.mv5}
+        controllerName="title"
+        control={control}
+      />
+      <TextInputHF
+        left={<TextInput.Icon icon={props => <Map {...props} {...sharedStyles.iconoirM} />} />}
+        rules={{
+          maxLength: {
+            message: t("inputHookForm.descriptionMaxLength"),
+            value: 255,
+          },
+        }}
+        label={t("inputHookForm.description")}
+        controllerName="description"
+        style={sharedStyles.mv5}
+        numberOfLines={4}
+        control={control}
+        multiline
+      />
+      <NumberInputHF
+        left={<TextInput.Icon icon={props => <Group {...props} {...sharedStyles.iconoirM} />} />}
+        rules={{
+          min: { value: 1, message: t("inputHookForm.numInvitationsMin") },
+          required: t("inputHookForm.numInvitationsRequired"),
+        }}
+        label={t("inputHookForm.numInvitations")}
+        controllerName="numInvitations"
+        style={sharedStyles.mv5}
+        control={control}
+      />
+      <DateTimePickerHF
+        rules={{ required: t("inputHookForm.startDateTimeRequired") }}
+        placeholder={t("inputHookForm.startDateTimePlaceholder")}
+        helperText={t("inputHookForm.startDateTimeHelperText")}
+        label={t("inputHookForm.startDateTime")}
+        controllerName="startDateTime"
+        style={sharedStyles.mv5}
+        control={control}
+        watch={watch}
+      />
+      <DateTimePickerHF
+        rules={{ required: t("inputHookForm.endDateTimeRequired") }}
+        placeholder={t("inputHookForm.endDateTimePlaceholder")}
+        helperText={t("inputHookForm.endDateTimeHelperText")}
+        label={t("inputHookForm.endDateTime")}
+        controllerName="endDateTime"
+        control={control}
+        watch={watch}
+      />
+      <Button
+        onPress={() => {
+          Keyboard.dismiss();
+          handleSubmit(handlePressCreate)();
+        }}
+        style={sharedStyles.mv15}
+        uppercase={false}
+        mode="contained">
+        {t("homeStackNavigator.createAdventure")}
+      </Button>
+
+      <ErrorDialog isVisible={error} onDismiss={hideError} content={error} />
+      <LoadingDialog isVisible={loading} />
+    </View>
+  );
+}
+
+export { AdventureForm };

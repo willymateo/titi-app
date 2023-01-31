@@ -1,6 +1,6 @@
 import { axiosInstance, errorHandler, errorHandlerSWR } from "./axios.config";
 import { reduxStore } from "../../redux/store";
-import useSWRImmutable from "swr/immutable";
+import useSWR from "swr";
 
 const accountInformationUrl = "/me/account";
 const getAccountInformation = async url => {
@@ -16,7 +16,7 @@ const getAccountInformation = async url => {
     .catch(errorHandlerSWR);
 };
 
-const useAccountInformation = () => useSWRImmutable(accountInformationUrl, getAccountInformation);
+const useAccountInformation = () => useSWR(accountInformationUrl, getAccountInformation);
 
 const updateAccountInformation = async payload => {
   const {

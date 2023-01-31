@@ -19,8 +19,20 @@ const sharedStyles = StyleSheet.create({
   mb15: {
     marginBottom: 15,
   },
+  mb5: {
+    marginBottom: 5,
+  },
+  mt15: {
+    marginTop: 15,
+  },
   flx: {
     flex: 1,
+  },
+  flxWrap: {
+    flexWrap: "wrap",
+  },
+  flxNoWrap: {
+    flexWrap: "nowrap",
   },
   flxRow: {
     flexDirection: "row",
@@ -31,12 +43,18 @@ const sharedStyles = StyleSheet.create({
   flxJCCenter: {
     justifyContent: "center",
   },
+  flxJCEnd: {
+    justifyContent: "flex-end",
+  },
   flxACenter: {
     alignItems: "center",
   },
   flxCenter: {
     justifyContent: "center",
     alignItems: "center",
+  },
+  flxGrow1: {
+    flexGrow: 1,
   },
   fullHeight: {
     height: "100%",
@@ -65,8 +83,11 @@ const sharedStyles = StyleSheet.create({
     width: 30,
     height: 30,
   },
-  profilePhoto: {
+  profilePhotoS: {
     size: 80,
+  },
+  profilePhotoM: {
+    size: 100,
   },
   textAlignR: {
     textAlign: "right",

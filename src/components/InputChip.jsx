@@ -1,12 +1,27 @@
-import { Text, Chip } from "react-native-paper";
-import { StyleSheet, View } from "react-native";
+import { Text, Chip, HelperText } from "react-native-paper";
 import { sharedStyles } from "../shared/styles";
+import { useController } from "react-hook-form";
+import { View } from "react-native";
 
-function InputChip({ style, label, mode, onPress, icon: Icon, value }) {
+function InputChip({
+  controllerName,
+  mode = "flat",
+  icon: Icon,
+  style = {},
+  rules = {},
+  control,
+  onPress,
+  label,
+  value,
+}) {
+  const {
+    fieldState: { error },
+  } = useController({ control, rules, name: controllerName });
+
   return (
     <View style={style}>
-      <Text style={styles.labelChip}>{label}</Text>
-      <View style={styles.chip}>
+      <Text style={sharedStyles.mb5}>{label}</Text>
+      <View style={sharedStyles.flxRow}>
         <Chip
           icon={props => <Icon {...props} {...sharedStyles.iconoirM} />}
           onPress={onPress}
@@ -14,17 +29,13 @@ function InputChip({ style, label, mode, onPress, icon: Icon, value }) {
           {value}
         </Chip>
       </View>
+      {error ? (
+        <HelperText visible type="error">
+          {error.message}
+        </HelperText>
+      ) : null}
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  labelChip: {
-    marginBottom: 5,
-  },
-  chip: {
-    flexDirection: "row",
-  },
-});
 
 export { InputChip };

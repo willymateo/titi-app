@@ -5,7 +5,7 @@ export default () => {
     name: process.env.APP_PLAIN_NAME,
     description: "Publish and search for adventures that only take place in the next 24 hours",
     slug: "titi",
-    version: "1.1.0",
+    version: "1.2.0",
     orientation: "portrait",
     icon: "./assets/images/icon.png",
     assetBundlePatterns: ["**/*"],

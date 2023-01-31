@@ -1,8 +1,8 @@
-import { axiosInstance, errorHandlerSWR } from "./axios.config";
+import { axiosInstance, errorHandler, errorHandlerSWR } from "./axios.config";
 import { reduxStore } from "../../redux/store";
 import useSWR from "swr";
 
-const getAllAdventuresUrl = "/adventures";
+const adventuresUrl = "/adventures";
 const getAllAdventures = async url => {
   const {
     userSession: { token },
@@ -16,6 +16,19 @@ const getAllAdventures = async url => {
     .catch(errorHandlerSWR);
 };
 
-const useAdventures = () => useSWR(getAllAdventuresUrl, getAllAdventures);
+const useAdventures = () => useSWR(adventuresUrl, getAllAdventures);
 
-export { useAdventures };
+const createAdventure = async payload => {
+  const {
+    userSession: { token },
+  } = reduxStore.getState();
+
+  return axiosInstance
+    .post(adventuresUrl, payload, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then(({ data }) => data)
+    .catch(errorHandler);
+};
+
+export { useAdventures, createAdventure };

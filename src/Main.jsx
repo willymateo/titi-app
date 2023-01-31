@@ -1,6 +1,6 @@
 import { logger, MMKV_IS_DARK, MMKV_THEME, MMKV_USER_TOKEN, storage } from "./config/app.config";
-import { MainBottomTabsNavigator } from "./components/navigation/MainBottomTabsNavigator";
-import { WelcomeStackNavigator } from "./components/navigation/WelcomeStackNavigator";
+import { MainBottomTabsNavigator } from "./screens/mainTabs/BottomTabs";
+import { WelcomeStackNavigator } from "./screens/welcome/Stack";
 import { Provider as PaperProvider } from "react-native-paper";
 import { NavigationContainer } from "@react-navigation/native";
 import { setUserSession } from "./redux/states/userSession";

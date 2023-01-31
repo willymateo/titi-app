@@ -2,8 +2,8 @@ import { AdventureScrollCards } from "../../../components/AdventureScrollCards";
 import { useAccountInformation } from "../../../services/app/me";
 import { ActivityIndicator, Text } from "react-native-paper";
 import { sharedStyles } from "../../../shared/styles";
-import { ProfileHeader } from "./ProfileHeader";
 import { View } from "react-native";
+import { Header } from "./Header";
 
 function Profile() {
   const { data: accountInformation, error, isValidating } = useAccountInformation();
@@ -20,7 +20,7 @@ function Profile() {
 
   return (
     <View style={sharedStyles.mh20}>
-      <ProfileHeader {...accountInformation} />
+      <Header {...accountInformation} />
       <AdventureScrollCards />
     </View>
   );

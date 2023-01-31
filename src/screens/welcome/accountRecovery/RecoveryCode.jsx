@@ -1,17 +1,17 @@
-import { KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
-import { LoginFooter } from "../../../components/LoginFooter";
+import { KeyboardAvoidingView, Platform } from "react-native";
 import { Button, TextInput } from "react-native-paper";
 import { PasswordCursor } from "iconoir-react-native";
 import { sharedStyles } from "../../../shared/styles";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
+import { Footer } from "../Footer";
 
 function RecoveryCode({ navigation }) {
   const { control, handleSubmit } = useForm();
   const { t } = useTranslation();
 
-  const onPressSendRecovery = data => {
+  const verifyRecoveryCode = data => {
     console.log(data);
     navigation.navigate("ResetPassword");
   };
@@ -19,40 +19,33 @@ function RecoveryCode({ navigation }) {
   return (
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={sharedStyles.flx}>
-      <View style={styles.container}>
-        <TextInputHF
-          left={
-            <TextInput.Icon
-              icon={props => <PasswordCursor {...props} {...sharedStyles.iconoirM} />}
-            />
-          }
-          rules={{
-            required: t("components.inputHookForm.recoveryCodeRequired"),
-          }}
-          label={t("components.inputHookForm.recoveryCode")}
-          controllerName="recoveryCode"
-          style={sharedStyles.mv5}
-          control={control}
-        />
+      style={[sharedStyles.flx, sharedStyles.flxJCCenter]}>
+      <TextInputHF
+        left={
+          <TextInput.Icon
+            icon={props => <PasswordCursor {...props} {...sharedStyles.iconoirM} />}
+          />
+        }
+        rules={{ required: t("components.inputHookForm.recoveryCodeRequired") }}
+        label={t("components.inputHookForm.recoveryCode")}
+        controllerName="recoveryCode"
+        style={sharedStyles.mv5}
+        control={control}
+      />
 
-        <Button mode="contained" uppercase={false} onPress={handleSubmit(onPressSendRecovery)}>
-          {t("screens.accountRecovery.verifyRecoveryCode")}
-        </Button>
-        <LoginFooter
-          onPressSignUp={() => navigation.navigate("SignUp")}
-          onPressLogin={() => navigation.navigate("Login")}
-        />
-      </View>
+      <Button
+        onPress={handleSubmit(verifyRecoveryCode)}
+        style={sharedStyles.mv15}
+        uppercase={false}
+        mode="contained">
+        {t("screens.accountRecovery.verifyRecoveryCode")}
+      </Button>
+      <Footer
+        onPressSignUp={() => navigation.navigate("SignUp")}
+        onPressLogin={() => navigation.navigate("Login")}
+      />
     </KeyboardAvoidingView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-  },
-});
 
 export { RecoveryCode };

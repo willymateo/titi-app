@@ -1,5 +1,5 @@
-import { MMKV_USER_TOKEN, storage } from "../config/app.config";
-import { resetUserSession } from "../redux/states/userSession";
+import { MMKV_USER_TOKEN, storage } from "../../../config/app.config";
+import { resetUserSession } from "../../../redux/states/userSession";
 import { useTranslation } from "react-i18next";
 import { Button } from "react-native-paper";
 import { useDispatch } from "react-redux";

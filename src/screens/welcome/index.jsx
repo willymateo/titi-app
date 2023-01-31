@@ -3,12 +3,12 @@ import { Button, Dialog, Portal, Text } from "react-native-paper";
 import { Language, NavArrowDown } from "iconoir-react-native";
 import LightLogo from "../../../assets/images/lightLogo.svg";
 import { ScrollView, StyleSheet, View } from "react-native";
-import { LoginFooter } from "../../components/LoginFooter";
 import DarkLogo from "../../../assets/images/darkLogo.svg";
 import { useVisible } from "../../hooks/useVisible";
 import { sharedStyles } from "../../shared/styles";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { Footer } from "./Footer";
 
 function Welcome({ navigation }) {
   const { t } = useTranslation("translation", { keyPrefix: "screens.welcome" });
@@ -20,7 +20,7 @@ function Welcome({ navigation }) {
   } = useVisible();
 
   return (
-    <View style={styles.container}>
+    <View style={[sharedStyles.flx, sharedStyles.flxJCCenter]}>
       <View>
         <Button
           icon={props => <NavArrowDown {...props} {...sharedStyles.iconoirM} />}
@@ -42,10 +42,10 @@ function Welcome({ navigation }) {
       </View>
 
       <View style={styles.middleContainer}>
-        <View style={styles.welcomeTextContainer}>
+        <View style={[sharedStyles.flx, sharedStyles.flxJCEnd, sharedStyles.flxACenter]}>
           <Text style={styles.welcomeText}>{t("welcomeTo")}</Text>
         </View>
-        <View style={styles.logoContainer}>
+        <View style={[sharedStyles.flx, sharedStyles.flxACenter, sharedStyles.flxJCCenter]}>
           {isDark ? (
             <DarkLogo width={styles.logo.width} height={styles.logo.height} />
           ) : (
@@ -70,36 +70,18 @@ function Welcome({ navigation }) {
         </View>
       </View>
 
-      <LoginFooter
+      <Footer
         onPressAccountRecovery={() => navigation.navigate("AccountRecovery")}
-        style={styles.bottomContainer}
+        style={[sharedStyles.flx, sharedStyles.flxJCEnd]}
       />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-  },
   middleContainer: {
     flex: 6,
     justifyContent: "center",
-  },
-  bottomContainer: {
-    flex: 1,
-    justifyContent: "flex-end",
-  },
-  welcomeTextContainer: {
-    flex: 1,
-    justifyContent: "flex-end",
-    alignItems: "center",
-  },
-  logoContainer: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
   buttonsContainer: {
     flex: 2,

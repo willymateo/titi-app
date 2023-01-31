@@ -9,19 +9,19 @@ const errorHandler = ({ request, response }) => {
 
   if (response) {
     if (!response.data?.error) {
-      logger(`${request._method} ${response.status} ${request.responseURL} : ${error}`);
+      logger(`${request?._method} ${response?.status} ${request?._url} : ${error}`);
       return { error };
     }
 
-    logger(`${request._method} ${response.status} ${request.responseURL} : ${response.data.error}`);
+    logger(`${request?._method} ${response?.status} ${request?._url} : ${response.data.error}`);
     return response.data;
   }
 
   if (request) {
-    error = "The request was made but no response was received";
+    error = "Please check your internet connection";
   }
 
-  logger(`${request._method} ${response.status} ${request.responseURL} : ${error}`);
+  logger(`${request?._method} ${response?.status} ${request?._url} : ${error}`);
   return { error };
 };
 
@@ -30,19 +30,19 @@ const errorHandlerSWR = ({ request, response }) => {
 
   if (response) {
     if (!response.data?.error) {
-      logger(`${request._method} ${response.status} ${request.responseURL} : ${error}`);
+      logger(`${request?._method} ${response?.status} ${request?._url} : ${error}`);
       throw error;
     }
 
-    logger(`${request._method} ${response.status} ${request.responseURL} : ${response.data.error}`);
+    logger(`${request?._method} ${response?.status} ${request?._url} : ${response.data.error}`);
     throw response.data.error;
   }
 
   if (request) {
-    error = "The request was made but no response was received";
+    error = "Please check your internet connection";
   }
 
-  logger(`${request._method} ${response.status} ${request.responseURL} : ${error}`);
+  logger(`${request?._method} ${response?.status} ${request?._url} : ${error}`);
   throw error;
 };
 
