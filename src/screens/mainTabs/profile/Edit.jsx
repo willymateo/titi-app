@@ -1,3 +1,4 @@
+import { ImagePickerButton } from "../../../components/hookForm/ImagePickerButton";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { AtSign, EditPencil, OpenBook, User } from "iconoir-react-native";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
@@ -25,7 +26,7 @@ function Edit({
 }) {
   const { loading, startLoading, stopLoading } = useLoading();
   const { error, showError, hideError } = useErrorDialog();
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit, watch } = useForm({
     defaultValues: {
       firstNames,
       lastNames,
@@ -33,8 +34,8 @@ function Edit({
       username,
     },
   });
+  const photoUrlSelected = watch("photoUrl");
   const { t } = useTranslation();
-  const showPictures = () => {};
 
   const handlePressSave = async data => {
     startLoading();
@@ -54,14 +55,14 @@ function Edit({
       showsVerticalScrollIndicator={false}
       style={sharedStyles.flx}>
       <View style={sharedStyles.flxACenter}>
-        <Avatar.Image source={{ uri: photoUrl }} {...sharedStyles.profilePhotoM} />
-        <Button
+        <Avatar.Image source={{ uri: photoUrlSelected }} {...sharedStyles.profilePhotoM} />
+        <ImagePickerButton
           icon={props => <EditPencil {...props} {...sharedStyles.iconoirM} />}
+          controllerName="photoUrl"
           style={sharedStyles.mv5}
-          onPress={showPictures}
-          mode="contained">
+          control={control}>
           {t("screens.editProfile.changeProfilePhoto")}
-        </Button>
+        </ImagePickerButton>
       </View>
 
       <View>

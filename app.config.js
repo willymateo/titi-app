@@ -30,6 +30,7 @@ export default () => {
         backgroundColor: "#000000",
       },
     },
+    plugins: ["expo-image-picker"],
     extra: {
       APP_ENV: process.env.APP_ENV,
       APP_NAME: process.env.APP_NAME,
