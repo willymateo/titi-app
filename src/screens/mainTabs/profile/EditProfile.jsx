@@ -1,3 +1,4 @@
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { AtSign, EditPencil, OpenBook, User } from "iconoir-react-native";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { updateAccountInformation } from "../../../services/app/me";
@@ -48,7 +49,10 @@ function EditProfile({
   };
 
   return (
-    <>
+    <KeyboardAwareScrollView
+      contentContainerStyle={sharedStyles.flxGrow1}
+      showsVerticalScrollIndicator={false}
+      style={sharedStyles.flx}>
       <View style={sharedStyles.flxACenter}>
         <Avatar.Image source={{ uri: photoUrl }} {...sharedStyles.profilePhotoM} />
         <Button
@@ -129,7 +133,7 @@ function EditProfile({
 
       <ErrorDialog isVisible={error} onDismiss={hideError} content={error} />
       <LoadingDialog isVisible={loading} />
-    </>
+    </KeyboardAwareScrollView>
   );
 }
 
