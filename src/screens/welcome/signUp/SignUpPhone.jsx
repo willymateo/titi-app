@@ -43,7 +43,7 @@ function SignUpPhone({ navigation }) {
 
     storage.set(MMKV_USER_TOKEN, token);
     stopLoading();
-    dispatch(setUserSession({ token, phone: { phoneNumber }, password: undefined }));
+    dispatch(setUserSession({ token, phone: { phoneNumber }, password: "" }));
   };
 
   return (

@@ -13,6 +13,15 @@ The date format used is DD/MM/YYYY.
 - ImagePicker in edit profile screen
 - ImagePickerButtonHF
 
+### Fixed
+
+- Update the user information in the profile screen
+- Update personal information
+
+### Changed
+
+- Merge the userSession and signUpForm redux states
+
 ## [[1.2.0]](https://github.com/willymateo/titi-app/pull/3) - 30/01/2023
 
 ### Added
