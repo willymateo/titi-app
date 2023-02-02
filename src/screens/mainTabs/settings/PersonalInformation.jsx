@@ -3,22 +3,22 @@ import { DateTimePickerHF } from "../../../components/hookForm/DateTimePickerHF"
 import { GendersInputHF } from "../../../components/hookForm/GendersInputHF";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { updateAccountInformation } from "../../../services/app/me";
+import { setUserSession } from "../../../redux/states/userSession";
 import { LoadingDialog } from "../../../components/LoadingDialog";
 import { useErrorDialog } from "../../../hooks/useErrorDialog";
 import { ErrorDialog } from "../../../components/ErrorDialog";
 import { EMAIL_REGEX } from "../../../config/app.config";
 import { useLoading } from "../../../hooks/useLoading";
 import { Button, TextInput } from "react-native-paper";
+import { useDispatch, useSelector } from "react-redux";
 import { sharedStyles } from "../../../shared/styles";
 import { useTranslation } from "react-i18next";
 import { Keyboard, View } from "react-native";
 import { Mail } from "iconoir-react-native";
 import { useForm } from "react-hook-form";
 
-function PersonalInformation({
-  route: { params: { email, bornDate, idGender } = {} } = {},
-  navigation,
-}) {
+function PersonalInformation({ navigation }) {
+  const { email, bornDate, idGender } = useSelector(({ userSession }) => userSession);
   const { loading, startLoading, stopLoading } = useLoading();
   const { error, showError, hideError } = useErrorDialog();
   const { watch, control, handleSubmit } = useForm({
@@ -28,6 +28,7 @@ function PersonalInformation({
       email,
     },
   });
+  const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const handlePressSave = async data => {
@@ -38,6 +39,7 @@ function PersonalInformation({
       showError({ error: errorOnUpdate });
     }
 
+    dispatch(setUserSession(data));
     stopLoading();
     navigation.goBack();
   };

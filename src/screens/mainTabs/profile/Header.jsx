@@ -4,33 +4,18 @@ import { UserStateChip } from "../../../components/UserStateChip";
 import { useNavigation } from "@react-navigation/native";
 import { sharedStyles } from "../../../shared/styles";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import { View } from "react-native";
 
-function Header({
-  currentState: { state } = {},
-  numAdventures = 0,
-  firstNames = "",
-  numMissing = 0,
-  lastNames = "",
-  biography = "",
-  photoUrl = "",
-  username = "",
-  numLater = 0,
-}) {
+function Header({ currentState: { state } = {}, numAdventures = 0, numMissing = 0, numLater = 0 }) {
   const { t } = useTranslation("translation", { keyPrefix: "screens.profileHeader" });
+  const { firstNames, lastNames, biography, username, photoUrl } = useSelector(
+    ({ userSession }) => userSession
+  );
   const navigation = useNavigation();
   const {
     colors: { onSurface },
   } = useTheme();
-
-  const handlePressEdit = () =>
-    navigation.navigate("EditProfile", {
-      firstNames,
-      lastNames,
-      biography,
-      username,
-      photoUrl,
-    });
 
   return (
     <View>
@@ -49,7 +34,7 @@ function Header({
           <View style={sharedStyles.flxJCCenter}>
             <IconButton
               icon={props => <Edit {...props} {...sharedStyles.iconoirM} />}
-              onPress={handlePressEdit}
+              onPress={() => navigation.navigate("EditProfile")}
             />
           </View>
         </View>

@@ -3,10 +3,12 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import { AtSign, EditPencil, OpenBook, User } from "iconoir-react-native";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { updateAccountInformation } from "../../../services/app/me";
+import { setUserSession } from "../../../redux/states/userSession";
 import { LoadingDialog } from "../../../components/LoadingDialog";
 import { Avatar, Button, TextInput } from "react-native-paper";
 import { useErrorDialog } from "../../../hooks/useErrorDialog";
 import { ErrorDialog } from "../../../components/ErrorDialog";
+import { useDispatch, useSelector } from "react-redux";
 import { useLoading } from "../../../hooks/useLoading";
 import { sharedStyles } from "../../../shared/styles";
 import { useTranslation } from "react-i18next";
@@ -18,12 +20,10 @@ import {
   USERNAME_MIN_LENGTH,
 } from "../../../config/app.config";
 
-function Edit({
-  route: {
-    params: { firstNames = "", lastNames = "", biography = "", username = "", photoUrl } = {},
-  } = {},
-  navigation,
-}) {
+function Edit({ navigation }) {
+  const { firstNames, lastNames, biography, username, photoUrl } = useSelector(
+    ({ userSession }) => userSession
+  );
   const { loading, startLoading, stopLoading } = useLoading();
   const { error, showError, hideError } = useErrorDialog();
   const { control, handleSubmit, watch } = useForm({
@@ -37,6 +37,7 @@ function Edit({
   });
   const photoUrlSelected = watch("photoUrl");
   const { t } = useTranslation();
+  const dispatch = useDispatch();
 
   const handlePressSave = async data => {
     startLoading();
@@ -46,6 +47,7 @@ function Edit({
       showError({ error: errorOnUpdate });
     }
 
+    dispatch(setUserSession(data));
     stopLoading();
     navigation.goBack();
   };
