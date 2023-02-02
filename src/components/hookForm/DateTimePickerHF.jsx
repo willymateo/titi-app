@@ -19,7 +19,7 @@ function DateTimePickerHF({
   style,
   watch,
 }) {
-  const { language } = useSelector(state => state.languagePreference);
+  const { language } = useSelector(({ languagePreference }) => languagePreference);
   const { isVisible, show, hide } = useVisible();
   const selectedDate = watch(controllerName);
   const {

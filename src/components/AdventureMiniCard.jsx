@@ -19,7 +19,7 @@ function AdventureMiniCard({
   title,
 }) {
   const { t } = useTranslation("translation", { keyPrefix: "components.adventuresCard" });
-  const { language } = useSelector(state => state.languagePreference);
+  const { language } = useSelector(({ languagePreference }) => languagePreference);
 
   return (
     <Card style={style}>

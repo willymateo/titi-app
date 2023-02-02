@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 function Theme() {
   const { t } = useTranslation("translation", { keyPrefix: "screens.themeSettings" });
-  const { theme } = useSelector(state => state.colorMode);
+  const { theme } = useSelector(({ colorMode }) => colorMode);
   const dispatch = useDispatch();
 
   const colorModeHandler = value => {

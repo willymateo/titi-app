@@ -1,4 +1,3 @@
-import { resetSignUpForm, setSignUpForm } from "../../../redux/states/signUpForm";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { MMKV_USER_TOKEN, storage } from "../../../config/app.config";
 import { setUserSession } from "../../../redux/states/userSession";
@@ -9,14 +8,15 @@ import { ErrorDialog } from "../../../components/ErrorDialog";
 import { createUser } from "../../../services/app/users";
 import { SmartphoneDevice } from "iconoir-react-native";
 import { useLoading } from "../../../hooks/useLoading";
+import { useDispatch, useSelector } from "react-redux";
 import { Button, TextInput } from "react-native-paper";
 import { sharedStyles } from "../../../shared/styles";
 import { useTranslation } from "react-i18next";
-import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { Footer } from "../Footer";
 
 function SignUpPhone({ navigation }) {
+  const userSession = useSelector(({ userSession }) => userSession);
   const { loading, startLoading, stopLoading } = useLoading();
   const { error, showError, hideError } = useErrorDialog();
   const { control, handleSubmit } = useForm();
@@ -25,9 +25,15 @@ function SignUpPhone({ navigation }) {
 
   const handlePressSignUp = async ({ phoneNumber }) => {
     startLoading();
-    dispatch(setSignUpForm({ phone: { phoneNumber } }));
 
-    const { token, error: errorOnCreate } = await createUser();
+    const { token, error: errorOnCreate } = await createUser({
+      ...userSession,
+      phone: {
+        ...userSession.phone,
+        phoneNumber,
+      },
+      token: undefined,
+    });
 
     if (errorOnCreate) {
       showError({ error: errorOnCreate });
@@ -36,9 +42,8 @@ function SignUpPhone({ navigation }) {
     }
 
     storage.set(MMKV_USER_TOKEN, token);
-    dispatch(resetSignUpForm());
-    dispatch(setUserSession({ token }));
     stopLoading();
+    dispatch(setUserSession({ token, phone: { phoneNumber }, password: undefined }));
   };
 
   return (

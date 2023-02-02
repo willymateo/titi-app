@@ -6,7 +6,7 @@ import { useTranslation } from "react-i18next";
 
 function Language() {
   const { t, i18n } = useTranslation("translation", { keyPrefix: "screens.languageSettings" });
-  const { language } = useSelector(state => state.languagePreference);
+  const { language } = useSelector(({ languagePreference }) => languagePreference);
   const dispatch = useDispatch();
 
   const languageHandler = value => {

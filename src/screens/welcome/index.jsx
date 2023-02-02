@@ -12,7 +12,7 @@ import { Footer } from "./Footer";
 
 function Welcome({ navigation }) {
   const { t } = useTranslation("translation", { keyPrefix: "screens.welcome" });
-  const { isDark } = useSelector(state => state.colorMode);
+  const { isDark } = useSelector(({ colorMode }) => colorMode);
   const {
     isVisible: isLanguageDialogVisible,
     hide: hideLanguageDialog,
