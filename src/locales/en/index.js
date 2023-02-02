@@ -17,6 +17,7 @@ import notifications from "./screens/notifications.json";
 import themeSettings from "./screens/themeSettings.json";
 import loginFooter from "./components/loginFooter.json";
 import editProfile from "./screens/editProfile.json";
+import location from "./screens/location.json";
 import settings from "./screens/settings.json";
 import dialog from "./components/dialog.json";
 import welcome from "./screens/welcome.json";
@@ -31,6 +32,7 @@ const translationEn = {
     notifications,
     themeSettings,
     editProfile,
+    location,
     settings,
     welcome,
     signUp,

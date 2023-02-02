@@ -6,6 +6,7 @@ import { AccountRecovery } from "./accountRecovery";
 import { SignUpPhone } from "./signUp/SignUpPhone";
 import { sharedStyles } from "../../shared/styles";
 import { useTranslation } from "react-i18next";
+import { Location } from "./signUp/Location";
 import { SignUp } from "./signUp";
 import { Login } from "./Login";
 import { Welcome } from ".";
@@ -27,6 +28,7 @@ function WelcomeStackNavigator() {
       <Stack.Screen options={{ headerShown: false }} component={Login} name="Login" />
 
       <Stack.Group>
+        <Stack.Screen options={{ title: t("location") }} component={Location} name="Location" />
         <Stack.Screen options={{ title: t("signUp") }} component={SignUp} name="SignUp" />
         <Stack.Screen
           options={{ title: t("signUpPhone") }}

@@ -40,7 +40,7 @@ function SignUp({ navigation }) {
       })
     );
 
-    navigation.navigate("SignUpPhone");
+    navigation.navigate("Location");
   };
 
   return (

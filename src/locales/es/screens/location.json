@@ -1,0 +1,5 @@
+{
+  "advice": "Necesitamos conocer tu ubicación para mostrarte amigos cercanos",
+  "getCurrentLocation": "Obtener ubicación actual",
+  "permissionDenied": "El permiso para acceder a la ubicación fue denegado"
+}

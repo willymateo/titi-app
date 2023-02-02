@@ -1,0 +1,5 @@
+{
+  "advice": "We need to know your location to show you close friends",
+  "getCurrentLocation": "Get current location",
+  "permissionDenied": "Permission to access location was denied"
+}

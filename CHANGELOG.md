@@ -12,6 +12,7 @@ The date format used is DD/MM/YYYY.
 
 - ImagePicker in edit profile screen
 - ImagePickerButtonHF
+- expo-location
 
 ### Fixed
 
