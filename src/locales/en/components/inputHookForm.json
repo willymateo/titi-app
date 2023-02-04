@@ -21,8 +21,6 @@
   "gender": "Gender",
   "genderRequired": "Gender is required",
   "genderPlaceholder": "Gender is required",
-  "phoneNumber": "Phone number",
-  "phoneNumberRequired": "Phone number is required",
   "recoveryCode": "Recovery code",
   "recoveryCodeRequired": "Recovery code is required",
   "firstNames": "First names",

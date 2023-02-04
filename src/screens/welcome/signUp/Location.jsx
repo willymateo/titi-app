@@ -1,6 +1,8 @@
 import { setUserSession } from "../../../redux/states/userSession";
+import { LoadingDialog } from "../../../components/LoadingDialog";
 import { useErrorDialog } from "../../../hooks/useErrorDialog";
 import { ErrorDialog } from "../../../components/ErrorDialog";
+import { createUser } from "../../../services/app/users";
 import { useLoading } from "../../../hooks/useLoading";
 import { sharedStyles } from "../../../shared/styles";
 import { Button, Text } from "react-native-paper";
@@ -9,8 +11,9 @@ import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { View } from "react-native";
 
-function Location({ navigation }) {
+function Location() {
   const { t } = useTranslation("translation", { keyPrefix: "screens" });
+  const { startLoading, loading, stopLoading } = useLoading();
   const { error, showError, hideError } = useErrorDialog();
   const dispatch = useDispatch();
   const {
@@ -23,24 +26,47 @@ function Location({ navigation }) {
     denyContinue();
     const { status } = await LocationService.requestForegroundPermissionsAsync();
 
-    if (status !== "granted") {
+    if (status !== LocationService.PermissionStatus.GRANTED) {
       showError({ error: new Error(t("location.permissionDenied")) });
       return;
     }
 
-    const {
-      coords: { latitude, longitude },
-    } = await LocationService.getCurrentPositionAsync({});
+    try {
+      const {
+        coords: { latitude, longitude },
+      } = await LocationService.getCurrentPositionAsync({
+        accuracy: LocationService.Accuracy.High,
+      });
 
-    dispatch(
-      setUserSession({
-        location: {
-          longitude,
-          latitude,
-        },
-      })
-    );
-    allowContinue();
+      dispatch(
+        setUserSession({
+          location: {
+            longitude,
+            latitude,
+          },
+        })
+      );
+
+      allowContinue();
+    } catch (e) {
+      showError({ error: e.message });
+    }
+  };
+
+  const handlePressSignUp = async () => {
+    startLoading();
+
+    const { token, error: errorOnCreate } = await createUser();
+
+    if (errorOnCreate) {
+      showError({ error: errorOnCreate });
+      stopLoading();
+      return;
+    }
+
+    storage.set(MMKV_USER_TOKEN, token);
+    stopLoading();
+    dispatch(setUserSession({ token, password: "" }));
   };
 
   return (
@@ -54,14 +80,15 @@ function Location({ navigation }) {
         {t("location.getCurrentLocation")}
       </Button>
       <Button
-        onPress={() => navigation.navigate("SignUpPhone")}
+        onPress={handlePressSignUp}
         disabled={!isContinueAllowed}
         uppercase={false}
         mode="contained">
-        {t("signUp.continue")}
+        {t("signUp.createAccount")}
       </Button>
 
       <ErrorDialog isVisible={error} onDismiss={hideError} content={error} />
+      <LoadingDialog isVisible={loading} />
     </View>
   );
 }

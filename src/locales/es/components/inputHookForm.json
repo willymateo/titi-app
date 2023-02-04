@@ -21,8 +21,6 @@
   "gender": "Género",
   "genderRequired": "Se requiere que especifique su género",
   "genderPlaceholder": "Seleccione su género",
-  "phoneNumber": "Número de teléfono",
-  "phoneNumberRequired": "Se require número de teléfono",
   "recoveryCode": "Código de recuperación",
   "recoveryCodeRequired": "Se requiere el código de recuperación",
   "firstNames": "Nombres",

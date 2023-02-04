@@ -11,10 +11,6 @@ const emptyState = {
   biography: "",
   bornDate: "",
   idGender: null,
-  phone: {
-    phoneNumber: null,
-    countryCode: 593,
-  },
   location: {
     // latitude: null,
     // longitude: null,
@@ -31,10 +27,6 @@ const UserSessionSlice = createSlice({
     setUserSession: (state, { payload }) => ({
       ...state,
       ...payload,
-      phone: {
-        ...state.phone,
-        ...payload.phone,
-      },
       location: {
         ...state.location,
         ...payload.location,

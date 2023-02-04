@@ -16,7 +16,6 @@ function Profile() {
   useEffect(() => {
     if (!isValidating && !error) {
       const {
-        phone: { countryCode, phoneNumber },
         location: { latitude, longitude },
         gender: { id: idGender },
         firstNames,
@@ -30,10 +29,6 @@ function Profile() {
 
       dispatch(
         setUserSession({
-          phone: {
-            countryCode,
-            phoneNumber,
-          },
           location: {
             longitude,
             latitude,

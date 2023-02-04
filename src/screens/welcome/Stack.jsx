@@ -3,7 +3,6 @@ import { NavigationBar } from "../../components/navigation/NavigationBar";
 import { ChangePassword } from "../../components/ChangePassword";
 import { RecoveryCode } from "./accountRecovery/RecoveryCode";
 import { AccountRecovery } from "./accountRecovery";
-import { SignUpPhone } from "./signUp/SignUpPhone";
 import { sharedStyles } from "../../shared/styles";
 import { useTranslation } from "react-i18next";
 import { Location } from "./signUp/Location";
@@ -30,11 +29,6 @@ function WelcomeStackNavigator() {
       <Stack.Group>
         <Stack.Screen options={{ title: t("location") }} component={Location} name="Location" />
         <Stack.Screen options={{ title: t("signUp") }} component={SignUp} name="SignUp" />
-        <Stack.Screen
-          options={{ title: t("signUpPhone") }}
-          component={SignUpPhone}
-          name="SignUpPhone"
-        />
       </Stack.Group>
 
       <Stack.Group>
