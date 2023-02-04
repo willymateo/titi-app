@@ -7,8 +7,8 @@ import { sharedStyles } from "../../shared/styles";
 import { LoadingDialog } from "../LoadingDialog";
 import { useTranslation } from "react-i18next";
 import { ErrorDialog } from "../ErrorDialog";
+import { InputChipHF } from "./InputChipHF";
 import { ScrollView } from "react-native";
-import { InputChip } from "../InputChip";
 
 function GendersInputHF({
   controllerName = "idGender",
@@ -25,7 +25,7 @@ function GendersInputHF({
 
   return (
     <>
-      <InputChip
+      <InputChipHF
         value={gendersObj[idSelectedGender] || t("inputHookForm.genderPlaceholder")}
         label={t("inputHookForm.gender")}
         controllerName={controllerName}

@@ -4,8 +4,8 @@ import { useVisible } from "../../hooks/useVisible";
 import { HelperText } from "react-native-paper";
 import { useController } from "react-hook-form";
 import { Calendar } from "iconoir-react-native";
+import { InputChipHF } from "./InputChipHF";
 import { useSelector } from "react-redux";
-import { InputChip } from "../InputChip";
 import { View } from "react-native";
 
 function DateTimePickerHF({
@@ -33,7 +33,7 @@ function DateTimePickerHF({
 
   return (
     <View style={style}>
-      <InputChip
+      <InputChipHF
         controllerName={controllerName}
         value={
           selectedDate

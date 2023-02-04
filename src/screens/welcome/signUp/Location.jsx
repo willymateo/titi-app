@@ -5,6 +5,7 @@ import { ErrorDialog } from "../../../components/ErrorDialog";
 import { createUser } from "../../../services/app/users";
 import { useLoading } from "../../../hooks/useLoading";
 import { sharedStyles } from "../../../shared/styles";
+import { storage } from "../../../config/app.config";
 import { Button, Text } from "react-native-paper";
 import * as LocationService from "expo-location";
 import { useTranslation } from "react-i18next";
@@ -13,9 +14,18 @@ import { View } from "react-native";
 
 function Location() {
   const { t } = useTranslation("translation", { keyPrefix: "screens" });
-  const { startLoading, loading, stopLoading } = useLoading();
   const { error, showError, hideError } = useErrorDialog();
   const dispatch = useDispatch();
+  const {
+    startLoading: startLoadingLocation,
+    stopLoading: stopLoadingLocation,
+    loading: loadingLocation,
+  } = useLoading();
+  const {
+    startLoading: startLoadingSignUp,
+    stopLoading: stopLoadingSignUp,
+    loading: loadingSignUp,
+  } = useLoading();
   const {
     startLoading: allowContinue,
     loading: isContinueAllowed,
@@ -23,11 +33,13 @@ function Location() {
   } = useLoading();
 
   const getCurrentLocation = async () => {
+    startLoadingLocation();
     denyContinue();
     const { status } = await LocationService.requestForegroundPermissionsAsync();
 
     if (status !== LocationService.PermissionStatus.GRANTED) {
-      showError({ error: new Error(t("location.permissionDenied")) });
+      showError({ error: t("location.permissionDenied") });
+      stopLoadingLocation();
       return;
     }
 
@@ -41,8 +53,8 @@ function Location() {
       dispatch(
         setUserSession({
           location: {
-            longitude,
-            latitude,
+            longitude: longitude.toString(),
+            latitude: latitude.toString(),
           },
         })
       );
@@ -50,22 +62,24 @@ function Location() {
       allowContinue();
     } catch (e) {
       showError({ error: e.message });
+    } finally {
+      stopLoadingLocation();
     }
   };
 
   const handlePressSignUp = async () => {
-    startLoading();
+    startLoadingSignUp();
 
     const { token, error: errorOnCreate } = await createUser();
 
     if (errorOnCreate) {
       showError({ error: errorOnCreate });
-      stopLoading();
+      stopLoadingSignUp();
       return;
     }
 
     storage.set(MMKV_USER_TOKEN, token);
-    stopLoading();
+    stopLoadingSignUp();
     dispatch(setUserSession({ token, password: "" }));
   };
 
@@ -75,20 +89,21 @@ function Location() {
       <Button
         onPress={getCurrentLocation}
         style={sharedStyles.mv15}
+        loading={loadingLocation}
         uppercase={false}
-        mode="contained">
-        {t("location.getCurrentLocation")}
+        mode="elevated">
+        {loadingLocation ? t("location.gettingCurrentLocation") : t("location.getCurrentLocation")}
       </Button>
       <Button
-        onPress={handlePressSignUp}
         disabled={!isContinueAllowed}
+        onPress={handlePressSignUp}
         uppercase={false}
         mode="contained">
         {t("signUp.createAccount")}
       </Button>
 
       <ErrorDialog isVisible={error} onDismiss={hideError} content={error} />
-      <LoadingDialog isVisible={loading} />
+      <LoadingDialog isVisible={loadingSignUp} />
     </View>
   );
 }

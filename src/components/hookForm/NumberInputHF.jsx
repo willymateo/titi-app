@@ -33,10 +33,7 @@ function NumberInputHF({
     <View>
       <TextInput
         keyboardType={Platform.OS === "ios" ? "numeric" : "phone-pad"}
-        onChangeText={text => {
-          const numberInput = Number(text);
-          onChange(numberInput);
-        }}
+        onChangeText={text => onChange(Number(text))}
         secureTextEntry={secureTextEntry}
         placeholder={placeholder}
         onBlur={onBlur}
@@ -49,11 +46,11 @@ function NumberInputHF({
         mode={mode}
         left={left}
       />
-      {error && (
-        <HelperText visible type="error">
-          {error.message}
+      {error ? (
+        <HelperText visible={error} type="error">
+          {error?.message}
         </HelperText>
-      )}
+      ) : null}
     </View>
   );
 }

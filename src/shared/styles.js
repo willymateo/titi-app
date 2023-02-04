@@ -92,6 +92,9 @@ const sharedStyles = StyleSheet.create({
   textAlignR: {
     textAlign: "right",
   },
+  textAlignC: {
+    textAlign: "center",
+  },
 });
 
 export { sharedStyles };

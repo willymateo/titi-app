@@ -36,11 +36,11 @@ function ImagePickerButtonHF({
       <Button icon={icon} style={style} onPress={pickImage} mode={mode}>
         {children}
       </Button>
-      {error && (
+      {error ? (
         <HelperText type="error" visible>
           {error.message}
         </HelperText>
-      )}
+      ) : null}
     </View>
   );
 }

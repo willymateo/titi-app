@@ -1,4 +1,5 @@
 import { EyeClose, EyeEmpty, KeyAlt, KeyAltBack } from "iconoir-react-native";
+import { PASSWORD_MIN_LENGTH } from "../../config/app.config";
 import { useVisible } from "../../hooks/useVisible";
 import { sharedStyles } from "../../shared/styles";
 import { TextInput } from "react-native-paper";
@@ -26,7 +27,10 @@ function RepeatPasswordHF({ control, watch }) {
             onPress={togglePasswordHidden}
           />
         }
-        rules={{ required: t("passwordRequired") }}
+        rules={{
+          minLength: { value: PASSWORD_MIN_LENGTH, message: t("passwordMinLength") },
+          required: t("passwordRequired"),
+        }}
         secureTextEntry={!isPasswordVisible}
         controllerName="password"
         style={sharedStyles.mv5}

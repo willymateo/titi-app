@@ -1,4 +1,4 @@
-import { FocusAwareStatusBar } from "../FocusAwareStatusBar";
+import { FocusAwareStatusBar } from "./FocusAwareStatusBar";
 import { Appbar } from "react-native-paper";
 
 function NavigationBar({ options: { title }, navigation }) {

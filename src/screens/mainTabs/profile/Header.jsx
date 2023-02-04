@@ -1,8 +1,8 @@
 import { Avatar, Divider, IconButton, Text, useTheme } from "react-native-paper";
 import { Bonfire, Clock, Edit, EmojiBall } from "iconoir-react-native";
-import { UserStateChip } from "../../../components/UserStateChip";
 import { useNavigation } from "@react-navigation/native";
 import { sharedStyles } from "../../../shared/styles";
+import { UserStateChip } from "./UserStateChip";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { View } from "react-native";

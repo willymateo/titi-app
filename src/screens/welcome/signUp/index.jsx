@@ -4,6 +4,7 @@ import { DateTimePickerHF } from "../../../components/hookForm/DateTimePickerHF"
 import { RepeatPasswordHF } from "../../../components/hookForm/RepeatPasswordHF";
 import { GendersInputHF } from "../../../components/hookForm/GendersInputHF";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
+import { intervalToDuration, isValid, parseISO } from "date-fns";
 import { Button, TextInput } from "react-native-paper";
 import { sharedStyles } from "../../../shared/styles";
 import { Mail, AtSign } from "iconoir-react-native";
@@ -43,6 +44,20 @@ function SignUp({ navigation }) {
     navigation.navigate("Location");
   };
 
+  const isOfLegalAge = dateString => {
+    const bornDate = parseISO(dateString);
+    if (!isValid(bornDate)) {
+      return false;
+    }
+
+    const { years } = intervalToDuration({
+      start: bornDate,
+      end: new Date(),
+    });
+
+    return years >= 18 || t("components.inputHookForm.bornDateOfLegalAge");
+  };
+
   return (
     <KeyboardAwareScrollView
       contentContainerStyle={sharedStyles.flxGrow1}
@@ -67,7 +82,6 @@ function SignUp({ navigation }) {
         <TextInputHF
           left={<TextInput.Icon icon={props => <AtSign {...props} {...sharedStyles.iconoirM} />} />}
           rules={{
-            required: t("components.inputHookForm.usernameRequired"),
             minLength: {
               message: t("components.inputHookForm.usernameMinLength"),
               value: USERNAME_MIN_LENGTH,
@@ -76,6 +90,7 @@ function SignUp({ navigation }) {
               message: t("components.inputHookForm.usernameMaxLength"),
               value: USERNAME_MAX_LENGTH,
             },
+            required: t("components.inputHookForm.usernameRequired"),
             pattern: {
               message: t("components.inputHookForm.usernameRegex"),
               value: USERNAME_REGEX,
@@ -98,7 +113,10 @@ function SignUp({ navigation }) {
         />
 
         <DateTimePickerHF
-          rules={{ required: t("components.inputHookForm.bornDateRequired") }}
+          rules={{
+            required: t("components.inputHookForm.bornDateRequired"),
+            validate: isOfLegalAge,
+          }}
           placeholder={t("components.inputHookForm.bornDatePlaceholder")}
           helperText={t("components.inputHookForm.bornDateHelperText")}
           label={t("components.inputHookForm.bornDate")}

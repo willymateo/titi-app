@@ -43,7 +43,9 @@ function Welcome({ navigation }) {
 
       <View style={styles.middleContainer}>
         <View style={[sharedStyles.flx, sharedStyles.flxJCEnd, sharedStyles.flxACenter]}>
-          <Text style={styles.welcomeText}>{t("welcomeTo")}</Text>
+          <Text style={sharedStyles.textAlignC} variant="headlineLarge">
+            {t("welcomeTo")}
+          </Text>
         </View>
         <View style={[sharedStyles.flx, sharedStyles.flxACenter, sharedStyles.flxJCCenter]}>
           {isDark ? (
@@ -64,7 +66,7 @@ function Welcome({ navigation }) {
             onPress={() => navigation.navigate("SignUp")}
             style={sharedStyles.mv5}
             uppercase={false}
-            mode="contained">
+            mode="elevated">
             {t("signUp")}
           </Button>
         </View>
@@ -86,10 +88,6 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     flex: 2,
     justifyContent: "center",
-  },
-  welcomeText: {
-    textAlign: "center",
-    fontSize: 30,
   },
   logo: {
     height: "100%",

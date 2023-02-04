@@ -13,6 +13,7 @@ The date format used is DD/MM/YYYY.
 - ImagePicker in edit profile screen
 - ImagePickerButtonHF
 - expo-location
+- validate legal of age in signUp form
 
 ### Fixed
 
@@ -22,6 +23,10 @@ The date format used is DD/MM/YYYY.
 ### Changed
 
 - Merge the userSession and signUpForm redux states
+
+### Removed
+
+- Phone screens and data
 
 ## [[1.2.0]](https://github.com/willymateo/titi-app/pull/3) - 30/01/2023
 

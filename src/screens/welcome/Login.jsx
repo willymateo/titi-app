@@ -1,7 +1,6 @@
 import { AtSign, EyeClose, EyeEmpty, KeyAltBack, PasswordError } from "iconoir-react-native";
 import { Keyboard, KeyboardAvoidingView, Platform, StyleSheet, View } from "react-native";
 import { TextInputHF } from "../../components/hookForm/TextInputHF";
-import { MMKV_USER_TOKEN, storage } from "../../config/app.config";
 import { setUserSession } from "../../redux/states/userSession";
 import { LoadingDialog } from "../../components/LoadingDialog";
 import { Button, Text, TextInput } from "react-native-paper";
@@ -16,6 +15,13 @@ import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import Constants from "expo-constants";
 import { Footer } from "./Footer";
+import {
+  storage,
+  USERNAME_REGEX,
+  MMKV_USER_TOKEN,
+  USERNAME_MAX_LENGTH,
+  USERNAME_MIN_LENGTH,
+} from "../../config/app.config";
 
 function Login({ navigation }) {
   const { isVisible: isPasswordVisible, toggle: togglePasswordVisible } = useVisible();
@@ -49,7 +55,21 @@ function Login({ navigation }) {
       <View>
         <TextInputHF
           left={<TextInput.Icon icon={props => <AtSign {...props} {...sharedStyles.iconoirM} />} />}
-          rules={{ required: t("components.inputHookForm.usernameRequired") }}
+          rules={{
+            minLength: {
+              message: t("components.inputHookForm.usernameMinLength"),
+              value: USERNAME_MIN_LENGTH,
+            },
+            maxLength: {
+              message: t("components.inputHookForm.usernameMaxLength"),
+              value: USERNAME_MAX_LENGTH,
+            },
+            required: t("components.inputHookForm.usernameRequired"),
+            pattern: {
+              message: t("components.inputHookForm.usernameRegex"),
+              value: USERNAME_REGEX,
+            },
+          }}
           label={t("components.inputHookForm.username")}
           controllerName="username"
           style={sharedStyles.mv5}
