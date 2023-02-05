@@ -12,6 +12,7 @@ import { useLoading } from "../../../hooks/useLoading";
 import { Button, TextInput } from "react-native-paper";
 import { useDispatch, useSelector } from "react-redux";
 import { sharedStyles } from "../../../shared/styles";
+import { isOfLegalAge } from "../../../shared";
 import { useTranslation } from "react-i18next";
 import { Keyboard, View } from "react-native";
 import { Mail } from "iconoir-react-native";
@@ -74,7 +75,10 @@ function PersonalInformation({ navigation }) {
         />
 
         <DateTimePickerHF
-          rules={{ required: t("components.inputHookForm.bornDateRequired") }}
+          rules={{
+            required: t("components.inputHookForm.bornDateRequired"),
+            validate: isOfLegalAge,
+          }}
           placeholder={t("components.inputHookForm.bornDatePlaceholder")}
           helperText={t("components.inputHookForm.bornDateHelperText")}
           label={t("components.inputHookForm.bornDate")}

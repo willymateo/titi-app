@@ -4,10 +4,10 @@ import { DateTimePickerHF } from "../../../components/hookForm/DateTimePickerHF"
 import { RepeatPasswordHF } from "../../../components/hookForm/RepeatPasswordHF";
 import { GendersInputHF } from "../../../components/hookForm/GendersInputHF";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
-import { intervalToDuration, isValid, parseISO } from "date-fns";
 import { Button, TextInput } from "react-native-paper";
 import { sharedStyles } from "../../../shared/styles";
 import { Mail, AtSign } from "iconoir-react-native";
+import { isOfLegalAge } from "../../../shared";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
@@ -42,20 +42,6 @@ function SignUp({ navigation }) {
     );
 
     navigation.navigate("Location");
-  };
-
-  const isOfLegalAge = dateString => {
-    const bornDate = parseISO(dateString);
-    if (!isValid(bornDate)) {
-      return false;
-    }
-
-    const { years } = intervalToDuration({
-      start: bornDate,
-      end: new Date(),
-    });
-
-    return years >= 18 || t("components.inputHookForm.bornDateOfLegalAge");
   };
 
   return (
