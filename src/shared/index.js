@@ -1,4 +1,5 @@
 import { intervalToDuration, isValid, parseISO } from "date-fns";
+import { t } from "i18next";
 
 const isOfLegalAge = dateString => {
   const bornDate = parseISO(dateString);

@@ -4,5 +4,6 @@
   "invitations_one": "{{count}} invitación",
   "invitations_other": "{{count}} invitaciones",
   "noAdventures": "Publica una aventura para hacer nuevos amigos",
-  "createAdventure": "Crear aventura"
+  "createAdventure": "Crear aventura",
+  "updateAdventure": "Actualizar aventura"
 }

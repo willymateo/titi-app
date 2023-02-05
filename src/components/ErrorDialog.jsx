@@ -1,4 +1,4 @@
-import { Button, Dialog, Portal, Text } from "react-native-paper";
+import { Button, Dialog, Portal, Text, useTheme } from "react-native-paper";
 import { WarningCircle } from "iconoir-react-native";
 import { sharedStyles } from "../shared/styles";
 import { useTranslation } from "react-i18next";
@@ -10,12 +10,16 @@ function ErrorDialog({
   isVisible,
   content,
 }) {
+  const { colors } = useTheme();
   const { t } = useTranslation("translation", { keyPrefix: "components.dialog" });
 
   return (
     <Portal>
       <Dialog visible={isVisible} onDismiss={onDismiss}>
-        <Dialog.Icon icon={props => <Icon {...props} {...sharedStyles.iconoirL} />} />
+        <Dialog.Icon
+          icon={props => <Icon {...props} {...sharedStyles.iconoirL} />}
+          color={colors.error}
+        />
         <Dialog.Title>{title}</Dialog.Title>
         <Dialog.Content>
           <Text>{content}</Text>

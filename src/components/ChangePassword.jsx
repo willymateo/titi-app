@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next";
 import { ErrorDialog } from "./ErrorDialog";
 import { useForm } from "react-hook-form";
 
-function ChangePassword({ navigation, route: { params: { buttonabel } = {} } = {} }) {
+function ChangePassword({ navigation, route: { params: { buttonLabel } = {} } = {} }) {
   const { loading, startLoading, stopLoading } = useLoading();
   const { error, showError, hideError } = useErrorDialog();
   const { watch, control, handleSubmit } = useForm();
@@ -22,7 +22,7 @@ function ChangePassword({ navigation, route: { params: { buttonabel } = {} } = {
     hide: hideConfirmDialog,
     show: showConfirmDialog,
   } = useVisible();
-  buttonabel = buttonabel || t("screens.settings.changePassword");
+  buttonLabel = buttonLabel || t("screens.settings.changePassword");
 
   const changePassword = async ({ password }) => {
     startLoading();
@@ -54,7 +54,7 @@ function ChangePassword({ navigation, route: { params: { buttonabel } = {} } = {
                   hideConfirmDialog();
                   handleSubmit(changePassword)();
                 }}>
-                {buttonabel}
+                {buttonLabel}
               </Button>
             </Dialog.Actions>
           </Dialog>
@@ -69,7 +69,7 @@ function ChangePassword({ navigation, route: { params: { buttonabel } = {} } = {
         style={sharedStyles.mt15}
         uppercase={false}
         mode="contained">
-        {buttonabel}
+        {buttonLabel}
       </Button>
 
       <ErrorDialog isVisible={error} onDismiss={hideError} content={error} icon={PasswordError} />

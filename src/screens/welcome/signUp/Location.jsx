@@ -1,11 +1,12 @@
+import { MMKV_USER_TOKEN, storage } from "../../../config/app.config";
 import { setUserSession } from "../../../redux/states/userSession";
 import { LoadingDialog } from "../../../components/LoadingDialog";
 import { useErrorDialog } from "../../../hooks/useErrorDialog";
 import { ErrorDialog } from "../../../components/ErrorDialog";
+import { Gps, MapsArrowIssue } from "iconoir-react-native";
 import { createUser } from "../../../services/app/users";
 import { useLoading } from "../../../hooks/useLoading";
 import { sharedStyles } from "../../../shared/styles";
-import { storage } from "../../../config/app.config";
 import { Button, Text } from "react-native-paper";
 import * as LocationService from "expo-location";
 import { useTranslation } from "react-i18next";
@@ -87,6 +88,7 @@ function Location() {
     <View style={[sharedStyles.flx, sharedStyles.flxCenter]}>
       <Text>{t("location.advice")}</Text>
       <Button
+        icon={props => <Gps {...props} {...sharedStyles.iconoirS} />}
         onPress={getCurrentLocation}
         style={sharedStyles.mv15}
         loading={loadingLocation}
@@ -102,7 +104,7 @@ function Location() {
         {t("signUp.createAccount")}
       </Button>
 
-      <ErrorDialog isVisible={error} onDismiss={hideError} content={error} />
+      <ErrorDialog isVisible={error} onDismiss={hideError} content={error} icon={MapsArrowIssue} />
       <LoadingDialog isVisible={loadingSignUp} />
     </View>
   );

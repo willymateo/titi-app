@@ -14,14 +14,20 @@ import { ErrorDialog } from "./ErrorDialog";
 import { useForm } from "react-hook-form";
 
 function AdventureForm({
-  numInvitations = 1,
-  description = "",
-  startDateTime,
-  endDateTime,
+  route: {
+    params: {
+      numInvitations = 1,
+      description = "",
+      startDateTime,
+      endDateTime,
+      buttonLabel,
+      title = "",
+    } = {},
+  } = {},
   navigation,
-  title = "",
 }) {
   const { t } = useTranslation("translation", { keyPrefix: "components" });
+  buttonLabel = buttonLabel || t("adventures.createAdventure");
   const { loading, startLoading, stopLoading } = useLoading();
   const { error, showError, hideError } = useErrorDialog();
   const { control, watch, handleSubmit } = useForm({
@@ -111,7 +117,7 @@ function AdventureForm({
         style={sharedStyles.mv15}
         uppercase={false}
         mode="contained">
-        {t("adventures.createAdventure")}
+        {buttonLabel}
       </Button>
 
       <ErrorDialog isVisible={error} onDismiss={hideError} content={error} />

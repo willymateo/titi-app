@@ -1,7 +1,7 @@
 import { ImagePickerButtonHF } from "../../../components/hookForm/ImagePickerButtonHF";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { AtSign, Camera, CloudError, OpenBook, User } from "iconoir-react-native";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
-import { AtSign, Camera, OpenBook, User } from "iconoir-react-native";
 import { updateAccountInformation } from "../../../services/app/me";
 import { setUserSession } from "../../../redux/states/userSession";
 import { LoadingDialog } from "../../../components/LoadingDialog";
@@ -45,6 +45,8 @@ function Edit({ navigation }) {
 
     if (errorOnUpdate) {
       showError({ error: errorOnUpdate });
+      stopLoading();
+      return;
     }
 
     dispatch(setUserSession(data));
@@ -135,7 +137,7 @@ function Edit({ navigation }) {
         {t("screens.editProfile.save")}
       </Button>
 
-      <ErrorDialog isVisible={error} onDismiss={hideError} content={error} />
+      <ErrorDialog isVisible={error} onDismiss={hideError} content={error} icon={CloudError} />
       <LoadingDialog isVisible={loading} />
     </KeyboardAwareScrollView>
   );

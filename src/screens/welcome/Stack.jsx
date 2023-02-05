@@ -43,7 +43,7 @@ function WelcomeStackNavigator() {
           name="RecoveryCode"
         />
         <Stack.Screen
-          initialParams={{ buttonabel: t("resetPassword") }}
+          initialParams={{ buttonLabel: t("resetPassword") }}
           options={{ title: t("resetPassword") }}
           component={ChangePassword}
           name="ResetPassword"

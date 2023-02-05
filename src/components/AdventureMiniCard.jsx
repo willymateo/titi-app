@@ -5,6 +5,7 @@ import { sharedStyles } from "../shared/styles";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 function AdventureMiniCard({
   publisher: { username = "", gender, photoUrl = "" } = {},
@@ -15,12 +16,24 @@ function AdventureMiniCard({
   style = {},
   title = "",
 }) {
+  const navigation = useNavigation();
   const { t } = useTranslation("translation", { keyPrefix: "components.adventures" });
   const { language } = useSelector(({ languagePreference }) => languagePreference);
   const { colors } = useTheme();
 
   return (
-    <Card style={style}>
+    <Card
+      style={style}
+      onPress={() =>
+        navigation.navigate("AdventureForm", {
+          buttonLabel: t("updateAdventure"),
+          numInvitations,
+          startDateTime,
+          endDateTime,
+          description,
+          title,
+        })
+      }>
       <Card.Title
         left={props => <Avatar.Image {...props} source={{ uri: photoUrl }} />}
         subtitle={`${username} ● ${gender}`}
