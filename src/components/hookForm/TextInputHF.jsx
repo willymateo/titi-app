@@ -49,7 +49,7 @@ function TextInputHF({
       <View>
         {rules.maxLength ? (
           <HelperText
-            style={[sharedStyles.fullWidth, sharedStyles.textAlignR]}
+            style={[sharedStyles.fullWidth, sharedStyles.txtAlignR]}
             type={error ? "error" : "info"}
             visible>
             {value ? value.length : 0}/{rules.maxLength.value}

@@ -1,12 +1,25 @@
+import { Text, useTheme } from "react-native-paper";
+import { CloudError } from "iconoir-react-native";
 import { sharedStyles } from "../shared/styles";
-import { Text } from "react-native-paper";
 import { View } from "react-native";
 
-function ErrorScreen({ children }) {
+function ErrorScreen({
+  textVariant = "titleLarge",
+  textStyle = {},
+  style = {},
+  icon: Icon,
+  children,
+}) {
+  const { colors } = useTheme();
+
   return (
-    <View style={sharedStyles.flxCenter}>
-      <Text>Imagen placeholder</Text>
-      <Text>{children}</Text>
+    <View style={[sharedStyles.flxCenter, style]}>
+      <View>
+        {Icon ? <Icon /> : <CloudError {...sharedStyles.iconoirL} color={colors.error} />}
+      </View>
+      <Text variant={textVariant} style={[sharedStyles.mt15, sharedStyles.txtAlignC, textStyle]}>
+        {children}
+      </Text>
     </View>
   );
 }

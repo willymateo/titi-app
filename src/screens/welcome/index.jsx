@@ -43,7 +43,7 @@ function Welcome({ navigation }) {
 
       <View style={styles.middleContainer}>
         <View style={[sharedStyles.flx, sharedStyles.flxJCEnd, sharedStyles.flxACenter]}>
-          <Text style={sharedStyles.textAlignC} variant="headlineLarge">
+          <Text style={sharedStyles.txtAlignC} variant="headlineLarge">
             {t("welcomeTo")}
           </Text>
         </View>

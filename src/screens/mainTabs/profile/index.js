@@ -1,8 +1,9 @@
-import { AdventureScrollCards } from "../../../components/AdventureScrollCards";
 import { setUserSession } from "../../../redux/states/userSession";
 import { useAccountInformation } from "../../../services/app/me";
-import { ActivityIndicator, Text } from "react-native-paper";
+import { ErrorScreen } from "../../../components/ErrorScreen";
+import { ActivityIndicator } from "react-native-paper";
 import { sharedStyles } from "../../../shared/styles";
+import { UserAdventures } from "./UserAdventures";
 import { useDispatch } from "react-redux";
 import { View } from "react-native";
 import { Header } from "./Header";
@@ -47,19 +48,19 @@ function Profile() {
   }, [accountInformation]);
 
   if (isValidating) {
-    return <ActivityIndicator />;
+    return <ActivityIndicator size="large" style={sharedStyles.flx} />;
   }
 
   if (error) {
-    return <Text>Error</Text>;
+    return <ErrorScreen style={sharedStyles.flx}>{error}</ErrorScreen>;
   }
 
   console.log("ACCOUNT INFORMATION", JSON.stringify(accountInformation, null, 2));
 
   return (
-    <View style={sharedStyles.mh20}>
+    <View style={[sharedStyles.flx, sharedStyles.mh20]}>
       <Header {...accountInformation} />
-      <AdventureScrollCards />
+      <UserAdventures />
     </View>
   );
 }

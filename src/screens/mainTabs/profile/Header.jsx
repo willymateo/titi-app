@@ -13,20 +13,18 @@ function Header({ currentState: { state } = {}, numAdventures = 0, numMissing = 
     ({ userSession }) => userSession
   );
   const navigation = useNavigation();
-  const {
-    colors: { onSurface },
-  } = useTheme();
+  const { colors } = useTheme();
 
   return (
-    <View>
+    <View style={sharedStyles.mv5}>
       <View style={sharedStyles.flxACenter}>
         <View style={sharedStyles.flxRow}>
           <Avatar.Image source={{ uri: photoUrl }} {...sharedStyles.profilePhotoS} />
-          <View style={[sharedStyles.flxACenter, sharedStyles.flxJCCenter, sharedStyles.ml10]}>
+          <View style={[sharedStyles.flxCenter, sharedStyles.ml10]}>
             <Text>
               {firstNames} {lastNames}
             </Text>
-            <View style={[sharedStyles.flxRow, sharedStyles.flxACenter]}>
+            <View style={[sharedStyles.flxRow, sharedStyles.flxACenter, sharedStyles.mt5]}>
               <Text>@{username}</Text>
               <UserStateChip state={state} style={sharedStyles.ml10} />
             </View>
@@ -44,20 +42,20 @@ function Header({ currentState: { state } = {}, numAdventures = 0, numMissing = 
 
       <Divider style={sharedStyles.mv5} />
 
-      <View style={{ ...sharedStyles.flxRow, ...sharedStyles.flxSBtwn }}>
+      <View style={[sharedStyles.flxRow, sharedStyles.flxSBtwn]}>
         <View style={sharedStyles.flxACenter}>
           <Text>{numAdventures}</Text>
-          <Bonfire {...sharedStyles.iconoirM} color={onSurface} />
+          <Bonfire {...sharedStyles.iconoirM} color={colors.onSurface} />
           <Text>{t("adventures")}</Text>
         </View>
         <View style={sharedStyles.flxACenter}>
           <Text>{numLater}</Text>
-          <Clock {...sharedStyles.iconoirM} color={onSurface} />
+          <Clock {...sharedStyles.iconoirM} color={colors.onSurface} />
           <Text>{t("later")}</Text>
         </View>
         <View style={sharedStyles.flxACenter}>
           <Text>{numMissing}</Text>
-          <EmojiBall {...sharedStyles.iconoirM} color={onSurface} />
+          <EmojiBall {...sharedStyles.iconoirM} color={colors.onSurface} />
           <Text>{t("missing")}</Text>
         </View>
       </View>

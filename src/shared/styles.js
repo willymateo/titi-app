@@ -22,6 +22,9 @@ const sharedStyles = StyleSheet.create({
   mb5: {
     marginBottom: 5,
   },
+  mt5: {
+    marginTop: 5,
+  },
   mt15: {
     marginTop: 15,
   },
@@ -89,10 +92,10 @@ const sharedStyles = StyleSheet.create({
   profilePhotoM: {
     size: 100,
   },
-  textAlignR: {
+  txtAlignR: {
     textAlign: "right",
   },
-  textAlignC: {
+  txtAlignC: {
     textAlign: "center",
   },
 });

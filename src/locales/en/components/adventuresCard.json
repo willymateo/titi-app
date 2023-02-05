@@ -2,5 +2,6 @@
   "published": "Published",
   "engage": "Engage",
   "invitations_one": "{{count}} invitation",
-  "invitations_other": "{{count}} invitations"
+  "invitations_other": "{{count}} invitations",
+  "noAdventures": "Post an adventure to make new friends"
 }
