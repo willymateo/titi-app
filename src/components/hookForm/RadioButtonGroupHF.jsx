@@ -33,11 +33,11 @@ function RadioButtonGroupHF({
         ))}
       </RadioButton.Group>
 
-      {error && (
+      {error ? (
         <HelperText visible type="error">
           {error.message}
         </HelperText>
-      )}
+      ) : null}
     </View>
   );
 }

@@ -12,7 +12,7 @@ import { Footer } from "./Footer";
 
 function Welcome({ navigation }) {
   const { t } = useTranslation("translation", { keyPrefix: "screens.welcome" });
-  const { isDark } = useSelector(state => state.colorMode);
+  const { isDark } = useSelector(({ colorMode }) => colorMode);
   const {
     isVisible: isLanguageDialogVisible,
     hide: hideLanguageDialog,
@@ -43,7 +43,9 @@ function Welcome({ navigation }) {
 
       <View style={styles.middleContainer}>
         <View style={[sharedStyles.flx, sharedStyles.flxJCEnd, sharedStyles.flxACenter]}>
-          <Text style={styles.welcomeText}>{t("welcomeTo")}</Text>
+          <Text style={sharedStyles.txtAlignC} variant="headlineLarge">
+            {t("welcomeTo")}
+          </Text>
         </View>
         <View style={[sharedStyles.flx, sharedStyles.flxACenter, sharedStyles.flxJCCenter]}>
           {isDark ? (
@@ -64,7 +66,7 @@ function Welcome({ navigation }) {
             onPress={() => navigation.navigate("SignUp")}
             style={sharedStyles.mv5}
             uppercase={false}
-            mode="contained">
+            mode="elevated">
             {t("signUp")}
           </Button>
         </View>
@@ -86,10 +88,6 @@ const styles = StyleSheet.create({
   buttonsContainer: {
     flex: 2,
     justifyContent: "center",
-  },
-  welcomeText: {
-    textAlign: "center",
-    fontSize: 30,
   },
   logo: {
     height: "100%",

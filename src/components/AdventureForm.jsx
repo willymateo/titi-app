@@ -1,23 +1,44 @@
-import { DateTimePickerHF } from "../../../components/hookForm/DateTimePickerHF";
-import { NumberInputHF } from "../../../components/hookForm/NumberInputHF";
-import { TextInputHF } from "../../../components/hookForm/TextInputHF";
-import { createAdventure } from "../../../services/app/adventures";
-import { LoadingDialog } from "../../../components/LoadingDialog";
-import { useErrorDialog } from "../../../hooks/useErrorDialog";
-import { ErrorDialog } from "../../../components/ErrorDialog";
+import { DateTimePickerHF } from "./hookForm/DateTimePickerHF";
+import { createAdventure } from "../services/app/adventures";
 import { Bonfire, Group, Map } from "iconoir-react-native";
+import { NumberInputHF } from "./hookForm/NumberInputHF";
+import { useErrorDialog } from "../hooks/useErrorDialog";
 import { Button, TextInput } from "react-native-paper";
-import { useLoading } from "../../../hooks/useLoading";
-import { sharedStyles } from "../../../shared/styles";
+import { TextInputHF } from "./hookForm/TextInputHF";
+import { useLoading } from "../hooks/useLoading";
+import { sharedStyles } from "../shared/styles";
+import { LoadingDialog } from "./LoadingDialog";
 import { useTranslation } from "react-i18next";
 import { Keyboard, View } from "react-native";
+import { ErrorDialog } from "./ErrorDialog";
 import { useForm } from "react-hook-form";
 
-function AdventureForm({ navigation }) {
+function AdventureForm({
+  route: {
+    params: {
+      numInvitations = 1,
+      description = "",
+      startDateTime,
+      endDateTime,
+      buttonLabel,
+      title = "",
+    } = {},
+  } = {},
+  navigation,
+}) {
   const { t } = useTranslation("translation", { keyPrefix: "components" });
+  buttonLabel = buttonLabel || t("adventures.createAdventure");
   const { loading, startLoading, stopLoading } = useLoading();
   const { error, showError, hideError } = useErrorDialog();
-  const { control, watch, handleSubmit } = useForm();
+  const { control, watch, handleSubmit } = useForm({
+    defaultValues: {
+      numInvitations,
+      startDateTime,
+      description,
+      endDateTime,
+      title,
+    },
+  });
 
   const handlePressCreate = async data => {
     startLoading();
@@ -96,7 +117,7 @@ function AdventureForm({ navigation }) {
         style={sharedStyles.mv15}
         uppercase={false}
         mode="contained">
-        {t("homeStackNavigator.createAdventure")}
+        {buttonLabel}
       </Button>
 
       <ErrorDialog isVisible={error} onDismiss={hideError} content={error} />

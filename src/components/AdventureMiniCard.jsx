@@ -1,40 +1,46 @@
-import { Group, Heart, User, UserCircle, Wristwatch } from "iconoir-react-native";
-import { Card, Chip, Text, Avatar, Button, IconButton } from "react-native-paper";
+import { Card, Chip, Text, Avatar, Button, IconButton, useTheme } from "react-native-paper";
+import { Group, Heart, Trash, User, Wristwatch } from "iconoir-react-native";
 import { formatDistanceToNow, intlFormat, parseISO } from "date-fns";
-import { StyleSheet, View } from "react-native";
 import { sharedStyles } from "../shared/styles";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
+import { View } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 function AdventureMiniCard({
-  publisher: {
-    username,
-    gender: { gender },
-  },
-  numInvitations,
+  publisher: { username = "", gender, photoUrl = "" } = {},
+  numInvitations = 1,
+  description = "",
   startDateTime,
   endDateTime,
-  description,
-  style,
-  title,
+  style = {},
+  title = "",
 }) {
-  const { t } = useTranslation("translation", { keyPrefix: "components.adventuresCard" });
-  const { language } = useSelector(state => state.languagePreference);
+  const navigation = useNavigation();
+  const { t } = useTranslation("translation", { keyPrefix: "components.adventures" });
+  const { language } = useSelector(({ languagePreference }) => languagePreference);
+  const { colors } = useTheme();
 
   return (
-    <Card style={style}>
+    <Card
+      style={style}
+      onPress={() =>
+        navigation.navigate("AdventureForm", {
+          buttonLabel: t("updateAdventure"),
+          numInvitations,
+          startDateTime,
+          endDateTime,
+          description,
+          title,
+        })
+      }>
       <Card.Title
-        left={props => (
-          <Avatar.Icon
-            {...props}
-            icon={props => <UserCircle {...props} {...sharedStyles.iconoirM} />}
-          />
-        )}
+        left={props => <Avatar.Image {...props} source={{ uri: photoUrl }} />}
         subtitle={`${username} ● ${gender}`}
         title={title}
       />
       <Card.Content>
-        <Text style={styles.endDateTimeText}>
+        <Text variant="titleLarge">
           {intlFormat(
             parseISO(endDateTime),
             {
@@ -49,9 +55,17 @@ function AdventureMiniCard({
             { locale: language }
           )}
         </Text>
+
         <Text>{description}</Text>
-        <View style={styles.footerContainer}>
-          <View style={styles.chipContainer}>
+
+        <View
+          style={[
+            sharedStyles.flxACenter,
+            sharedStyles.flxSBtwn,
+            sharedStyles.flxWrap,
+            sharedStyles.flxRow,
+          ]}>
+          <View>
             <Chip
               icon={props => {
                 return numInvitations > 1 ? (
@@ -63,8 +77,8 @@ function AdventureMiniCard({
               {t("invitations", { count: numInvitations })}
             </Chip>
           </View>
-          <View style={styles.startDateTimeContainer}>
-            <Text style={styles.startDateTimeText}>
+          <View style={[sharedStyles.flxRow, sharedStyles.flxACenter, sharedStyles.flxCenter]}>
+            <Text style={[sharedStyles.txtAlignR, { color: colors.surfaceVariant }]}>
               {`${t("published")} ${formatDistanceToNow(parseISO(startDateTime), {
                 includeSeconds: true,
                 addSuffix: true,
@@ -83,35 +97,14 @@ function AdventureMiniCard({
           onPress={() => console.log("Engage")}>
           {t("engage")}
         </Button>
+        <Button
+          icon={props => <Trash {...props} {...sharedStyles.iconoirM} />}
+          onPress={() => console.log("delete")}>
+          delete
+        </Button>
       </Card.Actions>
     </Card>
   );
 }
-
-const styles = StyleSheet.create({
-  footerContainer: {
-    marginTop: 10,
-    flexWrap: "wrap",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  chipContainer: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-  },
-  startDateTimeContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "flex-end",
-  },
-  startDateTimeText: {
-    textAlign: "right",
-    color: "grey",
-  },
-  endDateTimeText: {
-    fontSize: 23,
-  },
-});
 
 export { AdventureMiniCard };

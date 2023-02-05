@@ -6,6 +6,29 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 The date format used is DD/MM/YYYY.
 
+## [[1.3.0]](https://github.com/willymateo/titi-app/pull/4) - 30/01/2023
+
+### Added
+
+- validate legal of age in signUp form
+- ImagePicker in edit profile screen
+- ImagePickerButtonHF
+- expo-location
+
+### Fixed
+
+- Update the user information in the profile screen
+- Update personal information
+
+### Changed
+
+- Merge the userSession and signUpForm redux states
+- Update error screens
+
+### Removed
+
+- Phone screens and data
+
 ## [[1.2.0]](https://github.com/willymateo/titi-app/pull/3) - 30/01/2023
 
 ### Added

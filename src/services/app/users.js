@@ -2,10 +2,13 @@ import { axiosInstance, errorHandler } from "./axios.config";
 import { reduxStore } from "../../redux/store";
 
 const createUser = async () => {
-  const { signUpForm: payload } = reduxStore.getState();
+  const { userSession: payload } = reduxStore.getState();
 
   return axiosInstance
-    .post("/users", payload)
+    .post("/users", {
+      ...payload,
+      token: undefined,
+    })
     .then(({ data }) => data)
     .catch(errorHandler);
 };

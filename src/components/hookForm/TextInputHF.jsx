@@ -46,20 +46,20 @@ function TextInputHF({
         mode={mode}
         left={left}
       />
-      <View style={[sharedStyles.flxRow, sharedStyles.flxSBtwn]}>
-        {error && (
-          <HelperText visible type="error">
-            {error.message}
-          </HelperText>
-        )}
-        {rules.maxLength && (
+      <View>
+        {rules.maxLength ? (
           <HelperText
-            style={[sharedStyles.flx, sharedStyles.textAlignR]}
+            style={[sharedStyles.fullWidth, sharedStyles.txtAlignR]}
             type={error ? "error" : "info"}
             visible>
             {value ? value.length : 0}/{rules.maxLength.value}
           </HelperText>
-        )}
+        ) : null}
+        {error ? (
+          <HelperText visible={error} type="error">
+            {error?.message}
+          </HelperText>
+        ) : null}
       </View>
     </View>
   );

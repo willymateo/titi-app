@@ -2,9 +2,7 @@ import mainBottomTabsNavigator from "./components/mainBottomTabsNavigator.json";
 import settingsStackNavigator from "./components/settingsStackNavigator.json";
 import profileStackNavigator from "./components/profileStackNavigator.json";
 import welcomeStackNavigator from "./components/welcomeStackNavigator.json";
-import homeStackNavigator from "./components/homeStackNavigator.json";
 import languageSettings from "./screens/languageSettings.json";
-import adventuresCard from "./components/adventuresCard.json";
 import gendersInputHF from "./components/gendersInputHF.json";
 import accountRecovery from "./screens/accountRecovery.json";
 import inputHookForm from "./components/inputHookForm.json";
@@ -16,7 +14,9 @@ import profileHeader from "./screens/profileHeader.json";
 import notifications from "./screens/notifications.json";
 import themeSettings from "./screens/themeSettings.json";
 import loginFooter from "./components/loginFooter.json";
+import adventures from "./components/adventures.json";
 import editProfile from "./screens/editProfile.json";
+import location from "./screens/location.json";
 import settings from "./screens/settings.json";
 import dialog from "./components/dialog.json";
 import welcome from "./screens/welcome.json";
@@ -31,6 +31,7 @@ const translationEn = {
     notifications,
     themeSettings,
     editProfile,
+    location,
     settings,
     welcome,
     signUp,
@@ -40,14 +41,13 @@ const translationEn = {
     settingsStackNavigator,
     welcomeStackNavigator,
     profileStackNavigator,
-    homeStackNavigator,
     gendersInputHF,
-    adventuresCard,
     inputHookForm,
     userStateChip,
     loadingDialog,
     logoutButton,
     loginFooter,
+    adventures,
     dialog,
   },
 };

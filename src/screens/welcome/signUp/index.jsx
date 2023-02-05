@@ -1,17 +1,19 @@
+import { resetUserSession, setUserSession } from "../../../redux/states/userSession";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { DateTimePickerHF } from "../../../components/hookForm/DateTimePickerHF";
 import { RepeatPasswordHF } from "../../../components/hookForm/RepeatPasswordHF";
 import { GendersInputHF } from "../../../components/hookForm/GendersInputHF";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
-import { setSignUpForm } from "../../../redux/states/signUpForm";
 import { Button, TextInput } from "react-native-paper";
 import { sharedStyles } from "../../../shared/styles";
 import { Mail, AtSign } from "iconoir-react-native";
+import { isOfLegalAge } from "../../../shared";
 import { useTranslation } from "react-i18next";
 import { useDispatch } from "react-redux";
 import { useForm } from "react-hook-form";
 import { View } from "react-native";
 import { Footer } from "../Footer";
+import { useEffect } from "react";
 import {
   EMAIL_REGEX,
   USERNAME_REGEX,
@@ -24,9 +26,13 @@ function SignUp({ navigation }) {
   const { t } = useTranslation();
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    dispatch(resetUserSession());
+  }, []);
+
   const handlePressContinue = ({ username, password, email, bornDate, idGender }) => {
     dispatch(
-      setSignUpForm({
+      setUserSession({
         username,
         password,
         bornDate,
@@ -35,7 +41,7 @@ function SignUp({ navigation }) {
       })
     );
 
-    navigation.navigate("SignUpPhone");
+    navigation.navigate("Location");
   };
 
   return (
@@ -62,7 +68,6 @@ function SignUp({ navigation }) {
         <TextInputHF
           left={<TextInput.Icon icon={props => <AtSign {...props} {...sharedStyles.iconoirM} />} />}
           rules={{
-            required: t("components.inputHookForm.usernameRequired"),
             minLength: {
               message: t("components.inputHookForm.usernameMinLength"),
               value: USERNAME_MIN_LENGTH,
@@ -71,6 +76,7 @@ function SignUp({ navigation }) {
               message: t("components.inputHookForm.usernameMaxLength"),
               value: USERNAME_MAX_LENGTH,
             },
+            required: t("components.inputHookForm.usernameRequired"),
             pattern: {
               message: t("components.inputHookForm.usernameRegex"),
               value: USERNAME_REGEX,
@@ -93,7 +99,10 @@ function SignUp({ navigation }) {
         />
 
         <DateTimePickerHF
-          rules={{ required: t("components.inputHookForm.bornDateRequired") }}
+          rules={{
+            required: t("components.inputHookForm.bornDateRequired"),
+            validate: isOfLegalAge,
+          }}
           placeholder={t("components.inputHookForm.bornDatePlaceholder")}
           helperText={t("components.inputHookForm.bornDateHelperText")}
           label={t("components.inputHookForm.bornDate")}

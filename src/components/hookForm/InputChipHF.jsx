@@ -1,9 +1,9 @@
 import { Text, Chip, HelperText } from "react-native-paper";
-import { sharedStyles } from "../shared/styles";
+import { sharedStyles } from "../../shared/styles";
 import { useController } from "react-hook-form";
 import { View } from "react-native";
 
-function InputChip({
+function InputChipHF({
   controllerName,
   mode = "flat",
   icon: Icon,
@@ -38,4 +38,4 @@ function InputChip({
   );
 }
 
-export { InputChip };
+export { InputChipHF };

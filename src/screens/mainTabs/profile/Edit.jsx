@@ -1,11 +1,14 @@
+import { ImagePickerButtonHF } from "../../../components/hookForm/ImagePickerButtonHF";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { AtSign, EditPencil, OpenBook, User } from "iconoir-react-native";
+import { AtSign, Camera, CloudError, OpenBook, User } from "iconoir-react-native";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { updateAccountInformation } from "../../../services/app/me";
+import { setUserSession } from "../../../redux/states/userSession";
 import { LoadingDialog } from "../../../components/LoadingDialog";
 import { Avatar, Button, TextInput } from "react-native-paper";
 import { useErrorDialog } from "../../../hooks/useErrorDialog";
 import { ErrorDialog } from "../../../components/ErrorDialog";
+import { useDispatch, useSelector } from "react-redux";
 import { useLoading } from "../../../hooks/useLoading";
 import { sharedStyles } from "../../../shared/styles";
 import { useTranslation } from "react-i18next";
@@ -17,24 +20,24 @@ import {
   USERNAME_MIN_LENGTH,
 } from "../../../config/app.config";
 
-function Edit({
-  route: {
-    params: { firstNames = "", lastNames = "", biography = "", username = "", photoUrl } = {},
-  } = {},
-  navigation,
-}) {
+function Edit({ navigation }) {
+  const { firstNames, lastNames, biography, username, photoUrl } = useSelector(
+    ({ userSession }) => userSession
+  );
   const { loading, startLoading, stopLoading } = useLoading();
   const { error, showError, hideError } = useErrorDialog();
-  const { control, handleSubmit } = useForm({
+  const { control, handleSubmit, watch } = useForm({
     defaultValues: {
       firstNames,
       lastNames,
       biography,
       username,
+      photoUrl,
     },
   });
+  const photoUrlSelected = watch("photoUrl");
   const { t } = useTranslation();
-  const showPictures = () => {};
+  const dispatch = useDispatch();
 
   const handlePressSave = async data => {
     startLoading();
@@ -42,8 +45,11 @@ function Edit({
 
     if (errorOnUpdate) {
       showError({ error: errorOnUpdate });
+      stopLoading();
+      return;
     }
 
+    dispatch(setUserSession(data));
     stopLoading();
     navigation.goBack();
   };
@@ -54,14 +60,14 @@ function Edit({
       showsVerticalScrollIndicator={false}
       style={sharedStyles.flx}>
       <View style={sharedStyles.flxACenter}>
-        <Avatar.Image source={{ uri: photoUrl }} {...sharedStyles.profilePhotoM} />
-        <Button
-          icon={props => <EditPencil {...props} {...sharedStyles.iconoirM} />}
+        <Avatar.Image source={{ uri: photoUrlSelected }} {...sharedStyles.profilePhotoM} />
+        <ImagePickerButtonHF
+          icon={props => <Camera {...props} {...sharedStyles.iconoirM} />}
+          controllerName="photoUrl"
           style={sharedStyles.mv5}
-          onPress={showPictures}
-          mode="contained">
+          control={control}>
           {t("screens.editProfile.changeProfilePhoto")}
-        </Button>
+        </ImagePickerButtonHF>
       </View>
 
       <View>
@@ -131,7 +137,7 @@ function Edit({
         {t("screens.editProfile.save")}
       </Button>
 
-      <ErrorDialog isVisible={error} onDismiss={hideError} content={error} />
+      <ErrorDialog isVisible={error} onDismiss={hideError} content={error} icon={CloudError} />
       <LoadingDialog isVisible={loading} />
     </KeyboardAwareScrollView>
   );

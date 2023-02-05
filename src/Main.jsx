@@ -12,9 +12,9 @@ import { IntlProvider } from "react-intl";
 import { useEffect } from "react";
 
 function Main({ onLayout }) {
-  const { language } = useSelector(state => state.languagePreference);
-  const { isDark, theme } = useSelector(state => state.colorMode);
-  const { token } = useSelector(state => state.userSession);
+  const { language } = useSelector(({ languagePreference }) => languagePreference);
+  const { isDark, theme } = useSelector(({ colorMode }) => colorMode);
+  const { token } = useSelector(({ userSession }) => userSession);
   const storedToken = storage.getString(MMKV_USER_TOKEN);
   const storedIsDark = storage.getBoolean(MMKV_IS_DARK);
   const storedTheme = storage.getString(MMKV_THEME);

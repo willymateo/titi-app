@@ -5,6 +5,7 @@ const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA
 const USERNAME_REGEX = /^[a-z0-9_\.]*[a-z]+[a-z0-9_\.]*$/;
 const USERNAME_MAX_LENGTH = 30;
 const USERNAME_MIN_LENGTH = 5;
+const PASSWORD_MIN_LENGTH = 8;
 
 const MMKV_LNG = "languagePreference.language";
 const MMKV_USER_TOKEN = "userSession.token";
@@ -24,6 +25,7 @@ const logger = (...args) => {
 export {
   USERNAME_MIN_LENGTH,
   USERNAME_MAX_LENGTH,
+  PASSWORD_MIN_LENGTH,
   MMKV_USER_TOKEN,
   USERNAME_REGEX,
   MMKV_IS_DARK,

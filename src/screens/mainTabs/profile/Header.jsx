@@ -1,47 +1,30 @@
-import { Avatar, Divider, IconButton, Text, useTheme } from "react-native-paper";
+import { Avatar, Button, Divider, IconButton, Text, useTheme } from "react-native-paper";
 import { Bonfire, Clock, Edit, EmojiBall } from "iconoir-react-native";
-import { UserStateChip } from "../../../components/UserStateChip";
 import { useNavigation } from "@react-navigation/native";
 import { sharedStyles } from "../../../shared/styles";
+import { UserStateChip } from "./UserStateChip";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 import { View } from "react-native";
 
-function Header({
-  currentState: { state } = {},
-  numAdventures = 0,
-  firstNames = "",
-  numMissing = 0,
-  lastNames = "",
-  biography = "",
-  photoUrl = "",
-  username = "",
-  numLater = 0,
-}) {
-  const { t } = useTranslation("translation", { keyPrefix: "screens.profileHeader" });
+function Header({ currentState: { state } = {}, numAdventures = 0, numMissing = 0, numLater = 0 }) {
+  const { firstNames, lastNames, biography, username, photoUrl } = useSelector(
+    ({ userSession }) => userSession
+  );
   const navigation = useNavigation();
-  const {
-    colors: { onSurface },
-  } = useTheme();
-
-  const handlePressEdit = () =>
-    navigation.navigate("EditProfile", {
-      firstNames,
-      lastNames,
-      biography,
-      username,
-      photoUrl,
-    });
+  const { t } = useTranslation();
+  const { colors } = useTheme();
 
   return (
-    <View>
+    <View style={sharedStyles.mv5}>
       <View style={sharedStyles.flxACenter}>
         <View style={sharedStyles.flxRow}>
           <Avatar.Image source={{ uri: photoUrl }} {...sharedStyles.profilePhotoS} />
-          <View style={[sharedStyles.flxACenter, sharedStyles.flxJCCenter, sharedStyles.ml10]}>
+          <View style={[sharedStyles.flxCenter, sharedStyles.ml10]}>
             <Text>
               {firstNames} {lastNames}
             </Text>
-            <View style={[sharedStyles.flxRow, sharedStyles.flxACenter]}>
+            <View style={[sharedStyles.flxRow, sharedStyles.flxACenter, sharedStyles.mt5]}>
               <Text>@{username}</Text>
               <UserStateChip state={state} style={sharedStyles.ml10} />
             </View>
@@ -49,7 +32,7 @@ function Header({
           <View style={sharedStyles.flxJCCenter}>
             <IconButton
               icon={props => <Edit {...props} {...sharedStyles.iconoirM} />}
-              onPress={handlePressEdit}
+              onPress={() => navigation.navigate("EditProfile")}
             />
           </View>
         </View>
@@ -59,23 +42,30 @@ function Header({
 
       <Divider style={sharedStyles.mv5} />
 
-      <View style={{ ...sharedStyles.flxRow, ...sharedStyles.flxSBtwn }}>
+      <View style={[sharedStyles.flxRow, sharedStyles.flxSBtwn]}>
         <View style={sharedStyles.flxACenter}>
           <Text>{numAdventures}</Text>
-          <Bonfire {...sharedStyles.iconoirM} color={onSurface} />
-          <Text>{t("adventures")}</Text>
+          <Bonfire {...sharedStyles.iconoirM} color={colors.onSurface} style={sharedStyles.mv5} />
+          <Text>{t("screens.profileHeader.adventures")}</Text>
         </View>
         <View style={sharedStyles.flxACenter}>
           <Text>{numLater}</Text>
-          <Clock {...sharedStyles.iconoirM} color={onSurface} />
-          <Text>{t("later")}</Text>
+          <Clock {...sharedStyles.iconoirM} color={colors.onSurface} style={sharedStyles.mv5} />
+          <Text>{t("screens.profileHeader.later")}</Text>
         </View>
         <View style={sharedStyles.flxACenter}>
           <Text>{numMissing}</Text>
-          <EmojiBall {...sharedStyles.iconoirM} color={onSurface} />
-          <Text>{t("missing")}</Text>
+          <EmojiBall {...sharedStyles.iconoirM} color={colors.onSurface} style={sharedStyles.mv5} />
+          <Text>{t("screens.profileHeader.missing")}</Text>
         </View>
       </View>
+
+      <Button
+        onPress={() => navigation.navigate("AdventureForm")}
+        style={sharedStyles.mt5}
+        mode="contained-tonal">
+        {t("components.adventures.createAdventure")}
+      </Button>
     </View>
   );
 }
