@@ -3,5 +3,6 @@
   "engage": "Engage",
   "invitations_one": "{{count}} invitation",
   "invitations_other": "{{count}} invitations",
-  "noAdventures": "Post an adventure to make new friends"
+  "noAdventures": "Post an adventure to make new friends",
+  "createAdventure": "Create adventure"
 }

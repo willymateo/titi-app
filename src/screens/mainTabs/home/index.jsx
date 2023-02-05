@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import { Button } from "react-native-paper";
 
 function Home({ navigation }) {
-  const { t } = useTranslation("translation", { keyPrefix: "components.homeStackNavigator" });
+  const { t } = useTranslation("translation", { keyPrefix: "components.adventures" });
 
   return (
     <>

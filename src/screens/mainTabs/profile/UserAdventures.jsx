@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import { ScrollView } from "react-native";
 
 function UserAdventures() {
-  const { t } = useTranslation("translation", { keyPrefix: "components.adventuresCard" });
+  const { t } = useTranslation("translation", { keyPrefix: "components.adventures" });
   const { data: adventures, error, isValidating } = useUserAdventures();
   const { colors } = useTheme();
 

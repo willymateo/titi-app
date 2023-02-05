@@ -10,10 +10,10 @@ The date format used is DD/MM/YYYY.
 
 ### Added
 
+- validate legal of age in signUp form
 - ImagePicker in edit profile screen
 - ImagePickerButtonHF
 - expo-location
-- validate legal of age in signUp form
 
 ### Fixed
 
@@ -23,6 +23,7 @@ The date format used is DD/MM/YYYY.
 ### Changed
 
 - Merge the userSession and signUpForm redux states
+- Update error screens
 
 ### Removed
 

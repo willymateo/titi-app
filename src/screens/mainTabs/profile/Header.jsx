@@ -1,4 +1,4 @@
-import { Avatar, Divider, IconButton, Text, useTheme } from "react-native-paper";
+import { Avatar, Button, Divider, IconButton, Text, useTheme } from "react-native-paper";
 import { Bonfire, Clock, Edit, EmojiBall } from "iconoir-react-native";
 import { useNavigation } from "@react-navigation/native";
 import { sharedStyles } from "../../../shared/styles";
@@ -8,11 +8,11 @@ import { useSelector } from "react-redux";
 import { View } from "react-native";
 
 function Header({ currentState: { state } = {}, numAdventures = 0, numMissing = 0, numLater = 0 }) {
-  const { t } = useTranslation("translation", { keyPrefix: "screens.profileHeader" });
   const { firstNames, lastNames, biography, username, photoUrl } = useSelector(
     ({ userSession }) => userSession
   );
   const navigation = useNavigation();
+  const { t } = useTranslation();
   const { colors } = useTheme();
 
   return (
@@ -45,20 +45,27 @@ function Header({ currentState: { state } = {}, numAdventures = 0, numMissing = 
       <View style={[sharedStyles.flxRow, sharedStyles.flxSBtwn]}>
         <View style={sharedStyles.flxACenter}>
           <Text>{numAdventures}</Text>
-          <Bonfire {...sharedStyles.iconoirM} color={colors.onSurface} />
-          <Text>{t("adventures")}</Text>
+          <Bonfire {...sharedStyles.iconoirM} color={colors.onSurface} style={sharedStyles.mv5} />
+          <Text>{t("screens.profileHeader.adventures")}</Text>
         </View>
         <View style={sharedStyles.flxACenter}>
           <Text>{numLater}</Text>
-          <Clock {...sharedStyles.iconoirM} color={colors.onSurface} />
-          <Text>{t("later")}</Text>
+          <Clock {...sharedStyles.iconoirM} color={colors.onSurface} style={sharedStyles.mv5} />
+          <Text>{t("screens.profileHeader.later")}</Text>
         </View>
         <View style={sharedStyles.flxACenter}>
           <Text>{numMissing}</Text>
-          <EmojiBall {...sharedStyles.iconoirM} color={colors.onSurface} />
-          <Text>{t("missing")}</Text>
+          <EmojiBall {...sharedStyles.iconoirM} color={colors.onSurface} style={sharedStyles.mv5} />
+          <Text>{t("screens.profileHeader.missing")}</Text>
         </View>
       </View>
+
+      <Button
+        onPress={() => navigation.navigate("AdventureForm")}
+        style={sharedStyles.mt5}
+        mode="contained-tonal">
+        {t("components.adventures.createAdventure")}
+      </Button>
     </View>
   );
 }

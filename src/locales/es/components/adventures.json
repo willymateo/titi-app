@@ -3,5 +3,6 @@
   "engage": "Comprometerse",
   "invitations_one": "{{count}} invitación",
   "invitations_other": "{{count}} invitaciones",
-  "noAdventures": "Publica una aventura para hacer nuevos amigos"
+  "noAdventures": "Publica una aventura para hacer nuevos amigos",
+  "createAdventure": "Crear aventura"
 }

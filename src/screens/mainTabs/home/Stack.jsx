@@ -1,14 +1,14 @@
 import { NavigationBar } from "../../../components/navigation/NavigationBar";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { AdventureForm } from "../../../components/AdventureForm";
 import { sharedStyles } from "../../../shared/styles";
-import { AdventureForm } from "./AdventureForm";
 import { useTranslation } from "react-i18next";
 import { Home } from ".";
 
 const Stack = createNativeStackNavigator();
 
 function HomeStackNavigator() {
-  const { t } = useTranslation("translation", { keyPrefix: "components.homeStackNavigator" });
+  const { t } = useTranslation("translation", { keyPrefix: "components.adventures" });
 
   return (
     <Stack.Navigator
