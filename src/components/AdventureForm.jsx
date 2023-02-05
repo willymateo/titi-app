@@ -13,11 +13,26 @@ import { Keyboard, View } from "react-native";
 import { ErrorDialog } from "./ErrorDialog";
 import { useForm } from "react-hook-form";
 
-function AdventureForm({ navigation }) {
+function AdventureForm({
+  numInvitations = 1,
+  description = "",
+  startDateTime,
+  endDateTime,
+  navigation,
+  title = "",
+}) {
   const { t } = useTranslation("translation", { keyPrefix: "components" });
   const { loading, startLoading, stopLoading } = useLoading();
   const { error, showError, hideError } = useErrorDialog();
-  const { control, watch, handleSubmit } = useForm();
+  const { control, watch, handleSubmit } = useForm({
+    defaultValues: {
+      numInvitations,
+      startDateTime,
+      description,
+      endDateTime,
+      title,
+    },
+  });
 
   const handlePressCreate = async data => {
     startLoading();

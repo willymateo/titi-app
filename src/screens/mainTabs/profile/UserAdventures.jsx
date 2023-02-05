@@ -6,10 +6,12 @@ import { sharedStyles } from "../../../shared/styles";
 import { FavouriteBook } from "iconoir-react-native";
 import { useTranslation } from "react-i18next";
 import { ScrollView } from "react-native";
+import { useSelector } from "react-redux";
 
 function UserAdventures() {
   const { t } = useTranslation("translation", { keyPrefix: "components.adventures" });
   const { data: adventures, error, isValidating } = useUserAdventures();
+  const { username, idGender, photoUrl } = useSelector(({ userSession }) => userSession);
   const { colors } = useTheme();
 
   if (isValidating) {
@@ -30,12 +32,17 @@ function UserAdventures() {
     );
   }
 
-  console.log("USER ADVENTURES", adventures);
+  console.log("USER ADVENTURES", JSON.stringify(adventures, null, 2));
 
   return (
     <ScrollView>
       {adventures.map(adventure => (
-        <AdventureMiniCard key={adventure.id} {...adventure} style={sharedStyles.mv5} />
+        <AdventureMiniCard
+          key={adventure.id}
+          {...adventure}
+          style={sharedStyles.mv5}
+          publisher={{ username, gender: idGender, photoUrl }}
+        />
       ))}
     </ScrollView>
   );

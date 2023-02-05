@@ -1,7 +1,7 @@
 import { ImagePickerButtonHF } from "../../../components/hookForm/ImagePickerButtonHF";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { AtSign, EditPencil, OpenBook, User } from "iconoir-react-native";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
+import { AtSign, Camera, OpenBook, User } from "iconoir-react-native";
 import { updateAccountInformation } from "../../../services/app/me";
 import { setUserSession } from "../../../redux/states/userSession";
 import { LoadingDialog } from "../../../components/LoadingDialog";
@@ -60,7 +60,7 @@ function Edit({ navigation }) {
       <View style={sharedStyles.flxACenter}>
         <Avatar.Image source={{ uri: photoUrlSelected }} {...sharedStyles.profilePhotoM} />
         <ImagePickerButtonHF
-          icon={props => <EditPencil {...props} {...sharedStyles.iconoirM} />}
+          icon={props => <Camera {...props} {...sharedStyles.iconoirM} />}
           controllerName="photoUrl"
           style={sharedStyles.mv5}
           control={control}>
