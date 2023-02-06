@@ -6,7 +6,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 The date format used is DD/MM/YYYY.
 
-## [[1.3.0]](https://github.com/willymateo/titi-app/pull/4) - 30/01/2023
+## [[1.3.0]](https://github.com/willymateo/titi-app/pull/4) - 05/01/2023
 
 ### Added
 
