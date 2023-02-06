@@ -31,4 +31,34 @@ const createAdventure = async payload => {
     .catch(errorHandler);
 };
 
-export { useAdventures, createAdventure };
+const updateAdventureById = async ({ id, ...payload }) => {
+  const {
+    userSession: { token },
+  } = reduxStore.getState();
+
+  return axiosInstance
+    .patch(`${adventuresUrl}/${id}`, payload, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then(({ data }) => data)
+    .catch(errorHandler);
+};
+
+const deleteAdventureById = async id => {
+  const {
+    userSession: { token },
+  } = reduxStore.getState();
+
+  return axiosInstance
+    .delete(
+      `${adventuresUrl}/${id}`,
+      {},
+      {
+        headers: { Authorization: `Bearer ${token}` },
+      }
+    )
+    .then(({ data }) => data)
+    .catch(errorHandler);
+};
+
+export { useAdventures, createAdventure, updateAdventureById, deleteAdventureById };

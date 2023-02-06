@@ -37,7 +37,7 @@ const updateAccountInformation = async payload => {
   } = reduxStore.getState();
 
   return axiosInstance
-    .put(accountInformationUrl, payload, {
+    .patch(accountInformationUrl, payload, {
       headers: { Authorization: `Bearer ${token}` },
     })
     .then(({ data }) => data)

@@ -6,6 +6,17 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 The date format used is DD/MM/YYYY.
 
+## [[1.4.0]](https://github.com/willymateo/titi-app/pull/5) - 07/01/2023
+
+### Added
+
+- deleteAdventureById service
+- updateAdventureById service
+
+### Changed
+
+- Change the method (PUT -> PATCH) in updateAccountInformation service
+
 ## [[1.3.0]](https://github.com/willymateo/titi-app/pull/4) - 05/01/2023
 
 ### Added
