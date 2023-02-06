@@ -12,6 +12,7 @@ The date format used is DD/MM/YYYY.
 
 - deleteAdventureById service
 - updateAdventureById service
+- EAS update
 
 ### Changed
 

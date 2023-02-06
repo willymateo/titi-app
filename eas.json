@@ -1,12 +1,15 @@
 {
   "build": {
     "development": {
+      "channel": "development",
       "distribution": "internal",
       "developmentClient": true,
       "android": {
         "buildType": "apk"
       },
-      "ios": {},
+      "ios": {
+        "resourceClass": "m1-medium"
+      },
       "env": {
         "APP_ENV": "development",
         "APP_NAME": "tĭti Dev",
@@ -26,6 +29,9 @@
         "IOS_BUNDL_ID": "com.darkos.titi.prev",
         "ANDROID_PKG": "com.darkos.titi.prev",
         "APP_API_URL": "https://titi-development.up.railway.app/api"
+      },
+      "ios": {
+        "resourceClass": "m1-medium"
       }
     },
     "production": {
@@ -37,6 +43,9 @@
         "IOS_BUNDL_ID": "com.darkos.titi",
         "ANDROID_PKG": "com.darkos.titi",
         "APP_API_URL": "https://titi.up.railway.app/api"
+      },
+      "ios": {
+        "resourceClass": "m1-medium"
       }
     }
   },
