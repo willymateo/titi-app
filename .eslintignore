@@ -1,4 +1,4 @@
-dist
-build
 node_modules
+build
 .git
+dist

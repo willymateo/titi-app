@@ -28,7 +28,7 @@
         "APP_PLAIN_NAME": "titi Prev",
         "IOS_BUNDL_ID": "com.darkos.titi.prev",
         "ANDROID_PKG": "com.darkos.titi.prev",
-        "APP_API_URL": "https://titi-development.up.railway.app/api"
+        "APP_API_URL": "https://titi.up.railway.app/api"
       },
       "ios": {
         "resourceClass": "m1-medium"
