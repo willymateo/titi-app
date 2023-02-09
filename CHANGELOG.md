@@ -17,6 +17,7 @@ The date format used is DD/MM/YYYY.
 ### Changed
 
 - Change the method (PUT -> PATCH) in updateAccountInformation service
+- Update the languageDectector plugin
 
 ## [[1.3.0]](https://github.com/willymateo/titi-app/pull/4) - 05/01/2023
 

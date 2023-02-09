@@ -5,21 +5,21 @@ import { reduxStore } from "../../redux/store";
 
 const languageDetector = {
   type: "languageDetector",
-  async: true,
-  init: () => {},
-  detect: async callback => {
+  detect: () => {
     try {
       const storedLanguage = storage.getString(MMKV_LNG);
+
       if (storedLanguage) {
-        logger("Stored language:", storedLanguage);
         reduxStore.dispatch(setLanguagePreference({ language: storedLanguage }));
-        return callback(storedLanguage);
+        logger("Stored language:", storedLanguage);
+        return storedLanguage;
       }
-      const { locale } = await Localization.getLocalizationAsync();
-      logger("Not stored language, user preference:", locale);
-      storage.set(MMKV_LNG, locale);
-      reduxStore.dispatch(setLanguagePreference({ language: locale }));
-      return callback(locale);
+
+      const { languageCode } = Localization.getLocales()[0];
+      logger("No stored language, using the user smarthphone preference:", languageCode);
+      storage.set(MMKV_LNG, languageCode);
+      reduxStore.dispatch(setLanguagePreference({ language: languageCode }));
+      return languageCode;
     } catch (err) {
       console.log("i18next: Error reading the language preferences", err);
     }
@@ -28,6 +28,8 @@ const languageDetector = {
     storage.set(MMKV_LNG, lng);
     reduxStore.dispatch(setLanguagePreference({ language: lng }));
   },
+  init: () => {},
+  async: false,
 };
 
 export { languageDetector };

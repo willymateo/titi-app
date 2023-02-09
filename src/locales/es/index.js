@@ -18,6 +18,7 @@ import adventures from "./components/adventures.json";
 import editProfile from "./screens/editProfile.json";
 import location from "./screens/location.json";
 import settings from "./screens/settings.json";
+import errors from "./components/errors.json";
 import dialog from "./components/dialog.json";
 import welcome from "./screens/welcome.json";
 import signUp from "./screens/signUp.json";
@@ -48,6 +49,7 @@ const translationEs = {
     logoutButton,
     loginFooter,
     adventures,
+    errors,
     dialog,
   },
 };
