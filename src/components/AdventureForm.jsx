@@ -92,7 +92,8 @@ function AdventureForm({
       />
       <DateTimePickerHF
         rules={{ required: t("inputHookForm.startDateTimeRequired") }}
-        placeholder={t("inputHookForm.startDateTimePlaceholder")}
+        datePlaceholder={t("inputHookForm.startDatePlaceholder")}
+        timePlaceholder={t("inputHookForm.startTimePlaceholder")}
         helperText={t("inputHookForm.startDateTimeHelperText")}
         label={t("inputHookForm.startDateTime")}
         controllerName="startDateTime"
@@ -102,7 +103,8 @@ function AdventureForm({
       />
       <DateTimePickerHF
         rules={{ required: t("inputHookForm.endDateTimeRequired") }}
-        placeholder={t("inputHookForm.endDateTimePlaceholder")}
+        datePlaceholder={t("inputHookForm.endDatePlaceholder")}
+        timePlaceholder={t("inputHookForm.endTimePlaceholder")}
         helperText={t("inputHookForm.endDateTimeHelperText")}
         label={t("inputHookForm.endDateTime")}
         controllerName="endDateTime"

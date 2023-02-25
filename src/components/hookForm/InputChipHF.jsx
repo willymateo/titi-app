@@ -20,7 +20,7 @@ function InputChipHF({
 
   return (
     <View style={style}>
-      <Text style={sharedStyles.mb5}>{label}</Text>
+      {label ? <Text style={sharedStyles.mb5}>{label}</Text> : null}
       <View style={sharedStyles.flxRow}>
         <Chip
           icon={props => <Icon {...props} {...sharedStyles.iconoirM} />}
