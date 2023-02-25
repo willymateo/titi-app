@@ -34,7 +34,7 @@ function DateTimePickerHF({
   watch,
 }) {
   const { language } = useSelector(({ languagePreference }) => languagePreference);
-
+  const selectedDateTime = watch(controllerName);
   const {
     field: { value, onChange, onBlur },
   } = useController({
@@ -43,7 +43,6 @@ function DateTimePickerHF({
     control,
     rules,
   });
-  const selectedDateTime = watch(controllerName);
   const {
     isVisible: isDatePickerVisible,
     show: showDatePicker,
@@ -55,8 +54,6 @@ function DateTimePickerHF({
     hide: hideTimePicker,
   } = useVisible();
 
-  console.log("value", value);
-
   return (
     <View style={style}>
       {label ? <Text style={sharedStyles.mb5}>{label}</Text> : null}
@@ -64,7 +61,7 @@ function DateTimePickerHF({
         value={
           selectedDateTime
             ? intlFormat(
-                parseISO(selectedDateTime),
+                parseISO(value),
                 {
                   weekday: "long",
                   year: "numeric",

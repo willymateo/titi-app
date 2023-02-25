@@ -38,7 +38,7 @@ function DatePickerHF({
         value={
           selectedDate
             ? intlFormat(
-                parseISO(selectedDate),
+                parseISO(value),
                 {
                   weekday: "long",
                   year: "numeric",
