@@ -2,6 +2,7 @@ import { HelperText, TextInput } from "react-native-paper";
 import { useController } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { View, Platform } from "react-native";
+import { useEffect, useState } from "react";
 
 function NumberInputHF({
   mode = "outlined",
@@ -28,15 +29,20 @@ function NumberInputHF({
     name: controllerName,
     control,
   });
+  const [textNumber, setTextNumber] = useState(String(value));
+
+  useEffect(() => {
+    onChange(Number(textNumber));
+  }, [textNumber]);
 
   return (
     <View>
       <TextInput
         keyboardType={Platform.OS === "ios" ? "numeric" : "phone-pad"}
-        onChangeText={text => onChange(Number(text))}
         secureTextEntry={secureTextEntry}
+        onChangeText={setTextNumber}
         placeholder={placeholder}
-        value={String(value)}
+        value={textNumber}
         onBlur={onBlur}
         dense={dense}
         style={style}
