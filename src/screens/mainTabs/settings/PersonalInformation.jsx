@@ -1,6 +1,6 @@
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { DateTimePickerHF } from "../../../components/hookForm/DateTimePickerHF";
 import { GendersInputHF } from "../../../components/hookForm/GendersInputHF";
+import { DatePickerHF } from "../../../components/hookForm/DatePickerHF";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { updateAccountInformation } from "../../../services/app/me";
 import { setUserSession } from "../../../redux/states/userSession";
@@ -74,7 +74,7 @@ function PersonalInformation({ navigation }) {
           watch={watch}
         />
 
-        <DateTimePickerHF
+        <DatePickerHF
           rules={{
             required: t("components.inputHookForm.bornDateRequired"),
             validate: isOfLegalAge,

@@ -1,3 +1,4 @@
+import { ADVENTURE_START_TIME_MINUTES_WINDOW } from "../config/app.config";
 import { DateTimePickerHF } from "./hookForm/DateTimePickerHF";
 import { createAdventure } from "../services/app/adventures";
 import { Bonfire, Group, Map } from "iconoir-react-native";
@@ -5,6 +6,7 @@ import { NumberInputHF } from "./hookForm/NumberInputHF";
 import { useErrorDialog } from "../hooks/useErrorDialog";
 import { Button, TextInput } from "react-native-paper";
 import { TextInputHF } from "./hookForm/TextInputHF";
+import { isAfter, parseISO, sub } from "date-fns";
 import { useLoading } from "../hooks/useLoading";
 import { sharedStyles } from "../shared/styles";
 import { LoadingDialog } from "./LoadingDialog";
@@ -17,6 +19,7 @@ function AdventureForm({
   route: {
     params: {
       numInvitations = 1,
+      readOnly = false,
       description = "",
       startDateTime,
       endDateTime,
@@ -39,6 +42,7 @@ function AdventureForm({
       title,
     },
   });
+  const selectedStartDateTime = watch("startDateTime");
 
   const handlePressCreate = async data => {
     startLoading();
@@ -62,6 +66,7 @@ function AdventureForm({
         label={t("inputHookForm.title")}
         style={sharedStyles.mv5}
         controllerName="title"
+        readOnly={readOnly}
         control={control}
       />
       <TextInputHF
@@ -75,6 +80,7 @@ function AdventureForm({
         label={t("inputHookForm.description")}
         controllerName="description"
         style={sharedStyles.mv5}
+        readOnly={readOnly}
         numberOfLines={4}
         control={control}
         multiline
@@ -88,37 +94,57 @@ function AdventureForm({
         label={t("inputHookForm.numInvitations")}
         controllerName="numInvitations"
         style={sharedStyles.mv5}
+        readOnly={readOnly}
         control={control}
       />
       <DateTimePickerHF
-        rules={{ required: t("inputHookForm.startDateTimeRequired") }}
-        placeholder={t("inputHookForm.startDateTimePlaceholder")}
+        rules={{
+          validate: value =>
+            isAfter(
+              parseISO(value),
+              sub(new Date(), { minutes: ADVENTURE_START_TIME_MINUTES_WINDOW })
+            ) || t("inputHookForm.startDateTimeAfterNow"),
+          required: t("inputHookForm.startDateTimeRequired"),
+        }}
+        datePlaceholder={t("inputHookForm.startDatePlaceholder")}
+        timePlaceholder={t("inputHookForm.startTimePlaceholder")}
         helperText={t("inputHookForm.startDateTimeHelperText")}
         label={t("inputHookForm.startDateTime")}
         controllerName="startDateTime"
         style={sharedStyles.mv5}
+        readOnly={readOnly}
         control={control}
         watch={watch}
       />
       <DateTimePickerHF
-        rules={{ required: t("inputHookForm.endDateTimeRequired") }}
-        placeholder={t("inputHookForm.endDateTimePlaceholder")}
+        rules={{
+          validate: value =>
+            isAfter(parseISO(value), parseISO(selectedStartDateTime)) ||
+            t("inputHookForm.endDateTimeBeforeStartDateTime"),
+          required: t("inputHookForm.endDateTimeRequired"),
+        }}
+        datePlaceholder={t("inputHookForm.endDatePlaceholder")}
+        timePlaceholder={t("inputHookForm.endTimePlaceholder")}
         helperText={t("inputHookForm.endDateTimeHelperText")}
         label={t("inputHookForm.endDateTime")}
         controllerName="endDateTime"
+        readOnly={readOnly}
         control={control}
         watch={watch}
       />
-      <Button
-        onPress={() => {
-          Keyboard.dismiss();
-          handleSubmit(handlePressCreate)();
-        }}
-        style={sharedStyles.mv15}
-        uppercase={false}
-        mode="contained">
-        {buttonLabel}
-      </Button>
+      {!readOnly ? (
+        <Button
+          onPress={() => {
+            Keyboard.dismiss();
+            handleSubmit(handlePressCreate)();
+          }}
+          style={sharedStyles.mv15}
+          disabled={readOnly}
+          uppercase={false}
+          mode="contained">
+          {buttonLabel}
+        </Button>
+      ) : null}
 
       <ErrorDialog isVisible={error} onDismiss={hideError} content={error} />
       <LoadingDialog isVisible={loading} />

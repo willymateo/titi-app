@@ -3,6 +3,7 @@ import { KeyboardAvoidingView, Platform } from "react-native";
 import { Button, TextInput } from "react-native-paper";
 import { PasswordCursor } from "iconoir-react-native";
 import { sharedStyles } from "../../../shared/styles";
+import { logger } from "../../../config/app.config";
 import { useTranslation } from "react-i18next";
 import { useForm } from "react-hook-form";
 import { Footer } from "../Footer";
@@ -12,7 +13,7 @@ function RecoveryCode({ navigation }) {
   const { t } = useTranslation();
 
   const verifyRecoveryCode = data => {
-    console.log(data);
+    logger(data);
     navigation.navigate("ResetPassword");
   };
 

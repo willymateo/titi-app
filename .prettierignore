@@ -1,6 +1,6 @@
+package-lock.json
+node_modules
+build
+.expo
 .git
 dist
-build
-node_modules
-package-lock.json
-.expo

@@ -1,8 +1,8 @@
 import { resetUserSession, setUserSession } from "../../../redux/states/userSession";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import { DateTimePickerHF } from "../../../components/hookForm/DateTimePickerHF";
 import { RepeatPasswordHF } from "../../../components/hookForm/RepeatPasswordHF";
 import { GendersInputHF } from "../../../components/hookForm/GendersInputHF";
+import { DatePickerHF } from "../../../components/hookForm/DatePickerHF";
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
 import { Button, TextInput } from "react-native-paper";
 import { sharedStyles } from "../../../shared/styles";
@@ -98,7 +98,7 @@ function SignUp({ navigation }) {
           watch={watch}
         />
 
-        <DateTimePickerHF
+        <DatePickerHF
           rules={{
             required: t("components.inputHookForm.bornDateRequired"),
             validate: isOfLegalAge,

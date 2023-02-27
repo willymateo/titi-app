@@ -1,15 +1,30 @@
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { formatISO, intlFormat, parseISO } from "date-fns";
+import { Chip, HelperText, Text } from "react-native-paper";
+import { Calendar, Clock } from "iconoir-react-native";
 import { useVisible } from "../../hooks/useVisible";
-import { HelperText } from "react-native-paper";
+import { sharedStyles } from "../../shared/styles";
 import { useController } from "react-hook-form";
-import { Calendar } from "iconoir-react-native";
 import { InputChipHF } from "./InputChipHF";
 import { useSelector } from "react-redux";
 import { View } from "react-native";
+import {
+  getSeconds,
+  getMinutes,
+  intlFormat,
+  formatISO,
+  getMonth,
+  getHours,
+  parseISO,
+  getDate,
+  getYear,
+  format,
+  set,
+} from "date-fns";
 
 function DateTimePickerHF({
-  placeholder = "",
+  timePlaceholder = "",
+  datePlaceholder = "",
+  readOnly = false,
   helperText = "",
   controllerName,
   label = "",
@@ -20,8 +35,7 @@ function DateTimePickerHF({
   watch,
 }) {
   const { language } = useSelector(({ languagePreference }) => languagePreference);
-  const { isVisible, show, hide } = useVisible();
-  const selectedDate = watch(controllerName);
+  const selectedDateTime = watch(controllerName);
   const {
     field: { value, onChange, onBlur },
   } = useController({
@@ -30,15 +44,31 @@ function DateTimePickerHF({
     control,
     rules,
   });
+  const {
+    isVisible: isDatePickerVisible,
+    show: showDatePicker,
+    hide: hideDatePicker,
+  } = useVisible();
+  const {
+    isVisible: isTimePickerVisible,
+    show: showTimePicker,
+    hide: hideTimePicker,
+  } = useVisible();
 
   return (
     <View style={style}>
-      <InputChipHF
-        controllerName={controllerName}
-        value={
-          selectedDate
+      {label ? <Text style={sharedStyles.mb5}>{label}</Text> : null}
+      <View style={sharedStyles.flxRow}>
+        <Chip
+          icon={props => <Calendar {...props} {...sharedStyles.iconoirM} />}
+          disabled={readOnly}
+          onPress={() => {
+            showDatePicker();
+            hideTimePicker();
+          }}>
+          {selectedDateTime
             ? intlFormat(
-                parseISO(selectedDate),
+                parseISO(value),
                 {
                   weekday: "long",
                   year: "numeric",
@@ -47,26 +77,61 @@ function DateTimePickerHF({
                 },
                 { locale: language }
               )
-            : placeholder
-        }
+            : datePlaceholder}
+        </Chip>
+      </View>
+
+      <InputChipHF
+        value={selectedDateTime ? format(parseISO(selectedDateTime), "HH:mm") : timePlaceholder}
+        controllerName={controllerName}
+        style={sharedStyles.mt5}
+        readOnly={readOnly}
+        onPress={() => {
+          showTimePicker();
+          hideDatePicker();
+        }}
         control={control}
         mode={chipMode}
-        icon={Calendar}
-        onPress={show}
-        label={label}
         rules={rules}
+        icon={Clock}
       />
       <HelperText>{helperText}</HelperText>
 
-      {isVisible ? (
+      {isDatePickerVisible ? (
         <DateTimePicker
-          onChange={(event, value) => {
-            hide();
-            onChange(formatISO(value));
+          onChange={(event, newValue) => {
+            const newDateTime = set(parseISO(value), {
+              month: getMonth(newValue),
+              date: getDate(newValue),
+              year: getYear(newValue),
+            });
+
+            hideDatePicker();
+            onChange(formatISO(newDateTime));
             onBlur();
           }}
           value={parseISO(value)}
+          disabled={readOnly}
           mode="date"
+        />
+      ) : null}
+
+      {isTimePickerVisible ? (
+        <DateTimePicker
+          onChange={(event, newValue) => {
+            const newDateTime = set(parseISO(value), {
+              minutes: getMinutes(newValue),
+              seconds: getSeconds(newValue),
+              hours: getHours(newValue),
+            });
+
+            hideTimePicker();
+            onChange(formatISO(newDateTime));
+            onBlur();
+          }}
+          value={parseISO(value)}
+          disabled={readOnly}
+          mode="time"
         />
       ) : null}
     </View>

@@ -1,6 +1,6 @@
 import { TextInputHF } from "../../../components/hookForm/TextInputHF";
+import { EMAIL_REGEX, logger } from "../../../config/app.config";
 import { KeyboardAvoidingView, Platform } from "react-native";
-import { EMAIL_REGEX } from "../../../config/app.config";
 import { Button, TextInput } from "react-native-paper";
 import { sharedStyles } from "../../../shared/styles";
 import { useTranslation } from "react-i18next";
@@ -13,7 +13,7 @@ function AccountRecovery({ navigation }) {
   const { t } = useTranslation();
 
   const onPressSendRecovery = data => {
-    console.log(data);
+    logger(data);
     navigation.navigate("RecoveryCode");
   };
 

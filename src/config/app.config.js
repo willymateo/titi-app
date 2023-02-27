@@ -3,6 +3,7 @@ import Constants from "expo-constants";
 
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const USERNAME_REGEX = /^[a-z0-9_\.]*[a-z]+[a-z0-9_\.]*$/;
+const ADVENTURE_START_TIME_MINUTES_WINDOW = 3;
 const USERNAME_MAX_LENGTH = 30;
 const USERNAME_MIN_LENGTH = 5;
 const PASSWORD_MIN_LENGTH = 8;
@@ -23,6 +24,7 @@ const logger = (...args) => {
 };
 
 export {
+  ADVENTURE_START_TIME_MINUTES_WINDOW,
   USERNAME_MIN_LENGTH,
   USERNAME_MAX_LENGTH,
   PASSWORD_MIN_LENGTH,

@@ -11,7 +11,12 @@ import { useSelector } from "react-redux";
 function UserAdventures() {
   const { t } = useTranslation("translation", { keyPrefix: "components.adventures" });
   const { data: adventures, error, isValidating } = useUserAdventures();
-  const { username, idGender, photoUrl } = useSelector(({ userSession }) => userSession);
+  const {
+    username,
+    idGender,
+    photoUrl,
+    id: sessionUserId,
+  } = useSelector(({ userSession }) => userSession);
   const { colors } = useTheme();
 
   if (isValidating) {
@@ -32,8 +37,6 @@ function UserAdventures() {
     );
   }
 
-  console.log("USER ADVENTURES", JSON.stringify(adventures, null, 2));
-
   return (
     <ScrollView>
       {adventures.map(adventure => (
@@ -41,7 +44,7 @@ function UserAdventures() {
           key={adventure.id}
           {...adventure}
           style={sharedStyles.mv5}
-          publisher={{ username, gender: idGender, photoUrl }}
+          publisher={{ id: sessionUserId, username, gender: idGender, photoUrl }}
         />
       ))}
     </ScrollView>
