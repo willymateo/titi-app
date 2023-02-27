@@ -14,6 +14,7 @@ The date format used is DD/MM/YYYY.
 - updateAdventureById service
 - DateTimePickerHF component
 - TimePickerHF component
+- readOnly on inputs
 - EAS update
 
 ### Changed

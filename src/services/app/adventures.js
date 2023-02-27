@@ -44,19 +44,15 @@ const updateAdventureById = async ({ id, ...payload }) => {
     .catch(errorHandler);
 };
 
-const deleteAdventureById = async id => {
+const deleteAdventureById = async ({ id }) => {
   const {
     userSession: { token },
   } = reduxStore.getState();
 
   return axiosInstance
-    .delete(
-      `${adventuresUrl}/${id}`,
-      {},
-      {
-        headers: { Authorization: `Bearer ${token}` },
-      }
-    )
+    .delete(`${adventuresUrl}/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    })
     .then(({ data }) => data)
     .catch(errorHandler);
 };

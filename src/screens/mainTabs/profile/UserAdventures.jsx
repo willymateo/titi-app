@@ -32,8 +32,6 @@ function UserAdventures() {
     );
   }
 
-  console.log("USER ADVENTURES", JSON.stringify(adventures, null, 2));
-
   return (
     <ScrollView>
       {adventures.map(adventure => (

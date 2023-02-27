@@ -26,6 +26,7 @@ function Profile() {
         photoUrl,
         bornDate,
         email,
+        id,
       } = accountInformation;
 
       dispatch(
@@ -42,6 +43,7 @@ function Profile() {
           photoUrl,
           idGender,
           email,
+          id,
         })
       );
     }
