@@ -4,6 +4,7 @@ import { useController } from "react-hook-form";
 import { View } from "react-native";
 
 function InputChipHF({
+  readOnly = false,
   controllerName,
   mode = "flat",
   icon: Icon,
@@ -24,6 +25,7 @@ function InputChipHF({
       <View style={sharedStyles.flxRow}>
         <Chip
           icon={props => <Icon {...props} {...sharedStyles.iconoirM} />}
+          disabled={readOnly}
           onPress={onPress}
           mode={mode}>
           {value}

@@ -6,7 +6,7 @@ import { TextInput } from "react-native-paper";
 import { useTranslation } from "react-i18next";
 import { TextInputHF } from "./TextInputHF";
 
-function RepeatPasswordHF({ control, watch }) {
+function RepeatPasswordHF({ control, watch, readOnly = false }) {
   const { t } = useTranslation("translation", { keyPrefix: "components.inputHookForm" });
   const { isVisible: isPasswordVisible, toggle: togglePasswordHidden } = useVisible();
   const password = watch("password");
@@ -35,6 +35,7 @@ function RepeatPasswordHF({ control, watch }) {
         controllerName="password"
         style={sharedStyles.mv5}
         label={t("password")}
+        readOnly={readOnly}
         control={control}
       />
 
@@ -49,6 +50,7 @@ function RepeatPasswordHF({ control, watch }) {
         controllerName="repeatPassword"
         label={t("repeatPassword")}
         style={sharedStyles.mv5}
+        readOnly={readOnly}
         control={control}
         secureTextEntry
       />

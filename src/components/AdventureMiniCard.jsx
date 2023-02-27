@@ -27,6 +27,7 @@ function AdventureMiniCard({
       onPress={() =>
         navigation.navigate("AdventureForm", {
           buttonLabel: t("updateAdventure"),
+          readOnly: true,
           numInvitations,
           startDateTime,
           endDateTime,

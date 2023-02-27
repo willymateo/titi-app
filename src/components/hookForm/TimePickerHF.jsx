@@ -9,6 +9,7 @@ import { View } from "react-native";
 
 function TimePickerHF({
   placeholder = "",
+  readOnly = false,
   helperText = "",
   controllerName,
   label = "",
@@ -34,6 +35,7 @@ function TimePickerHF({
       <InputChipHF
         value={selectedTime ? selectedTime.slice(0, -3) : placeholder}
         controllerName={controllerName}
+        readOnly={readOnly}
         control={control}
         mode={chipMode}
         onPress={show}
@@ -51,6 +53,7 @@ function TimePickerHF({
             onChange(format(newValue, "HH:mm:ss"));
             onBlur();
           }}
+          disabled={readOnly}
           mode="time"
         />
       ) : null}

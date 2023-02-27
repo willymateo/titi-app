@@ -7,6 +7,7 @@ function TextInputHF({
   numberOfLines = 1,
   multiline = false,
   mode = "outlined",
+  readOnly = false,
   secureTextEntry,
   controllerName,
   dense = false,
@@ -37,6 +38,7 @@ function TextInputHF({
         placeholder={placeholder}
         onChangeText={onChange}
         multiline={multiline}
+        disabled={readOnly}
         dense={dense}
         style={style}
         error={error}

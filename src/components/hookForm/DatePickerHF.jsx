@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { View } from "react-native";
 
 function DatePickerHF({
+  readOnly = false,
   placeholder = "",
   helperText = "",
   controllerName,
@@ -49,6 +50,7 @@ function DatePickerHF({
               )
             : placeholder
         }
+        readOnly={readOnly}
         control={control}
         mode={chipMode}
         icon={Calendar}
@@ -66,6 +68,7 @@ function DatePickerHF({
             onBlur();
           }}
           value={parseISO(value)}
+          disabled={readOnly}
           mode="date"
         />
       ) : null}

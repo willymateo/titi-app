@@ -4,6 +4,7 @@ import { Platform, View } from "react-native";
 
 function RadioButtonGroupHF({
   onSelect = () => {},
+  readOnly = false,
   controllerName,
   rules = {},
   items = [],
@@ -26,6 +27,7 @@ function RadioButtonGroupHF({
         {items.map(({ id, value }) => (
           <RadioButton.Item
             mode={Platform.OS === "ios" ? "ios" : "android"}
+            disabled={readOnly}
             label={value}
             value={id}
             key={id}

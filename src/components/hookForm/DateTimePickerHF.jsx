@@ -24,6 +24,7 @@ import {
 function DateTimePickerHF({
   timePlaceholder = "",
   datePlaceholder = "",
+  readOnly = false,
   helperText = "",
   controllerName,
   label = "",
@@ -60,6 +61,7 @@ function DateTimePickerHF({
       <View style={sharedStyles.flxRow}>
         <Chip
           icon={props => <Calendar {...props} {...sharedStyles.iconoirM} />}
+          disabled={readOnly}
           onPress={() => {
             showDatePicker();
             hideTimePicker();
@@ -83,6 +85,7 @@ function DateTimePickerHF({
         value={selectedDateTime ? format(parseISO(selectedDateTime), "HH:mm") : timePlaceholder}
         controllerName={controllerName}
         style={sharedStyles.mt5}
+        readOnly={readOnly}
         onPress={() => {
           showTimePicker();
           hideDatePicker();
@@ -108,6 +111,7 @@ function DateTimePickerHF({
             onBlur();
           }}
           value={parseISO(value)}
+          disabled={readOnly}
           mode="date"
         />
       ) : null}
@@ -126,6 +130,7 @@ function DateTimePickerHF({
             onBlur();
           }}
           value={parseISO(value)}
+          disabled={readOnly}
           mode="time"
         />
       ) : null}

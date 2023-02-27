@@ -6,6 +6,7 @@ import { View } from "react-native";
 
 function ImagePickerButtonHF({
   mode = "contained",
+  readOnly = false,
   controllerName,
   rules = {},
   style = {},
@@ -33,7 +34,7 @@ function ImagePickerButtonHF({
 
   return (
     <View style={[sharedStyles.flx, style]}>
-      <Button icon={icon} style={style} onPress={pickImage} mode={mode}>
+      <Button icon={icon} style={style} onPress={pickImage} mode={mode} disabled={readOnly}>
         {children}
       </Button>
       {error ? (

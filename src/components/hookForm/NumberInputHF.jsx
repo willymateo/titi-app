@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 
 function NumberInputHF({
   mode = "outlined",
+  readOnly = false,
   secureTextEntry,
   controllerName,
   dense = false,
@@ -42,6 +43,7 @@ function NumberInputHF({
         secureTextEntry={secureTextEntry}
         onChangeText={setTextNumber}
         placeholder={placeholder}
+        disabled={readOnly}
         value={textNumber}
         onBlur={onBlur}
         dense={dense}

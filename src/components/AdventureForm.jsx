@@ -19,6 +19,7 @@ function AdventureForm({
   route: {
     params: {
       numInvitations = 1,
+      readOnly = false,
       description = "",
       startDateTime,
       endDateTime,
@@ -65,6 +66,7 @@ function AdventureForm({
         label={t("inputHookForm.title")}
         style={sharedStyles.mv5}
         controllerName="title"
+        readOnly={readOnly}
         control={control}
       />
       <TextInputHF
@@ -78,6 +80,7 @@ function AdventureForm({
         label={t("inputHookForm.description")}
         controllerName="description"
         style={sharedStyles.mv5}
+        readOnly={readOnly}
         numberOfLines={4}
         control={control}
         multiline
@@ -91,6 +94,7 @@ function AdventureForm({
         label={t("inputHookForm.numInvitations")}
         controllerName="numInvitations"
         style={sharedStyles.mv5}
+        readOnly={readOnly}
         control={control}
       />
       <DateTimePickerHF
@@ -108,6 +112,7 @@ function AdventureForm({
         label={t("inputHookForm.startDateTime")}
         controllerName="startDateTime"
         style={sharedStyles.mv5}
+        readOnly={readOnly}
         control={control}
         watch={watch}
       />
@@ -123,19 +128,23 @@ function AdventureForm({
         helperText={t("inputHookForm.endDateTimeHelperText")}
         label={t("inputHookForm.endDateTime")}
         controllerName="endDateTime"
+        readOnly={readOnly}
         control={control}
         watch={watch}
       />
-      <Button
-        onPress={() => {
-          Keyboard.dismiss();
-          handleSubmit(handlePressCreate)();
-        }}
-        style={sharedStyles.mv15}
-        uppercase={false}
-        mode="contained">
-        {buttonLabel}
-      </Button>
+      {!readOnly ? (
+        <Button
+          onPress={() => {
+            Keyboard.dismiss();
+            handleSubmit(handlePressCreate)();
+          }}
+          style={sharedStyles.mv15}
+          disabled={readOnly}
+          uppercase={false}
+          mode="contained">
+          {buttonLabel}
+        </Button>
+      ) : null}
 
       <ErrorDialog isVisible={error} onDismiss={hideError} content={error} />
       <LoadingDialog isVisible={loading} />
