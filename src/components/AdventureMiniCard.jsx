@@ -14,7 +14,7 @@ import { useSelector } from "react-redux";
 import { View } from "react-native";
 
 function AdventureMiniCard({
-  publisher: { username = "", gender, photoUrl = "" } = {},
+  publisher: { id: publisherId = "", username = "", gender, photoUrl = "" } = {},
   numInvitations = 1,
   description = "",
   startDateTime,
@@ -26,6 +26,7 @@ function AdventureMiniCard({
   const { t } = useTranslation("translation", { keyPrefix: "components.adventures" });
   const { isVisible: isMenuVisible, show: showMenu, hide: hideMenu } = useVisible();
   const { language } = useSelector(({ languagePreference }) => languagePreference);
+  const { id: sessionUserId } = useSelector(({ userSession }) => userSession);
   const { loading, startLoading, stopLoading } = useLoading();
   const { error, showError, hideError } = useErrorDialog();
   const navigation = useNavigation();
@@ -59,24 +60,30 @@ function AdventureMiniCard({
           })
         }>
         <Card.Title
-          right={props => (
-            <Menu
-              visible={isMenuVisible}
-              onDismiss={hideMenu}
-              anchor={
-                <IconButton
-                  {...props}
-                  icon={iconProps => <MoreVert {...iconProps} {...sharedStyles.iconoirM} />}
-                  onPress={showMenu}
-                />
-              }>
-              <Menu.Item
-                leadingIcon={props => <Trash {...props} {...sharedStyles.iconoirM} />}
-                onPress={handleDelete}
-                title="Delete"
-              />
-            </Menu>
-          )}
+          right={
+            sessionUserId === publisherId
+              ? props => (
+                  <Menu
+                    visible={isMenuVisible}
+                    onDismiss={hideMenu}
+                    anchor={
+                      <IconButton
+                        {...props}
+                        icon={iconProps => <MoreVert {...iconProps} {...sharedStyles.iconoirM} />}
+                        onPress={showMenu}
+                      />
+                    }>
+                    <Menu.Item
+                      leadingIcon={props => (
+                        <Trash {...props} {...sharedStyles.iconoirM} color={colors.error} />
+                      )}
+                      onPress={handleDelete}
+                      title={t("delete")}
+                    />
+                  </Menu>
+                )
+              : null
+          }
           left={props => <Avatar.Image {...props} source={{ uri: photoUrl }} />}
           subtitle={`${username} ● ${gender}`}
           title={title}

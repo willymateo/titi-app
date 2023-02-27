@@ -3,6 +3,7 @@ import { useAccountInformation } from "../../../services/app/me";
 import { ErrorScreen } from "../../../components/ErrorScreen";
 import { ActivityIndicator } from "react-native-paper";
 import { sharedStyles } from "../../../shared/styles";
+import { logger } from "../../../config/app.config";
 import { UserAdventures } from "./UserAdventures";
 import { useDispatch } from "react-redux";
 import { View } from "react-native";
@@ -57,7 +58,7 @@ function Profile() {
     return <ErrorScreen style={sharedStyles.flx}>{error}</ErrorScreen>;
   }
 
-  console.log("ACCOUNT INFORMATION", JSON.stringify(accountInformation, null, 2));
+  logger("ACCOUNT INFORMATION", JSON.stringify(accountInformation, null, 2));
 
   return (
     <View style={[sharedStyles.flx, sharedStyles.mh20]}>

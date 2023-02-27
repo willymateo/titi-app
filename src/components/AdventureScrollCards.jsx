@@ -20,8 +20,6 @@ function AdventureScrollCards() {
     return <ErrorScreen>Adventures not found</ErrorScreen>;
   }
 
-  console.log("ADVENTURES", adventures);
-
   return (
     <ScrollView>
       {adventures.map(adventure => (
