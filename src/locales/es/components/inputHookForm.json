@@ -38,6 +38,7 @@
   "startDatePlaceholder": "Seleccione la fecha de reunión",
   "startTimePlaceholder": "Seleccione la hora de reunión",
   "startDateTimeHelperText": "La fecha y hora a la que comienza la aventura",
+  "startDateTimeAfterNow": "La fecha y hora de reunión debe ser después de ahora",
   "endDateTime": "Fecha y hora de despedida",
   "endDateTimeRequired": "Se requiere fecha y hora de despedida",
   "endDatePlaceholder": "Seleccione la fecha de despedida",

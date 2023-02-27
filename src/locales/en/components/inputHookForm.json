@@ -38,6 +38,7 @@
   "startDatePlaceholder": "Select the meeting date",
   "startTimePlaceholder": "Select the meeting time",
   "startDateTimeHelperText": "The date and time at which the adventure starts",
+  "startDateTimeAfterNow": "Meeting date time should be after now",
   "endDateTime": "Farewell date time",
   "endDateTimeRequired": "Farewell date time is required",
   "endDatePlaceholder": "Select the Farewell date",

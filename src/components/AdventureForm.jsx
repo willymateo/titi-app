@@ -1,3 +1,4 @@
+import { ADVENTURE_START_TIME_MINUTES_WINDOW } from "../config/app.config";
 import { DateTimePickerHF } from "./hookForm/DateTimePickerHF";
 import { createAdventure } from "../services/app/adventures";
 import { Bonfire, Group, Map } from "iconoir-react-native";
@@ -5,12 +6,12 @@ import { NumberInputHF } from "./hookForm/NumberInputHF";
 import { useErrorDialog } from "../hooks/useErrorDialog";
 import { Button, TextInput } from "react-native-paper";
 import { TextInputHF } from "./hookForm/TextInputHF";
+import { isAfter, parseISO, sub } from "date-fns";
 import { useLoading } from "../hooks/useLoading";
 import { sharedStyles } from "../shared/styles";
 import { LoadingDialog } from "./LoadingDialog";
 import { useTranslation } from "react-i18next";
 import { Keyboard, View } from "react-native";
-import { isAfter, parseISO } from "date-fns";
 import { ErrorDialog } from "./ErrorDialog";
 import { useForm } from "react-hook-form";
 
@@ -93,7 +94,14 @@ function AdventureForm({
         control={control}
       />
       <DateTimePickerHF
-        rules={{ required: t("inputHookForm.startDateTimeRequired") }}
+        rules={{
+          validate: value =>
+            isAfter(
+              parseISO(value),
+              sub(new Date(), { minutes: ADVENTURE_START_TIME_MINUTES_WINDOW })
+            ) || t("inputHookForm.startDateTimeAfterNow"),
+          required: t("inputHookForm.startDateTimeRequired"),
+        }}
         datePlaceholder={t("inputHookForm.startDatePlaceholder")}
         timePlaceholder={t("inputHookForm.startTimePlaceholder")}
         helperText={t("inputHookForm.startDateTimeHelperText")}
