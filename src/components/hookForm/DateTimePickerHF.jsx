@@ -1,6 +1,6 @@
 import DateTimePicker from "@react-native-community/datetimepicker";
+import { Chip, HelperText, Text } from "react-native-paper";
 import { Calendar, Clock } from "iconoir-react-native";
-import { HelperText, Text } from "react-native-paper";
 import { useVisible } from "../../hooks/useVisible";
 import { sharedStyles } from "../../shared/styles";
 import { useController } from "react-hook-form";
@@ -57,9 +57,14 @@ function DateTimePickerHF({
   return (
     <View style={style}>
       {label ? <Text style={sharedStyles.mb5}>{label}</Text> : null}
-      <InputChipHF
-        value={
-          selectedDateTime
+      <View style={sharedStyles.flxRow}>
+        <Chip
+          icon={props => <Calendar {...props} {...sharedStyles.iconoirM} />}
+          onPress={() => {
+            showDatePicker();
+            hideTimePicker();
+          }}>
+          {selectedDateTime
             ? intlFormat(
                 parseISO(value),
                 {
@@ -70,18 +75,10 @@ function DateTimePickerHF({
                 },
                 { locale: language }
               )
-            : datePlaceholder
-        }
-        controllerName={controllerName}
-        onPress={() => {
-          showDatePicker();
-          hideTimePicker();
-        }}
-        control={control}
-        mode={chipMode}
-        icon={Calendar}
-        rules={rules}
-      />
+            : datePlaceholder}
+        </Chip>
+      </View>
+
       <InputChipHF
         value={selectedDateTime ? format(parseISO(selectedDateTime), "HH:mm") : timePlaceholder}
         controllerName={controllerName}

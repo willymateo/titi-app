@@ -43,6 +43,7 @@
   "endDatePlaceholder": "Select the Farewell date",
   "endTimePlaceholder": "Select the Farewell time",
   "endDateTimeHelperText": "The date and time at which the adventure ends",
+  "endDateTimeBeforeStartDateTime": "Farewell date time should be after meeting date time",
   "numInvitations": "Number of invitations",
   "numInvitationsRequired": "Number of invitations is required",
   "numInvitationsMin": "Number of invitations should be minimum 1",

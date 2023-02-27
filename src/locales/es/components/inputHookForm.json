@@ -43,6 +43,7 @@
   "endDatePlaceholder": "Seleccione la fecha de despedida",
   "endTimePlaceholder": "Seleccione la hora de despedida",
   "endDateTimeHelperText": "La fecha y hora a la que finaliza la aventura",
+  "endDateTimeBeforeStartDateTime": "La fecha y hora de despedida debe ser después de la fecha y hora de reunión",
   "numInvitations": "Número de invitaciones",
   "numInvitationsRequired": "Se requiere el número de invitaciones",
   "numInvitationsMin": "El número de invitaciones debe ser mínimo 1",

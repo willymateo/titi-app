@@ -10,6 +10,7 @@ import { sharedStyles } from "../shared/styles";
 import { LoadingDialog } from "./LoadingDialog";
 import { useTranslation } from "react-i18next";
 import { Keyboard, View } from "react-native";
+import { isAfter, parseISO } from "date-fns";
 import { ErrorDialog } from "./ErrorDialog";
 import { useForm } from "react-hook-form";
 
@@ -39,6 +40,7 @@ function AdventureForm({
       title,
     },
   });
+  const selectedStartDateTime = watch("startDateTime");
 
   const handlePressCreate = async data => {
     startLoading();
@@ -102,7 +104,12 @@ function AdventureForm({
         watch={watch}
       />
       <DateTimePickerHF
-        rules={{ required: t("inputHookForm.endDateTimeRequired") }}
+        rules={{
+          validate: value =>
+            isAfter(parseISO(value), parseISO(selectedStartDateTime)) ||
+            t("inputHookForm.endDateTimeBeforeStartDateTime"),
+          required: t("inputHookForm.endDateTimeRequired"),
+        }}
         datePlaceholder={t("inputHookForm.endDatePlaceholder")}
         timePlaceholder={t("inputHookForm.endTimePlaceholder")}
         helperText={t("inputHookForm.endDateTimeHelperText")}
